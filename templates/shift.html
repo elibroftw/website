@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang=en-us>
+<head>
+<style>body{background: #182536;}.fullscreen:hover{transform: scale(1.1);}.dl:hover{transform: scale(1.1);}</style>
+<meta charset=utf-8>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<title>Shift (Alpha)</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='Shift (Alpha)/TemplateData/favicon.ico') }}">
+<link rel=stylesheet href="{{ url_for('static', filename='Shift (Alpha)/TemplateData/style.css') }}">
+<script src="https://use.fontawesome.com/4a657318ea.js"></script>
+<script src="{{ url_for('static', filename='Shift (Alpha)/TemplateData/UnityProgress.js') }}"></script>
+<script src="{{ url_for('static', filename='Shift (Alpha)/Build/UnityLoader.js')}}"></script>
+<script>var gameInstance=UnityLoader.instantiate("gameContainer","{{ url_for('static', filename='Shift (Alpha)/Build/static.json') }}",{onProgress:UnityProgress});</script>
+</head>
+<body>
+<a href="{{url_for('home')}}"><i class="fa fa-home fa-3x dl" aria-hidden="true" style="color: whitesmoke;"></i></a>
+<i class="fa fa-download fa-3x" aria-hidden="true" style="color: whitesmoke; position: absolute; left: 8px; top: 65px;"></i>
+<a href="{{url_for('static', filename='Shift (Alpha)/Shift (Windows).7z')}}" download="Shift-Windows.7z"><i class="fa fa-windows fa-3x dl" aria-hidden="true" style="color: dodgerblue; position: absolute; left: 8px; top: 120px;"></i></a>
+<a href="{{url_for('static', filename='Shift (Alpha)/Shift (Mac OS X).app.7z')}}" download="Shift-MacOSX.app.7z"><i class="fa fa-apple fa-3x dl" aria-hidden="true" style="position: absolute; left: 11px; top: 180px; color: #4f5b66"></i></a>
+<a href="{{url_for('static', filename='Shift (Alpha)/Shift (Linux).7z')}}" download="Shift-Linux.7z"><i class="fa fa-linux fa-3x dl" aria-hidden="true" style="position: absolute; left: 10px; top: 240px; color: black;"></i></a>
+<div class=webgl-content>
+<div id=gameContainer style="width: 1206px; height: 684px"></div>
+<div class=footer>
+<div class=webgl-logo></div>
+<div class=fullscreen onclick="gameInstance.SetFullscreen(1)"></div>
+<div class=title style="color: whitesmoke;">Shift (Alpha) by Elijah Lopez and Tolga Acan</div>
+</div>
+</div>
+
+</body>
+</html>
