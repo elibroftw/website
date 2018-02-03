@@ -1,0 +1,116 @@
+@font-face {
+    font-family: AdamCGPro;
+    src: url('fonts/ADAM.CG PRO.otf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: DroidSerif;
+    src: url('fonts/DroidSerif-Regular.ttf');
+    font-weight: normal;
+}
+
+body {
+    font-family: sans-serif;
+    margin-top: 30px;
+}
+
+.about {
+    padding: 50px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0 auto;
+    width: 45%;
+    max-width: 1000px;
+    resize: both;
+    overflow: auto;
+    text-align: center;
+}
+
+h1{
+    text-decoration: none;
+    color: white;
+    font-family: AdamCGPro;
+    font-size: 70px;
+    letter-spacing: 10px;
+    margin-top: -10px;
+}
+
+h1:hover {
+    color: grey;
+    cursor: default;
+}
+
+p {
+    font-family: DroidSerif;
+    margin-top: -20px;
+    color: white;
+}
+
+p:hover {
+    color: grey;
+}
+
+p2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li a {
+    display: block;
+    margin-left: 8px;
+    width: 100px;
+    color: #000;
+    padding: 8px 5px;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: white;
+}
+
+.dropbtn {
+    color: #000;
+    padding: 8px 5px;
+    border: none;
+    cursor: default;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    width: 100px;
+/*    position: relative;*/
+/*    display: inline-block;*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 120px;
+    margin-top: -40px;
+    background-color: white;
+/*    min-width: 80px;*/
+/*    width: 100%;*/
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+/*    text-decoration: none;*/
+    cursor: pointer;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content:hover {background-color: lightgrey; color: #000}
+.dropdown-content a:hover {color: #000}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {color: white}

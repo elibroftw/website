@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elijah Lopez - Programs</title>
+<style>body{background-image:url("/static/images/background.jpg");background-size:cover;background-repeat:no-repeat;background-attachment:fixed;}</style>
+<link rel=icon type="image/png" href="http://www.madore.org/~david/images/27lines-221-random.png">
+<link rel=stylesheet href="/static/css/programs.css?v=1.0.1.11">
+</head>
+<body>
+<div class=navigation>
+<p2>
+<li><a href="/">Home</a></li>
+<li><a href="">My Programs</a></li>
+<li><a href="/contact/">Contact</a></li>
+<li><a href="/about/">About</a></li>
+<li><div class="dropdown">
+<a class="dropbtn">Games</a>
+<div class="dropdown-content"><a href="/shift">Shift</a></div>
+</div>
+</li>
+</p2>
+</div>
+<div class=home>
+<h1>My Programs</h1>
+<p>Here are all my programs</p>
+<p4>Square of a number: </p4><input id=inputbox type=number name="Number to Square" autofocus onkeyup="myFunction()" max=99999 style="width: 4em">
+<p3 id=output></p3>
+</div>
+<script>function myFunction(){var num=document.getElementById('inputbox').value;if(num.length>4){num=num+""
+num=parseInt(num.slice(0,5));document.getElementById('inputbox').value=num;}
+a=num*num;if(a==0){document.getElementById('output').innerHTML="";}else{document.getElementById('output').innerHTML=a;}}</script>
+</body>
+</html>
