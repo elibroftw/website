@@ -1,43 +1,37 @@
-# from time import time
+import base64
+import os
+import markdown
 from bs4 import BeautifulSoup
 import requests
-import pypyodbc
-import os
+import get_data
 import re
+# from time import time
+# import pypyodbc
+# import os
 
-
-def get_external_ip4():
-    url = 'https://www.google.ca/search?q=whats+my+ip+address&rlz=1C1CHBF_enCA748CA748&oq=whats+&aqs=chrome.0' \
-          '.69i59j69i60l2j69i57j69i60j35i39.1311j0j1&sourceid=chrome&ie=UTF-8 '
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    # print(soup.prettify())  # use for DEBUGGING
-    name_box = soup.find('div', attrs={'class': '_h4c _rGd vk_h'})
-    # print(name_box)
-    name = name_box.text.strip()
-    print(f' External ip: http://{name}:99/')
-    return name
-
-
-def get_external_ip3():
-    url = 'https://www.privateinternetaccess.com/pages/whats-my-ip/'
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    name_box = soup.find('li', {'class': 'topbar__item topbar__item-ip'})
-    name = name_box.text.strip()[17:]
-    # name = name[17:]
-    print(f' External ip: http://{name}:99/')
-    return
+schedule_data = get_data.get_data()
+SPOTIFY_CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
+SPOTIFY_SECRET = os.environ['SPOTIFY_SECRET']
+SPOTIFY_AUTH_STR = f'{SPOTIFY_CLIENT_ID}:{SPOTIFY_SECRET}'
+SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
 
 
 def get_external_ip2():
-    url = 'http://whatismyip.org/'
+    url = 'http://www.whatsmyip.org/'
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
     name = soup.find('span', style="color: blue; font-size: 36px; font-weight: 600;").text
     print(f' External ip: http://{name}:99/')
-    return
+    return name
 
+
+def get_external_ip():
+    res = requests.get("http://www.whatsmyip.org/")
+    ip = re.compile('(\d{1,3}\.){3}\d{1,3}').search(res.text).group()
+    if ip != "":
+        print(f' External ip: http://{ip}:99/')
+        return ip
+    print('ERROR occured while getting ip adress')
 
 # def database():
 #     cwd = os.getcwd()
@@ -61,13 +55,48 @@ def get_external_ip2():
 #     conn.close()
 
 
-def get_external_ip():
-    try:
-        res = requests.get("http://whatismyip.org")
-        ip = re.compile('(\d{1,3}\.){3}\d{1,3}').search(res.text).group()
-        if ip != "":
-            print(f' External ip: http://{ip}:99/')
-            return ip
-    except: pass
-    return print('ERROR occured while getting ip adress')
+def make_html_friendly(text):
+    return markdown.markdown(text).replace('<p>', '').replace('</p>', '')
 
+
+def info_to_html(month_name, day, info):
+    return f'\n<td id={month_name}{day}><i>{month_name} {day}</i><br/>{info}</td>'
+
+
+def get_template_data():
+    template = ''
+    last_weekday = 0
+    for k, v in schedule_data.items():
+        if k.get_weekday_name() == 'Monday':
+            if not template.endswith('</tr>'): template += '</tr>'
+            template += '\n<tr>'
+            template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+        else:
+            # if template.endswith('</tr>'):
+            #     template += '\n<tr>'
+            #     for i in range(k.weekday - 1):
+            #         template += '\n<td></td>'
+            #     template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+            if k.weekday < last_weekday:
+                template += '\n</tr>'
+                for i in range(k.weekday):
+                    template += '\n<td></td>'
+                template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+            else:
+                template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+            # if k.weekday == 6: template += '\n</tr>'  # also maybe use 4
+        last_weekday = k.weekday
+    if not template.endswith('</tr>'): template += '\n</tr>'
+    return template
+
+
+def get_album_art(artist, track, access_token=None) -> str:
+    """ Gets url of album art for the track"""
+    if access_token is None:
+        header = {'Authorization': 'Basic ' + SPOTIFY_B64_AUTH_STR}
+        data = {'grant_type': 'client_credentials'}
+        access_token_response = requests.post('https://accounts.spotify.com/api/token', headers=header, data=data)
+        access_token = access_token_response.json()['access_token']
+    header = {'Authorization': 'Bearer ' + access_token}
+    r = requests.get(f'https://api.spotify.com/v1/search?q={track}+artist:{artist}&type=track', headers=header)
+    return r.json()['tracks']['items'][0]['album']['images'][0]['url']
