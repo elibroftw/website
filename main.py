@@ -1,15 +1,18 @@
 from flask import Flask, render_template, request
 import flask
 from flask_compress import Compress
-import threading
-from funcs import get_external_ip, get_external_ip2
-from flask_cache import Cache
+from funcs import get_template_data, get_album_art
+# from flask import request
+# import threading
+# from funcs import get_external_ip, get_external_ip2
+# from flask_cache import Cache
 
 variables = {'name': 'Elijah'}
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
 # cache = Cache(config={'CACHE_TYPE': 'simple'})
 Compress(app)
+home_template_data = get_template_data()
 # app.config['CACHE_TYPE'] = 'simple'
 # app.cache = Cache(app)
 
@@ -44,7 +47,7 @@ def game_shift():
 
 
 @app.route('/')
-def home(): return render_template('home.html', name=variables['name'], test=round)
+def home(): return render_template('home.html', name=variables['name'])
 
 # <!--{{nav.top_nav.render()}}-->
 
@@ -53,7 +56,7 @@ def home(): return render_template('home.html', name=variables['name'], test=rou
 def about(): return render_template('about.html')
 
 
-@app.route('/programs/')
+@app.route('/programs/')  # todo: make this a drop down menu as well
 def index(): return render_template('programs.html')
 
 
@@ -65,10 +68,24 @@ def contact(): return 'This page is still in development'
 def resources(): return render_template('resources.html')
 
 
+@app.route('/album-art-finder', methods=['GET'])
+def album_art_finder():
+    artist = request.args.get("artist")
+    track = request.args.get("track")
+    if None in (artist, track): image_url = '://0'
+    else: image_url = get_album_art(artist, track)
+    return render_template('album_art_finder.html', image_url=image_url)
+
+
+@app.route('/ib-economics-schedule')
+def ib_economics_schedule():
+    return render_template('table.html', data=home_template_data)
+
+
 # @app.route('/user/<username>')
 # def show_user_profile(username):
 #     # show the user profile for that user
-#     return 'User %s' % username
+#     return f'User {username}'
 #
 #
 # @app.route('/post/<int:post_id>')
@@ -78,10 +95,10 @@ def resources(): return render_template('resources.html')
 
 
 if __name__ == '__main__':
-    threading.Thread(target=get_external_ip).start()
+    # threading.Thread(target=get_external_ip).start()
     # print('http://elibro.asuscomm.com:99/')
     # request.headers.get('Cache-Control')
-    # app.run(host='192.168.2.219', port='99')
-    app.run(host='localhost', port='99')
-    # app.run()
+    # app.run(host='192.168.2.219', port=99)
+    # app.run(host='localhost', port=99)
+    app.run()
 

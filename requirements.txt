@@ -1,0 +1,16 @@
+bs4
+certifi
+chardet
+click
+gunicorn
+idna
+itsdangerous
+Jinja2
+Markdown
+MarkupSafe
+requests
+urllib3
+Werkzeug
+flask
+flask_compress
+flask_cache

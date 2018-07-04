@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elijah Lopez - Album Art Finder</title>
+<style>body {background-image: url("/static/images/background.jpg");background-size: cover; background-repeat: no-repeat;background-attachment: fixed;}</style>
+<link rel=icon type="image/png" href="{{url_for('static', filename='images/logo.png')}}">
+<link rel=stylesheet href="/static/css/home.css?v=1.0.6.4">
+</head>
+<body>
+<div class=navigation>
+<p2>
+<li><a href="/">Home</a></li>
+<li><a href="/programs/">My Programs</a></li>
+<li><a href="/contact/">Contact</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/resources/">Resources</a></li>
+<li><div class="dropdown">
+<a class="dropbtn">Games</a>
+<div class="dropdown-content"><a href="/shift">Shift</a></div>
+</div>
+</li>
+</p2>
+</div>
+<div class=home>
+<h1>Album Art Finder</h1>
+<form action="/album-art-finder">
+<input id=artist_input type=text name="artist" autofocus style="width: 8em">
+<input id=track_input type=text name="track" style="width: 8em">
+<button id="myBtn">Search</button>
+</form>
+<img id="album_cover" alt="Album Cover" src="{{image_url}}"/>
+</div>
+<script>
+function imageExists(image_url){
+    var http = new XMLHttpRequest();
+    http.open('HEAD', image_url, false);
+    http.send();
+    return http.status != 404;
+}
+var x = document.getElementById("album_cover");
+if (imageExists(x.src) == false){
+    x.style.display = "none";
+}
+var input = document.getElementById("myInput");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("myBtn").click();
+    }
+});
+function myFunction() {
+    document.getElementById("album_cover").style.display = "block";
+}
+</script>
+</body>
+</html>

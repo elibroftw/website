@@ -1,3 +1,0 @@
-use awesome font logos on home.html
-remember to copy that script portion
-use for twittter, facebook, etc

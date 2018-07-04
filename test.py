@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 from flask_compress import Compress
+
 app = Flask(__name__)
+
+
 # app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
 # Compress(app)
 # @app.after_request
