@@ -67,7 +67,7 @@ def contact(): return 'This page is still in development'
 def resources(): return render_template('resources.html')
 
 
-@app.route('/search-album-art', methods=['GET'])
+@app.route('/search-album-art/', methods=['GET'])
 def album_art_finder():
     artist = request.args.get("artist")
     track = request.args.get("track")
@@ -100,4 +100,3 @@ if __name__ == '__main__':
     # app.run(host='192.168.2.219', port=99)
     # app.run(host='localhost', port=99)
     app.run()
-
