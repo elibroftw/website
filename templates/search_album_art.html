@@ -4,7 +4,7 @@
 <title>Elijah Lopez - Album Art Finder</title>
 <style>body {background-image: url("/static/images/background.jpg");background-size: cover; background-repeat: no-repeat;background-attachment: fixed;}</style>
 <link rel=icon type="image/png" href="{{url_for('static', filename='images/logo.png')}}">
-<link rel=stylesheet href="/static/css/home.css?v=1.0.6.4">
+<link rel=stylesheet href="/static/css/search_album_art.css?v=1.0.6.5">
 </head>
 <body>
 <div class=navigation>
@@ -14,6 +14,7 @@
 <li><a href="/contact/">Contact</a></li>
 <li><a href="/about/">About</a></li>
 <li><a href="/resources/">Resources</a></li>
+<li><a href="">Search Album Art</a></li>
 <li><div class="dropdown">
 <a class="dropbtn">Games</a>
 <div class="dropdown-content"><a href="/shift">Shift</a></div>
@@ -23,7 +24,7 @@
 </div>
 <div class=home>
 <h1>Album Art Finder</h1>
-<form action="/album-art-finder">
+<form action="/search-album-art">
 <input id=artist_input type=text name="artist" autofocus style="width: 8em">
 <input id=track_input type=text name="track" style="width: 8em">
 <button id="myBtn">Search</button>

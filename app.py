@@ -6,7 +6,6 @@ from funcs import get_template_data, get_album_art
 # import threading
 # from funcs import get_external_ip, get_external_ip2
 # from flask_cache import Cache
-
 variables = {'name': 'Elijah'}
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
@@ -68,13 +67,13 @@ def contact(): return 'This page is still in development'
 def resources(): return render_template('resources.html')
 
 
-@app.route('/album-art-finder', methods=['GET'])
+@app.route('/search-album-art', methods=['GET'])
 def album_art_finder():
     artist = request.args.get("artist")
     track = request.args.get("track")
     if None in (artist, track): image_url = '://0'
     else: image_url = get_album_art(artist, track)
-    return render_template('album_art_finder.html', image_url=image_url)
+    return render_template('search_album_art.html', image_url=image_url)
 
 
 @app.route('/ib-economics-schedule')
