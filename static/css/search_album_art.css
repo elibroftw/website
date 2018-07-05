@@ -27,18 +27,16 @@ body {
     text-align: center;
 }
 
-h1 a{
-    text-decoration: none;
+h1 {
     color: white;
     font-family: AdamCGPro;
-    font-size: 70px;
+    font-size: 60px;
     letter-spacing: 10px;
     margin-top: -10px;
 }
 
-h1 a:hover {
+h1:hover {
     color: grey;
-    cursor: default;
 }
 
 p {
@@ -114,3 +112,18 @@ li a:hover {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {color: white}
+p3 {
+    border-width: thick 4px;
+    border-style: solid;
+    background-color: #fff;
+    color: #6E6A6B;
+    font-size: 12pt;
+    text-align: left;
+    float: middle;
+    border: 1px solid #969293;
+    width: 40%;
+}
+
+p4 {
+    color: white;
+}

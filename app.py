@@ -76,7 +76,7 @@ def album_art_finder():
     return render_template('search_album_art.html', image_url=image_url)
 
 
-@app.route('/ib-economics-schedule')
+@app.route('/ib-economics-schedule/')
 def ib_economics_schedule():
     return render_template('table.html', data=home_template_data)
 
@@ -100,3 +100,4 @@ if __name__ == '__main__':
     # app.run(host='192.168.2.219', port=99)
     # app.run(host='localhost', port=99)
     app.run()
+
