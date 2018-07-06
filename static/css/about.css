@@ -5,8 +5,8 @@
 }
 
 @font-face {
-    font-family: DroidSerif;
-    src: url('fonts/DroidSerif-Regular.ttf');
+    font-family: Montserrat;
+    src: url('fonts/Montserrat-Regular.otf');
     font-weight: normal;
 }
 
@@ -42,7 +42,7 @@ h1:hover {
 }
 
 p {
-    font-family: DroidSerif;
+    font-family: Montserrat;
     margin-top: -20px;
     color: white;
 }
