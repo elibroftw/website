@@ -113,8 +113,13 @@ li a:hover {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {color: white}
-p3 p4{
+p3{
     color: white;
     font-family: Montserrat;
     font-weight: lighter;
+}
+p4{
+  color: white;
+  font-family: Montserrat;
+  font-weight: lighter;
 }
