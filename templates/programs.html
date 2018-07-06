@@ -4,12 +4,14 @@
     <title>Programs - Elijah Lopez</title>
     <style>
     body {
-      background-image: url("/static/images/bg-mobile.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-    @media (min-width: 480px) {
-        background-image: url("/static/images/bg-desktop.jpg");
+          font-family: sans-serif;
+          margin-top: 30px;
+          background-image: url("/static/images/bg-mobile.jpg");
+          background-size: cover;
+          background-repeat: no-repeat;
     }
+    @media (min-width: 480px) {
+      body {background-image: url("/static/images/bg-desktop.jpg");}
     }
     </style>
     <link rel=icon type="image/png" href="{{url_for('static', filename='images/logo.png')}}">
