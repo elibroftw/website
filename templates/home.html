@@ -2,8 +2,20 @@
 <html>
 <head>
 <title>Elijah Lopez</title>
+<style>
+@media (min-width: 480px) {
+  .body {background-image: url("/static/images/bg-desktop.jpg");}
+}
+body {
+      font-family: sans-serif;
+      margin-top: 30px;
+      background-image: url("/static/images/bg-mobile.jpg");
+      background-size: cover;
+      /* background-repeat: no-repeat; */
+}
+</style>
 <link rel=icon type="image/png" href="{{url_for('static', filename='images/logo.png')}}">
-<link rel=stylesheet href="/static/css/home.css?v=1.0.6.6">
+<link rel=stylesheet href="/static/css/home.css?v=1.0.6.7">
 </head>
 <body>
 <div class=navigation>
