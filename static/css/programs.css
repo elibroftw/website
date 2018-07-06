@@ -107,18 +107,6 @@ li a:hover {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {color: white}
-p3 {
-    /* border-width: thick 4px; */
-    /* border-style: solid; */
-    /* background-color: #fff; */
-    color: white;
-    /* font-size: 12pt; */
-    /* text-align: left; */
-    /* float: middle; */
-    /* border: 1px solid #969293; */
-    /* width: 40%; */
-}
-
-p4 {
+p3 p4{
     color: white;
 }
