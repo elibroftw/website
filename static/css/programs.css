@@ -10,6 +10,12 @@
     font-weight: normal;
 }
 
+@@font-face {
+  font-family: Montserrat;
+  src: url('fonts/Montserrat-Thin.otf');
+  font-weight: lighter;
+}
+
 .home {
     padding: 50px;
     border-radius: 10px;
@@ -109,4 +115,6 @@ li a:hover {
 .dropdown:hover .dropbtn {color: white}
 p3 p4{
     color: white;
+    font-family: Montserrat;
+    font-weight: lighter;
 }
