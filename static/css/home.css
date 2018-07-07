@@ -29,14 +29,14 @@ h1{
     margin-top: -10px;
 }
 
-h1:hover {
-    color: grey;
-    cursor: default;
-}
-
 h1 a{
     color: white;
     text-decoration: none;
+}
+
+h1 a:hover {
+    color: grey;
+    cursor: default;
 }
 
 p {
