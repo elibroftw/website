@@ -56,7 +56,7 @@ p:hover {
     color: grey;
 }
 
-p2 {
+.navigation {
     list-style-type: none;
     margin: 0;
     padding: 0;
