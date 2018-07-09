@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
-    <title>Programs - Elijah Lopez</title>
-    <link rel=icon type="image/png" href="{{url_for('static', filename='images/logo.png')}}">
-    <link rel=stylesheet href="/static/css/programs.css?v=v=1.0.6.16">
+<title>Programs - Elijah Lopez</title>
+<link rel=icon type="image/png" href="/static/images/logo.png">
+<link rel=stylesheet href="/static/css/programs.css?v=v=1.7.0">
 </head>
 <body>
 <div class=navigation>
-        <li><a href="/">Home</a></li>
-        <li><a href="">My Programs</a></li>
-        <li><a href="/contact/">Contact</a></li>
-        <li><a href="/about/">About</a></li>
-        <li><a href="/resources/">Resources</a></li>
-        <li><a href="/search-album-art/">Search Album Art</a></li>
-        <li>
-            <div class="dropdown">
-                <a class="dropbtn">Games</a>
-                <div class="dropdown-content"><a href="/shift">Shift</a></div>
-            </div>
-        </li>
+<li><a href="/">Home</a></li>
+<li><a href="">My Programs</a></li>
+<li><a href="/contact/">Contact</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/resources/">Resources</a></li>
+<li><a href="/search-album-art/">Search Album Art</a></li>
+<li><div class=dropdown>Games<div class=dropdown-content>
+<a href="/shift">Shift</a>
+</div></div></li>
 </div>
 <div class=home>
-    <h1>My Programs</h1>
-    <p>Here are all my programs</p>
-    <!--TODO: add a show button that shows the repl embed-->
-    <iframe height="400px" width="100%" src="https://repl.it/@elilopez/algorithms?lite=true" scrolling="no" frameborder="no"
-            allowtransparency="true" allowfullscreen="true"
-            sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
-    <p3>Square of a number:</p3>
-    <input id=inputbox type=number name="Number to Square" autofocus onkeyup="myFunction()" max=99999
-           style="width: 4em">
-    <p4 id=output></p4>
+<h1>My Programs</h1>
+<p>Here are all my programs</p>
+<iframe height=400px width="100%" src="https://repl.it/@elilopez/algorithms?lite=true" scrolling=no frameborder=no allowtransparency=true allowfullscreen=true sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<p2>Square of a number:</p2>
+<input id=inputbox type=number name="Number to Square" autofocus onkeyup="myFunction()" max=99999 style="width: 4em">
+<p3 id=output></p3>
 </div>
 <script>function myFunction(){var num=document.getElementById('inputbox').value;if(num.length>4){num=num+""
 num=parseInt(num.slice(0,5));document.getElementById('inputbox').value=num;}
-a=num*num;if(a==0){document.getElementById('output').innerHTML="";}else{document.getElementById('output').innerHTML=a;}}
-</script>
+a=num*num;if(a==0){document.getElementById('output').innerHTML="";}else{document.getElementById('output').innerHTML=a;}}</script>
 </body>
 </html>
