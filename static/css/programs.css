@@ -13,7 +13,7 @@
 @font-face {
   font-family: Montserrat;
   src: url('fonts/Montserrat-Thin.otf');
-  font-weight: lighter;
+  font-weight: 200;
 }
 
 .home {
@@ -54,6 +54,7 @@ h1:hover {
 
 p {
     font-family: Montserrat;
+    font-weight: normal;
     margin-top: -20px;
     color: white;
 }
@@ -66,6 +67,18 @@ p2 {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+p3{
+    color: white;
+    font-family: Montserrat;
+    font-weight: lighter;
+}
+
+p4{
+  color: white;
+  font-family: Montserrat;
+  font-weight: lighter;
 }
 
 li a {
@@ -125,13 +138,3 @@ li a:hover {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {color: white}
-p3{
-    color: white;
-    font-family: Montserrat;
-    font-weight: lighter;
-}
-p4{
-  color: white;
-  font-family: Montserrat;
-  font-weight: lighter;
-}
