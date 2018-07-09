@@ -10,7 +10,7 @@
     font-weight: normal;
 }
 
-@@font-face {
+@font-face {
   font-family: Montserrat;
   src: url('fonts/Montserrat-Thin.otf');
   font-weight: lighter;
@@ -26,6 +26,18 @@
     resize: both;
     overflow: auto;
     text-align: center;
+}
+
+body {
+      font-family: sans-serif;
+      margin-top: 40px;
+      background-image: url("/static/images/bg-mobile.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+}
+
+@media (orientation: landscape) {
+  body {background-image: url("/static/images/bg-desktop.jpg");}
 }
 
 h1 {
