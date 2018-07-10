@@ -81,7 +81,7 @@ li a {
     display: block;
     margin-left: 1em;
     width: 100px;
-    color: #000;
+    color: inherit;
     padding: 0.5em 1em;
     text-decoration: none;
     border-radius: 1em;
@@ -97,6 +97,7 @@ li a:hover {
     margin-top: 30px;
     padding: 0;
     letter-spacing: 0.23px;
+    color: #000;
 }
 
 #mobile-navigation {
@@ -106,17 +107,16 @@ li a:hover {
     background-color: #333538;
     padding: 1em 0em;
     cursor: pointer;
+    color: white;
 }
 
 #mobile-navigation-label {
-    color: white;
     background-color: #333538;
     /* padding: 1em; */
 }
 
 u1 {
     display: none;
-    color: white;
     text-align: center;
     list-style-type: none;
 }
