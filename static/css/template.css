@@ -93,7 +93,6 @@ li a:hover {
 }
 
 #main-navigation {
-    display: block;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -102,13 +101,29 @@ li a:hover {
 
 #mobile-navigation {
     display: none;
+    text-align: center;
+}
+
+#mobile-navigation-label {
+    color: white;
+    background-color: #333538;
+    cursor: pointer;
+}
+
+#mobile-navigation:active #mobile-navigation u1 {
+    display: block;
+}
+
+#mobile-navigation u1 {
+    display: none;
+    list-style: none;
 }
 
 @media screen and (max-width: 640px) {
     #mobile-navigation {
         display: block;
     }
-    #navigation {
+    #main-navigation {
         display: none;
     }
 }
