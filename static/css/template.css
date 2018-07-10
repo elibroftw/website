@@ -34,6 +34,8 @@ body {
     background-image: url("/static/images/bg-mobile.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 @media (orientation: landscape) {
@@ -42,6 +44,12 @@ body {
         margin-top: 30px;
     }
 }
+
+/* @media only screen and (max-width: 1024px) {
+    body {
+        background-color: lightblue;
+    }
+} */
 
 h1 {
     font-family: AdamCGPro;
@@ -76,6 +84,7 @@ li a {
     padding: 8px 5px;
     text-decoration: none;
     border-radius: 10px;
+    font-size: 13px;
 }
 
 li a:hover {
@@ -98,6 +107,7 @@ li a:hover {
     padding: 8px 5px;
     border: none;
     cursor: default;
+    font-size: 13px;
     /*    position: relative;*/
     /*    display: inline-block;*/
 }
