@@ -31,6 +31,7 @@
 body {
     font-family: Futura;
     font-weight: bold;
+    margin: 0;
     background-image: url("/static/images/bg-desktop.jpg");
     /*background-image: url("/static/images/bg-mobile.jpg"); */
     background-size: cover;
@@ -111,6 +112,7 @@ li a:hover {
     color: white;
     background-color: #333538;
     cursor: pointer;
+    padding: 1em;
 }
 
 #mobile-navigation:active #mobile-navigation u1 {
