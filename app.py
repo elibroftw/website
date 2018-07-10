@@ -59,7 +59,7 @@ def index(): return render_template('programs.html')
 
 
 @app.route('/contact/')
-def contact(): return 'This page is still in development'
+def contact(): return render_template('contact.html')
 
 
 @app.route('/resources/')
