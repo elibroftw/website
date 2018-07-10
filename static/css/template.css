@@ -31,19 +31,20 @@
 body {
     font-family: Futura;
     font-weight: bold;
-    background-image: url("/static/images/bg-mobile.jpg");
+    margin-top: 30px;
+    background-image: url("/static/images/bg-desktop.jpg");
+    /*background-image: url("/static/images/bg-mobile.jpg"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
 }
 
-@media (orientation: landscape) {
+/* @media (orientation: landscape) {
     body {
-        background-image: url("/static/images/bg-desktop.jpg");
-        margin-top: 30px;
+
     }
-}
+} */
 
 /* @media only screen and (max-width: 1024px) {
     body {
@@ -84,7 +85,6 @@ li a {
     padding: 8px 5px;
     text-decoration: none;
     border-radius: 10px;
-    font-size: 13px;
 }
 
 li a:hover {
@@ -96,7 +96,7 @@ li a:hover {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.23px;
 }
 
 .dropdown {
@@ -107,7 +107,6 @@ li a:hover {
     padding: 8px 5px;
     border: none;
     cursor: default;
-    font-size: 13px;
     /*    position: relative;*/
     /*    display: inline-block;*/
 }
