@@ -114,13 +114,10 @@ li a:hover {
     /* padding: 1em; */
 }
 
-#mobile-navigation:hover #mobile-navigation u1 {
-    display: block;
-}
-
 #mobile-navigation u1 {
     display: none;
-    list-style: none;
+    color: white;
+    text-align: center;
 }
 
 @media screen and (max-width: 640px) {
@@ -129,6 +126,9 @@ li a:hover {
     }
     #main-navigation {
         display: none;
+    }
+    .main {
+        margin-top: 4em;
     }
 }
 
