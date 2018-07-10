@@ -128,6 +128,9 @@ li a:hover {
     #main-navigation {
         display: none;
     }
+    body {
+        background-image: url("/static/images/bg-mobile.jpg");
+    }
     .main {
         margin-top: 4em;
     }
