@@ -33,7 +33,6 @@ body {
     font-weight: bold;
     margin: 0;
     background-image: url("/static/images/bg-desktop.jpg");
-    /*background-image: url("/static/images/bg-mobile.jpg"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -85,6 +84,8 @@ li a {
     padding: 0.5em 1em;
     text-decoration: none;
     border-radius: 1em;
+    text-align: inherit;
+    list-style-type: none;
 }
 
 li a:hover {
@@ -117,8 +118,6 @@ li a:hover {
 
 u1 {
     display: none;
-    text-align: center;
-    list-style-type: none;
 }
 
 @media screen and (max-width: 640px) {
@@ -133,6 +132,7 @@ u1 {
     }
     .main {
         margin-top: 4em;
+        /* TODO: Change padding and stuff so that it looks good on mobile */
     }
 }
 
