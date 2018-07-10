@@ -37,6 +37,7 @@
 body {
     font-family: Futura;
     font-weight: bold;
+    letter-spacing: 5px;
     background-image: url("/static/images/bg-mobile.jpg");
     background-size: cover;
     background-repeat: no-repeat;
