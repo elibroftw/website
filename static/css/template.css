@@ -33,6 +33,9 @@ body {
     font-weight: bold;
     margin: 0;
     background-image: url("/static/images/bg-desktop.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
