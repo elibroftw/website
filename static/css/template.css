@@ -105,12 +105,12 @@ li a:hover {
     letter-spacing: 0.3em;
     background-color: #333538;
     padding: 1em 0em;
+    cursor: pointer;
 }
 
 #mobile-navigation-label {
     color: white;
     background-color: #333538;
-    cursor: pointer;
     /* padding: 1em; */
 }
 
@@ -118,6 +118,7 @@ li a:hover {
     display: none;
     color: white;
     text-align: center;
+    list-style-type: none;
 }
 
 @media screen and (max-width: 640px) {
