@@ -142,7 +142,7 @@ u1 {
     width: 100px;
     color: #000;
     padding: 0.5em 1em;
-    border-radius: 0px 1em 1em 0px;
+    border-radius: 1em 0em 0em 1px;
     border: none;
     cursor: default;
     /*    position: relative;*/
@@ -153,7 +153,7 @@ u1 {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    left: 9.7em;
+    left: 9.6em;
     margin-top: -27px;
     z-index: 1;
     background-color: transparent;
@@ -163,7 +163,7 @@ u1 {
     /* Links inside the dropdown */
     /* padding: 8px 16px; */
     margin-left: 0px;
-    border-radius: 1em 0em 0em 1px;
+    border-radius: 0px 1em 1em 0px;
     /* background-color: white; */
     background-color: rgba(255, 255, 255, 0.7);
 }
