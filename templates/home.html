@@ -37,12 +37,13 @@
 </div>
 <script>
 function mobileNavigation() {
+    alert("test");
     elementStyle = document.getElementById("mobile-navigation-panel").style.display;
-    if (elementStyle == "none") {
-        document.getElementById("mobile-navigation-panel").style.display = "block";
+    if (elementStyle == "block") {
+        elementStyle = "none";
     }
     else {
-        document.getElementById("mobile-navigation-panel").style.display = "none";
+        elementStyle = "block";
     }
 }
 </script>
