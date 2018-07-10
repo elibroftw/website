@@ -9,7 +9,7 @@
 <body>
 <nav id="mobile-navigation" onclick="mobileNavigation()">
 <span id="mobile-navigation-label">MENU</span>
-<u1 id="mobile-navigation-list">
+<u1 id="mobile-navigation-panel">
 <li><a href="">Home</a></li>
 <li><a href="/programs/">My Programs</a></li>
 <li><a href="/contact/">Contact</a></li>
@@ -37,12 +37,12 @@
 </div>
 <script>
 function mobileNavigation() {
-    elementStyle = document.getElementById("mobile-navigation-list").style.display;
+    elementStyle = document.getElementById("mobile-navigation-panel").style.display;
     if (elementStyle == "none") {
-        document.getElementById("mobile-navigation-list").style.display = "block";
+        document.getElementById("mobile-navigation-panel").style.display = "block";
     }
     else {
-        document.getElementById("mobile-navigation-list").style.display = "none";
+        document.getElementById("mobile-navigation-panel").style.display = "none";
     }
 }
 </script>
