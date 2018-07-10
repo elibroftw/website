@@ -76,7 +76,7 @@ p:hover {
     color: grey;
 }
 
-li a {
+#main-navigation li a {
     display: block;
     margin-left: 1em;
     width: 100px;
@@ -86,7 +86,7 @@ li a {
     border-radius: 1em;
 }
 
-li a:hover {
+#main-navigation li a:hover {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
 }
