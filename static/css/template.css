@@ -13,7 +13,12 @@
 @font-face {
     font-family: ProductSans;
     src: url('fonts/Product Sans Bold.ttf');
-    font-weight: normal;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Futura;
+    src: url('fonts/Futura Bold font.ttf');
     font-weight: bold;
 }
 
@@ -30,7 +35,7 @@
 }
 
 body {
-    font-family: ProductSans;
+    font-family: Futura;
     font-weight: bold;
     background-image: url("/static/images/bg-mobile.jpg");
     background-size: cover;
