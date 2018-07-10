@@ -31,7 +31,6 @@
 body {
     font-family: Futura;
     font-weight: bold;
-    margin-top: 30px;
     background-image: url("/static/images/bg-desktop.jpg");
     /*background-image: url("/static/images/bg-mobile.jpg"); */
     background-size: cover;
@@ -79,12 +78,12 @@ p:hover {
 
 li a {
     display: block;
-    margin-left: 16px;
+    margin-left: 1em;
     width: 100px;
     color: #000;
-    padding: 8px 5px;
+    padding: 0.5em 1em;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 1em;
 }
 
 li a:hover {
@@ -94,7 +93,7 @@ li a:hover {
 
 #main-navigation {
     list-style-type: none;
-    margin: 0;
+    margin-top: 30px;
     padding: 0;
     letter-spacing: 0.23px;
 }
@@ -102,6 +101,10 @@ li a:hover {
 #mobile-navigation {
     display: none;
     text-align: center;
+    letter-spacing: 0.23px;
+    width: 100%;
+    background-color: #333538;
+    padding: none;
 }
 
 #mobile-navigation-label {
@@ -130,10 +133,11 @@ li a:hover {
 
 .dropdown {
     /* The container <div> - needed to position the dropdown content */
-    margin-left: 16px;
+    margin-left: 1em;
     width: 100px;
     color: #000;
-    padding: 8px 5px;
+    padding: 0.5em 1em;
+    border-radius: 0px 1em 1em 0px;
     border: none;
     cursor: default;
     /*    position: relative;*/
@@ -154,8 +158,8 @@ li a:hover {
     /* Links inside the dropdown */
     /* padding: 8px 16px; */
     margin-left: 0px;
-    border-radius: 0px 10px 10px 0px;
-    background-color: white;
+    border-radius: 0px 1em 1em 0px;
+    /* background-color: white; */
     background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -164,7 +168,6 @@ li a:hover {
     color: #000;
     background-color: lightgrey;
     background-color: white;
-    border-radius: 0px 10px 10px 0px;
 }
 
 .dropdown:hover .dropdown-content {
