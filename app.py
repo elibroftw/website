@@ -6,7 +6,6 @@ from funcs import get_template_data, get_album_art
 # import threading
 # from funcs import get_external_ip, get_external_ip2
 # from flask_cache import Cache
-variables = {'name': 'Elijah'}
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
 # cache = Cache(config={'CACHE_TYPE': 'simple'})
@@ -46,7 +45,7 @@ def game_shift():
 
 
 @app.route('/')
-def home(): return render_template('home.html', name=variables['name'])
+def home(): return render_template('home.html')
 
 # <!--{{nav.top_nav.render()}}-->
 
