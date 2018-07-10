@@ -37,7 +37,6 @@
 body {
     font-family: Futura;
     font-weight: bold;
-    letter-spacing: 5px;
     background-image: url("/static/images/bg-mobile.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -93,6 +92,7 @@ li a:hover {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    letter-spacing: 0.2px;
 }
 
 .dropdown {
