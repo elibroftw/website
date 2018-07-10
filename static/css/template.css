@@ -114,7 +114,7 @@ li a:hover {
     /* padding: 1em; */
 }
 
-#mobile-navigation u1 {
+u1 {
     display: none;
     color: white;
     text-align: center;
