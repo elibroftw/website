@@ -92,11 +92,25 @@ li a:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-.navigation {
+#main-navigation {
+    display: block;
     list-style-type: none;
     margin: 0;
     padding: 0;
     letter-spacing: 0.23px;
+}
+
+#mobile-navigation {
+    display: none;
+}
+
+@media screen and (max-width: 640px) {
+    #mobile-navigation {
+        display: block;
+    }
+    #navigation {
+        display: none;
+    }
 }
 
 .dropdown {
