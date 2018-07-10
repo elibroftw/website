@@ -114,17 +114,18 @@ li a:hover {
 
 .dropdown-content a {
     /* Links inside the dropdown */
-    padding: 8px 16px;
+    /* padding: 8px 16px; */
     margin-left: 0px;
     border-radius: 0px 10px 10px 0px;
-/*    background-color: rgba(255, 255, 255, 0.9);*/
     background-color: white;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .dropdown-content a:hover {
     /* Change color of dropdown links on hover */
     color: #000;
     background-color: lightgrey;
+    background-color: white;
     border-radius: 0px 10px 10px 0px;
 }
 
