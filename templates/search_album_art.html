@@ -3,6 +3,7 @@
 <head>
 <title>Elijah Lopez - Album Art Finder</title>
 <link rel=icon type="image/png" href="{{url_for('static', filename='images/logo.png')}}">
+<link rel=stylesheet href="/static/css/template.css">
 <link rel=stylesheet href="/static/css/search_album_art.css?v=1.7.0">
 </head>
 <body>
@@ -13,18 +14,18 @@
 <li><a href="/about/">About</a></li>
 <li><a href="/resources/">Resources</a></li>
 <li><a href="">Search Album Art</a></li>
-<li><div class="dropdown">Games<div class="dropdown-content">
+<li><div class=dropdown>Games<div class=dropdown-content>
 <a href="/shift">Shift</a>
 </div></div></li>
 </div>
-<div class=home>
+<div class=main>
 <h1>Search for Album Art</h1>
 <form action="/search-album-art">
-<input id=artist_input type=text name="artist" placeholder="Artist name" autofocus style="width: 8em">
-<input id=track_input type=text name="track" placeholder="Track name" style="width: 8em">
+<input id=artist_input type=text name=artist placeholder="Artist name" autofocus style="width: 8em">
+<input id=track_input type=text name=track placeholder="Track name" style="width: 8em">
 <button id="myBtn">Search</button><br><br>
 </form>
-<img id="album_cover" alt="Album Cover" src="{{image_url}}" style="max-width: 500px; max-height: 500px;"/>
+<img id=album-cover alt="Album Cover" src="{{image_url}}" style="max-width: 500px; max-height: 500px;"/>
 </div>
 <script>
 function imageExists(image_url){
@@ -33,7 +34,7 @@ function imageExists(image_url){
     http.send();
     return http.status != 404;
 }
-var x = document.getElementById("album_cover");
+var x = document.getElementById("album-cover");
 if (imageExists(x.src) == false){
     x.style.display = "none";
 }
@@ -45,7 +46,7 @@ input.addEventListener("keyup", function(event) {
     }
 });
 function myFunction() {
-    document.getElementById("album_cover").style.display = "block";
+    document.getElementById("album-cover").style.display = "block";
 }
 </script>
 </body>
