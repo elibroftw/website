@@ -7,9 +7,9 @@
 <link rel=stylesheet href="/static/css/home.css?v=1.8">
 </head>
 <body>
-<nav id="mobile-navigation">
-<span id="mobile-navigation-label">Menu</span>
-<u1>
+<nav id="mobile-navigation" onclick="mobileNavigation()">
+<span id="mobile-navigation-label">MENU</span>
+<u1 id="mobile-navigation-list">
 <li><a href="">Home</a></li>
 <li><a href="/programs/">My Programs</a></li>
 <li><a href="/contact/">Contact</a></li>
@@ -35,5 +35,16 @@
 <h1><a href="/about/">Elijah Lopez</a></h1>
 <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
+<script>
+function mobileNavigation() {
+    elementStyle = document.getElementById("mobile-navigation-list").style.display;
+    if (elementStyle == "none") {
+        document.getElementById("mobile-navigation-list").style.display = "block";
+    }
+    else {
+        document.getElementById("mobile-navigation-list").style.display = "none";
+    }
+}
+</script>
 </body>
 </html>

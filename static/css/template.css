@@ -102,20 +102,19 @@ li a:hover {
 #mobile-navigation {
     display: none;
     text-align: center;
-    letter-spacing: 0.23px;
-    width: 100%;
+    letter-spacing: 0.3em;
     background-color: #333538;
-    padding: 1em;
+    padding: 1em 0em;
 }
 
 #mobile-navigation-label {
     color: white;
     background-color: #333538;
     cursor: pointer;
-    padding: 1em;
+    /* padding: 1em; */
 }
 
-#mobile-navigation:active #mobile-navigation u1 {
+#mobile-navigation:hover #mobile-navigation u1 {
     display: block;
 }
 
