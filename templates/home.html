@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav id="mobile-navigation" onclick="mobileNavigation()">
-<span id="mobile-navigation-label" onclick="mobileNavigation()">MENU</span>
+<span id="mobile-navigation-label">MENU</span>
 <u1 id="mobile-navigation-panel">
 <li><a href="">Home</a></li>
 <li><a href="/programs/">My Programs</a></li>
@@ -40,10 +40,10 @@ function mobileNavigation() {
     alert("test");
     elementStyle = document.getElementById("mobile-navigation-panel").style.display;
     if (elementStyle == "block") {
-        elementStyle = "none";
+        document.getElementById("mobile-navigation-panel").style.display = "none";
     }
     else {
-        elementStyle = "block";
+        document.getElementById("mobile-navigation-panel").style.display = "block";
     }
 }
 </script>
