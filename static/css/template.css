@@ -5,15 +5,9 @@
 }
 
 @font-face {
-    font-family: Montserrat;
-    src: url('fonts/Montserrat-Regular.otf');
+    font-family: Futura;
+    src: url('fonts/Futura medium bt.ttf');
     font-weight: normal;
-}
-
-@font-face {
-    font-family: ProductSans;
-    src: url('fonts/Product Sans Bold.ttf');
-    font-weight: bold;
 }
 
 @font-face {
@@ -64,9 +58,10 @@ h1:hover {
 }
 
 p {
-    font-family: Montserrat;
+    font-family: Futura;
     margin-top: -20px;
     color: white;
+    font-weight: normal;
 }
 
 p:hover {
