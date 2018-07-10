@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
-<style>body{background: #182536;}.fullscreen:hover{transform: scale(1.1);}.dl:hover{transform: scale(1.1);}</style>
 <meta charset=utf-8>
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <title>Shift (Alpha)</title>
@@ -13,17 +12,17 @@
 <script>var gameInstance=UnityLoader.instantiate("gameContainer","/static/Shift (Alpha)/Build/static.json",{onProgress:UnityProgress});</script>
 </head>
 <body>
-<a href="/"><i class="fa fa-home fa-3x dl" aria-hidden="true"></i></a>
+<a href="/"><i class="fa fa-home fa-3x zoom" aria-hidden="true"></i></a>
 <i class="fa fa-download fa-3x" aria-hidden="true"></i>
-<a href="/static/Shift (Alpha)/Shift (Windows).7z" download="Shift-Windows.7z"><i class="fa fa-windows fa-3x dl" aria-hidden="true"></i></a>
-<a href="/static/Shift (Alpha)/Shift (Mac OS X).app.7z" download="Shift-MacOSX.app.7z"><i class="fa fa-apple fa-3x dl" aria-hidden="true"></i></a>
-<a href="/static/Shift (Alpha)/Shift (Linux).7z" download="Shift-Linux.7z"><i class="fa fa-linux fa-3x dl" aria-hidden="true"></i></a>
+<a href="/static/Shift (Alpha)/Shift (Windows).7z" download="Shift-Windows.7z"><i class="fa fa-windows fa-3x zoom" aria-hidden="true"></i></a>
+<a href="/static/Shift (Alpha)/Shift (Mac OS X).app.7z" download="Shift-MacOSX.app.7z"><i class="fa fa-apple fa-3x zoom" aria-hidden="true"></i></a>
+<a href="/static/Shift (Alpha)/Shift (Linux).7z" download="Shift-Linux.7z"><i class="fa fa-linux fa-3x zoom" aria-hidden="true"></i></a>
 <div class=webgl-content>
 <div id=gameContainer style="width: 1206px; height: 684px"></div>
 <div class=footer>
-<div class=webgl-logo></div>
-<div class=fullscreen onclick="gameInstance.SetFullscreen(1)"></div>
-<div class=title style="color: whitesmoke;">Shift (Alpha) by Elijah Lopez and Tolga Acan</div>
+<!-- <div class=webgl-logo></div> -->
+<div class="fullscreen zoom" onclick="gameInstance.SetFullscreen(1)"></div>
+<!-- <div class="title" style="color: whitesmoke;">Shift (Alpha) by Elijah Lopez and Tolga Acan</div> -->
 </div>
 </div>
 </body>

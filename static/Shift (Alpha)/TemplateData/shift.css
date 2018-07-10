@@ -125,3 +125,15 @@
     top: 240px;
     left: 10px;
 }
+
+body {
+    background: #182536;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+}
