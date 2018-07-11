@@ -42,9 +42,11 @@ function mobileNavigation() {
     elementStyle = document.getElementById("mobile-navigation-panel").style.display;
     if (elementStyle == "block") {
         document.getElementById("mobile-navigation-panel").style.display = "none";
+        document.getElementById("mobile-navigation-label").innerHTML = "MENU";
     }
     else {
         document.getElementById("mobile-navigation-panel").style.display = "block";
+        document.getElementById("mobile-navigation-label").innerHTML = "CLOSE";
     }
 }
 </script>
