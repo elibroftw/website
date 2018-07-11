@@ -80,16 +80,17 @@ p:hover {
     color: grey;
 }
 
+li {
+    padding: 0px;
+}
+
 li a {
-    display: block;
     margin-left: 1em;
     width: 100px;
     color: inherit;
     padding: 0.5em 1em;
     text-decoration: none;
     border-radius: 1em;
-    text-align: inherit;
-    list-style-type: none;
 }
 
 li a:hover {
@@ -117,12 +118,17 @@ li a:hover {
 
 #mobile-navigation-label {
     background-color: #333538;
-    /* padding: 1em; */
 }
 
 u1 {
     display: none;
-    text-decoration: none;
+    margin-top: 1em;
+    border-radius: 0;
+}
+
+u1:hover {
+    color: white;
+    background-color: transparent;
 }
 
 @media screen and (max-width: 640px) {
