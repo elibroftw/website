@@ -39,14 +39,14 @@
 </div>
 <script>
 function mobileNavigation() {
-    elementStyle = document.getElementById("mobile-navigation-panel").style.display;
-    if (elementStyle == "block") {
-        document.getElementById("mobile-navigation-panel").style.display = "none";
-        document.getElementById("mobile-navigation-label").innerHTML = "MENU";
+    var obj = document.getElementById("mobile-navigation-panel");
+    if (obj.style.display == "block") {
+        obj.style.display = "none";
+        obj.innerHTML = "MENU";
     }
     else {
-        document.getElementById("mobile-navigation-panel").style.display = "block";
-        document.getElementById("mobile-navigation-label").innerHTML = "CLOSE";
+        obj.style.display = "block";
+        obj.innerHTML = "CLOSE";
     }
 }
 </script>
