@@ -68,11 +68,11 @@ function mobileNavigation() {
     var obj = document.getElementById("mobile-navigation-panel");
     if (obj.style.display == "block") {
         obj.style.display = "none";
-        obj.innerHTML = "MENU";
+        document.getElementById("mobile-navigation-label").innerHTML = "MENU";
     }
     else {
         obj.style.display = "block";
-        obj.innerHTML = "CLOSE";
+        document.getElementById("mobile-navigation-label").innerHTML = "CLOSE";
     }
 }
 </script>
