@@ -32,14 +32,14 @@ body {
     font-family: Futura;
     font-weight: bold;
     margin: 0;
-    background-image: url("/static/images/bg-desktop.jpg");
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    background-image: url("/static/images/bg-desktop.jpg");
     text-decoration: none;
 }
 
