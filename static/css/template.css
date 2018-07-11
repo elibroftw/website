@@ -168,8 +168,8 @@ u1:hover {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    left: 9.5em;
-    margin-top: -27px;
+    left: 155px;
+    margin-top: -30px;
     z-index: 1;
     background-color: transparent;
 }
