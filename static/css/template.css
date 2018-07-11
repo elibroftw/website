@@ -114,6 +114,7 @@ li a:hover {
 #mobile-navigation-label {
     background-color: #333538;
     display: block;
+    font-family: Verdana;
 }
 
 #mobile-navigation-label:hover {
@@ -150,6 +151,7 @@ u1:hover {
         border-radius: 0;
         margin: 0;
         padding-left: 0;
+        padding-right: 0;
         font-family: Verdana;
         font-weight: normal;
     }
