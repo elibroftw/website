@@ -53,13 +53,13 @@ var x = document.getElementById("album-cover");
 if (imageExists(x.src) == false){
     x.style.display = "none";
 }
-var input = document.getElementById("myInput");
-input.addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById("myBtn").click();
-    }
-});
+// var input = document.getElementById("myInput");
+// input.addEventListener("keyup", function(event) {
+//     event.preventDefault();
+//     if (event.keyCode === 13) {
+//         document.getElementById("myBtn").click();
+//     }
+// });
 function myFunction() {
     document.getElementById("album-cover").style.display = "block";
 }
