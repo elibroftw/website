@@ -148,8 +148,9 @@ u1:hover {
     li a {
         width: 100%;
         border-radius: 0;
+        margin: 0;
     }
-    
+
     li a:hover {
         background-color: transparent;
         color:
