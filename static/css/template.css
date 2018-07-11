@@ -82,6 +82,7 @@ p:hover {
 
 li {
     padding: 0px;
+    list-style-type: none;
 }
 
 li a {
@@ -99,7 +100,6 @@ li a:hover {
 }
 
 #main-navigation {
-    list-style-type: none;
     margin-top: 30px;
     padding: 0;
     letter-spacing: 0.23px;
@@ -153,7 +153,7 @@ u1:hover {
     width: 100px;
     color: #000;
     padding: 0.5em 1em;
-    border-radius: 1em 0em 0em 1px;
+    border-radius: 1em 0em 0em 1em;
     border: none;
     cursor: default;
     /*    position: relative;*/
@@ -164,7 +164,7 @@ u1:hover {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    left: 9.6em;
+    left: 9.5em;
     margin-top: -27px;
     z-index: 1;
     background-color: transparent;
