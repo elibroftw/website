@@ -107,6 +107,7 @@ li a:hover {
 
 #mobile-navigation-label {
     background-color: #333538;
+    display: block;
 }
 
 #mobile-navigation-label:hover {
