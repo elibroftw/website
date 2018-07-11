@@ -7,21 +7,46 @@
 <link rel=stylesheet href="/static/css/contact.css?v=1.8">
 </head>
 <body>
-<nav id=mobile-navigation></nav>
-<nav id=main-navigation>
-<li><a href="/">Home</a></li>
-<li><a href="/programs/">My Programs</a></li>
-<li><a href="">Contact</a></li>
-<li><a href="/about/">About</a></li>
-<li><a href="/resources/">Resources</a></li>
-<li><a href="/search-album-art/">Search Album Art</a></li>
-<li><div class=dropdown>Games<div class=dropdown-content>
-<a href="/shift">Shift</a>
-</div></div></li>
+<nav id="mobile-navigation" onclick="mobileNavigation()">
+<span id="mobile-navigation-label">MENU</span>
+<u1 id="mobile-navigation-panel">
+<li><a href="/">HOME</a></li>
+<li><a href="/programs/">SCRIPTS</a></li>
+<li><a href="">CONTACT</a></li>
+<li><a href="/about/">ABOUT</a></li>
+<li><a href="/resources/">RESOURCES</a></li>
+<li><a href="/search-album-art/">SEARCH ALBUM ART</a></li>
+</u1>
+</nav>
+<nav id="main-navigation">
+<li><a href="/">HOME</a></li>
+<li><a href="/programs/">SCIRPTS</a></li>
+<li><a href="">CONTACT</a></li>
+<li><a href="/about/">ABOUT</a></li>
+<li><a href="/resources/">RESOURCES</a></li>
+<li><a href="/search-album-art/">SEARCH ALBUM ART</a></li>
+<li><div class=dropdown>GAMES<div class=dropdown-content>
+<a href="/shift">SHIFT</a>
+</div>
+</div>
+</li>
 </nav>
 <div class=main>
 <h1>Contact</h1>
 <p><a href="mailto:elijahllopezz@email.com">Email</a></p>
 </div>
+<script>
+function mobileNavigation() {
+    elementStyle = document.getElementById("mobile-navigation-panel").style.display;
+    if (elementStyle == "block") {
+        document.getElementById("mobile-navigation-panel").style.display = "none";
+        document.getElementById("mobile-navigation-label").innerHTML = "MENU";
+    }
+    else {
+        document.getElementById("mobile-navigation-panel").style.display = "block";
+        document.getElementById("mobile-navigation-label").innerHTML = "CLOSE";
+    }
+}
+</script>
 </body>
 </html>
