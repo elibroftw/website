@@ -196,4 +196,5 @@ u1:hover {
     /* Change the background color of the dropdown button when the dropdown content is shown */
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 1em 0em 0em 1px;
 }
