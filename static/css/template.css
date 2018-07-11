@@ -43,18 +43,6 @@ body {
     text-decoration: none;
 }
 
-/* @media (orientation: landscape) {
-    body {
-
-    }
-} */
-
-/* @media only screen and (max-width: 1024px) {
-    body {
-        background-color: lightblue;
-    }
-} */
-
 h1 {
     font-family: AdamCGPro;
     font-size: 60px;
@@ -120,6 +108,9 @@ li a:hover {
     background-color: #333538;
 }
 
+#mobile-navigation-label:hover {
+    color: #00FFFF;
+}
 u1 {
     display: none;
     margin-top: 1em;
@@ -149,6 +140,7 @@ u1:hover {
         width: 100%;
         border-radius: 0;
         margin: 0;
+        padding-left: 0;
     }
 
     li a:hover {
