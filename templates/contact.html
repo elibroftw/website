@@ -38,16 +38,16 @@
 <p><a href="mailto:elijahllopezz@email.com">Email</a></p>
 </div>
 <script>
-var nav_panel_display = document.getElementById("mobile-navigation-panel").style.display;
+var nav_panel = document.getElementById("mobile-navigation-panel");
 var menu_text = document.getElementById("mobile-navigation-label").innerHTML;
 function mobileNavigation() {
-    if (nav_panel_display == "block") {
-        nav_panel_display = "none";
+    if (nav_panel.style.display == "block") {
+        nav_panel.style.display = "none";
         menu_text = "MENU";
     }
     else {
-        nav_panel_display = "block";
-        menu_text = "MENU";
+        nav_panel.style.display = "block";
+        menu_text = "CLOSE";
     }
 }
 </script>
