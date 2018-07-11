@@ -36,33 +36,24 @@
 <div class=main>
 <h1>Search for Album Art</h1>
 <form action="/search-album-art">
-<input id=artist_input type=text name=artist placeholder="Artist name" autofocus style="width: 8em">
-<input id=track_input type=text name=track placeholder="Track name" style="width: 8em">
-<button id="myBtn">Search</button><br><br>
+<input id="artist-input" type=text name=artist placeholder="Artist name" autofocus style="width: 8em">
+<input id="track-input" type=text name=track placeholder="Track name" style="width: 8em">
+<button id="search">Search</button><br><br>
 </form>
-<img id=album-cover alt="Album Cover" src="{{image_url}}" style="max-width: 500px; max-height: 500px;"/>
+<img id="album-cover" alt="Album Cover" src="{{image_url}}" style="max-width: 500px; max-height: 500px;"/>
 </div>
 <script>
-function imageExists(image_url){
-    var http = new XMLHttpRequest();
-    http.open('HEAD', image_url, false);
-    http.send();
-    return http.status != 404;
+if ("{{image_url}}" == "image not found"){
+    document.getElementById("album-cover").style.display = "none";
 }
-var x = document.getElementById("album-cover");
-if (imageExists(x.src) == false){
-    x.style.display = "none";
-}
-// var input = document.getElementById("myInput");
-// input.addEventListener("keyup", function(event) {
-//     event.preventDefault();
-//     if (event.keyCode === 13) {
-//         document.getElementById("myBtn").click();
-//     }
-// });
-function myFunction() {
-    document.getElementById("album-cover").style.display = "block";
-}
+
+var input = document.getElementById("track-input");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("search").click();
+    }
+});
 
 var nav_panel = document.getElementById("mobile-navigation-panel");
 var menu = document.getElementById("mobile-navigation-label");
