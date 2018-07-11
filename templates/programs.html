@@ -47,15 +47,15 @@ num=parseInt(num.slice(0,5));document.getElementById('inputbox').value=num;}
 a=num*num;if(a==0){document.getElementById('output').innerHTML="";}else{document.getElementById('output').innerHTML=a;}}
 
 var nav_panel = document.getElementById("mobile-navigation-panel");
-var menu_text = document.getElementById("mobile-navigation-label").innerHTML;
+var menu = document.getElementById("mobile-navigation-label");
 function mobileNavigation() {
     if (nav_panel.style.display == "block") {
         nav_panel.style.display = "none";
-        menu_text = "MENU";
+        menu_text.innerHTML = "MENU";
     }
     else {
         nav_panel.style.display = "block";
-        menu_text = "CLOSE";
+        menu_text.innerHTML = "CLOSE";
     }
 }
 </script>
