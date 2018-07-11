@@ -70,7 +70,7 @@ def resources(): return render_template('resources.html')
 def album_art_finder():
     artist = request.args.get("artist")
     track = request.args.get("track")
-    if None in (artist, track) or "" in (artist, track): image_url = '://0'
+    if None in (artist, track) or "" in (artist, track): image_url = 'image not found'
     else: image_url = get_album_art(artist, track)
     return render_template('search_album_art.html', image_url=image_url)
 
