@@ -171,6 +171,8 @@ u1:hover {
     border-radius: 1em 0em 0em 1em;
     border: none;
     cursor: default;
+    font-family: Verdana;
+    font-weight: normal;
     /*    position: relative;*/
     /*    display: inline-block;*/
 }
