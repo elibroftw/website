@@ -39,6 +39,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    position: static;
     background-image: url("/static/images/bg-desktop.jpg");
     text-decoration: none;
 }
