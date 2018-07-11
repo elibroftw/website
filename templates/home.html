@@ -38,15 +38,16 @@
 <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
 <script>
+var panel_display = document.getElementById("mobile-navigation-panel").style.display;
+var menu_text = document.getElementById("mobile-navigation-label").innerHTML
 function mobileNavigation() {
-    var obj = document.getElementById("mobile-navigation-panel");
-    if (obj.style.display == "block") {
-        obj.style.display = "none";
-        document.getElementById("mobile-navigation-label").innerHTML = "MENU";
+    if (panel == "block") {
+        panel = "none";
+        menu_text = "MENU";
     }
     else {
-        obj.style.display = "block";
-        document.getElementById("mobile-navigation-label").innerHTML = "CLOSE";
+        panel = "block";
+        menu_text = "MENU";
     }
 }
 </script>
