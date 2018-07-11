@@ -39,15 +39,15 @@
 </div>
 <script>
 var nav_panel = document.getElementById("mobile-navigation-panel");
-var menu_text = document.getElementById("mobile-navigation-label").innerHTML;
+var menu = document.getElementById("mobile-navigation-label");
 function mobileNavigation() {
     if (nav_panel.style.display == "block") {
         nav_panel.style.display = "none";
-        menu_text = "MENU";
+        menu_text.innerHTML = "MENU";
     }
     else {
         nav_panel.style.display = "block";
-        menu_text = "CLOSE";
+        menu_text.innerHTML = "CLOSE";
     }
 }
 </script>
