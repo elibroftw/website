@@ -38,15 +38,15 @@
 <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
 <script>
-var panel_display = document.getElementById("mobile-navigation-panel").style.display;
+var nav_panel_display = document.getElementById("mobile-navigation-panel").style.display;
 var menu_text = document.getElementById("mobile-navigation-label").innerHTML;
 function mobileNavigation() {
-    if (panel == "block") {
-        panel = "none";
+    if (nav_panel_display == "block") {
+        nav_panel_display = "none";
         menu_text = "MENU";
     }
     else {
-        panel = "block";
+        nav_panel_display = "block";
         menu_text = "MENU";
     }
 }
