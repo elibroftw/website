@@ -100,8 +100,6 @@ li a:hover {
     padding: 0.5em 1em;
     border-radius: 1em 0em 0em 1em;
     cursor: default;
-    font-family: Verdana;
-    font-weight: normal;
     /*    position: relative;*/
     /*    display: inline-block;*/
 }
