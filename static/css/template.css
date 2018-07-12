@@ -100,6 +100,8 @@ li a:hover {
     padding: 0.5em 1em;
     border-radius: 1em 0em 0em 1em;
     cursor: default;
+    font-family: Futura;
+    font-weight: bold;
     /*    position: relative;*/
     /*    display: inline-block;*/
 }
@@ -108,12 +110,10 @@ li a:hover {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    left: 150px;
-    margin-top: -30px;
+    left: 148px;
+    margin-top: -29px;
     z-index: 1;
     background-color: transparent;
-    font-family: Futura;
-    font-weight: bold;
 }
 
 .dropdown-content a {
