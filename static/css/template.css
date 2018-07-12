@@ -40,7 +40,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    position: static;
+    /* position: static; */
     transform: translate3d(0,0,0);
     -webkit-transform: translate3d(0,0,0);
     backface-visibility: hidden;
