@@ -36,45 +36,38 @@
 <div class=main>
 <h1>Search for Album Art</h1>
 <form action="/search-album-art">
-<input id=artist_input type=text name=artist placeholder="Artist name" autofocus style="width: 8em">
-<input id=track_input type=text name=track placeholder="Track name" style="width: 8em">
-<button id="myBtn">Search</button><br><br>
+<input id="artist-input" type=text name=artist placeholder="Artist name" autofocus>
+<input id="track-input" type=text name=track placeholder="Track name">
+<button id="search">Search</button>
 </form>
-<img id=album-cover alt="Album Cover" src="{{image_url}}" style="max-width: 500px; max-height: 500px;"/>
+<img id="album-cover" alt="Album Cover" src="{{image_url}}"/>
 </div>
 <script>
-function imageExists(image_url){
-    var http = new XMLHttpRequest();
-    http.open('HEAD', image_url, false);
-    http.send();
-    return http.status != 404;
+if ("{{image_url}}" == "image not found"){
+    document.getElementById("album-cover").style.display = "none";
 }
-var x = document.getElementById("album-cover");
-if (imageExists(x.src) == false){
-    x.style.display = "none";
-}
-var input = document.getElementById("myInput");
+
+var input = document.getElementById("track-input");
 input.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
-        document.getElementById("myBtn").click();
+        document.getElementById("search").click();
     }
 });
-function myFunction() {
-    document.getElementById("album-cover").style.display = "block";
-}
 
+var nav_panel = document.getElementById("mobile-navigation-panel");
+var menu = document.getElementById("mobile-navigation-label");
 function mobileNavigation() {
-    elementStyle = document.getElementById("mobile-navigation-panel").style.display;
-    if (elementStyle == "block") {
-        document.getElementById("mobile-navigation-panel").style.display = "none";
-        document.getElementById("mobile-navigation-label").innerHTML = "MENU";
+    if (nav_panel.style.display == "block") {
+        nav_panel.style.display = "none";
+        menu.innerHTML = "MENU";
     }
     else {
-        document.getElementById("mobile-navigation-panel").style.display = "block";
-        document.getElementById("mobile-navigation-label").innerHTML = "CLOSE";
+        nav_panel.style.display = "block";
+        menu.innerHTML = "CLOSE";
     }
 }
+
 </script>
 </body>
 </html>

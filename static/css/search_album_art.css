@@ -1,0 +1,12 @@
+#album-cover {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+#track-input, #artist-input {
+  width: 8em;
+}
+
+#search::after {
+  content: "\A\A";
+}

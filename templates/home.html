@@ -34,19 +34,20 @@
 </li>
 </nav>
 <div class="main">
-<h1><a href="/about/">Elijah Lopez</a></h1>
+<h1><a href="/about/">ELIJAH</a></h1>
 <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
 <script>
+var nav_panel = document.getElementById("mobile-navigation-panel");
+var menu = document.getElementById("mobile-navigation-label");
 function mobileNavigation() {
-    elementStyle = document.getElementById("mobile-navigation-panel").style.display;
-    if (elementStyle == "block") {
-        document.getElementById("mobile-navigation-panel").style.display = "none";
-        document.getElementById("mobile-navigation-label").innerHTML = "MENU";
+    if (nav_panel.style.display == "block") {
+        nav_panel.style.display = "none";
+        menu.innerHTML = "MENU";
     }
     else {
-        document.getElementById("mobile-navigation-panel").style.display = "block";
-        document.getElementById("mobile-navigation-label").innerHTML = "CLOSE";
+        nav_panel.style.display = "block";
+        menu.innerHTML = "CLOSE";
     }
 }
 </script>
