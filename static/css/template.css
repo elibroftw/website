@@ -129,8 +129,7 @@ li a:hover {
 .dropdown-content a:hover {
     /* Change color of dropdown links on hover */
     color: #000;
-    background-color: lightgrey;
-    background-color: white;
+    background-color: #F5F5F5;
 }
 
 .dropdown:hover .dropdown-content {
