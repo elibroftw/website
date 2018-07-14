@@ -30,7 +30,7 @@
     width: 45%;
     max-width: 1000px;
     resize: both;
-    overflow: auto;
+    overflow: initial;
     text-align: center;
 }
 
@@ -41,7 +41,7 @@ body {
     background-position: center;
     background-attachment: fixed !important;
     position: static;
-    -webkit-transform: translateZ(0x);
+    -webkit-transform: translateZ(0px);
     background-image: url("/static/images/bg-desktop.jpg");
     text-decoration: none;
 }
