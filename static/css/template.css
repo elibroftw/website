@@ -24,13 +24,14 @@
 
 .main {
     padding: 50px;
+    /* padding: 5em; */
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     margin: auto;
     width: 45%;
     max-width: 1000px;
     resize: both;
-    overflow: initial;
+    overflow: overlay;
     text-align: center;
 }
 

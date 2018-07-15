@@ -34,7 +34,7 @@
 </li>
 </nav>
 <div class="main">
-<h1><a href="/about/">ELIJAH</a></h1>
+<h1 id="box-title"><a href="/about/">ELIJAH</a></h1>
 <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
 <script>
@@ -50,6 +50,12 @@ function mobileNavigation() {
         menu.innerHTML = "CLOSE";
     }
 }
+var span = document.getElementById("box-title");
+
+// while(true) {
+    // TODO: change font size based on box width or something
+    // span.style.fontSize = "25px";
+// }
 </script>
 </body>
 </html>
