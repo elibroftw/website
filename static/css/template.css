@@ -22,7 +22,7 @@
   font-weight: normal;
 }
 
-.main {
+#main {
     padding: 50px;
     /* padding: 5em; */
     border-radius: 10px;
@@ -192,7 +192,7 @@ u1:hover {
     body {
         background-image: url("/static/images/bg-mobile.jpg");
     }
-    .main {
+    #main {
         margin-top: 4em;
         /* TODO: Change padding and stuff so that it looks good on mobile */
     }

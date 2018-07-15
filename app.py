@@ -93,8 +93,6 @@ def ib_economics_schedule():
 
 
 if __name__ == '__main__':
-    # threading.Thread(target=get_external_ip).start()
-    # print('http://elibro.asuscomm.com:99/')
     # request.headers.get('Cache-Control')
     # app.run(host='192.168.2.219', port=99)
     # app.run(host='localhost', port=99)

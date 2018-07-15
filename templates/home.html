@@ -2,7 +2,7 @@
 <html lang=en>
 <head>
 <title>Elijah Lopez</title>
-<link rel=icon type="image/png" href="{{url_for('static', filename='images/logo.png')}}">
+<link rel=icon type="image/png" href="/static/images/logo.png">
 <link rel=stylesheet href="/static/css/template.css">
 <link rel=stylesheet href="/static/css/home.css?v=1.8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -33,7 +33,7 @@
 </div>
 </li>
 </nav>
-<div class="main">
+<div id="main">
 <h1 id="box-title"><a href="/about/">ELIJAH</a></h1>
 <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
@@ -54,6 +54,9 @@ var span = document.getElementById("box-title");
 
 // while(true) {
     // var w = window.innerWidth;
+    // var h = windows.innerHeight;
+    // var clientHeight = document.getElementById('main').clientHeight;
+    // TODO: change margin-top of .main based on its own height
     // TODO: change font size based on box width or something
     // span.style.fontSize = "25px";
 // }
