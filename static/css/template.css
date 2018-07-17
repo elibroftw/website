@@ -74,23 +74,23 @@ p:hover {
 
 li {
     list-style-type: none;
+}
 
-    a {
-        margin-left: 1em;
-        width: 100px;
-        color: inherit;
-        padding: 0.5em 1em;
-        text-decoration: none;
-        border-radius: 1em;
-        display: block;
-        font-family: Futura;
-        font-weight: bold;
-    }
+li a {
+    margin-left: 1em;
+    width: 100px;
+    color: inherit;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 1em;
+    display: block;
+    font-family: Futura;
+    font-weight: bold;
+}
 
-    a:hover {
-        color: white;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
+li a:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .dropdown {
@@ -115,33 +115,33 @@ li {
     margin-top: -27px;
     z-index: 1;
     background-color: transparent;
+}
 
-    a {
-        /* Links inside the dropdown */
-        /* padding: 8px 16px; */
-        margin-left: 0px;
-        border-radius: 0px 1em 1em 0px;
-        color: #000;
-        /* background-color: white; */
-        background-color: rgba(255, 255, 255, 0.7);
-    }
+.dropdown-content a {
+    /* Links inside the dropdown */
+    /* padding: 8px 16px; */
+    margin-left: 0px;
+    border-radius: 0px 1em 1em 0px;
+    color: #000;
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0.7);
+}
 
-    a:hover {
-        /* Change color of dropdown links on hover */
-        color: #000;
-        background-color: #F5F5F5;
-    }
+.dropdown-content a:hover {
+    /* Change color of dropdown links on hover */
+    color: #000;
+    background-color: #F5F5F5;
+}
+
+.dropdown:hover .dropdown-content {
+    /* Show the dropdown menu on hover */
+    display: block;
 }
 
 .dropdown:hover {
     /* Change the background color of the dropdown button when the dropdown content is shown */
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
-
-    .dropdown-content {
-        /* Show the dropdown menu on hover */
-        display: block;
-    }
 }
 
 #main-navigation {
