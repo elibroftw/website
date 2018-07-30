@@ -181,7 +181,9 @@ u1:hover {
     color: white;
     background-color: transparent;
 }
-
+@media screen and (max-width: 386px) {
+    
+}
 @media screen and (max-width: 640px) {
     #mobile-navigation {
         display: block;
