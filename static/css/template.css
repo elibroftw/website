@@ -46,6 +46,7 @@ body {
     -webkit-transform: translateZ(0px);
     background-image: url("/static/images/bg-desktop.jpg");
     text-decoration: none;
+    bottom: 0;
 }
 
 h1 {
