@@ -36,18 +36,18 @@
 }
 
 body {
-    margin: 0;
+    margin: 0 auto;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed !important;
+    background-position: center;
+    /* background-attachment: fixed !important; */
     position: static;
-    transform: translate3d(0,0,0);
-    z-index: 1;
-    min-width: 100%;
-    width: 100%;
-    min-height: 100%;
-    display: block;
+    /* transform: translate3d(0,0,0); */
+    /* z-index: 1; */
+    /* min-width: 100%; */
+    /* width: 100%; */
+    /* min-height: 100%; */
+    /* display: block; */
     background-image: url("/static/images/bg-desktop-2.jpg");
     /* background-image: url("/static/images/bg-mobile-2.jpg"); */
     text-decoration: none;
