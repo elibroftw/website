@@ -199,6 +199,21 @@ u1:hover {
     background-color: transparent;
 }
 
+#switch_text {
+    position: fixed;
+    bottom: 17px;
+    right: 75px;
+    background: white;
+    font-family: Futura;
+    width:  110px;
+    font-size: 18px;
+    font-weight: bold;
+    margin:  auto;
+    line-height: 34px;
+    padding: 0 0.5em 0 1em;
+    border-radius: 1em 0 0 1em;
+}
+
 .switch {
     position: fixed;
     bottom: 16px;
@@ -268,6 +283,9 @@ input:checked + .slider:before {
 @media screen and (max-width: 1024px) {
     /*mobile landscape*/
     .switch {
+        display: none;
+    }
+    #switch_text {
         display: none;
     }
     body {
