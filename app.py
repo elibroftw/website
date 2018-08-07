@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import flask
 from flask_compress import Compress
 from funcs import get_template_data, get_album_art
-import redis
+# import redis
 # from flask import request
 # import threading
 # from funcs import get_external_ip, get_external_ip2
@@ -10,9 +10,9 @@ import redis
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
 
-try:
-    r = redis.from_url(os.environ.get("REDIS_URL"))
-except KeyError: pass
+# try:
+#     r = redis.from_url(os.environ.get("REDIS_URL"))
+# except KeyError: pass
 # cache = Cache(config={'CACHE_TYPE': 'simple'})
 Compress(app)
 home_template_data = get_template_data()
@@ -87,37 +87,38 @@ def ib_economics_schedule():
     return render_template('table.html', data=home_template_data)
 
 
-@app.route('/shift-high-scores/new/', methods=['POST'])
-def new_shift_high_score():
-    high_score = request.form['highScore']
-    name = request.form['name']
-    high_scores = []
-    high_scores_users = []
-    for x in rang(1, 11):
-        high_scores.append(redis.get(f'shift_high_score_{x}_value'))
-        high_scores_users.append(redis.get(f'shift_high_score_{x}_user'))
-    for x in rang(10):
-        if high_score < high_scores[x]:
-            high_scores.insert(x, high_score)
-            high_scores.pop()
-            high_scores_users.insert(x, name)
-            for i, v in enumerate(high_scores):
-                redis.set(f'shift_high_score_{i+1}_value', v)
-            for i, v in enumerate(high_scores_users):
-                redis.set(f'shift_high_score_{i+1}_user', v)
-            return 'top 10 high score'
-    return 'not a top 10 high score'
-@app.route('/shift-high-scores/)
-def shift-high-scores():
-    # get high scores from db
-    return render_template('shift_high_scores.html')
+# @app.route('/shift-high-scores/new/', methods=['POST'])
+# def new_shift_high_score():
+#     high_score = request.form['highScore']
+#     name = request.form['name']
+#     high_scores = []
+#     high_scores_users = []
+#     for x in rang(1, 11):
+#         high_scores.append(redis.get(f'shift_high_score_{x}_value'))
+#         high_scores_users.append(redis.get(f'shift_high_score_{x}_user'))
+#     for x in rang(10):
+#         if high_score < high_scores[x]:
+#             high_scores.insert(x, high_score)
+#             high_scores.pop()
+#             high_scores_users.insert(x, name)
+#             for i, v in enumerate(high_scores):
+#                 redis.set(f'shift_high_score_{i+1}_value', v)
+#             for i, v in enumerate(high_scores_users):
+#                 redis.set(f'shift_high_score_{i+1}_user', v)
+#             return 'top 10 high score'
+#     return 'not a top 10 high score'
+# @app.route('/shift-high-scores/)
+# def shift-high-scores():
+#     # get high scores from db
+#     return render_template('shift_high_scores.html')
+#
+# @app.route('/reset-shift-high-scores/')
+# def test():
+#     for x in rang(1, 11):
+#         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
+#         redis.set(f'shift_high_score_{x}_user', "defalt")  # seconds
+#     return "it's done"
 
-@app.route('/reset-shift-high-scores/')
-def test():
-    for x in rang(1, 11):
-        redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
-        redis.set(f'shift_high_score_{x}_user', "defalt")  # seconds
-    return "it's done"
 # @app.route('/user/<username>')
 # def show_user_profile(username):
 #     # show the user profile for that user
