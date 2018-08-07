@@ -40,10 +40,15 @@ body {
     margin: 0;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     background-attachment: fixed !important;
     position: static;
-    -webkit-transform: translateZ(0px);
+    transform: translate3d(0,0,0);
+    z-index: 1;
+    min-width: 100%;
+    width: 100%;
+    min-height: 100%;
+    display: block;
     background-image: url("/static/images/bg-desktop.jpg");
     text-decoration: none;
     bottom: 0;
@@ -203,6 +208,10 @@ u1:hover {
 
     h1 {
         font-size: 40px;
+    }
+
+    p {
+      font-size: 20px;
     }
 
     li a {
