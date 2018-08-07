@@ -1,5 +1,6 @@
 # Website
 My own Website built with Flash hosted on https://website-elijah-lopez.herokuapp.com/
+This is just me experimenting with html, css, and javascript but I hope to make it very useful
 # What is contains
 * Album art fetcher
 * My game called Shift
