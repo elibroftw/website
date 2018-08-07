@@ -61,7 +61,6 @@
 <span class="slider round"></span>
 </label>
 <script>
-// TODO: Copy image to clipboard, auto or via a button that pops up
 if ("{{image_url}}" == "image not found") {
     document.getElementById("album-cover").style.display = "none";
 }
@@ -74,6 +73,12 @@ input.addEventListener("keyup", function(event) {
     }
 });
 
+if getCookie("elijah-lopez-website-theme") == "true" {
+    document.getElementById('theme-toggle').checked = true;
+}
+else {
+    document.getElementById("theme-2").disabled = true;
+}
 var nav_panel = document.getElementById("mobile-navigation-panel");
 var menu = document.getElementById("mobile-navigation-label");
 function mobileNavigation() {
@@ -87,7 +92,6 @@ function mobileNavigation() {
     }
 }
 
-document.getElementById("theme-2").disabled = true;
 function changeTheme() {
     if (document.getElementById('theme-toggle').checked) {
         // change css to theme
@@ -102,10 +106,12 @@ function changeTheme() {
         document.getElementById("theme-2").disabled = false;
         document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
         document.getElementById('desktop-navigation').style.color = "white";
+        setCookie("elijah-lopez-website-theme", "true", 360);
     } else {
         document.body.style.backgroundImage = "url('/static/images/bg-desktop-2.jpg')";
         document.getElementById('desktop-navigation').style.color = "black";
         document.getElementById("theme-2").disabled = true;
+        setCookie("elijah-lopez-website-theme", "false", 360);
     }
 }
 </script>
