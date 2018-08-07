@@ -100,7 +100,7 @@ li a:hover {
     background-color: rgba(0, 0, 0, 0.7);
 
     /* color: black;
-    background-color: rgba(255, 255, 255, 0.7); */
+    background-color: white; */
 }
 
 .dropdown {
@@ -130,20 +130,15 @@ li a:hover {
     /* padding: 8px 16px; */
     margin-left: 0px;
     border-radius: 0px 1em 1em 0px;
-    color: #000;
+    color: black;
     background-color: white;
     /* background-color: rgba(255, 255, 255, 0.7); */
-
-    /* color: white;
-    background-color: black; */
 }
 
 .dropdown-content a:hover {
     /* Change color of dropdown links on hover */
-    color: #000;
+    color: black;
     background-color: #E8E8EE;
-
-    /* color: white; */
 }
 
 .dropdown:hover .dropdown-content {
@@ -157,7 +152,7 @@ li a:hover {
     background-color: rgba(0, 0, 0, 0.7);
 
     /* color: black;
-    background-color: rgba(255, 255, 255, 0.7); */
+    background-color: white */
 }
 
 #desktop-navigation {
