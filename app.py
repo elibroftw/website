@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import flask
 from flask_compress import Compress
 from funcs import get_template_data, get_album_art
-# import redis
+import redis
 # from flask import request
 # import threading
 # from funcs import get_external_ip, get_external_ip2
@@ -10,7 +10,9 @@ from funcs import get_template_data, get_album_art
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
 
-# r = redis.from_url(os.environ.get("REDIS_URL"))
+try:
+    r = redis.from_url(os.environ.get("REDIS_URL"))
+except KeyError: pass
 # cache = Cache(config={'CACHE_TYPE': 'simple'})
 Compress(app)
 home_template_data = get_template_data()
