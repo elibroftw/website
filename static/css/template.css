@@ -111,8 +111,8 @@ li a:hover {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    left: 148px;
-    margin-top: -27px;
+    left: 154px;
+    margin-top: -30px;
     z-index: 1;
     background-color: transparent;
 }
@@ -182,7 +182,7 @@ u1:hover {
     background-color: transparent;
 }
 @media screen and (max-width: 386px) {
-    
+
 }
 @media screen and (max-width: 640px) {
     #mobile-navigation {
