@@ -1,8 +1,0 @@
-h1 a {
-    color: white;
-    text-decoration: inherit;
-}
-
-h1 a:hover {
-    color: grey;
-}
