@@ -203,14 +203,13 @@ u1:hover {
 
 #switch_text {
     position: fixed;
-    bottom: 17px;
+    bottom: 16px;
     right: 75px;
     background: white;
     font-family: Futura;
-    width:  110px;
+    width: 110px;
     font-size: 18px;
     font-weight: bold;
-    margin:  auto;
     line-height: 34px;
     padding: 0 0.5em 0 1em;
     border-radius: 1em 0 0 1em;
