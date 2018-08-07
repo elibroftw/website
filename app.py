@@ -68,10 +68,12 @@ def resources(): return render_template('resources.html')
 
 @app.route('/search-album-art/', methods=['GET'])
 def album_art_finder():
-    artist = request.args.get("artist")
-    track = request.args.get("track")
-    if None in (artist, track) or "" in (artist, track): image_url = 'image not found'
-    else: image_url = get_album_art(artist, track)
+    artist = request.args.get('artist')
+    track = request.args.get('track')
+    if None in (artist, track) or '' in (artist, track): image_url = 'image not found'
+    else:
+        try: image_url = get_album_art(artist, track)
+        except IndexError: image_url = 'image not found'
     return render_template('search_album_art.html', image_url=image_url)
 
 
