@@ -150,7 +150,7 @@ li a:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-#main-navigation {
+#desktop-navigation {
     margin-top: 0.5em;
     padding: 0;
     letter-spacing: 0.23px;
@@ -194,7 +194,7 @@ u1:hover {
     #mobile-navigation {
         display: block;
     }
-    #main-navigation {
+    #desktop-navigation {
         display: none;
     }
     body {
