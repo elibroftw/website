@@ -203,6 +203,8 @@ u1:hover {
     }
     #main {
         margin-top: 4em;
+        padding-right: 5em;
+        padding-left: 5em;
         /* TODO: Change padding and stuff so that it looks good on mobile */
     }
 
