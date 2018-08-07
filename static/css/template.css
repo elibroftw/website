@@ -48,8 +48,8 @@ body {
     width: 100%;
     min-height: 100%;
     display: block;
-    background-image: url("/static/images/bg-desktop.jpg");
-    /* background-image: url("/static/images/bg-desktop-2.jpg"); */
+    /* background-image: url("/static/images/bg-desktop.jpg"); */
+    background-image: url("/static/images/bg-desktop-2.jpg");
     text-decoration: none;
     bottom: 0;
 }
@@ -152,7 +152,7 @@ li a:hover {
 }
 
 #desktop-navigation {
-    margin-top: 0.5em;
+    margin-top: 1em;
     padding: 0;
     letter-spacing: 0.23px;
     color: #000;
@@ -199,8 +199,8 @@ u1:hover {
         display: none;
     }
     body {
-        background-image: url("/static/images/bg-mobile.jpg");
-        /* background-image: url("/static/images/bg-mobile-2.jpg"); */
+        /* background-image: url("/static/images/bg-mobile.jpg"); */
+        background-image: url("/static/images/bg-mobile-2.jpg");
     }
     #main {
         margin-top: 4em;
