@@ -92,6 +92,7 @@ def get_template_data():
 
 def get_album_art(artist, track, access_token=None) -> str:
     """ Gets url of album art for the track"""
+    artist, track = urllib.parse.quote_plus(artist), urllib.parse.quote_plus(track)
     if access_token is None:
         header = {'Authorization': 'Basic ' + SPOTIFY_B64_AUTH_STR}
         data = {'grant_type': 'client_credentials'}
