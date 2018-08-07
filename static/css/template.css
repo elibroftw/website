@@ -42,7 +42,6 @@ body {
     /* min-height: 100%; */
     /* display: block; */
     background-image: url("/static/images/bg-desktop-2.jpg");
-    /* background-image: url("/static/images/bg-mobile-2.jpg"); */
     text-decoration: none;
     bottom: 0;
 }
@@ -85,10 +84,12 @@ p:hover {
     color: grey;
 }
 
+/* TODO: add drop shadow */
 #desktop-navigation {
     margin-top: 1em;
     padding: 0;
     letter-spacing: 0.23px;
+    /* color: white; */
 }
 
 li {
@@ -110,9 +111,7 @@ li a {
 li a:hover {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
-
-    /* color: black;
-    background-color: white; */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .dropdown {
@@ -151,6 +150,7 @@ li a:hover {
     /* Change color of dropdown links on hover */
     color: black;
     background-color: #E8E8EE;
+    /* background-color: lightgray; */
 }
 
 .dropdown:hover .dropdown-content {
@@ -162,7 +162,7 @@ li a:hover {
     /* Change the background color of the dropdown button when the dropdown content is shown */
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
-
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     /* color: black;
     background-color: white */
 }
@@ -296,5 +296,9 @@ input:checked + .slider:before {
     li a:hover {
         background-color: transparent;
         color: #00FFFF;
+    }
+
+    .switch {
+        display: none;
     }
 }
