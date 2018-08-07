@@ -49,6 +49,7 @@ body {
     min-height: 100%;
     display: block;
     background-image: url("/static/images/bg-desktop.jpg");
+    /* background-image: url("/static/images/bg-desktop-2.jpg"); */
     text-decoration: none;
     bottom: 0;
 }
@@ -198,7 +199,8 @@ u1:hover {
         display: none;
     }
     body {
-        /* background-image: url("/static/images/bg-mobile.jpg"); */
+        background-image: url("/static/images/bg-mobile.jpg");
+        /* background-image: url("/static/images/bg-mobile-2.jpg"); */
     }
     #main {
         margin-top: 4em;
