@@ -56,12 +56,27 @@
 <span class="slider round"></span>
 </label>
 <script>
-if getCookie("elijah-lopez-website-theme") == "true" {
-    document.getElementById('theme-toggle').checked = true;
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
 }
-else {
-    document.getElementById("theme-2").disabled = true;
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
+
 var nav_panel = document.getElementById("mobile-navigation-panel");
 var menu = document.getElementById("mobile-navigation-label");
 function mobileNavigation() {
@@ -77,25 +92,24 @@ function mobileNavigation() {
 
 function changeTheme() {
     if (document.getElementById('theme-toggle').checked) {
-        // change css to theme
-        // var head = document.head;
-        // var link = document.createElement("link");
-        //
-        // link.type = "text/css";
-        // link.rel = "stylesheet";
-        // link.href = "/static/css/theme-2.css";
-        //
-        // head.appendChild(link);
         document.getElementById("theme-2").disabled = false;
         document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
         document.getElementById('desktop-navigation').style.color = "white";
-        setCookie("elijah-lopez-website-theme", "true", 360);
+        setCookie("elijah-lopez-website-theme", "true", 365);
     } else {
         document.body.style.backgroundImage = "url('/static/images/bg-desktop-2.jpg')";
         document.getElementById('desktop-navigation').style.color = "black";
         document.getElementById("theme-2").disabled = true;
-        setCookie("elijah-lopez-website-theme", "false", 360);
+        setCookie("elijah-lopez-website-theme", "false", 365);
     }
+}
+
+if (getCookie("elijah-lopez-website-theme") == "true") {
+    document.getElementById('theme-toggle').checked = true;
+    changeTheme();
+}
+else {
+    document.getElementById("theme-2").disabled = true;
 }
 </script>
 </body>
