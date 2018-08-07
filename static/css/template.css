@@ -27,12 +27,12 @@
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.8);
     margin: auto;
-    width: auto;
+    width: 45%;
     max-width: 1000px;
     resize: both;
     overflow: overlay;
     text-align: center;
-    margin-top: -100px;
+    margin-top: -6%;
 }
 
 body {
