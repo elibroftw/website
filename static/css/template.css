@@ -27,7 +27,7 @@
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.8);
     margin: auto;
-    width: 45%;
+    width: auto;
     max-width: 1000px;
     resize: both;
     overflow: overlay;
@@ -202,8 +202,9 @@ u1:hover {
     }
     #main {
         margin-top: 4em;
-        padding-right: 5em;
-        padding-left: 5em;
+        padding-left: 0px;
+        padding-right: 0px;
+        letter-spacing: 0.05em;
         /* TODO: Change padding and stuff so that it looks good on mobile */
     }
 
