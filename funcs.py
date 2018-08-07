@@ -10,8 +10,16 @@ import re
 # import os
 
 schedule_data = get_data.get_data()
-SPOTIFY_CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
-SPOTIFY_SECRET = os.environ['SPOTIFY_SECRET']
+
+try:
+    SPOTIFY_CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
+    SPOTIFY_SECRET = os.environ['SPOTIFY_SECRET']
+except KeyError:
+    with open('config.txt') as f:
+        lines = f.read().splitlines()
+        SPOTIFY_CLIENT_ID = lines[0][lines[0].index('=')+2:]
+        SPOTIFY_SECRET = lines[1][lines[1].index('=')+2:]
+
 SPOTIFY_AUTH_STR = f'{SPOTIFY_CLIENT_ID}:{SPOTIFY_SECRET}'
 SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
 
