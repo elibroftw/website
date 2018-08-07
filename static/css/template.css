@@ -202,6 +202,7 @@ u1:hover {
 }
 
 /* TODO: Display for a few seconds maybe? */
+/* TODO: Add theme 2 for this? */
 #switch_text {
     position: fixed;
     bottom: 16px;
@@ -333,5 +334,9 @@ input:checked + .slider:before {
     li a:hover {
         background-color: transparent;
         color: #00FFFF;
+        box-shadow: 0px 8px 20px 0 rgba(0,0,0,0.2),
+                    0px -8px 20px 0 rgba(0,0,0,0.2),
+                    0px 8px 16px 0 rgba(0,0,0,0.2),
+                    0px -8px 16px 0 rgba(0,0,0,0.2);
     }
 }
