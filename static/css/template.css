@@ -198,7 +198,7 @@ u1:hover {
         display: none;
     }
     body {
-        background-image: url("/static/images/bg-mobile.jpg");
+        /* background-image: url("/static/images/bg-mobile.jpg"); */
     }
     #main {
         margin-top: 4em;
