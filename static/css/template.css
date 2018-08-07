@@ -201,6 +201,7 @@ u1:hover {
     background-color: transparent;
 }
 
+/* TODO: Display for a few seconds maybe? */
 #switch_text {
     position: fixed;
     bottom: 16px;
