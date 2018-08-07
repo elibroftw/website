@@ -67,6 +67,7 @@ h1 {
     line-height: 1em;
     color: white;
     text-decoration: none;
+    text-transform: capitalize;
 }
 
 h1:hover {
@@ -84,11 +85,11 @@ p:hover {
     color: grey;
 }
 
-/* TODO: add drop shadow */
 #desktop-navigation {
     margin-top: 1em;
     padding: 0;
     letter-spacing: 0.23px;
+    text-transform: capitalize;
     /* color: white; */
 }
 
