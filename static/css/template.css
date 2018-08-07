@@ -217,8 +217,7 @@ u1:hover {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    transition: .2s;
 }
 
 .slider:before {
@@ -229,8 +228,7 @@ u1:hover {
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    transition: .2s;
 }
 
 input:checked + .slider {
