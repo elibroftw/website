@@ -1,0 +1,17 @@
+li a:hover {
+    box-shadow: none;
+    color: black;
+    background-color: white;
+}
+
+.dropdown-content a:hover {
+    /* Change color of dropdown links on hover */
+    background-color: lightgray;
+}
+
+.dropdown:hover {
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    box-shadow: none;
+    color: black;
+    background-color: white
+}

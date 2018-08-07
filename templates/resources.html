@@ -51,7 +51,7 @@
 <a class=links href="https://atom.io/">Atom: General IDE</a>
 </div>
 <label class="switch">
-<input type="checkbox">
+<input id="theme-toggle" type="checkbox" onclick="changeTheme()">
 <span class="slider round"></span>
 </label>
 <script>
@@ -65,6 +65,28 @@ function mobileNavigation() {
     else {
         nav_panel.style.display = "block";
         menu.innerHTML = "CLOSE";
+    }
+}
+
+document.getElementById("theme-2").disabled = true;
+function changeTheme() {
+    if (document.getElementById('theme-toggle').checked) {
+        // change css to theme
+        // var head = document.head;
+        // var link = document.createElement("link");
+        //
+        // link.type = "text/css";
+        // link.rel = "stylesheet";
+        // link.href = "/static/css/theme-2.css";
+        //
+        // head.appendChild(link);
+        document.getElementById("theme-2").disabled = false;
+        document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
+        document.getElementById('desktop-navigation').style.color = "white";
+    } else {
+        document.body.style.backgroundImage = "url('/static/images/bg-desktop-2.jpg')";
+        document.getElementById('desktop-navigation').style.color = "black";
+        document.getElementById("theme-2").disabled = true;
     }
 }
 </script>

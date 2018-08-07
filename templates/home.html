@@ -7,6 +7,7 @@
 <title>Elijah Lopez</title>
 <link rel="icon" type="image/png" href="/static/images/logo.png">
 <link rel="stylesheet" href="/static/css/template.css">
+<link id="theme-2" rel="stylesheet" href="/static/css/theme-2.css">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="viewport" content="height=device-height, initial-scale=1"/>
 <style>
@@ -33,7 +34,6 @@ h1 a:hover {
 </u1>
 </nav>
 <nav id="desktop-navigation">
-<!-- TODO: add button to change theme -->
 <li><a href="">HOME</a></li>
 <li><a href="/programs/">SCIRPTS</a></li>
 <li><a href="/contact/">CONTACT</a></li>
@@ -51,7 +51,7 @@ h1 a:hover {
 <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
 <label class="switch">
-<input type="checkbox">
+<input id="theme-toggle" type="checkbox" onclick="changeTheme()">
 <span class="slider round"></span>
 </label>
 <script>
@@ -67,17 +67,28 @@ function mobileNavigation() {
         menu.innerHTML = "CLOSE";
     }
 }
-var span = document.getElementById("box-title");
 
-// while(true) {
-    // var w = window.innerWidth;
-    // if(w < "386") // px
-    // var h = windows.innerHeight;
-    // var clientHeight = document.getElementById('main').clientHeight;
-    // TODO: change margin-top of .main based on its own height
-    // TODO: change font size based on box width or something
-    // span.style.fontSize = "25px";
-// }
+document.getElementById("theme-2").disabled = true;
+function changeTheme() {
+    if (document.getElementById('theme-toggle').checked) {
+        // change css to theme
+        // var head = document.head;
+        // var link = document.createElement("link");
+        //
+        // link.type = "text/css";
+        // link.rel = "stylesheet";
+        // link.href = "/static/css/theme-2.css";
+        //
+        // head.appendChild(link);
+        document.getElementById("theme-2").disabled = false;
+        document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
+        document.getElementById('desktop-navigation').style.color = "white";
+    } else {
+        document.body.style.backgroundImage = "url('/static/images/bg-desktop-2.jpg')";
+        document.getElementById('desktop-navigation').style.color = "black";
+        document.getElementById("theme-2").disabled = true;
+    }
+}
 </script>
 </body>
 </html>
