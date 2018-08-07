@@ -14,4 +14,3 @@ Werkzeug
 flask
 flask_compress
 flask_cache
-redis
