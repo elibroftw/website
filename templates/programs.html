@@ -66,6 +66,10 @@
 <input id=inputbox type=number name="Number to Square" onkeyup="myFunction()" max=99999 style="width: 4em">
 <p id=output></p>
 </div>
+<label class="switch">
+<input type="checkbox">
+<span class="slider round"></span>
+</label>
 <script>
 function myFunction() {var num=document.getElementById('inputbox').value;if(num.length>4){num=num+""
 num=parseInt(num.slice(0,5));document.getElementById('inputbox').value=num;}
