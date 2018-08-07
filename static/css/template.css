@@ -129,14 +129,14 @@ li a:hover {
     margin-left: 0px;
     border-radius: 0px 1em 1em 0px;
     color: #000;
-    /* background-color: white; */
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: white;
+    /* background-color: rgba(255, 255, 255, 0.7); */
 }
 
 .dropdown-content a:hover {
     /* Change color of dropdown links on hover */
     color: #000;
-    background-color: #F5F5F5;
+    background-color: #E8E8EE;
 }
 
 .dropdown:hover .dropdown-content {
