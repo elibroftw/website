@@ -131,8 +131,8 @@ li a:hover {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    left: 154px;
-    margin-top: -30px;
+    left: 148px;
+    margin-top: -8px;
     z-index: 1;
     background-color: transparent;
 }
@@ -155,7 +155,7 @@ li a:hover {
 
 .dropdown:hover .dropdown-content {
     /* Show the dropdown menu on hover */
-    display: block;
+    display: inline-block;
 }
 
 .dropdown:hover {
