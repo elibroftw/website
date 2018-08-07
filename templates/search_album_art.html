@@ -2,11 +2,24 @@
 <html lang="en">
 <head>
 <title>Elijah Lopez - Album Art Finder</title>
-<link rel=icon type="image/png" href="/static/images/logo.png">
-<link rel=stylesheet href="/static/css/template.css">
-<link rel=stylesheet href="/static/css/search_album_art.css">
+<link rel="icon" type="image/png" href="/static/images/logo.png">
+<link rel="stylesheet" href="/static/css/template.css">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="viewport" content="height=device-height, initial-scale=1"/>
+<style>
+#album-cover {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+#track-input, #artist-input {
+  width: 8em;
+}
+
+#search::after {
+  content: "\A\A";
+}
+</style>
 </head>
 <body>
 <nav id="mobile-navigation" onclick="mobileNavigation()">
