@@ -11,8 +11,7 @@
             width: 100%;
         }
 
-        td,
-        th {
+        td, th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
@@ -26,6 +25,10 @@
             padding: 10px 16px;
             background: #555;
             color: #f1f1f1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
         }
 
         .sticky {
@@ -47,7 +50,7 @@
 
 <body>
     <div class="header" id="inputHeader">
-        <input type="text" id="input1" autofocus="autofocus" onfocus="this.select()" />
+        <input type="text" id="input1" autofocus="autofocus" onfocus="this.select()"><br>
     </div>
     <script type="text/javascript">
         document.getElementById('input1').onkeypress = function(e) {
@@ -73,18 +76,21 @@
 
         var header = document.getElementById("inputHeader");
         var sticky = header.offsetTop;
+        var top = document.getElementById("top");
 
         function stickyScroll() {
             if (window.pageYOffset >= sticky) {
-                header.classList.add("sticky");
+                header.classList.add("sticky")
+                top.classList.add("sticky");
             } else {
                 header.classList.remove("sticky");
+                top.classList.remove("sticky")
             }
         }
 
     </script>
     <table>
-        <tr id='top'>
+        <tr id="top">
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
