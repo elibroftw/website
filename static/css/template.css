@@ -285,6 +285,7 @@ input:checked + .slider:before {
 
 @media screen and (max-width: 1024px) {
     /*mobile landscape*/
+    /* TODO: make nav horizontal */
     #main {
         margin-top: -15%;
     }
