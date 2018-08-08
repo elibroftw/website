@@ -286,7 +286,7 @@ input:checked + .slider:before {
 @media screen and (max-width: 1024px) {
     /*mobile landscape*/
     #main {
-        margin-top: -25%;
+        margin-top: -15%;
     }
 }
 
@@ -302,6 +302,7 @@ input:checked + .slider:before {
     #mobile-navigation {
         display: block;
     }
+
     #main {
         margin-top: 4em;
         padding-left: 0px;
