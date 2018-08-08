@@ -310,7 +310,6 @@ input:checked + .slider:before {
         padding-right: 0px;
         letter-spacing: 0.05em;
         width: 90%;
-        /* TODO: Change padding and stuff so that it looks good on mobile */
     }
 
     h1 {
