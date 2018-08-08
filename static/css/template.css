@@ -37,12 +37,6 @@ body {
     background-position: center;
     /* background-attachment: fixed !important; */
     position: static;
-    /* transform: translate3d(0,0,0); */
-    /* z-index: 1; */
-    /* min-width: 100%; */
-    /* width: 100%; */
-    /* min-height: 100%; */
-    /* display: block; */
     background-image: url("/static/images/bg-desktop-2.jpg");
     text-decoration: none;
     bottom: 0;
@@ -291,14 +285,6 @@ input:checked + .slider:before {
 
 @media screen and (max-width: 1024px) {
     /*mobile landscape*/
-    .switch {
-        display: none;
-    }
-    #switch_text {
-        display: none;
-    }
-
-
     #main {
         margin-top: -25%;
     }
@@ -309,11 +295,12 @@ input:checked + .slider:before {
         background-image: url("/static/images/bg-mobile-2.jpg");
     }
 
+    .switch, #switch_text, #desktop-navigation  {
+        display: none;
+    }
+
     #mobile-navigation {
         display: block;
-    }
-    #desktop-navigation {
-        display: none;
     }
     #main {
         margin-top: 4em;
