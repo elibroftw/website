@@ -19,9 +19,9 @@
 }
 
 @font-face {
-  font-family: Verdana;
-  src: url('fonts/Verdana.ttf');
-  font-weight: normal;
+    font-family: Verdana;
+    src: url('fonts/Verdana.ttf');
+    font-weight: normal;
 }
 
 
@@ -69,7 +69,7 @@ h1 {
     line-height: 1em;
     color: white;
     text-decoration: none;
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 h1:hover {
@@ -91,7 +91,7 @@ p:hover {
     margin-top: 1em;
     padding: 0;
     letter-spacing: 0.23px;
-    text-transform: capitalize;
+    text-transform: uppercase;
     /* color: white; */
 }
 
@@ -114,7 +114,7 @@ li a {
 li a:hover {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dropdown {
@@ -165,7 +165,7 @@ li a:hover {
     /* Change the background color of the dropdown button when the dropdown content is shown */
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     /* color: black;
     background-color: white */
 }
@@ -178,6 +178,7 @@ li a:hover {
     padding: 1em 0em;
     cursor: pointer;
     color: white;
+    text-transform: uppercase;
 }
 
 #mobile-navigation-label {
@@ -202,7 +203,9 @@ u1:hover {
 }
 
 /* TODO: Display for a few seconds maybe? */
+
 /* TODO: Add theme 2 for this? */
+
 #switch_text {
     position: fixed;
     bottom: 16px;
@@ -226,7 +229,9 @@ u1:hover {
     height: 34px;
 }
 
-.switch input {display:none;}
+.switch input {
+    display: none;
+}
 
 .slider {
     position: absolute;
@@ -265,6 +270,7 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
+
 .slider.round {
     border-radius: 34px;
 }
@@ -274,13 +280,13 @@ input:checked + .slider:before {
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+    /*
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+*/
+    user-select: none;
 }
 
 @media screen and (max-width: 1024px) {
@@ -291,10 +297,7 @@ input:checked + .slider:before {
     #switch_text {
         display: none;
     }
-    body {
-        /* background-image: url("/static/images/bg-mobile.jpg"); */
-        background-image: url("/static/images/bg-mobile-2.jpg");
-    }
+
 
     #main {
         margin-top: -25%;
@@ -302,6 +305,10 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 640px) {
+    body {
+        background-image: url("/static/images/bg-mobile-2.jpg");
+    }
+
     #mobile-navigation {
         display: block;
     }
@@ -334,9 +341,9 @@ input:checked + .slider:before {
     li a:hover {
         background-color: transparent;
         color: #00FFFF;
-        box-shadow: 0px 8px 20px 0 rgba(0,0,0,0.2),
-                    0px -8px 20px 0 rgba(0,0,0,0.2),
-                    0px 8px 16px 0 rgba(0,0,0,0.2),
-                    0px -8px 16px 0 rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 20px 0 rgba(0, 0, 0, 0.2),
+        0px -8px 20px 0 rgba(0, 0, 0, 0.2),
+        0px 8px 16px 0 rgba(0, 0, 0, 0.2),
+        0px -8px 16px 0 rgba(0, 0, 0, 0.2);
     }
 }
