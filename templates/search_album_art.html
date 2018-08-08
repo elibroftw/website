@@ -115,8 +115,8 @@ function changeTheme() {
         document.getElementById('desktop-navigation').style.color = "white";
         setCookie("elijah-lopez-website-theme", "true", 365);
     } else {
-        document.body.style.backgroundImage = "url('/static/images/bg-desktop-2.jpg')";
-        document.getElementById('desktop-navigation').style.color = "black";
+        document.body.style.backgroundImage = "";
+        document.getElementById('desktop-navigation').style.color = "";
         document.getElementById("theme-2").disabled = true;
         setCookie("elijah-lopez-website-theme", "false", 365);
     }
