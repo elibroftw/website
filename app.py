@@ -29,7 +29,9 @@ def add_header(response):
     if 'Cache-Control' not in response.headers:
         # print(response.headers['Cache-Control'])
         # response.headers['Cache-Control'] = 'public, max-age=1000'
-        response.cache_control.max_age = 1000  # this doesn't work here
+        print('test')
+        response.cache_control.max_age = 300  # this doesn't work here
+        response.cache_control.public = True
     # response.cache_control.max_age = 1000  # you can use strings or integers
     # print(response.headers['Cache-Control'])
     return response
