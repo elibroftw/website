@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import flask
 from flask_compress import Compress
 from funcs import get_template_data, get_album_art
+import os
 # import redis
 # from flask import request
 # import threading
@@ -134,7 +135,8 @@ def ib_economics_schedule():
 
 
 if __name__ == '__main__':
-    # request.headers.get('Cache-Control')
-    # app.run(host='192.168.2.219', port=99)
-    # app.run(host='localhost', port=99)
-    app.run()
+    try:
+        os.environ['SPOTIFY_CLIENT_ID']
+        app.run()
+    except KeyError:
+        app.run(host='localhost', port=99)
