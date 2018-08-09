@@ -1,38 +1,42 @@
-from flask import Flask, render_template, request
-import flask
-from flask_compress import Compress
-from funcs import get_template_data, get_album_art
 import os
+import flask
+from flask import Flask, render_template, request
+from flask_compress import Compress
+
+from funcs import get_album_art
+from ib_economics import get_template_data
 # import redis
-# from flask import request
-# import threading
-# from funcs import get_external_ip, get_external_ip2
-# from flask_cache import Cache
+
+
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
+Compress(app)
+home_template_data = get_template_data()
+
+
+# limiter = Limiter(
+#     app,
+#     key_func=get_remote_address,
+#     default_limits=["200 per day", "50 per hour"]
+# )
 
 # try:
 #     r = redis.from_url(os.environ.get("REDIS_URL"))
-# except KeyError: pass
+# except KeyError:
+#     use local redis
 # cache = Cache(config={'CACHE_TYPE': 'simple'})
-Compress(app)
-home_template_data = get_template_data()
-# app.config['CACHE_TYPE'] = 'simple'
-# app.cache = Cache(app)
 
 
-#  render_template('file.html', func=FUNCNAME) works
 @app.after_request
 def add_header(response):
     # print(response.name)
     # print(response.headers['name'])
     # response.headers['Cache-Control'] = 'public, max-age=1000'  # also works
     if 'Cache-Control' not in response.headers:
-        # print(response.headers['Cache-Control'])
         # response.headers['Cache-Control'] = 'public, max-age=1000'
-        print('test')
-        response.cache_control.max_age = 300  # this doesn't work here
+        response.cache_control.max_age = 300
         response.cache_control.public = True
+        print(response.headers['Cache-Control'])
     # response.cache_control.max_age = 1000  # you can use strings or integers
     # print(response.headers['Cache-Control'])
     return response
@@ -44,18 +48,11 @@ def page_not_found(ERROR): return 'Page not Found', 404  # render_template('page
 
 @app.route('/shift')
 def game_shift():
-    resp = flask.Response(render_template('shift.html'))
-    # resp.headers['Access-Control-Allow-Origin'] = '*'
-    # resp.headers['Cache-Control'] = 100  # doesn't work
-    # resp.cache_control.max_age = 100  # doesn't work
-    return resp
-    # return render_template('shift.html')
+    return render_template('shift.html')
 
 
 @app.route('/')
 def home(): return render_template('home.html')
-
-# <!--{{nav.top_nav.render()}}-->
 
 
 @app.route('/about/')
@@ -110,33 +107,25 @@ def ib_economics_schedule():
 #                 redis.set(f'shift_high_score_{i+1}_user', v)
 #             return 'top 10 high score'
 #     return 'not a top 10 high score'
+
+
 # @app.route('/shift-high-scores/)
-# def shift-high-scores():
+# def shift-high-scores():  # returns table of highscores, might add level scores
 #     # get high scores from db
 #     return render_template('shift_high_scores.html')
-#
+
+
 # @app.route('/reset-shift-high-scores/')
 # def test():
 #     for x in rang(1, 11):
 #         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
-#         redis.set(f'shift_high_score_{x}_user', "defalt")  # seconds
+#         redis.set(f'shift_high_score_{x}_user', "defalt")  # default username is an easter egg
 #     return "it's done"
-
-# @app.route('/user/<username>')
-# def show_user_profile(username):
-#     # show the user profile for that user
-#     return f'User {username}'
-#
-#
-# @app.route('/post/<int:post_id>')
-# def show_post(post_id):
-#     # show the post with the given id, the id is an integer
-#     return f'Post {post_id}'
 
 
 if __name__ == '__main__':
     try:
         os.environ['SPOTIFY_CLIENT_ID']
         app.run()
-    except KeyError:
+    except KeyError:  # this will only happen when running locally so yeah
         app.run(host='localhost', port=99)
