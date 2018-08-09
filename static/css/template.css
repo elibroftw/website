@@ -42,7 +42,7 @@ body {
     bottom: 0;
 }
 
-#main {
+#inner {
     padding: 50px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.8);
@@ -271,7 +271,7 @@ input:checked + .slider:before {
 @media screen and (max-width: 1024px) {
     /*mobile landscape*/
     /* TODO: make nav horizontal */
-    #main {
+    #inner {
         margin-top: -15%;
     }
 }
@@ -289,7 +289,7 @@ input:checked + .slider:before {
         display: block;
     }
 
-    #main {
+    #inner {
         margin-top: 4em;
         padding-left: 0px;
         padding-right: 0px;
