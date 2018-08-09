@@ -90,9 +90,9 @@ li a {
     padding: 0.5em 1em;
     text-decoration: none;
     border-radius: 1em;
-    display: block;
     font-family: Futura;
     font-weight: bold;
+    display: inherit;
 }
 
 li a:hover {
@@ -105,6 +105,7 @@ li a:hover {
     /* The container <div> - needed to position the dropdown content */
     margin-left: 1em;
     width: 100px;
+    display: inline-block;
     padding: 0.5em 1em;
     border-radius: 1em 0em 0em 1em;
     cursor: default;
@@ -273,7 +274,16 @@ input:checked + .slider:before {
     /* TODO: make nav horizontal */
     #inner {
         margin-top: -15%;
+        /* margin-top: 10%; */
     }
+    /* THIS IS NEW horizontal navigation  */
+    /* #desktop-navigation {
+        text-align: center;
+    }
+
+    li {
+        display: inline;
+    } */
 }
 
 @media screen and (max-width: 640px) {
