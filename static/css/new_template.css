@@ -156,7 +156,7 @@ p {
     display: none;
     text-align: center;
     letter-spacing: 0.3em;
-    background-color: #2a2b2d;
+    background-color: rgba(15, 15, 15, 0.9);
     padding: 1em 0em;
     cursor: pointer;
     color: white;
