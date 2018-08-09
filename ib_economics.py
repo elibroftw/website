@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import datetime
+import markdown
 
 
 class SchoolDay:
@@ -95,5 +96,41 @@ def get_data():
     return data
 
 
+def make_html_friendly(text):
+    return markdown.markdown(text).replace('<p>', '').replace('</p>', '')
+
+
+def info_to_html(month_name, day, info):
+    return f'\n<td id={month_name}{day}><i>{month_name} {day}</i><br/>{info}</td>'
+
+
+def get_template_data():
+    schedule_data = get_data()
+    template = ''
+    last_weekday = 0
+    for k, v in schedule_data.items():
+        if k.get_weekday_name() == 'Monday':
+            if not template.endswith('</tr>'): template += '</tr>'
+            template += '\n<tr>'
+            template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+        else:
+            # if template.endswith('</tr>'):
+            #     template += '\n<tr>'
+            #     for i in range(k.weekday - 1):
+            #         template += '\n<td></td>'
+            #     template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+            if k.weekday < last_weekday:
+                template += '\n</tr>'
+                for i in range(k.weekday):
+                    template += '\n<td></td>'
+                template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+            else:
+                template += info_to_html(k.get_month_name(), k.day, make_html_friendly(v))
+            # if k.weekday == 6: template += '\n</tr>'  # also maybe use 4
+        last_weekday = k.weekday
+    if not template.endswith('</tr>'): template += '\n</tr>'
+    return template
+
+
 if __name__ == '__main__':
-    get_data()
+    print(get_data())
