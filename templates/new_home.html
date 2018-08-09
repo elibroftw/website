@@ -1,24 +1,22 @@
 <!DOCTYPE html>
+<!-- TODO: use awesome font logos-->
+<!-- TODO: use for twittter, facebook, etc -->
 <html lang="en">
 <head>
-<title>Elijah Lopez - Album Art Finder</title>
+<title>Elijah Lopez</title>
 <link rel="icon" type="image/png" href="/static/images/logo.png">
 <link rel="stylesheet" href="/static/css/template.css">
 <link id="theme-2" rel="stylesheet" href="/static/css/theme-2.css">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="viewport" content="height=device-height, initial-scale=1"/>
 <style>
-#album-cover {
-  max-width: 500px;
-  max-height: 500px;
+h1 a {
+    color: white;
+    text-decoration: none;
 }
 
-#track-input, #artist-input {
-  width: 8em;
-}
-
-#search::after {
-  content: "\A\A";
+h1 a:hover {
+    color: grey;
 }
 </style>
 </head>
@@ -26,54 +24,37 @@
 <nav id="mobile-navigation" onclick="mobileNavigation()" class="noselect">
 <span id="mobile-navigation-label">menu</span>
 <u1 id="mobile-navigation-panel">
-<li><a href="/">home</a></li>
+<li><a href="">home</a></li>
 <li><a href="/programs/">scripts</a></li>
 <li><a href="/contact/">contact</a></li>
 <li><a href="/about/">about</a></li>
 <li><a href="/resources/">resources</a></li>
-<li><a href="">search album art</a></li>
+<li><a href="/search-album-art/">search album art</a></li>
 </u1>
 </nav>
 <nav id="desktop-navigation" class="noselect">
-<li><a href="/">home</a></li>
-<li><a href="/programs/">scripts</a></li>
-<li><a href="/contact/">contact</a></li>
-<li><a href="/about/">about</a></li>
-<li><a href="/resources/">resources</a></li>
-<li><a href="">search album art</a></li>
-<li><div class="dropdown">games<div class="dropdown-content">
+<a href="">home</a>
+<a href="/programs/">scripts</a>
+<a href="/contact/">contact</a>
+<a href="/about/">about</a>
+<a href="/resources/">resources</a>
+<a href="/search-album-art/">search album art</a>
+<div class="dropdown">games
+<div class="dropdown-content">
 <a href="/shift">shift</a>
 </div>
 </div>
-</li>
 </nav>
-<div id="inner">
-<h1>Search for Album Art</h1>
-<form action="/search-album-art" style="margin-bottom: 1em">
-<input id="artist-input" type=text name=artist placeholder="Artist name" autofocus>
-<input id="track-input" type=text name=track placeholder="Track name">
-<button id="search">Search</button>
-</form>
-<img id="album-cover" alt="Album Cover" src="{{image_url}}"/>
+<div id="inner"> <!-- TODO: change to inner -->
+<h1 id="box-title"><a href="/about/">Elijah</a></h1>
+<p>Hi! My name is Elijah Lopez and welcome to my website!</p>
 </div>
 <span id="switch_text" class="noselect">Toggle Theme</span>
-<label class="switch">
+<label class="switch noselect">
 <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
 <span class="slider round"></span>
 </label>
 <script>
-if ("{{image_url}}" == "image not found") {
-    document.getElementById("album-cover").style.display = "none";
-}
-
-var input = document.getElementById("track-input");
-input.addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById("search").click();
-    }
-});
-
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -120,6 +101,30 @@ function changeTheme() {
         document.getElementById("theme-2").disabled = true;
         setCookie("elijah-lopez-website-theme", "false", 365);
     }
+}
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) { /* Firefox */
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE/Edge */
+    document.msExitFullscreen();
+  }
 }
 
 if (getCookie("elijah-lopez-website-theme") == "true") {
