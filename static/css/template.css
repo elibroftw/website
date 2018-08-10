@@ -94,7 +94,7 @@ p {
     display: inherit;
 }
 
-#desktop-navigation>a:hover {
+#desktop-navigation>a:hover, .dropdown:hover {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -142,13 +142,6 @@ p {
 .dropdown:hover .dropdown-content {
     /* Show the dropdown menu on hover */
     display: inline-block;
-}
-
-.dropdown:hover {
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #mobile-navigation {
