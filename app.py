@@ -52,7 +52,7 @@ def shift():
 
 
 @app.route('/')
-def home(): return render_template('new_home.html')
+def home(): return render_template('home.html')
 
 
 @app.route('/about/')
