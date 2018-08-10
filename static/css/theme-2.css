@@ -4,7 +4,7 @@
     background-color: white;
 }
 
-#desktop-navigation>a {color: white;}
+#desktop-navigation>a, .dropdown {color: white;}
 
 .dropdown-content a:hover {
     /* Change color of dropdown links on hover */
