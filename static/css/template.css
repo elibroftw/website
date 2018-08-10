@@ -47,7 +47,6 @@ body {
     margin: auto;
     width: 45%;
     max-width: 1000px;
-    resize: both;
     overflow: overlay;
     text-align: center;
     margin-top: -3.5%;
