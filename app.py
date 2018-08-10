@@ -46,11 +46,6 @@ def add_header(response):
 def page_not_found(ERROR): return 'Page not Found', 404  # render_template('page_not_found.html'), 404  # (error)
 
 
-@app.route('/shift/')
-def shift():
-    return render_template('shift.html')
-
-
 @app.route('/')
 def home(): return render_template('home.html')
 
@@ -85,6 +80,11 @@ def search_album_art():
 @app.route('/ib-economics-schedule/')
 def ib_economics_schedule():
     return render_template('table.html', data=home_template_data)
+
+
+@app.route('/shift/')
+def shift():
+    return render_template('shift.html')
 
 
 # @app.route('/shift-high-scores/new/', methods=['POST'])
