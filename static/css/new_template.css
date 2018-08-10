@@ -24,7 +24,6 @@
     font-weight: normal;
 }
 
-
 html {
     height: 100%;
     margin: 0;
@@ -35,7 +34,6 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    /* background-attachment: fixed !important; */
     position: static;
     background-image: url("/static/images/bg-desktop-2.jpg");
     text-decoration: none;
@@ -72,7 +70,7 @@ p {
     font-weight: normal;
 }
 
-/* TODO: use > for direct decendents */
+/* use > for direct decendents */
 
 #desktop-navigation {
     margin-top: 1em;
@@ -83,7 +81,7 @@ p {
     text-transform: uppercase;
 }
 
-#desktop-navigation > a {
+#desktop-navigation>a {
     border-radius: 1em;
 }
 
@@ -97,7 +95,7 @@ p {
     display: inherit;
 }
 
-#desktop-navigation > a:hover {
+#desktop-navigation>a:hover {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -128,10 +126,12 @@ p {
 .dropdown-content a {
     /* Links inside the dropdown */
     /* padding: 0.5em 1em; */
+    /* TODO: add border left for theme-2*/
     margin-left: 0px;
     border-radius: 0px 1em 1em 0px;
     color: black;
     background-color: white;
+    display: block;
 }
 
 .dropdown-content a:hover {
@@ -183,9 +183,9 @@ u1:hover {
     background-color: transparent;
 }
 
-/* TODO: Display for a few seconds maybe? */
+/* IDEA: Display for a few seconds maybe? */
 
-/* TODO: Add theme 2 for this? */
+/* IDEA: Add theme 2 for this? */
 
 #switch_text {
     position: fixed;
@@ -236,15 +236,15 @@ u1:hover {
     transition: .2s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
@@ -270,50 +270,51 @@ input:checked + .slider:before {
     cursor: default;
 }
 
+.fa-caret-down {
+    display: none !important;
+}
+
 @media screen and (max-width: 1024px) {
     /*mobile landscape*/
     /* TODO: make nav horizontal */
     #inner {
-        margin-top: -15%;
-        /* margin-top: 10%; */
+        margin-top: 10%;
+    }
+    .fa-caret-right {
+        display: none !important;
+    }
+    .fa-caret-down {
+        display: inline-block !important;
     }
     /* THIS IS NEW horizontal navigation  */
-    /* #desktop-navigation {
+    #desktop-navigation a {
         text-align: center;
+        float: left;
     }
-
-    li {
-        display: inline;
-    }
-
     .dropdown {
-        display: inline;
-        border-radius: 1em 1em 1em 1em;
+        float: left;
+        text-align: center;
+        border-radius: 1em 1em 0 0;
     }
-
+    .dropdown-content a {
+        float: none;
+        text-align: left;
+    }
     .dropdown:hover .dropdown-content {
         display: block;
     }
-
-    .dropdown-content {
-        border-radius: 0;
-        width: auto;
-    } */
 }
 
 @media screen and (max-width: 640px) {
     body {
         background-image: url("/static/images/bg-mobile-2.jpg");
     }
-
-    .switch, #switch_text, #desktop-navigation  {
+    .switch, #switch_text, #desktop-navigation {
         display: none;
     }
-
     #mobile-navigation {
         display: block;
     }
-
     #inner {
         margin-top: 4em;
         padding-left: 0px;
@@ -321,11 +322,9 @@ input:checked + .slider:before {
         letter-spacing: 0.05em;
         width: 90%;
     }
-
     h1 {
         font-size: 40px;
     }
-
     #mobile-navigation a {
         width: 100%;
         display: block;
@@ -337,13 +336,9 @@ input:checked + .slider:before {
         font-family: Verdana;
         font-weight: normal;
     }
-
     #mobile-navigation a:hover {
         background-color: transparent;
         color: cyan;
-        box-shadow: 0px 8px 20px 0 rgba(0, 0, 0, 0.2),
-        0px -8px 20px 0 rgba(0, 0, 0, 0.2),
-        0px 8px 16px 0 rgba(0, 0, 0, 0.2),
-        0px -8px 16px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 8px 20px 0 rgba(0, 0, 0, 0.2), 0px -8px 20px 0 rgba(0, 0, 0, 0.2), 0px 8px 16px 0 rgba(0, 0, 0, 0.2), 0px -8px 16px 0 rgba(0, 0, 0, 0.2);
     }
 }
