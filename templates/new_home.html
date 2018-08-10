@@ -2,138 +2,144 @@
 <!-- TODO: use awesome font logos-->
 <!-- TODO: use for twittter, facebook, etc -->
 <html lang="en">
-<head>
-<title>Elijah Lopez</title>
-<link rel="icon" type="image/png" href="/static/images/logo.png">
-<link rel="stylesheet" href="/static/css/new_template.css">
-<link id="theme-2" rel="stylesheet" href="/static/css/theme-2.css">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="viewport" content="height=device-height, initial-scale=1"/>
-<style>
-h1 a {
-    color: white;
-    text-decoration: none;
-}
 
-h1 a:hover {
-    color: grey;
-}
-</style>
+<head>
+    <title>Elijah Lopez</title>
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <link rel="stylesheet" href="/static/css/new_template.css">
+    <link id="theme-2" rel="stylesheet" href="/static/css/theme-2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="height=device-height, initial-scale=1" />
+    <style>
+        h1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        h1 a:hover {
+            color: grey;
+        }
+    </style>
 </head>
+
 <body>
-<nav id="mobile-navigation" onclick="mobileNavigation()" class="noselect">
-<span id="mobile-navigation-label">menu</span>
-<u1 id="mobile-navigation-panel">
-<a href="">home</a>
-<a href="/programs/">scripts</a>
-<a href="/contact/">contact</a>
-<a href="/about/">about</a>
-<a href="/resources/">resources</a>
-<a href="/search-album-art/">search album art</a>
-</u1>
-</nav>
-<nav id="desktop-navigation" class="noselect">
-<a href="">home</a>
-<a href="/programs/">scripts</a>
-<a href="/contact/">contact</a>
-<a href="/about/">about</a>
-<a href="/resources/">resources</a>
-<a href="/search-album-art/">search album art</a>
-<div class="dropdown">games
-<div class="dropdown-content">
-<a href="/shift">shift</a>
-</div>
-</div>
-</nav>
-<div id="inner"> <!-- TODO: change to inner -->
-<h1 id="box-title"><a href="/about/">Elijah</a></h1>
-<p>Hi! My name is Elijah Lopez and welcome to my website!</p>
-</div>
-<span id="switch_text" class="noselect">Toggle Theme</span>
-<label class="switch noselect">
+    <nav id="mobile-navigation" onclick="mobileNavigation()" class="noselect">
+        <span id="mobile-navigation-label">menu</span>
+        <u1 id="mobile-navigation-panel">
+            <a href="{{url_for('home')}}">home</a>
+            <a href="{{url_for('programs')}}">scripts</a>
+            <a href="{{url_for('contact')}}">contact</a>
+            <a href="{{url_for('about')}}">about</a>
+            <a href="{{url_for('resources')}}">resources</a>
+            <a href="{{url_for('search_album_art')}}">search album art</a>
+        </u1>
+    </nav>
+    <nav id="desktop-navigation" class="noselect">
+        <a href="{{url_for('home')}}">home</a>
+        <a href="{{url_for('programs')}}">scripts</a>
+        <a href="{{url_for('contact')}}">contact</a>
+        <a href="{{url_for('about')}}">about</a>
+        <a href="{{url_for('resources')}}">resources</a>
+        <a href="{{url_for('search_album_art')}}">search album art</a>
+        <div class="dropdown">games
+            <i class="fas fa-caret-right"></i>
+            <i class="fa fa-caret-down"></i>
+            <div class="dropdown-content">
+                <a href="{{url_for('shift')}}">shift</a>
+            </div>
+        </div>
+    </nav>
+    <div id="inner">
+        <!-- TODO: change to inner -->
+        <h1 id="box-title"><a href="/about/">Elijah</a></h1>
+        <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
+    </div>
+    <span id="switch_text" class="noselect">Toggle Theme</span>
+    <label class="switch noselect">
 <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
 <span class="slider round"></span>
 </label>
-<script>
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
+    <script>
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
 
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
 
-var nav_panel = document.getElementById("mobile-navigation-panel");
-var menu = document.getElementById("mobile-navigation-label");
-function mobileNavigation() {
-    if (nav_panel.style.display == "block") {
-        nav_panel.style.display = "none";
-        menu.innerHTML = "MENU";
-    }
-    else {
-        nav_panel.style.display = "block";
-        menu.innerHTML = "CLOSE";
-    }
-}
+        var nav_panel = document.getElementById("mobile-navigation-panel");
+        var menu = document.getElementById("mobile-navigation-label");
 
-function changeTheme() {
-    if (document.getElementById('theme-toggle').checked) {
-        document.getElementById("theme-2").disabled = false;
-        document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
-        document.getElementById('desktop-navigation').style.color = "white";
-        setCookie("elijah-lopez-website-theme", "true", 365);
-    } else {
-        document.body.style.backgroundImage = "";
-        document.getElementById('desktop-navigation').style.color = "";
-        document.getElementById("theme-2").disabled = true;
-        setCookie("elijah-lopez-website-theme", "false", 365);
-    }
-}
+        function mobileNavigation() {
+            if (nav_panel.style.display == "block") {
+                nav_panel.style.display = "none";
+                menu.innerHTML = "MENU";
+            } else {
+                nav_panel.style.display = "block";
+                menu.innerHTML = "CLOSE";
+            }
+        }
 
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { /* Firefox */
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE/Edge */
-    elem.msRequestFullscreen();
-  }
-}
+        function changeTheme() {
+            if (document.getElementById('theme-toggle').checked) {
+                document.getElementById("theme-2").disabled = false;
+                document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
+                document.getElementById('desktop-navigation').style.color = "white";
+                setCookie("elijah-lopez-website-theme", "true", 365);
+            } else {
+                document.body.style.backgroundImage = "";
+                document.getElementById('desktop-navigation').style.color = "";
+                document.getElementById("theme-2").disabled = true;
+                setCookie("elijah-lopez-website-theme", "false", 365);
+            }
+        }
 
-function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.mozCancelFullScreen) { /* Firefox */
-    document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE/Edge */
-    document.msExitFullscreen();
-  }
-}
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+            }
+        }
 
-if (getCookie("elijah-lopez-website-theme") == "true") {
-    document.getElementById('theme-toggle').checked = true;
-    changeTheme();
-}
-else {
-    document.getElementById("theme-2").disabled = true;
-}
-</script>
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+            }
+        }
+
+        if (getCookie("elijah-lopez-website-theme") == "true") {
+            document.getElementById('theme-toggle').checked = true;
+            changeTheme();
+        } else {
+            document.getElementById("theme-2").disabled = true;
+        }
+    </script>
 </body>
+
 </html>

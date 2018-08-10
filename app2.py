@@ -46,8 +46,8 @@ def add_header(response):
 def page_not_found(ERROR): return 'Page not Found', 404  # render_template('page_not_found.html'), 404  # (error)
 
 
-@app.route('/shift')
-def game_shift():
+@app.route('/shift/')
+def shift():
     return render_template('shift.html')
 
 
@@ -60,7 +60,7 @@ def about(): return render_template('about.html')
 
 
 @app.route('/programs/')  # todo: make this a drop down menu as well
-def index(): return render_template('programs.html')
+def programs(): return render_template('programs.html')
 
 
 @app.route('/contact/')
@@ -72,7 +72,7 @@ def resources(): return render_template('resources.html')
 
 
 @app.route('/search-album-art/', methods=['GET'])
-def album_art_finder():
+def search_album_art():
     artist = request.args.get('artist')
     track = request.args.get('track')
     if None in (artist, track) or '' in (artist, track): image_url = 'image not found'
