@@ -1,12 +1,15 @@
-li a:hover {
+#desktop-navigation>a:hover {
     box-shadow: none;
     color: black;
     background-color: white;
 }
 
+#desktop-navigation>a {color: white;}
+
 .dropdown-content a:hover {
     /* Change color of dropdown links on hover */
     background-color: lightgray;
+    box-shadow: -10px 0px 12px 0px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown:hover {
