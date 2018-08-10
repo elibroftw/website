@@ -72,10 +72,8 @@ p {
 /* use > for direct decendents */
 
 #desktop-navigation {
-    margin-top: 1em;
-    margin-left: 1em;
     display: block;
-    padding: 0;
+    padding: 1em 0 0 1em;
     letter-spacing: 0.23px;
     text-transform: uppercase;
 }
@@ -268,7 +266,7 @@ input:checked+.slider:before {
     /*mobile landscape*/
     /* TODO: make nav horizontal */
     #inner {
-        margin-top: 10%;
+        margin-top: 8%;
     }
     .fa-caret-right {
         display: none !important;
@@ -277,19 +275,33 @@ input:checked+.slider:before {
         display: inline-block !important;
     }
     /* THIS IS NEW horizontal navigation  */
-    #desktop-navigation a {
+    #desktop-navigation {
+        overflow: hidden;
+        padding: 1em;
+    }
+    #desktop-navigation>a {
         text-align: center;
         float: left;
     }
+
     .dropdown {
         float: left;
         text-align: center;
         border-radius: 1em 1em 0 0;
     }
+
+    .dropdown-content {
+        left: 808px;
+        margin-top: 8px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
     .dropdown-content a {
         float: none;
         text-align: left;
+        border-radius: 0;
     }
+
     .dropdown:hover .dropdown-content {
         display: block;
     }
