@@ -83,6 +83,7 @@ p {
 }
 
 #desktop-navigation a, .dropdown .dropbtn {
+    font-size: 16px;
     letter-spacing: 0.23px;
     text-transform: uppercase;
     text-align: left;
@@ -107,8 +108,8 @@ p {
 }
 
 .dropdown .dropbtn {
-    width: 100px;
     border: none;
+    width: 132px;
     border-radius: 1em 0em 0em 1em;
     outline: none;
     color: inherit;
@@ -124,11 +125,9 @@ p {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    /* left: 148px; */
-    /* margin-top: -8px; */
-    background-color: white;
-    width: 100px;
-    border-radius: 0px 1em 1em 0px;
+    left: 148px;
+    margin-top: -35px;
+    width: 132px;
     z-index: 1;
 }
 
@@ -136,6 +135,8 @@ p {
     /* Links inside the dropdown */
     float: none;
     display: block;
+    border-radius: 0px 1em 1em 0px;
+    background-color: white;
     /* text-align: left; */
     /* padding: 0.5em 1em; */
     /* TODO: add border left */
@@ -293,9 +294,14 @@ input:checked+.slider:before {
         text-align: center;
         border-radius: 1em 1em 0 0;
     }
+    .dropdown-content {
+        left: auto;
+        margin-top: auto;
+    }
     .dropdown-content a {
         float: none;
         text-align: left;
+        border-radius: 0;
     }
     .dropdown:hover .dropdown-content {
         display: block;

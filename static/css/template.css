@@ -124,11 +124,9 @@ p {
 
 .dropdown-content a {
     /* Links inside the dropdown */
-    /* padding: 0.5em 1em; */
     /* TODO: add border left */
     margin-left: 0px;
     border-radius: 0px 1em 1em 0px;
-    /* color: black; */
     background-color: white;
     display: block;
 }
