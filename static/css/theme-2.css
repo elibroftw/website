@@ -9,7 +9,7 @@
 .dropdown-content a:hover {
     /* Change color of dropdown links on hover */
     background-color: lightgray;
-    box-shadow: -10px 0px 12px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: -10px 0px 12px 0px rgba(0, 0, 0, 0.17);
 }
 
 .dropdown:hover {
