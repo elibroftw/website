@@ -4,7 +4,7 @@
 <title>Resources - Elijah Lopez</title>
 <link rel="icon" type="image/png" href="/static/images/logo.png">
 <link rel="stylesheet" href="/static/css/template.css">
-<link id="theme-2" rel="stylesheet" href="/static/css/theme-2.css">
+<link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="viewport" content="height=device-height, initial-scale=1"/>
@@ -104,11 +104,9 @@ function changeTheme() {
     if (document.getElementById('theme-toggle').checked) {
         document.getElementById("theme-2").disabled = false;
         document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
-        document.getElementById('desktop-navigation').style.color = "white";
         setCookie("elijah-lopez-website-theme", "true", 365);
     } else {
         document.body.style.backgroundImage = "";
-        document.getElementById('desktop-navigation').style.color = "";
         document.getElementById("theme-2").disabled = true;
         setCookie("elijah-lopez-website-theme", "false", 365);
     }
