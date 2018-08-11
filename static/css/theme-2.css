@@ -4,18 +4,23 @@
     background-color: white;
 }
 
-#desktop-nav>a, .dropdown {
+#desktop-nav>a, .dropdown .dropbtn {
     color: white;
 }
 
 /* Change color of dropdown links on hover */
 /* TODO: add border left for dropdown content*/
-.dropdown-content a:hover {
-    background-color: lightgray;
-    /* box-shadow: -10px 0px 12px 0px rgba(0, 0, 0, 0.17); */
+
+.dropdown-content a {
+    border-left: 1px solid lightgray;
 }
 
-.dropdown:hover {
+.dropdown-content a:hover {
+    background-color: lightgray;
+    box-shadow: 0 0px 16px 0 rgba(0, 0, 0, 0.2), 2px 0px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown:hover .dropbtn{
     /* Change the background color of the dropdown button when the dropdown content is shown */
     box-shadow: none;
     color: black;
@@ -28,6 +33,10 @@
     }
     .dropdown-content a:hover {
         background-color: #E8E8EE;
-        /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .dropdown-content a {
+        border-left: none;
+        border-top: 1px solid #E8E8EE;
     }
 }
