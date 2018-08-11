@@ -42,9 +42,11 @@
         <a href="{{url_for('programs')}}">scripts</a>
         <a href="{{url_for('search_album_art')}}">search album art</a>
         <a href="{{url_for('contact')}}">contact</a>
-        <div class="dropdown">games
+        <div class="dropdown">
+            <button class="dropbtn">games
             <i class="fas fa-caret-right"></i>
             <i class="fa fa-caret-down"></i>
+            </button>
             <div class="dropdown-content">
                 <a href="{{url_for('shift')}}">shift</a>
             </div>
@@ -98,9 +100,11 @@
             if (document.getElementById('theme-toggle').checked) {
                 document.getElementById("theme-2").disabled = false;
                 document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
+                document.getElementById('mobile-nav').style.color = "white";
                 setCookie("elijah-lopez-website-theme", "true", 365);
             } else {
                 document.body.style.backgroundImage = "";
+                document.getElementById('mobile-nav').style.color = "";
                 document.getElementById("theme-2").disabled = true;
                 setCookie("elijah-lopez-website-theme", "false", 365);
             }
