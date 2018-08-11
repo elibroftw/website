@@ -1,4 +1,4 @@
-#desktop-nav>a:hover {
+#desktop-nav>a:hover, .dropdown:hover .dropbtn {
     box-shadow: none;
     color: black;
     background-color: white;
@@ -18,13 +18,6 @@
 .dropdown-content a:hover {
     background-color: lightgray;
     box-shadow: 0 0px 16px 0 rgba(0, 0, 0, 0.2), 2px 0px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.dropdown:hover .dropbtn{
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    box-shadow: none;
-    color: black;
-    background-color: white
 }
 
 @media screen and (max-width: 1024px) {
