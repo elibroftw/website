@@ -24,9 +24,9 @@
 </head>
 
 <body>
-    <nav id="mobile-navigation" onclick="mobileNavigation()" class="noselect">
-        <span id="mobile-navigation-label">menu</span>
-        <u1 id="mobile-navigation-panel">
+    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
+        <span id="mobile-nav-label">menu</span>
+        <u1 id="mobile-nav-panel">
             <a href="{{url_for('home')}}">home</a>
             <a href="{{url_for('about')}}">about</a>
             <a href="{{url_for('resources')}}">resources</a>
@@ -35,7 +35,7 @@
             <a href="{{url_for('contact')}}">contact</a>
         </u1>
     </nav>
-    <nav id="desktop-navigation" class="noselect">
+    <nav id="desktop-nav" class="noselect">
         <a href="{{url_for('home')}}">home</a>
         <a href="{{url_for('about')}}">about</a>
         <a href="{{url_for('resources')}}">resources</a>
@@ -81,8 +81,8 @@
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
-        var nav_panel = document.getElementById("mobile-navigation-panel");
-        var menu = document.getElementById("mobile-navigation-label");
+        var nav_panel = document.getElementById("mobile-nav-panel");
+        var menu = document.getElementById("mobile-nav-label");
 
         function mobileNavigation() {
             if (nav_panel.style.display == "block") {
@@ -98,11 +98,9 @@
             if (document.getElementById('theme-toggle').checked) {
                 document.getElementById("theme-2").disabled = false;
                 document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
-                // document.getElementById('desktop-navigation').style.color = "white";
                 setCookie("elijah-lopez-website-theme", "true", 365);
             } else {
                 document.body.style.backgroundImage = "";
-                // document.getElementById('desktop-navigation').style.color = "";
                 document.getElementById("theme-2").disabled = true;
                 setCookie("elijah-lopez-website-theme", "false", 365);
             }

@@ -1,14 +1,15 @@
-#desktop-navigation>a:hover {
+#desktop-nav>a:hover {
     box-shadow: none;
     color: black;
     background-color: white;
 }
 
-#desktop-navigation>a, .dropdown {
+#desktop-nav>a, .dropdown {
     color: white;
 }
 
 /* Change color of dropdown links on hover */
+/* TODO: add border left for dropdown content*/
 .dropdown-content a:hover {
     background-color: lightgray;
     /* box-shadow: -10px 0px 12px 0px rgba(0, 0, 0, 0.17); */
@@ -22,7 +23,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-    #desktop-navigation {
+    #desktop-nav {
         background-color: rgba(0, 0, 0, 0.8);
     }
     .dropdown-content a:hover {
