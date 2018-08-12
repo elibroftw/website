@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Search Album Art - Elijah Lopez</title>
-<link rel="icon" type="image/png" href="/static/images/logo.png">
-<link rel="stylesheet" href="/static/css/template.css">
-<link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="viewport" content="height=device-height, initial-scale=1"/>
-<style>
-#album-cover {
-  max-width: 500px;
-}
+    <title>Search Album Art - Elijah Lopez</title>
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <link rel="stylesheet" href="/static/css/template.css">
+    <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="height=device-height, initial-scale=1" />
+    <style>
+        #album-cover {
+            max-width: 500px;
+        }
 
-#track-input, #artist-input {
-  width: 8em;
-}
+        #track-input,
+        #artist-input {
+            width: 8em;
+        }
 
-#search::after {
-  content: "\A\A";
-}
+        #search::after {
+            content: "\A\A";
+        }
 
-@media screen and (max-width: 1024px) {
-    #album-cover {
-      max-width: 400px;
-    }
-}
+        @media screen and (max-width: 1024px) {
+            #album-cover {
+                max-width: 400px;
+            }
+        }
 
-@media screen and (max-width: 640px) {
-    #album-cover {
-      max-width: 300px;
-    }
-}
-
-</style>
+        @media screen and (max-width: 640px) {
+            #album-cover {
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
         <span id="mobile-nav-label">menu</span>
@@ -64,88 +66,88 @@
             </div>
         </div>
     </nav>
-<div id="inner">
-<h1>Search for Album Art</h1>
-<form action="/search-album-art" style="margin-bottom: 1em">
-<input id="artist-input" type=text name=artist placeholder="Artist name" autofocus>
-<input id="track-input" type=text name=track placeholder="Track name">
-<button id="search">Search</button>
-</form>
-<img id="album-cover" alt="Album Cover" src="{{image_url}}"/>
-</div>
-<span id="switch_text" class="noselect">Toggle Theme</span>
-<label class="switch">
+    <div id="inner">
+        <h1>Search for Album Art</h1>
+        <form action="/search-album-art" style="margin-bottom: 1em">
+            <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus>
+            <input id="track-input" type=text name=track placeholder="Track name">
+            <button id="search">Search</button>
+        </form>
+        <img id="album-cover" alt="Album Cover" src="{{image_url}}" />
+    </div>
+    <span id="switch_text" class="noselect">Toggle Theme</span>
+    <label class="switch">
 <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
 <span class="slider round"></span>
 </label>
-<script>
-if ("{{image_url}}" == "image not found") {
-    document.getElementById("album-cover").style.display = "none";
-}
+    <script>
+        if ("{{image_url}}" == "image not found") {
+            document.getElementById("album-cover").style.display = "none";
+        }
 
-var input = document.getElementById("track-input");
-input.addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById("search").click();
-    }
-});
+        var input = document.getElementById("track-input");
+        input.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("search").click();
+            }
+        });
 
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
 
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
 
-var nav_panel = document.getElementById("mobile-nav-panel");
-var menu = document.getElementById("mobile-nav-label");
-function mobileNavigation() {
-    if (nav_panel.style.display == "block") {
-        nav_panel.style.display = "none";
-        menu.innerHTML = "MENU";
-    }
-    else {
-        nav_panel.style.display = "block";
-        menu.innerHTML = "CLOSE";
-    }
-}
+        var nav_panel = document.getElementById("mobile-nav-panel");
+        var menu = document.getElementById("mobile-nav-label");
 
-function changeTheme() {
-    if (document.getElementById('theme-toggle').checked) {
-        document.getElementById("theme-2").disabled = false;
-        document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
-        document.getElementById('desktop-navigation').style.color = "white";
-        setCookie("elijah-lopez-website-theme", "true", 365);
-    } else {
-        document.body.style.backgroundImage = "";
-        document.getElementById('desktop-navigation').style.color = "";
-        document.getElementById("theme-2").disabled = true;
-        setCookie("elijah-lopez-website-theme", "false", 365);
-    }
-}
+        function mobileNavigation() {
+            if (nav_panel.style.display == "block") {
+                nav_panel.style.display = "none";
+                menu.innerHTML = "MENU";
+            } else {
+                nav_panel.style.display = "block";
+                menu.innerHTML = "CLOSE";
+            }
+        }
 
-if (getCookie("elijah-lopez-website-theme") == "true") {
-    document.getElementById('theme-toggle').checked = true;
-    changeTheme();
-}
-else {
-    document.getElementById("theme-2").disabled = true;
-}
-</script>
+        function changeTheme() {
+            if (document.getElementById('theme-toggle').checked) {
+                document.getElementById("theme-2").disabled = false;
+                document.body.style.backgroundImage = "url('/static/images/bg-mobile-2.jpg')";
+                document.getElementById('desktop-navigation').style.color = "white";
+                setCookie("elijah-lopez-website-theme", "true", 365);
+            } else {
+                document.body.style.backgroundImage = "";
+                document.getElementById('desktop-navigation').style.color = "";
+                document.getElementById("theme-2").disabled = true;
+                setCookie("elijah-lopez-website-theme", "false", 365);
+            }
+        }
+
+        if (getCookie("elijah-lopez-website-theme") == "true") {
+            document.getElementById('theme-toggle').checked = true;
+            changeTheme();
+        } else {
+            document.getElementById("theme-2").disabled = true;
+        }
+    </script>
 </body>
+
 </html>
