@@ -34,6 +34,7 @@ body {
     background-position: center;
     position: static;
     background-image: url("/static/images/bg-desktop-2.jpg");
+    background-color: rgb(8, 13, 16);
     text-decoration: none;
     bottom: 0;
 }
