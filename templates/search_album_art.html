@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Elijah Lopez - Album Art Finder</title>
+<title>Search Album Art - Elijah Lopez</title>
 <link rel="icon" type="image/png" href="/static/images/logo.png">
 <link rel="stylesheet" href="/static/css/template.css">
 <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
@@ -11,7 +11,6 @@
 <style>
 #album-cover {
   max-width: 500px;
-  max-height: 500px;
 }
 
 #track-input, #artist-input {
@@ -21,6 +20,19 @@
 #search::after {
   content: "\A\A";
 }
+
+@media screen and (max-width: 1024px) {
+    #album-cover {
+      max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #album-cover {
+      max-width: 300px;
+    }
+}
+
 </style>
 </head>
 <body>
