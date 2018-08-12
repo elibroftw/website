@@ -116,6 +116,7 @@ p {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+
 .dropdown-content {
     /* Dropdown Content (Hidden by Default) */
     display: none;
@@ -252,10 +253,8 @@ input:checked+.slider:before {
 }
 
 .noselect {
-    /*
     -khtml-user-select: none;
     -moz-user-select: none;
-*/
     -webkit-user-select: none;
     user-select: none;
     cursor: default;
