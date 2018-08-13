@@ -347,6 +347,9 @@ input:checked ~ .dropdown-content a:hover {
     h1 {
         font-size: 40px;
     }
+    p {
+        margin-top: -10px;
+    }
     #mobile-nav a {
         width: 100%;
         display: block;
