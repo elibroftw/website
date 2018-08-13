@@ -88,7 +88,7 @@ p {
     text-align: left;
     text-transform: uppercase;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -122,7 +122,7 @@ p {
     display: none;
     position: absolute;
     left: 148px;
-    margin-top: -35px;
+    margin-top: -39px;
     width: 132px;
     z-index: 1;
 }
@@ -294,7 +294,7 @@ input:checked ~ .dropdown-content a:hover {
     }
     .dropdown-content {
         left: auto;
-        margin-top: 35px;
+        margin-top: 39px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     }
     .dropdown-content a {
