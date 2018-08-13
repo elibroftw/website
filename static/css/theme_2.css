@@ -1,3 +1,6 @@
+/* Change color of dropdown links on hover */
+/* TODO: add border left for dropdown content*/
+
 #desktop-nav>a:hover, .dropdown:hover .dropbtn {
     box-shadow: none;
     color: black;
@@ -7,9 +10,6 @@
 #desktop-nav>a, .dropdown .dropbtn {
     color: white;
 }
-
-/* Change color of dropdown links on hover */
-/* TODO: add border left for dropdown content*/
 
 .dropdown-content a {
     border-left: 1px solid lightgray;

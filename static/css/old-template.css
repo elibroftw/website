@@ -218,21 +218,21 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-/* input:checked ~ #desktop-nav>a:hover, input:checked .dropdown:hover .dropbtn {
+/* input:checked #desktop-nav>a:hover, input:checked .dropdown:hover .dropbtn {
     box-shadow: none;
     color: black;
     background-color: white;
 }
 
-input:checked ~ #desktop-nav>a, input:checked .dropdown .dropbtn {
+input:checked #desktop-nav>a, input:checked .dropdown .dropbtn {
     color: white;
 }
 
-input:checked ~ .dropdown-content a {
+input:checked .dropdown-content a{
     border-left: 1px solid lightgray;
 }
 
-input:checked ~ .dropdown-content a:hover {
+input:checked .dropdown-content a:hover {
     background-color: lightgray;
     box-shadow: 0 0px 16px 0 rgba(0, 0, 0, 0.2), 2px 0px 20px 0 rgba(0, 0, 0, 0.19);
 } */
@@ -291,17 +291,6 @@ input:checked ~ .dropdown-content a:hover {
     .dropdown-content a {
         border-radius: 0;
     }
-    /* input:checked ~ #desktop-nav {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-    input:checked ~ .dropdown-content a:hover {
-        background-color: #E8E8EE;
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-    input:checked ~ .dropdown-content a {
-        border-left: none;
-        border-top: 1px solid #E8E8EE;
-    } */
 }
 
 @media screen and (max-width: 640px) {
