@@ -8,7 +8,8 @@ from ib_economics import get_template_data
 
 
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800
+# app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300  # for development
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800 # for release
 Compress(app)
 home_template_data = get_template_data()
 
