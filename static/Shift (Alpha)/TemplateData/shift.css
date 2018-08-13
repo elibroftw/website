@@ -127,11 +127,11 @@
 }
 
 body {
-    background: #182536;
+    background: #003d65;
 }
 
 .zoom {
-    transition: transform .2s;
+    transition: transform .1s;
 }
 
 .zoom:hover {
