@@ -271,6 +271,7 @@ input:checked ~ .dropdown-content a:hover {
     /*mobile landscape*/
     #inner {
         margin-top: 8%;
+        width: 65%;
     }
     .fa-caret-right {
         display: none !important;
