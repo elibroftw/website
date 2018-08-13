@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Elijah Lopez</title>
-<link rel="icon" type="image/png" href="/static/images/favicon.png">
-<link rel="stylesheet" href="/static/css/template.css">
-<link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="viewport" content="height=device-height, initial-scale=1"/>
+    <title>Elijah Lopez</title>
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/template.css">
+    <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="height=device-height, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
 </head>
+
 <body>
     <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
         <span id="mobile-nav-label">menu</span>
@@ -38,69 +41,69 @@
             </div>
         </div>
     </nav>
-<div id="inner">
-<h1>Contact</h1>
-<p><a style="text-decoration: none; color: lightslategray" href="mailto:elijahllopezz@email.com">Email</a></p>
-</div>
-<span id="switch_text" class="noselect">Toggle Theme</span>
-<label class="switch">
+    <div id="inner">
+        <h1>Contact</h1>
+        <p><a style="text-decoration: none; color: lightslategray" href="mailto:elijahllopezz@email.com">Email</a></p>
+    </div>
+    <span id="switch_text" class="noselect">Toggle Theme</span>
+    <label class="switch">
 <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
 <span class="slider round"></span>
 </label>
-<script>
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
+    <script>
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
 
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
 
-var nav_panel = document.getElementById("mobile-nav-panel");
-var menu = document.getElementById("mobile-nav-label");
-function mobileNavigation() {
-    if (nav_panel.style.display == "block") {
-        nav_panel.style.display = "none";
-        menu.innerHTML = "MENU";
-    }
-    else {
-        nav_panel.style.display = "block";
-        menu.innerHTML = "CLOSE";
-    }
-}
+        var nav_panel = document.getElementById("mobile-nav-panel");
+        var menu = document.getElementById("mobile-nav-label");
 
-function changeTheme() {
-    if (document.getElementById('theme-toggle').checked) {
-        document.getElementById("theme-2").disabled = false;
-        document.body.style.backgroundImage = "url('/static/images/bg 2.jpg')";
-        setCookie("elijah-lopez-website-theme", "true", 365);
-    } else {
-        document.body.style.backgroundImage = "";
-        document.getElementById("theme-2").disabled = true;
-        setCookie("elijah-lopez-website-theme", "false", 365);
-    }
-}
+        function mobileNavigation() {
+            if (nav_panel.style.display == "block") {
+                nav_panel.style.display = "none";
+                menu.innerHTML = "MENU";
+            } else {
+                nav_panel.style.display = "block";
+                menu.innerHTML = "CLOSE";
+            }
+        }
 
-if (getCookie("elijah-lopez-website-theme") == "true") {
-    document.getElementById('theme-toggle').checked = true;
-    changeTheme();
-}
-else {
-    document.getElementById("theme-2").disabled = true;
-}
-</script>
+        function changeTheme() {
+            if (document.getElementById('theme-toggle').checked) {
+                document.getElementById("theme-2").disabled = false;
+                document.body.style.backgroundImage = "url('/static/images/bg 2.jpg')";
+                setCookie("elijah-lopez-website-theme", "true", 365);
+            } else {
+                document.body.style.backgroundImage = "";
+                document.getElementById("theme-2").disabled = true;
+                setCookie("elijah-lopez-website-theme", "false", 365);
+            }
+        }
+
+        if (getCookie("elijah-lopez-website-theme") == "true") {
+            document.getElementById('theme-toggle').checked = true;
+            changeTheme();
+        } else {
+            document.getElementById("theme-2").disabled = true;
+        }
+    </script>
 </body>
+
 </html>
