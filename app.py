@@ -71,11 +71,11 @@ def resources(): return render_template('resources.html')
 def search_album_art():
     artist = request.args.get('artist')
     track = request.args.get('track')
-    if None in (artist, track) or '' in (artist, track): image_url = 'image not found'
+    if None in (artist, track) or '' in (artist, track): image_url, alt_text = 'image not found', ''
     else:
-        try: image_url = get_album_art(artist, track)
-        except IndexError: image_url = 'image not found'
-    return render_template('search_album_art.html', image_url=image_url)
+        try: image_url, alt_text = get_album_art(artist, track), f'{track} Album Cover'
+        except IndexError: image_url, alt_text = 'image not found', ''
+    return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
 
 
 @app.route('/ib-economics-schedule/')
