@@ -270,7 +270,7 @@ input:checked ~ .dropdown-content a:hover {
 @media screen and (max-width: 1024px) {
     /*mobile landscape*/
     #inner {
-        margin-top: 8%;
+        margin-top: 2%;
         width: 65%;
     }
     .fa-caret-right {
