@@ -94,36 +94,49 @@
     float: right;
 }
 
-.fa-home {
+.fa-3x {
+    color: black;
+}
+
+.fa-home:hover {
     color: whitesmoke;
 }
 
 .fa-download {
-    color: whitesmoke;
+    /* color: whitesmoke; */
     position: absolute;
     top: 65px;
-    left: 8px;
+    left: 12px;
 }
 
 .fa-windows {
-    color: dodgerblue;
     position: absolute;
     top: 120px;
-    left: 8px;
+    left: 12px;
+}
+
+.fa-windows:hover {
+    color: dodgerblue;
 }
 
 .fa-apple {
-    color: #4f5b66;
     position: absolute;
     top: 180px;
-    left: 11px;
+    left: 12px;
+}
+
+.fa-apple:hover {
+    color: #4f5b66;
 }
 
 .fa-linux {
-    color: black;
     position: absolute;
     top: 240px;
-    left: 10px;
+    left: 12px;
+}
+
+.fa-linux:hover {
+    color: black;
 }
 
 body {
