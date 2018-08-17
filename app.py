@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_compress import Compress
 # import redis
 
@@ -80,7 +80,7 @@ def ib_economics_schedule():
 
 @app.route('/shift/')
 def shift():
-    return render_template('shift.html')
+    return redirect('https://elijahlopez.itch.io/shift')
 
 
 # @app.route('/shift-high-scores/new/', methods=['POST'])
