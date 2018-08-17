@@ -8,8 +8,7 @@ from ib_economics import get_template_data
 
 
 app = Flask(__name__)
-# app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300  # for development
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800 # for release
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800 # use 0 for development
 Compress(app)
 home_template_data = get_template_data()
 
@@ -29,18 +28,14 @@ home_template_data = get_template_data()
 
 @app.after_request
 def add_header(response):
-    # print(response.name)
-    # print(response.headers['name'])
-    # response.headers['Cache-Control'] = 'public, max-age=1000'  # also works
     if 'Cache-Control' not in response.headers:
-        # response.headers['Cache-Control'] = 'public, max-age=1000'
         response.cache_control.max_age = 300
         response.cache_control.public = True
     return response
 
 
 @app.errorhandler(404)
-def page_not_found(ERROR): return 'Page not Found', 404  # render_template('page_not_found.html'), 404  # (error)
+def page_not_found(ERROR): return render_template('404.html'), 404  # page not found
 
 
 @app.route('/favicon.ico')
