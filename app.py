@@ -1,10 +1,10 @@
 import os
 from flask import Flask, render_template, request
 from flask_compress import Compress
+# import redis
 
 from funcs import get_album_art
 from ib_economics import get_template_data
-# import redis
 
 
 app = Flask(__name__)
@@ -23,7 +23,6 @@ home_template_data = get_template_data()
 #     r = redis.from_url(os.environ.get("REDIS_URL"))
 # except KeyError:
 #     use local redis
-# cache = Cache(config={'CACHE_TYPE': 'simple'})
 
 
 @app.after_request
@@ -51,7 +50,7 @@ def home(): return render_template('home.html')
 def about(): return render_template('about.html')
 
 
-@app.route('/programs/')  # todo: make this a drop down menu as well
+@app.route('/programs/')  # todo: turn this into a drop down menu
 def programs(): return render_template('programs.html')
 
 
@@ -124,5 +123,5 @@ if __name__ == '__main__':
     try:
         os.environ['SPOTIFY_CLIENT_ID']
         app.run()
-    except KeyError:  # this will only happen when running locally so yeah
+    except KeyError:  # this will only happen when running locally
         app.run(host='localhost', port=99)
