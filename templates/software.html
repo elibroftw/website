@@ -127,17 +127,18 @@
                     var panel = this.nextElementSibling;
                     if (panel.style.maxHeight) {
                         panel.style.maxHeight = null;
+                        history.pushState("", document.title, window.location.pathname + window.location.search);
                     } else {
                         panel.style.maxHeight = panel.scrollHeight + "px";
+                        window.location.hash = this.id;
                     }
                 });
             }
             var hash = window.location.hash;
             if (hash) {
-                try{
+                try {
                     document.getElementById(hash.slice(1)).click();
-                }
-                catch(err){
+                } catch (err) {
                     console.log("invalid hash in url");
                 }
 
