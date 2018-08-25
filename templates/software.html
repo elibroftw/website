@@ -52,31 +52,21 @@
         color: black;
     }
 
-    .link {
-        text-decoration: none;
-        color: white;
-        font-size: 20px;
-        display: block;
-    }
-
     .download-btn {
         background-color: DodgerBlue;
         border: none;
-        color: white;
+        color: darkslategrey;
         padding: 12px 30px;
-        width: 110%;
-        margin-left: -18px;
+        width: 50%;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 16px;
+        float: left;
     }
 
     /* Darker background on mouse-over */
 
     .download-btn:hover {
         background-color: RoyalBlue;
-    }
-    @media screen and (max-width: 640px) {
-        .download-btn {width: 114%;}
     }
 </style>
 
@@ -114,10 +104,13 @@
     <div id="inner">
         <h1>Software</h1>
         <!-- IDEA: use modals or accordian and use # href to open it on open -->
-        <button class="accordion" id="matte-black-chrome-theme">Matte Black Chrome Theme</button>
+        <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
         <div class="panel">
-            <p style="color: black; margin: 0.5em 0;">A modern Matte Black theme for chrome because I was unimpressed with the other black/dark themes.<br>PRIVACY: I don't collect any of your data</p>
-            <button class="download-btn"><a class="link" href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja"><i class="fa fa-download"></i> Download</a></button>
+            <p style="color: black; margin: 0.5em 0;">A modern Matte Black theme for browsers because I thought the black/dark themes currently available looked ugly (for chrome at least).<br>PRIVACY: I don't collect any of your data</p>
+            <div style="margin: 0 -18px">
+                <button class="download-btn" style="border-right: darkslategrey solid 1px;" onclick="location.href='https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja';"><i class="fa fa-download"></i> Chrome</button>
+                <button class="download-btn" style="border-left: darkslategrey solid 1px;" onclick="location.href='https://addons.mozilla.org/en-US/firefox/addon/matte-black-theme/';"><i class="fa fa-download"></i> Firefox</button>
+            </div>
         </div>
         <span id="switch_text" class="noselect">Toggle Theme</span>
         <label class="switch">
