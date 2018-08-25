@@ -138,7 +138,13 @@
             }
             var hash = window.location.hash;
             if (hash) {
-                document.getElementById(hash.slice(1)).click();
+                try{
+                    document.getElementById(hash.slice(1)).click();
+                }
+                catch(err){
+                    console.log("invalid hash in url");
+                }
+
             }
 
             function getCookie(name) {
