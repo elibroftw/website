@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<!-- TODO: use awesome font logos-->
 <html lang="en">
 
 <head>
-    <title>Programs - Elijah Lopez</title>
+    <title>Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/template.css">
     <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
@@ -10,28 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <style>
-        @font-face {
-            font-family: Montserrat;
-            src: url('/static/css/fonts/Montserrat-Thin.otf');
-            font-weight: 200;
-        }
-
-        #js-program-title {
+        h1 a {
             color: white;
-            font-family: Montserrat;
-            font-weight: lighter;
-            margin-top: 10px;
+            text-decoration: none;
         }
 
-        #js-program-title:hover {
-            color: white;
-        }
-
-        #output {
-            font-family: Arial;
-            margin-top: 0.5px;
-            display: inline;
-            font-size: 14px;
+        h1 a:hover {
+            color: grey;
         }
     </style>
 </head>
@@ -67,36 +53,19 @@
             </div>
         </div>
     </nav>
+    <nav id="social-links">
+        <a href="https://github.com/elibroftw"><i class="fab fa-github-square fa-3x"></i></a>
+    </nav>
     <div id="inner">
-        <h1>My Programs</h1>
-        <p>Here are all my programs</p>
-        <iframe height=400px width="100%" src="https://repl.it/@elilopez/algorithms?lite=true" scrolling=no frameborder=no allowtransparency=true allowfullscreen=true sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
-        <!-- this should only be on desktop -->
-        <p id=js-program-title>Square of a number</p>
-        <input id=inputbox type=number name="Number to Square" onkeyup="squareIt()" max=99999 style="width: 4em">
-        <p id=output></p>
+        <h1 id="box-title"><a href="/about/">Elijah</a></h1>
+        <p>Hi! My name is Elijah Lopez and welcome to my website!</p>
     </div>
     <span id="switch_text" class="noselect">Toggle Theme</span>
-    <label class="switch">
+    <label class="switch noselect">
 <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
 <span class="slider round"></span>
 </label>
     <script>
-        function squareIt() {
-            var num = document.getElementById('inputbox').value;
-            if (num.length > 4) {
-                num = num + "";
-                num = parseInt(num.slice(0, 5));
-                document.getElementById('inputbox').value = num;
-            }
-            a = num * num;
-            if (a == 0) {
-                document.getElementById('output').innerHTML = "";
-            } else {
-                document.getElementById('output').innerHTML = a;
-            }
-        }
-
         function getCookie(name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(';');
@@ -140,6 +109,30 @@
                 document.body.style.backgroundImage = "";
                 document.getElementById("theme-2").disabled = true;
                 setCookie("theme", "false", 365);
+            }
+        }
+
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
             }
         }
 
