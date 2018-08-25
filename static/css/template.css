@@ -159,10 +159,16 @@ u1:hover {
     background-color: transparent;
 }
 
+#social-links {
+    bottom: 16px;
+    padding: 0 0 10px 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
 /* IDEA: Display for a few seconds maybe? */
-
 /* IDEA: Add theme 2 for this? */
-
 #switch_text {
     position: fixed;
     bottom: 16px;
@@ -175,6 +181,7 @@ u1:hover {
     line-height: 34px;
     padding: 0 0.5em 0 1em;
     border-radius: 1em 0 0 1em;
+    text-align: left;
 }
 
 .switch {

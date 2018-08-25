@@ -83,6 +83,14 @@ def shift():
     return redirect('https://elijahlopez.itch.io/shift')
 
 
+@app.route('/test/')
+def test():
+    return render_template('test.html')
+
+
+@app.route('/software/')
+def software():
+    return render_template('software.html')
 # @app.route('/shift-high-scores/new/', methods=['POST'])
 # def new_shift_high_score():
 #     high_score = request.form['highScore']

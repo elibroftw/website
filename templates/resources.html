@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <style>
-        .links {
+        .link {
             margin-top: 10px;
             text-decoration: none;
             color: #75bdec;
@@ -19,7 +19,7 @@
             display: block;
         }
 
-        .links:hover {
+        .link:hover {
             color: #e0e030;
         }
     </style>
@@ -29,38 +29,40 @@
     <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
         <span id="mobile-nav-label">menu</span>
         <u1 id="mobile-nav-panel">
-            <a href="{{url_for('home')}}">home</a>
-            <a href="{{url_for('about')}}">about me</a>
-            <a href="{{url_for('resources')}}">resources</a>
-            <a href="{{url_for('programs')}}">scripts</a>
-            <a href="{{url_for('search_album_art')}}">search album art</a>
-            <a href="{{url_for('contact')}}">contact</a>
+            <a href="/">home</a>
+            <a href="/about/">about me</a>
+            <a href="/software/">software</a>
+            <a href="/resources/">resources</a>
+            <a href="/programs/">scripts</a>
+            <a href="/search-album-art/">search album art</a>
+            <a href="/contact/">contact</a>
         </u1>
     </nav>
     <nav id="desktop-nav" class="noselect">
-        <a href="{{url_for('home')}}">home</a>
-        <a href="{{url_for('about')}}">about me</a>
-        <a href="{{url_for('resources')}}">resources</a>
-        <a href="{{url_for('programs')}}">scripts</a>
-        <a href="{{url_for('search_album_art')}}">search album art</a>
-        <a href="{{url_for('contact')}}">contact</a>
+        <a href="/">home</a>
+        <a href="/about/">about me</a>
+        <a href="/software/">software</a>
+        <a href="/resources/">resources</a>
+        <a href="/programs/">scripts</a>
+        <a href="/search-album-art/">search album art</a>
+        <a href="/contact/">contact</a>
         <div class="dropdown">
             <button class="dropbtn">games
             <i class="fas fa-caret-right"></i>
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="{{url_for('shift')}}">shift</a>
+                <a href="/shift/">shift</a>
             </div>
         </div>
     </nav>
     <div id="inner">
-        <h1>RESOURCES</h1>
+        <h1>Resources</h1>
         <p>Here are some resources that I found useful</p>
-        <a class=links href="https://www.python.org/downloads/">Python Download</a>
-        <a class=links href="https://cscircles.cemc.uwaterloo.ca/">Learn Python: CS Circles</a>
-        <a class=links href="https://www.jetbrains.com/pycharm/download">Pycharm: Python IDE</a>
-        <a class=links href="https://atom.io/">Atom: General IDE</a>
+        <a class=link href="https://www.python.org/downloads/">Python Download</a>
+        <a class=link href="https://cscircles.cemc.uwaterloo.ca/">Learn Python: CS Circles</a>
+        <a class=link href="https://www.jetbrains.com/pycharm/download">Pycharm: Python IDE</a>
+        <a class=link href="https://atom.io/">Atom: General IDE</a>
     </div>
     <span id="switch_text" class="noselect">Toggle Theme</span>
     <label class="switch">
