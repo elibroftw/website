@@ -169,7 +169,7 @@ u1:hover {
 
 /* IDEA: Display for a few seconds maybe? */
 /* IDEA: Add theme 2 for this? */
-#switch_text {
+#switch-text {
     position: fixed;
     bottom: 16px;
     right: 75px;
@@ -182,6 +182,7 @@ u1:hover {
     padding: 0 0.5em 0 1em;
     border-radius: 1em 0 0 1em;
     text-align: left;
+    color: black;
 }
 
 .switch {
@@ -324,7 +325,7 @@ input:checked ~ .dropdown-content a:hover {
     body {
         background-image: url("/static/images/bg 2.jpg");
     }
-    .switch, #switch_text, #desktop-nav {
+    .switch, #switch-text, #desktop-nav {
         display: none;
     }
     #mobile-nav {
