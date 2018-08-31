@@ -1,7 +1,7 @@
 # Website
 My own Website built with Flask hosted on https://elijah-lopez.herokuapp.com/
 This is just me experimenting with html, css, and javascript but I hope to make it very useful
-# What is contains
+# What it contains
 * Album art fetcher
 * My game called Shift
 # My plans
