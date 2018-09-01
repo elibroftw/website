@@ -6,9 +6,8 @@ from flask_compress import Compress
 from funcs import get_album_art
 from ib_economics import get_template_data
 
-
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800 # use 0 for development
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800  # use 0 for development
 Compress(app)
 home_template_data = get_template_data()
 
@@ -39,7 +38,8 @@ def page_not_found(ERROR): return render_template('404.html'), 404  # page not f
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico',
+                               mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/')
@@ -66,10 +66,13 @@ def resources(): return render_template('resources.html')
 def search_album_art():
     artist = request.args.get('artist')
     track = request.args.get('track')
-    if None in (artist, track) or '' in (artist, track): image_url, alt_text = 'image not found', ''
+    if None in (artist, track) or '' in (artist, track):
+        image_url, alt_text = 'image not found', ''
     else:
-        try: image_url, alt_text = get_album_art(artist, track), f'{track} Album Cover'
-        except IndexError: image_url, alt_text = 'image not found', ''
+        try:
+            image_url, alt_text = get_album_art(artist, track), f'{track} Album Cover'
+        except IndexError:
+            image_url, alt_text = 'image not found', ''
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
 
 
@@ -91,6 +94,8 @@ def test():
 @app.route('/software/')
 def software():
     return render_template('software.html')
+
+
 # @app.route('/shift-high-scores/new/', methods=['POST'])
 # def new_shift_high_score():
 #     high_score = request.form['highScore']
