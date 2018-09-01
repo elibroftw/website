@@ -14,11 +14,6 @@
             max-width: 500px;
         }
 
-        #track-input,
-        #artist-input {
-            width: 8em;
-        }
-
         #search::after {
             content: "\A\A";
         }
@@ -32,6 +27,55 @@
         @media screen and (max-width: 640px) {
             #album-cover {
                 max-width: 300px;
+            }
+        }
+
+        input {
+            display: inline-block;
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            transition: all 0.2s;
+            background-color: transparent;
+        }
+
+        #search {
+            display: inline-block;
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.2s;
+            background-color: transparent;
+        }
+
+        #search:hover, input:hover, input:active, input:focus,  input:focus-within {
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+
+        @media all and (max-width:30em) {
+            #search {
+                display: block;
+                margin: 0.4em auto;
+                width: 15.5em;
+            }
+            input {
+                display: block;
+                margin: 0.4em auto;
+                text-align: center;
             }
         }
     </style>
@@ -71,8 +115,8 @@
     <div id="inner">
         <h1>Search for Album Art</h1>
         <form action="/search-album-art" style="margin-bottom: 1em">
-            <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus>
-            <input id="track-input" type=text name=track placeholder="Track name">
+            <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
+            <input id="track-input" type=text name=track placeholder="Track name" required>
             <button id="search">Search</button>
         </form>
         <img id="album-cover" alt="{{alt_text}}" src="{{image_url}}" />
@@ -133,11 +177,9 @@
             if (document.getElementById('theme-toggle').checked) {
                 document.getElementById("theme-2").disabled = false;
                 document.body.style.backgroundImage = "url('/static/images/bg 2.jpg')";
-                document.getElementById('desktop-navigation').style.color = "white";
                 setCookie("theme", "true", 365);
             } else {
                 document.body.style.backgroundImage = "";
-                document.getElementById('desktop-navigation').style.color = "";
                 document.getElementById("theme-2").disabled = true;
                 setCookie("theme", "false", 365);
             }
