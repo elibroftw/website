@@ -93,9 +93,11 @@ def test():
 
 @app.route('/software/')
 def software():
-    return render_template('software.html')
+    return render_template('projects.html')
 
-
+@app.route('/projects/')
+def software():
+    return render_template('projects.html')
 # @app.route('/shift-high-scores/new/', methods=['POST'])
 # def new_shift_high_score():
 #     high_score = request.form['highScore']
