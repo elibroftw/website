@@ -1,9 +1,9 @@
 import os
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 # import redis
 
-from funcs import get_album_art
+from functions import get_album_art
 from ib_economics import get_template_data
 
 app = Flask(__name__)
@@ -33,7 +33,7 @@ def add_header(response):
 
 
 @app.errorhandler(404)
-def page_not_found(ERROR): return render_template('404.html'), 404  # page not found
+def page_not_found(_): return render_template('404.html'), 404  # page not found
 
 
 @app.route('/favicon.ico')
@@ -95,9 +95,12 @@ def test():
 def software():
     return render_template('projects.html')
 
+
 @app.route('/projects/')
 def projects():
     return render_template('projects.html')
+
+
 # @app.route('/shift-high-scores/new/', methods=['POST'])
 # def new_shift_high_score():
 #     high_score = request.form['highScore']
@@ -134,9 +137,4 @@ def projects():
 #     return "it's done"
 
 
-if __name__ == '__main__':
-    try:
-        os.environ['SPOTIFY_CLIENT_ID']
-        app.run()
-    except KeyError:  # this will only happen when running locally
-        app.run(host='localhost', port=99)
+app.run()
