@@ -6,9 +6,10 @@
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/template.css">
     <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#111111"/>
     <style>
         @font-face {
             font-family: Montserrat;
@@ -33,23 +34,14 @@
             display: inline;
             font-size: 14px;
         }
+
     </style>
 </head>
 
 <body>
-    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-        <span id="mobile-nav-label">menu</span>
-        <u1 id="mobile-nav-panel">
-            <a href="/">home</a>
-            <a href="/about/">about me</a>
-            <a href="/software/">software</a>
-            <a href="/resources/">resources</a>
-            <a href="/programs/">scripts</a>
-            <a href="/search-album-art/">search album art</a>
-            <a href="/contact/">contact</a>
-        </u1>
-    </nav>
-    <nav id="desktop-nav" class="noselect">
+<nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
+    <span id="mobile-nav-label">menu</span>
+    <u1 id="mobile-nav-panel">
         <a href="/">home</a>
         <a href="/about/">about me</a>
         <a href="/software/">software</a>
@@ -57,31 +49,43 @@
         <a href="/programs/">scripts</a>
         <a href="/search-album-art/">search album art</a>
         <a href="/contact/">contact</a>
-        <div class="dropdown">
-            <button class="dropbtn">games
+    </u1>
+</nav>
+<nav id="desktop-nav" class="noselect">
+    <a href="/">home</a>
+    <a href="/about/">about me</a>
+    <a href="/software/">software</a>
+    <a href="/resources/">resources</a>
+    <a href="/programs/">scripts</a>
+    <a href="/search-album-art/">search album art</a>
+    <a href="/contact/">contact</a>
+    <div class="dropdown">
+        <button class="dropbtn">games
             <i class="fas fa-caret-right"></i>
             <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/shift/">shift</a>
-            </div>
+        </button>
+        <div class="dropdown-content">
+            <a href="/shift/">shift</a>
         </div>
-    </nav>
-    <div id="inner">
-        <h1>My Programs</h1>
-        <p>Here are all my programs</p>
-        <iframe height=400px width="100%" src="https://repl.it/@elilopez/algorithms?lite=true" scrolling=no frameborder=no allowtransparency=true allowfullscreen=true sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
-        <!-- this should only be on desktop -->
-        <p id=js-program-title>Square of a number</p>
-        <input id=inputbox type=number name="Number to Square" onkeyup="squareIt()" max=99999 style="width: 4em">
-        <p id=output></p>
     </div>
-    <span id="switch-text" class="noselect">Toggle Theme</span>
-    <label class="switch">
-<input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-<span class="slider round"></span>
+</nav>
+<div id="inner">
+    <h1>My Programs</h1>
+    <p>Here are all my programs</p>
+    <iframe height=400px width="100%" src="https://repl.it/@elilopez/algorithms?lite=true" scrolling=no frameborder=no
+            allowtransparency=true allowfullscreen=true
+            sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+    <!-- this should only be on desktop -->
+    <p id=js-program-title>Square of a number</p>
+    <input id=inputbox type=number name="Number to Square" onkeyup="squareIt()" max=99999 style="width: 4em">
+    <p id=output></p>
+</div>
+<span id="switch-text" class="noselect">Toggle Theme</span>
+<label class="switch">
+    <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
+    <span class="slider round"></span>
 </label>
-    <script>
+<script>
         function squareIt() {
             var num = document.getElementById('inputbox').value;
             if (num.length > 4) {
@@ -149,7 +153,8 @@
         } else {
             document.getElementById("theme-2").disabled = true;
         }
-    </script>
+
+</script>
 </body>
 
 </html>

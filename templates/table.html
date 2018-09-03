@@ -45,14 +45,15 @@
             padding-top: 102px;
         }
 
+
     </style>
 </head>
 
 <body>
-    <div class="header" id="inputHeader">
-        <input type="text" id="input1" autofocus="autofocus" onfocus="this.select()"><br>
-    </div>
-    <script type="text/javascript">
+<div class="header" id="inputHeader">
+    <input type="text" id="input1" autofocus="autofocus" onfocus="this.select()"><br>
+</div>
+<script type="text/javascript">
         document.getElementById('input1').onkeypress = function(e) {
             if (!e) e = window.event;
             if (e.keyCode == '13') {
@@ -88,18 +89,19 @@
             }
         }
 
-    </script>
-    <table>
-        <tr id="top">
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-        </tr>
-        {{data|safe}}
-        <tr id='bottom'></tr>
-    </table>
+
+</script>
+<table>
+    <tr id="top">
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+    </tr>
+    {{data|safe}}
+    <tr id='bottom'></tr>
+</table>
 </body>
 
 </html>
