@@ -2,35 +2,40 @@
 <html lang="en">
 <head>
     <meta charset=utf-8>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv=Content-Type content="text/html; charset=utf-8">
-    <meta name="theme-color" content="#003d65" />
+    <meta name="theme-color" content="#003d65"/>
     <title>Shift (Alpha)</title>
     <link rel="shortcut icon" href="/static/Shift (Alpha)/TemplateData/favicon.ico">
     <link rel="stylesheet" href="/static/Shift (Alpha)/TemplateData/shift.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 
 <body>
-    <a href="/"><i class="fas fa-home fa-3x zoom" aria-hidden="true"></i></a>
-    <i class="fas fa-download fa-3x" aria-hidden="true"></i>
-    <a href="/static/Shift (Alpha)/Shift (Windows).7z" download="Shift-Windows.7z"><i class="fab fa-windows fa-3x zoom" aria-hidden="true"></i></a>
-    <a href="/static/Shift (Alpha)/Shift (Mac OS X).app.7z" download="Shift-MacOSX.app.7z"><i class="fab fa-apple fa-3x zoom" aria-hidden="true"></i></a>
-    <a href="/static/Shift (Alpha)/Shift (Linux).7z" download="Shift-Linux.7z"><i class="fab fa-linux fa-3x zoom" aria-hidden="true"></i></a>
-    <div class=webgl-content>
-        <div id=gameContainer style="width: 1206px; height: 684px"></div>
-        <div class=footer>
-            <!-- <div class=webgl-logo></div> -->
-            <div class="fullscreen zoom" onclick="gameInstance.SetFullscreen(1)"></div>
-            <!-- <div class="title" style="color: whitesmoke;">Shift (Alpha) by Elijah Lopez and Tolga Acan</div> -->
-        </div>
+<a href="/"><i class="fas fa-home fa-3x zoom" aria-hidden="true"></i></a>
+<i class="fas fa-download fa-3x" aria-hidden="true"></i>
+<a href="/static/Shift (Alpha)/Shift (Windows).7z" download="Shift-Windows.7z"><i class="fab fa-windows fa-3x zoom"
+                                                                                  aria-hidden="true"></i></a>
+<a href="/static/Shift (Alpha)/Shift (Mac OS X).app.7z" download="Shift-MacOSX.app.7z"><i
+        class="fab fa-apple fa-3x zoom" aria-hidden="true"></i></a>
+<a href="/static/Shift (Alpha)/Shift (Linux).7z" download="Shift-Linux.7z"><i class="fab fa-linux fa-3x zoom"
+                                                                              aria-hidden="true"></i></a>
+<div class=webgl-content>
+    <div id=gameContainer style="width: 1206px; height: 684px"></div>
+    <div class=footer>
+        <!-- <div class=webgl-logo></div> -->
+        <div class="fullscreen zoom" onclick="gameInstance.SetFullscreen(1)"></div>
+        <!-- <div class="title" style="color: whitesmoke;">Shift (Alpha) by Elijah Lopez and Tolga Acan</div> -->
     </div>
-    <script src="/static/Shift (Alpha)/TemplateData/UnityProgress.js"></script>
-    <script src="/static/Shift (Alpha)/Build/UnityLoader.js"></script>
-    <script>
+</div>
+<script src="/static/Shift (Alpha)/TemplateData/UnityProgress.js"></script>
+<script src="/static/Shift (Alpha)/Build/UnityLoader.js"></script>
+<script>
         var gameInstance = UnityLoader.instantiate("gameContainer", "/static/Shift (Alpha)/Build/WebGL.json", {
             onProgress: UnityProgress
         });
-    </script>
+
+</script>
 </body>
 </html>
