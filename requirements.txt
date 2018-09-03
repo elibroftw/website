@@ -13,4 +13,3 @@ urllib3
 Werkzeug
 flask
 flask_compress
-flask_cache
