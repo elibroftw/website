@@ -99,6 +99,7 @@ p {
 
 .dropdown {
     float: left;
+    position: relative;
 }
 
 .dropdown .dropbtn {
@@ -121,28 +122,16 @@ p {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-@-moz-document url-prefix() {
-    .dropdown-content {
-        margin-top: : -40.1px;
-    }
-}
-
-@supports (-ms-accelerator:true) {
-    .dropdown-content {
-        margin-top: : -39.55px;
-    }
-}
-
 .dropdown-content {
     /* Dropdown Content (Hidden by Default) */
     display: none;
     position: absolute;
-    left: 148px;
-    margin-top: -39px;
+    left: 132px;
+    top: 0px;
     width: 132px;
     z-index: 1;
 }
-
+/* https://www.c-sharpcorner.com/UploadFile/cd7c2e/vertical-drop-down-menu-on-hover-using-css-and-html/ */
 .dropdown-content a {
     /* Links inside the dropdown */
     display: block;
@@ -306,8 +295,8 @@ input:checked ~ .dropdown-content a:hover {
         display: inline-block !important;
     }
     #desktop-nav {
-        overflow: hidden;
-        padding: 1em 1em 0.9em 1em;
+        /* overflow: hidden; */
+        padding: 1em 1em 6em 1em;
     }
     #desktop-nav>a {
         float: left;
