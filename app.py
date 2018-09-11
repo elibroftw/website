@@ -23,7 +23,6 @@ home_template_data = get_template_data()
 # except KeyError:
 #     use local redis
 
-
 @app.after_request
 def add_header(response):
     if 'Cache-Control' not in response.headers:
