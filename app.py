@@ -136,4 +136,4 @@ def projects():
 #     return "it's done"
 
 
-app.run()
+if __name__ == '__main__': app.run()
