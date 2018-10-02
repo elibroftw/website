@@ -135,11 +135,6 @@ def projects():
 #         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
 #         redis.set(f'shift_high_score_{x}_user', "defalt")  # default username is an easter egg
 #     return "it's done"
-def start():
-    app.run()
+    
 
-if __name__ == '__main__':
-    threading.Thread(target=start).start()
-    while True:
-        get('https://elijahlopez.herokuapp.com')
-        time.sleep(1680)
+if __name__ == '__main__': app.run()
