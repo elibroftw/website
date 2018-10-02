@@ -5,6 +5,7 @@ from flask_compress import Compress
 
 from functions import get_album_art
 from ib_economics import get_template_data
+from requests import get
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800  # use 0 for development
@@ -134,6 +135,11 @@ def projects():
 #         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
 #         redis.set(f'shift_high_score_{x}_user', "defalt")  # default username is an easter egg
 #     return "it's done"
+def start():
+    app.run()
 
-
-if __name__ == '__main__': app.run()
+if __name__ == '__main__':
+    threading.Thread(target=start).start()
+    while True:
+        get('https://elijahlopez.herokuapp.com')
+        time.sleep(1680)
