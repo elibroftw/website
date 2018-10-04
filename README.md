@@ -5,6 +5,6 @@ This is just me experimenting with html, css, and javascript but I hope to make 
 * Album art fetcher
 * My game called Shift
 # My plans
-* Making a blog
 * Tips and tricks
-* programming stuff
+* Car Manual Website
+* Nutritional Information for Fast food restaurants
