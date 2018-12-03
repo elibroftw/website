@@ -14,7 +14,7 @@
 <style>
     .accordion {
         /* background-color: #eee; */
-        color: #444;
+        color: #141414;
         cursor: pointer;
         padding: 18px;
         width: 90%;
@@ -59,9 +59,10 @@
     .download-btn {
         background-color: DodgerBlue;
         border: none;
+        color: black;
+        text-decoration: none;
         /* color: darkslategrey; */
-        /* padding: 12px 30px; */
-        padding: 12px;
+        padding: 12px 0 12px;
         width: 50%;
         cursor: pointer;
         font-size: 16px;
@@ -112,20 +113,18 @@
 </nav>
 <div id="inner">
     <h1>Software</h1>
-    <!-- IDEA: use modals or accordian and use # href to open it on open -->
+    <!-- IDEA: use modals or accordion and use # href to open it on open -->
     <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
     <div class="panel">
-        <p style="color: black; margin: 0.5em 0;">A modern Matte Black theme for browsers</p>
-        <!-- <div style="margin: 0 -18px"> -->
+        <p style="color: #444; margin: 0.5em 0;">A modern Matte Black theme for browsers</p>
         <div>
-            <button class="download-btn" style="border-right: darkslategrey solid 1px;"
-                    onclick="location.href='https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja';">
+            <a class="download-btn" style="border-right: darkslategrey solid 1px; margin-right: -1px"
+               href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
                 <i class="fa fa-download"></i> Chrome
-            </button>
-            <button class="download-btn" style="border-left: darkslategrey solid 1px;"
-                    onclick="location.href='https://addons.mozilla.org/en-US/firefox/addon/matte-black-theme/';"><i
-                    class="fa fa-download"></i> Firefox
-            </button>
+            </a>
+            <a class="download-btn" style="border-left: darkslategrey solid 1px; margin-left: -1px;"
+               href="https://addons.mozilla.org/en-US/firefox/addon/matte-black-theme/"><i class="fa fa-download"></i>
+                Firefox</a>
         </div>
     </div>
     <span id="switch-text" class="noselect">Toggle Theme</span>
