@@ -21,6 +21,17 @@
             color: grey;
         }
 
+        .links {
+            margin-top: 10px;
+            text-decoration: none;
+            color: #75bdec;
+        }
+
+        .links:hover {
+            color: #e0e030;
+        }
+
+
     </style>
 </head>
 
@@ -29,7 +40,7 @@
     <span id="mobile-nav-label">menu</span>
     <u1 id="mobile-nav-panel">
         <a href="/">home</a>
-        <a href="/about/">about me</a>
+        <a href="/resume/">resume</a>
         <a href="/software/">software</a>
         <a href="/resources/">resources</a>
         <a href="/programs/">scripts</a>
@@ -39,7 +50,7 @@
 </nav>
 <nav id="desktop-nav" class="noselect">
     <a href="/">home</a>
-    <a href="/about/">about me</a>
+    <a href="/resume/">resume</a>
     <a href="/software/">software</a>
     <a href="/resources/">resources</a>
     <a href="/programs/">scripts</a>
@@ -56,8 +67,11 @@
     </div>
 </nav>
 <div id="inner">
-    <h1 id="box-title"><a href="/about/">Elijah</a></h1>
-    <p>Welcome to my website!</p>
+    <h1 id="box-title"><a href="/resume/">Elijah</a></h1>
+    <p>I am a person that likes to experiment with programming and wants to make life easier for everyone. This website
+        was built using python, html, css and javascript. It can be found <a
+                class="links" href="https://github.com/elibroftw/website">here</a>
+    </p>
 </div>
 <span id="switch-text" class="noselect">Toggle Theme</span>
 <label class="switch noselect">
@@ -141,6 +155,7 @@
         } else {
             document.getElementById("theme-2").disabled = true;
         }
+
 
 </script>
 </body>

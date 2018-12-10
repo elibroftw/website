@@ -50,6 +50,10 @@ def home(): return render_template('home.html')
 def about(): return render_template('about.html')
 
 
+@app.route('/resume/')
+def resume(): return render_template('resume.html')
+
+
 @app.route('/programs/')  # todo: turn this into a drop down menu
 def programs(): return render_template('programs.html')
 
@@ -139,6 +143,7 @@ def projects():
 #         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
 #         redis.set(f'shift_high_score_{x}_user', "defalt")  # default username is an easter egg
 #     return "it's done"
-    
 
-if __name__ == '__main__': app.run()
+
+if __name__ == '__main__':
+    app.run()

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Contact - Elijah Lopez</title>
+    <title>Resume - Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/template.css">
     <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
@@ -10,6 +10,19 @@
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#111111"/>
+        <style>
+        .links {
+            margin-top: 10px;
+            text-decoration: none;
+            color: #75bdec;
+        }
+
+        .links:hover {
+            color: #e0e030;
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -44,8 +57,8 @@
     </div>
 </nav>
 <div id="inner">
-    <h1>Contact</h1>
-    <p><a style="text-decoration: none; color: lightslategray" href="mailto:elijahllopezz@email.com">Email</a></p>
+    <h1>RESUME</h1>
+    <p>TODO. For now here's a <a class="links" href="/static/resume.pdf">PDF</a></p>
 </div>
 <span id="switch-text" class="noselect">Toggle Theme</span>
 <label class="switch">
@@ -99,14 +112,13 @@
             }
         }
 
+
         if (getCookie("theme") == "true") {
             document.getElementById('theme-toggle').checked = true;
             changeTheme();
         } else {
             document.getElementById("theme-2").disabled = true;
         }
-
-
 
 
 
