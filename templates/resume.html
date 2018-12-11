@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Resume - Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
@@ -11,20 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#111111"/>
         <style>
-        .links {
+        .link {
             margin-top: 10px;
             text-decoration: none;
             color: #75bdec;
+            transition-duration: 200ms;
         }
 
-        .links:hover {
+        .link:hover {
             color: #e0e030;
+            color: #00ab44;
         }
-
-
     </style>
 </head>
-
 <body>
 <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
     <span id="mobile-nav-label">menu</span>
@@ -58,7 +56,7 @@
 </nav>
 <div id="inner">
     <h1>RESUME</h1>
-    <p>Embeded version coming later. For now here's a <a class="links" href="/static/resume.pdf">PDF</a></p>
+    <p>Embeded version coming later. For now here's a <a class="link" href="/static/resume.pdf">PDF</a></p>
 </div>
 <span id="switch-text" class="noselect">Toggle Theme</span>
 <label class="switch">
@@ -119,10 +117,6 @@
         } else {
             document.getElementById("theme-2").disabled = true;
         }
-
-
-
 </script>
 </body>
-
 </html>
