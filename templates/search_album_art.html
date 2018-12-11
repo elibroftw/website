@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Search Album Art - Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
@@ -58,11 +57,11 @@
             font-weight: 300;
             color: #FFFFFF;
             text-align: center;
-            transition: all 0.2s;
+            transition: all 200ms;
             background-color: transparent;
         }
 
-        #search:hover, input:hover, input:active, input:focus,  input:focus-within {
+        #search:hover, input:hover, input:active, input:focus,  input:focus-within, input:focus-visible {
             color: #000000;
             background-color: #FFFFFF;
         }
@@ -79,11 +78,8 @@
                 text-align: center;
             }
         }
-
-
     </style>
 </head>
-
 <body>
 <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
     <span id="mobile-nav-label">menu</span>
@@ -194,9 +190,6 @@
         } else {
             document.getElementById("theme-2").disabled = true;
         }
-
-
 </script>
 </body>
-
 </html>

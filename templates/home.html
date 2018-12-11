@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- TODO: use awesome font logos-->
 <html lang="en">
-
 <head>
     <title>Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
@@ -15,26 +14,26 @@
         h1 a {
             color: white;
             text-decoration: none;
+            transition-duration: 200ms;
         }
 
         h1 a:hover {
             color: grey;
         }
 
-        .links {
+        .link {
             margin-top: 10px;
             text-decoration: none;
             color: #75bdec;
+            transition-duration: 200ms;
         }
 
-        .links:hover {
+        .link:hover {
             color: #e0e030;
+            color: #00ab44;
         }
-
-
     </style>
 </head>
-
 <body>
 <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
     <span id="mobile-nav-label">menu</span>
@@ -70,7 +69,7 @@
     <h1 id="box-title"><a href="/resume/">Elijah</a></h1>
     <p>I am a person that likes to experiment with programming and wants to make life easier for everyone. This website
         was built using python, html, css and javascript. It can be found <a
-                class="links" href="https://github.com/elibroftw/website">here</a>
+                class="link" href="https://github.com/elibroftw/website">here</a>
     </p>
 </div>
 <span id="switch-text" class="noselect">Toggle Theme</span>
@@ -155,9 +154,6 @@
         } else {
             document.getElementById("theme-2").disabled = true;
         }
-
-
 </script>
 </body>
-
 </html>
