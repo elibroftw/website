@@ -61,7 +61,7 @@
             background-color: transparent;
         }
 
-        #search:hover, input:hover, input:active, input:focus,  input:focus-within, input:focus-visible {
+        #search:hover, input:hover, input:active, input:focus,  input:focus-within {
             color: #000000;
             background-color: #FFFFFF;
         }
@@ -118,7 +118,7 @@
         <input id="track-input" type=text name=track placeholder="Track name" required>
         <button id="search">Search</button>
     </form>
-    <img id="album-cover" alt="{{alt_text}}" src="{{image_url}}"/>
+    <img id="album-cover" src="{{image_url}}" alt="{{alt_text}}"/>
 </div>
 <span id="switch-text" class="noselect">Toggle Theme</span>
 <label class="switch">
