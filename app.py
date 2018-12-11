@@ -5,7 +5,6 @@ from flask_compress import Compress
 
 from functions import get_album_art
 from ib_economics import get_template_data
-from requests import get
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800  # use 0 for development
