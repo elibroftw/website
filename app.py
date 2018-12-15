@@ -108,6 +108,15 @@ def projects():
     return render_template('projects.html')
 
 
+@app.route('/todo/')
+def todo():
+    # TODO: I want this to be a todo list that will automatically update the github repo so that it gets carried on
+    # TODO: I would have to implement a username and password to only allow me to edit it
+    # TODO: RBHS announcements
+    # TODO: Learn databases
+    return render_template('404.html')
+
+
 # @app.route('/shift-high-scores/new/', methods=['POST'])
 # def new_shift_high_score():
 #     high_score = request.form['highScore']
@@ -131,7 +140,7 @@ def projects():
 
 
 # @app.route('/shift-high-scores/)
-# def shift-high-scores():  # returns table of highscores, might add level scores
+# def shift-high-scores():  # returns table of high scores, might add level scores
 #     # get high scores from db
 #     return render_template('shift_high_scores.html')
 
@@ -140,7 +149,7 @@ def projects():
 # def test():
 #     for x in rang(1, 11):
 #         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
-#         redis.set(f'shift_high_score_{x}_user', "defalt")  # default username is an easter egg
+#         redis.set(f'shift_high_score_{x}_user', "default")  # default username is an easter egg
 #     return "it's done"
 
 
