@@ -32,7 +32,8 @@ def add_header(response):
 
 
 @app.errorhandler(404)
-def page_not_found(_): return render_template('404.html'), 404  # page not found
+def page_not_found(_): return render_template(
+    '404.html'), 404  # page not found
 
 
 @app.route('/favicon.ico')
@@ -77,7 +78,8 @@ def search_album_art():
         image_url, alt_text = 'image not found', ''
     else:
         try:
-            image_url, alt_text = get_album_art(artist, track), f'{track} Album Cover'
+            image_url, alt_text = get_album_art(
+                artist, track), f'{track} Album Cover'
         except IndexError:
             image_url, alt_text = 'image not found', ''
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
