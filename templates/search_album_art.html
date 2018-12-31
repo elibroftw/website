@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Search Album Art - Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/template.css">
     <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#111111"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111111" />
     <style>
         #album-cover {
             max-width: 500px;
@@ -80,10 +81,21 @@
         }
     </style>
 </head>
+
 <body>
-<nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-    <span id="mobile-nav-label">menu</span>
-    <u1 id="mobile-nav-panel">
+    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
+        <span id="mobile-nav-label">menu</span>
+        <u1 id="mobile-nav-panel">
+            <a href="/">home</a>
+            <a href="/resume/">resume</a>
+            <a href="/software/">software</a>
+            <a href="/resources/">resources</a>
+            <a href="/programs/">scripts</a>
+            <a href="/search-album-art/">search album art</a>
+            <a href="/contact/">contact</a>
+        </u1>
+    </nav>
+    <nav id="desktop-nav" class="noselect">
         <a href="/">home</a>
         <a href="/resume/">resume</a>
         <a href="/software/">software</a>
@@ -91,47 +103,37 @@
         <a href="/programs/">scripts</a>
         <a href="/search-album-art/">search album art</a>
         <a href="/contact/">contact</a>
-    </u1>
-</nav>
-<nav id="desktop-nav" class="noselect">
-    <a href="/">home</a>
-    <a href="/resume/">resume</a>
-    <a href="/software/">software</a>
-    <a href="/resources/">resources</a>
-    <a href="/programs/">scripts</a>
-    <a href="/search-album-art/">search album art</a>
-    <a href="/contact/">contact</a>
-    <div class="dropdown">
-        <button class="dropbtn">games
-            <i class="fas fa-caret-right"></i>
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="/shift/">shift</a>
+        <div class="dropdown">
+            <button class="dropbtn">games
+                <i class="fas fa-caret-right"></i>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/shift/">shift</a>
+            </div>
         </div>
+    </nav>
+    <div id="inner">
+        <h1>Search for Album Art</h1>
+        <form action="/search-album-art" style="margin-bottom: 1em">
+            <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
+            <input id="track-input" type=text name=track placeholder="Track name" required>
+            <button id="search">Search</button>
+        </form>
+        <img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" />
     </div>
-</nav>
-<div id="inner">
-    <h1>Search for Album Art</h1>
-    <form action="/search-album-art" style="margin-bottom: 1em">
-        <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
-        <input id="track-input" type=text name=track placeholder="Track name" required>
-        <button id="search">Search</button>
-    </form>
-    <img id="album-cover" src="{{image_url}}" alt="{{alt_text}}"/>
-</div>
-<span id="switch-text" class="noselect">Toggle Theme</span>
-<label class="switch">
-    <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-    <span class="slider round"></span>
-</label>
-<script>
+    <span id="switch-text" class="noselect">Toggle Theme</span>
+    <label class="switch">
+        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
+        <span class="slider round"></span>
+    </label>
+    <script>
         if ("{{image_url}}" == "image not found") {
             document.getElementById("album-cover").style.display = "none";
         }
 
         var input = document.getElementById("track-input");
-        input.addEventListener("keyup", function(event) {
+        input.addEventListener("keyup", function (event) {
             event.preventDefault();
             if (event.keyCode === 13) {
                 document.getElementById("search").click();
@@ -190,6 +192,20 @@
         } else {
             document.getElementById("theme-2").disabled = true;
         }
-</script>
+
+        var nav = document.getElementById("desktop-nav");
+        var sticky = nav.offsetTop;
+        var top = document.getElementById("top");
+        function stickyScroll() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+                top.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+                top.classList.remove("sticky");
+            }
+        }
+    </script>
 </body>
+
 </html>

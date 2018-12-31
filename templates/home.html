@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <!-- TODO: use awesome font logos-->
 <html lang="en">
+
 <head>
     <title>Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/template.css">
     <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#111111"/>
-    <style>
-        h1 a {
-            color: white;
-            text-decoration: none;
-            transition-duration: 200ms;
-        }
-
-        h1 a:hover {
-            color: grey;
-        }
-    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111111" />
 </head>
+
 <body>
-<nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-    <span id="mobile-nav-label">menu</span>
-    <u1 id="mobile-nav-panel">
+    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
+        <span id="mobile-nav-label">menu</span>
+        <u1 id="mobile-nav-panel">
+            <a href="/">home</a>
+            <a href="/resume/">resume</a>
+            <a href="/software/">software</a>
+            <a href="/resources/">resources</a>
+            <a href="/programs/">scripts</a>
+            <a href="/search-album-art/">search album art</a>
+            <a href="/contact/">contact</a>
+        </u1>
+    </nav>
+    <nav id="desktop-nav" class="noselect">
         <a href="/">home</a>
         <a href="/resume/">resume</a>
         <a href="/software/">software</a>
@@ -33,39 +34,29 @@
         <a href="/programs/">scripts</a>
         <a href="/search-album-art/">search album art</a>
         <a href="/contact/">contact</a>
-    </u1>
-</nav>
-<nav id="desktop-nav" class="noselect">
-    <a href="/">home</a>
-    <a href="/resume/">resume</a>
-    <a href="/software/">software</a>
-    <a href="/resources/">resources</a>
-    <a href="/programs/">scripts</a>
-    <a href="/search-album-art/">search album art</a>
-    <a href="/contact/">contact</a>
-    <div class="dropdown">
-        <button class="dropbtn">games
-            <i class="fas fa-caret-right"></i>
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="/shift/">shift</a>
+        <div class="dropdown">
+            <button class="dropbtn">games
+                <i class="fas fa-caret-right"></i>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/shift/">shift</a>
+            </div>
         </div>
+    </nav>
+    <div id="inner">
+        <h1 id="box-title"><a href="/resume/">Elijah</a></h1>
+        <p>I am a person that likes to experiment with programming and wants to make life easier for everyone. This
+            website
+            was built using python, html, css and javascript. It can be found <a class="link" href="https://github.com/elibroftw/website">here</a>
+        </p>
     </div>
-</nav>
-<div id="inner">
-    <h1 id="box-title"><a href="/resume/">Elijah</a></h1>
-    <p>I am a person that likes to experiment with programming and wants to make life easier for everyone. This website
-        was built using python, html, css and javascript. It can be found <a
-                class="link" href="https://github.com/elibroftw/website">here</a>
-    </p>
-</div>
-<span id="switch-text" class="noselect">Toggle Theme</span>
-<label class="switch noselect">
-    <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-    <span class="slider round"></span>
-</label>
-<script>
+    <span id="switch-text" class="noselect">Toggle Theme</span>
+    <label class="switch noselect">
+        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
+        <span class="slider round"></span>
+    </label>
+    <script>
         function getCookie(name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(';');
@@ -142,6 +133,7 @@
         } else {
             document.getElementById("theme-2").disabled = true;
         }
-</script>
+    </script>
 </body>
+
 </html>

@@ -27,3 +27,4 @@ def get_album_art(artist, track, access_token=None) -> str:
     header = {'Authorization': 'Bearer ' + access_token}
     r = requests.get(f'https://api.spotify.com/v1/search?q={track}+artist:{artist}&type=track', headers=header)
     return r.json()['tracks']['items'][0]['album']['images'][0]['url']
+ 

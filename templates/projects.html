@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Software - Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/template.css">
     <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#111111"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111111" />
 </head>
 <style>
     .accordion {
@@ -73,10 +74,21 @@
         background-color: RoyalBlue;
     }
 </style>
+
 <body>
-<nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-    <span id="mobile-nav-label">menu</span>
-    <u1 id="mobile-nav-panel">
+    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
+        <span id="mobile-nav-label">menu</span>
+        <u1 id="mobile-nav-panel">
+            <a href="/">home</a>
+            <a href="/resume/">resume</a>
+            <a href="/software/">software</a>
+            <a href="/resources/">resources</a>
+            <a href="/programs/">scripts</a>
+            <a href="/search-album-art/">search album art</a>
+            <a href="/contact/">contact</a>
+        </u1>
+    </nav>
+    <nav id="desktop-nav" class="noselect">
         <a href="/">home</a>
         <a href="/resume/">resume</a>
         <a href="/software/">software</a>
@@ -84,42 +96,31 @@
         <a href="/programs/">scripts</a>
         <a href="/search-album-art/">search album art</a>
         <a href="/contact/">contact</a>
-    </u1>
-</nav>
-<nav id="desktop-nav" class="noselect">
-    <a href="/">home</a>
-    <a href="/resume/">resume</a>
-    <a href="/software/">software</a>
-    <a href="/resources/">resources</a>
-    <a href="/programs/">scripts</a>
-    <a href="/search-album-art/">search album art</a>
-    <a href="/contact/">contact</a>
-    <div class="dropdown">
-        <button class="dropbtn">games
-            <i class="fas fa-caret-right"></i>
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="/shift/">shift</a>
+        <div class="dropdown">
+            <button class="dropbtn">games
+                <i class="fas fa-caret-right"></i>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/shift/">shift</a>
+            </div>
         </div>
-    </div>
-</nav>
-<div id="inner">
-    <h1>Software</h1>
-    <!-- IDEA: use modals or accordion and use # href to open it on open -->
-    <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
-    <div class="panel">
-        <p style="color: #444; margin: 0.5em 0;">A modern Matte Black theme for browsers</p>
-        <div>
-            <a class="download-btn" style="border-right: darkslategrey solid 1px; margin-right: -1px"
-               href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
-                <i class="fa fa-download"></i> Chrome
-            </a>
-            <a class="download-btn" style="border-left: darkslategrey solid 1px; margin-left: -1px;"
-               href="https://addons.mozilla.org/en-US/firefox/addon/matte-black-theme/"><i class="fa fa-download"></i>
-                Firefox</a>
+    </nav>
+    <div id="inner">
+        <h1>Software</h1>
+        <!-- IDEA: use modals or accordion and use # href to open it on open -->
+        <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
+        <div class="panel">
+            <p style="color: #444; margin: 0.5em 0;">A modern Matte Black theme for browsers</p>
+            <div>
+                <a class="download-btn" style="border-right: darkslategrey solid 1px; margin-right: -1px" href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
+                    <i class="fa fa-download"></i> Chrome
+                </a>
+                <a class="download-btn" style="border-left: darkslategrey solid 1px; margin-left: -1px;" href="https://addons.mozilla.org/en-US/firefox/addon/matte-black-theme/"><i
+                        class="fa fa-download"></i>
+                    Firefox</a>
+            </div>
         </div>
-    </div>
     </div>
     <span id="switch-text" class="noselect">Toggle Theme</span>
     <label class="switch">
@@ -127,84 +128,85 @@
         <span class="slider round"></span>
     </label>
     <script>
-            var acc = document.getElementsByClassName("accordion");
-            var i;
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
-            for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                        history.pushState("", document.title, window.location.pathname + window.location.search);
-                    } else {
-                        panel.style.maxHeight = panel.scrollHeight + "px";
-                        window.location.hash = this.id;
-                    }
-                });
-            }
-            var hash = window.location.hash;
-            if (hash) {
-                try {
-                    document.getElementById(hash.slice(1)).click();
-                } catch (err) {
-                    console.log("invalid hash in url");
-                }
-
-            }
-
-            function getCookie(name) {
-                var nameEQ = name + "=";
-                var ca = document.cookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-                }
-                return null;
-            }
-
-            function setCookie(name, value, days) {
-                var expires = "";
-                if (days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toUTCString();
-                }
-                document.cookie = name + "=" + (value || "") + expires + "; path=/";
-            }
-
-            var nav_panel = document.getElementById("mobile-nav-panel");
-            var menu = document.getElementById("mobile-nav-label");
-
-            function mobileNavigation() {
-                if (nav_panel.style.display == "block") {
-                    nav_panel.style.display = "none";
-                    menu.innerHTML = "MENU";
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    history.pushState("", document.title, window.location.pathname + window.location.search);
                 } else {
-                    nav_panel.style.display = "block";
-                    menu.innerHTML = "CLOSE";
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    window.location.hash = this.id;
                 }
+            });
+        }
+        var hash = window.location.hash;
+        if (hash) {
+            try {
+                document.getElementById(hash.slice(1)).click();
+            } catch (err) {
+                console.log("invalid hash in url");
             }
 
-            function changeTheme() {
-                if (document.getElementById('theme-toggle').checked) {
-                    document.getElementById("theme-2").disabled = false;
-                    document.body.style.backgroundImage = "url('/static/images/bg 2.jpg')";
-                    setCookie("theme", "true", 365);
-                } else {
-                    document.body.style.backgroundImage = "";
-                    document.getElementById("theme-2").disabled = true;
-                    setCookie("theme", "false", 365);
-                }
-            }
+        }
 
-            if (getCookie("theme") == "true") {
-                document.getElementById('theme-toggle').checked = true;
-                changeTheme();
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        var nav_panel = document.getElementById("mobile-nav-panel");
+        var menu = document.getElementById("mobile-nav-label");
+
+        function mobileNavigation() {
+            if (nav_panel.style.display == "block") {
+                nav_panel.style.display = "none";
+                menu.innerHTML = "MENU";
             } else {
-                document.getElementById("theme-2").disabled = true;
+                nav_panel.style.display = "block";
+                menu.innerHTML = "CLOSE";
             }
+        }
+
+        function changeTheme() {
+            if (document.getElementById('theme-toggle').checked) {
+                document.getElementById("theme-2").disabled = false;
+                document.body.style.backgroundImage = "url('/static/images/bg 2.jpg')";
+                setCookie("theme", "true", 365);
+            } else {
+                document.body.style.backgroundImage = "";
+                document.getElementById("theme-2").disabled = true;
+                setCookie("theme", "false", 365);
+            }
+        }
+
+        if (getCookie("theme") == "true") {
+            document.getElementById('theme-toggle').checked = true;
+            changeTheme();
+        } else {
+            document.getElementById("theme-2").disabled = true;
+        }
     </script>
 </body>
+
 </html>
