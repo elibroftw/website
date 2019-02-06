@@ -119,6 +119,9 @@ def todo():
     return render_template('404.html')
 
 
+@app.route('/menus/')
+def menus():
+    return render_template('menus.html')
 # @app.route('/shift-high-scores/new/', methods=['POST'])
 # def new_shift_high_score():
 #     high_score = request.form['highScore']
