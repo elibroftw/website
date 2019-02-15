@@ -4,12 +4,16 @@ from flask_compress import Compress
 # import redis
 
 from functions import get_album_art
-from ib_economics import get_template_data
+# from ib_economics import get_template_data
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800  # use 0 for development
 Compress(app)
-home_template_data = get_template_data()
+
+# try:
+#     home_template_data = get_template_data()
+# except (ValueError, IndexError):
+#     home_template_data = 'An error has occurred'
 
 
 # limiter = Limiter(
@@ -38,8 +42,7 @@ def page_not_found(_): return render_template(
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico',
-                               mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/')
@@ -85,9 +88,9 @@ def search_album_art():
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
 
 
-@app.route('/ib-economics-schedule/')
-def ib_economics_schedule():
-    return render_template('table.html', data=home_template_data)
+# @app.route('/ib-economics-schedule/')
+# def ib_economics_schedule():
+#     return render_template('table.html', data=home_template_data)
 
 
 @app.route('/shift/')
