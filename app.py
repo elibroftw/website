@@ -103,14 +103,10 @@ def test():
     return render_template('test.html')
 
 
+@app.route('/projects/')
 @app.route('/software/')
 def software():
-    return render_template('projects.html')
-
-
-@app.route('/projects/')
-def projects():
-    return render_template('projects.html')
+    return render_template('software.html')
 
 
 @app.route('/todo/')
