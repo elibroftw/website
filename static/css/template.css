@@ -62,7 +62,7 @@ h1 a {
 
 h1 a:hover {
     color: grey;
-    font-size: 80px;
+    font-size: 70px;
     content: 'RESUME';
 }
 
@@ -416,7 +416,7 @@ input:checked ~ .dropdown-content a:hover {
     margin-top: 10px;
     text-decoration: none;
     color: #75bdec;
-    transition-duration: 200ms;
+    transition-duration: 150ms;
 }
 
 .link:hover {
