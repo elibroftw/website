@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 # import redis
 
-from functions import get_album_art
+from functions import get_album_art, get_krunker_stats
 # from ib_economics import get_template_data
 
 app = Flask(__name__)
@@ -87,11 +87,13 @@ def search_album_art():
             image_url, alt_text = 'image not found', ''
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
 
-
-# @app.route('/ib-economics-schedule/')
-# def ib_economics_schedule():
-#     return render_template('table.html', data=home_template_data)
-
+@app.route('/krunker/', methods=['GET'])
+@app.route('/krunker-stats/', methods=['GET'])
+def krunker_stats():
+    krunker_username = request.args.get('krunker-username')
+    if krunker_username in (None, ''):
+        return render_template('krunker_stats.html')
+    return redirect(f'https://krunker.io/social.html?p=profile&q={krunker_username}')
 
 @app.route('/shift/')
 def shift():
