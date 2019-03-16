@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Krunker Stats - Elijah Lopez</title>
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/template.css">
+    <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111111" />
+    <style>
+        #album-cover {
+            max-width: 500px;
+        }
+
+        #search::after {
+            content: "\A\A";
+        }
+
+        @media screen and (max-width: 1024px) {
+            #album-cover {
+                max-width: 400px;
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            #album-cover {
+                max-width: 300px;
+            }
+        }
+
+        input {
+            display: inline-block;
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            transition: all 0.2s;
+            background-color: transparent;
+        }
+
+        #search {
+            display: inline-block;
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 200ms;
+            background-color: transparent;
+        }
+
+        #search:hover, input:hover, input:active, input:focus,  input:focus-within {
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+
+        @media all and (max-width:30em) {
+            #search {
+                display: block;
+                margin: 0.4em auto;
+                width: 15.5em;
+            }
+            input {
+                display: block;
+                margin: 0.4em auto;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
+        <span id="mobile-nav-label">menu</span>
+        <u1 id="mobile-nav-panel">
+            <a href="/">home</a>
+            <a href="/resume/">resume</a>
+            <a href="/software/">software</a>
+            <a href="/resources/">resources</a>
+            <a href="/programs/">scripts</a>
+            <a href="/search-album-art/">search album art</a>
+            <a href="/contact/">contact</a>
+        </u1>
+    </nav>
+    <nav id="desktop-nav" class="noselect">
+        <a href="/">home</a>
+        <a href="/resume/">resume</a>
+        <a href="/software/">software</a>
+        <a href="/resources/">resources</a>
+        <a href="/programs/">scripts</a>
+        <a href="/search-album-art/">search album art</a>
+        <a href="/contact/">contact</a>
+        <div class="dropdown">
+            <button class="dropbtn">games
+                <i class="fas fa-caret-right"></i>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/shift/">shift</a>
+            </div>
+        </div>
+    </nav>
+    <div id="inner">
+        <h1>Krunker Stats</h1>
+        <form action="/krunker-stats" style="margin-bottom: 1em">
+            <input id="krunker-username-input" type=text name=krunker-username placeholder="Krunker username" autofocus required>
+            <button id="search">Search</button>
+        </form>
+    </div>
+    <span id="switch-text" class="noselect">Toggle Theme</span>
+    <label class="switch">
+        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
+        <span class="slider round"></span>
+    </label>
+    <script>
+        var input = document.getElementById("track-input");
+        input.addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("search").click();
+            }
+        });
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        var nav_panel = document.getElementById("mobile-nav-panel");
+        var menu = document.getElementById("mobile-nav-label");
+
+        function mobileNavigation() {
+            if (nav_panel.style.display == "block") {
+                nav_panel.style.display = "none";
+                menu.innerHTML = "MENU";
+            } else {
+                nav_panel.style.display = "block";
+                menu.innerHTML = "CLOSE";
+            }
+        }
+
+        function changeTheme() {
+            if (document.getElementById('theme-toggle').checked) {
+                document.getElementById("theme-2").disabled = false;
+                document.body.style.backgroundImage = "url('/static/images/bg 2.jpg')";
+                setCookie("theme", "true", 365);
+            } else {
+                document.body.style.backgroundImage = "";
+                document.getElementById("theme-2").disabled = true;
+                setCookie("theme", "false", 365);
+            }
+        }
+
+        if (getCookie("theme") == "true") {
+            document.getElementById('theme-toggle').checked = true;
+            changeTheme();
+        } else {
+            document.getElementById("theme-2").disabled = true;
+        }
+
+        var nav = document.getElementById("desktop-nav");
+        var sticky = nav.offsetTop;
+        var top = document.getElementById("top");
+        function stickyScroll() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+                top.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+                top.classList.remove("sticky");
+            }
+        }
+    </script>
+</body>
+
+</html>
