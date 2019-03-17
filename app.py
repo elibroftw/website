@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 # import redis
 
-from functions import get_album_art, get_krunker_stats
+from functions import get_album_art
 # from ib_economics import get_template_data
 
 app = Flask(__name__)
