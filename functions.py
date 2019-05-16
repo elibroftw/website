@@ -2,6 +2,7 @@ import base64
 import os
 import requests
 from urllib import parse
+from PIL import Image
 
 try:
     SPOTIFY_CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
@@ -27,3 +28,14 @@ def get_album_art(artist, track, access_token=None) -> str:
     header = {'Authorization': 'Bearer ' + access_token}
     r = requests.get(f'https://api.spotify.com/v1/search?q={track}+artist:{artist}&type=track', headers=header)
     return r.json()['tracks']['items'][0]['album']['images'][0]['url']
+
+
+
+def img_to_ico(path):
+    base = os.path.basename(path)
+    img_name = os.path.splitext(base)[0]
+    directory = os.path.dirname(path)
+    img = Image.open(path)
+    img.save(f'{directory}/{img_name}.ico')
+    # TODO: upload to https://send.firefox.com/ when API comes out
+    # TODO: tell user to upload to send.firefox.com if they want to share the file
