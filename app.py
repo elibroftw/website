@@ -87,6 +87,7 @@ def search_album_art():
             image_url, alt_text = 'image not found', ''
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
 
+
 @app.route('/krunker/', methods=['GET'])
 @app.route('/krunker-stats/', methods=['GET'])
 def krunker_stats():
@@ -94,6 +95,7 @@ def krunker_stats():
     if krunker_username in (None, ''):
         return render_template('krunker_stats.html')
     return redirect(f'https://krunker.io/social.html?p=profile&q={krunker_username}')
+
 
 @app.route('/shift/')
 def shift():
@@ -123,6 +125,19 @@ def todo():
 @app.route('/menus/')
 def menus():
     return render_template('menus.html')
+
+
+# @app.route('/to_ico/')
+# def to_ico():
+#     return render_template('to_ico.html')
+
+# @app.route('/get_ico/', methods=['POST'])
+# def get_ico():
+#     file = request.args.get('track')
+#     if file is None:
+#         file = ''
+#     return render_template('to_ico.html')
+
 # @app.route('/shift-high-scores/new/', methods=['POST'])
 # def new_shift_high_score():
 #     high_score = request.form['highScore']
