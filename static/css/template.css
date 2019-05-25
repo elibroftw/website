@@ -97,7 +97,16 @@ p {
     font-size: 18px;
 }
 
-/* use > for direct decendents */
+.link {
+    margin-top: 10px;
+    text-decoration: none;
+    color: #75bdec;
+    transition-duration: 150ms;
+}
+
+.link:hover {
+    color: #00ab44;
+}
 
 #desktop-nav {
     padding: 1em 0 0 1em;
@@ -195,16 +204,25 @@ u1:hover {
 }
 
 #social-links {
-    bottom: 16px;
-    padding: 0 0 10px 0;
-    width: 100%;
     position: fixed;
-    z-index: 1;
+    bottom: 0%;
+    padding: 0.7%;
+    left: 48%;
+    background: black;
+    border-radius: 20%;
+}
+
+#social-links > a {
+    transition-duration: 300ms;
+    color: white;
+}
+
+#social-links > a:hover i {
+    color: grey;
+    transform: scale(1.3);
 }
 
 /* IDEA: Display for a few seconds maybe? */
-
-/* IDEA: Add theme 2 for this? */
 
 #switch-text {
     position: fixed;
@@ -318,33 +336,41 @@ input:checked ~ .dropdown-content a:hover {
         margin-top: 2%;
         width: 65%;
     }
+
     .fa-caret-right {
         display: none !important;
     }
+
     .fa-caret-down {
         display: inline-block !important;
     }
+
     #desktop-nav {
         /* overflow: hidden; */
         padding: 1em 1em 7em 1em;
     }
+
     #desktop-nav>a {
         float: left;
         text-align: center;
     }
+
     .dropdown .dropbtn {
         float: left;
         text-align: center;
         border-radius: 1em 1em 0 0;
     }
+
     .dropdown-content {
         left: auto;
         margin-top: 39px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     }
+
     .dropdown-content a {
         border-radius: 0;
     }
+
     /* input:checked ~ #desktop-nav {
         background-color: rgba(0, 0, 0, 0.8);
     }
@@ -359,14 +385,15 @@ input:checked ~ .dropdown-content a:hover {
 }
 
 @media screen and (max-width: 640px) {
+    /* mobile portrait */
     body {
         background-image: url("/static/images/bg 2.jpg");
     }
-    .switch,
-    #switch-text,
-    #desktop-nav {
+
+    .switch, #switch-text, #desktop-nav {
         display: none;
     }
+
     #mobile-nav {
         display: block;
         text-align: center;
@@ -377,13 +404,16 @@ input:checked ~ .dropdown-content a:hover {
         color: white;
         text-transform: uppercase;
     }
+
     #mobile-nav-label {
         display: block;
         font-family: Verdana;
     }
+
     #mobile-nav-label:hover {
         color: cyan;
     }
+
     #inner {
         margin-top: 4em;
         padding-left: 0px;
@@ -391,9 +421,11 @@ input:checked ~ .dropdown-content a:hover {
         letter-spacing: 0.05em;
         width: 90%;
     }
+
     h1 {
         font-size: 40px;
     }
+
     #mobile-nav a {
         width: 100%;
         display: block;
@@ -405,20 +437,19 @@ input:checked ~ .dropdown-content a:hover {
         font-family: Verdana;
         font-weight: normal;
     }
+
     #mobile-nav a:hover {
         background-color: transparent;
         color: cyan;
         box-shadow: 0px 8px 20px 0 rgba(0, 0, 0, 0.2), 0px -8px 20px 0 rgba(0, 0, 0, 0.2), 0px 8px 16px 0 rgba(0, 0, 0, 0.2), 0px -8px 16px 0 rgba(0, 0, 0, 0.2);
     }
-}
 
-.link {
-    margin-top: 10px;
-    text-decoration: none;
-    color: #75bdec;
-    transition-duration: 150ms;
-}
+    #social-links {
+        padding: 2%;
+        left: 43%;
+    }
 
-.link:hover {
-    color: #00ab44;
+    #social-links>a:hover i {
+        transform: scale(1.2);
+    }
 }
