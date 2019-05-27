@@ -371,6 +371,15 @@ input:checked ~ .dropdown-content a:hover {
         border-radius: 0;
     }
 
+    #social-links {
+        padding: 0.9%;
+        left: 46%;
+    }
+
+    #social-links>a:hover i {
+        transform: scale(1.2);
+    }
+
     /* input:checked ~ #desktop-nav {
         background-color: rgba(0, 0, 0, 0.8);
     }
