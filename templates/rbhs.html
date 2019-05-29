@@ -84,9 +84,11 @@
         margin-left: -1px;
     }
 
-    /* h1 {
-        font-size: 
-    } */
+    @media screen and (max-width: 640px) {
+        h1 {
+            font-size: 27px;
+        }
+    }
 
     p {
         color: black;
@@ -127,7 +129,7 @@
     </nav>
     <div id="inner">
         <h1>Announcements</h1>
-        {{announcements|safe}}        
+        {{announcements|safe}}
     </div>
     <span id="switch-text" class="noselect">Toggle Theme</span>
     <label class="switch">
