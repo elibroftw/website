@@ -1,13 +1,15 @@
 import os
 from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
+from datetime import datetime, date
 # import redis
 
-from functions import get_album_art
+from functions import get_album_art, get_announcements
 # from ib_economics import get_template_data
+announcements = []
 
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 604800  # use 0 for development
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.environ['DEVELOPMENT'] else 604800  # use 0 for development
 Compress(app)
 
 # try:
@@ -126,6 +128,25 @@ def todo():
 def menus():
     return render_template('menus.html')
 
+
+@app.route('/rbhs/')
+def rbhs():
+    global announcements
+    today = date.today()
+    d1 = today.strftime('%d/%m/%Y')
+    d2 = os.environ.get('RBHS')
+    if d2: d2 = datetime.strptime(d2, '%d/%m/%Y')
+    if d2 is None or not announcements or d2 < d1:
+        announcements = get_announcements()
+        temp = ''
+        for title, desc in announcements:
+            temp += f"""<button class="accordion">{title}</button>
+            <div class="panel">
+                <p>{desc}</p>
+            </div>"""
+        announcements = temp
+    print(announcements)
+    return render_template('rbhs.html', announcements=announcements)
 
 # @app.route('/to_ico/')
 # def to_ico():

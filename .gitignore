@@ -2,3 +2,5 @@
 config.txt
 .idea
 .vscode/settings.json
+.env
+client_secret.json
