@@ -9,7 +9,7 @@ from functions import get_album_art, get_announcements
 announcements = []
 
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.environ['DEVELOPMENT'] else 604800  # use 0 for development
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.get('DEVELOPMENT', False) else 604800  # use 0 for development
 Compress(app)
 
 # try:
