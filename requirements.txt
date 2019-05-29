@@ -9,6 +9,7 @@ gunicorn
 idna
 itsdangerous
 Jinja2
+json
 Markdown
 MarkupSafe
 Pillow
