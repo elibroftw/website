@@ -140,12 +140,8 @@ def rbhs():
         announcements = get_announcements()
         temp = ''
         for title, desc in announcements:
-            temp += f"""<button class="accordion">{title}</button>
-            <div class="panel">
-                <p>{desc}</p>
-            </div>"""
+            temp += f'<button class="accordion">{title}</button><div class="panel"><p>{desc}</p></div>'
         announcements = temp
-    print(announcements)
     return render_template('rbhs.html', announcements=announcements)
 
 # @app.route('/to_ico/')
