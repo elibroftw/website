@@ -2,32 +2,15 @@ import os
 from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 from datetime import datetime, date
-# import redis
 
 from functions import get_album_art, get_announcements
 # from ib_economics import get_template_data
 announcements = []
 
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.environ.get('DEVELOPMENT', False) else 604800  # use 0 for development
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.environ.get('DEVELOPMENT', False) else 604800
 Compress(app)
 
-# try:
-#     home_template_data = get_template_data()
-# except (ValueError, IndexError):
-#     home_template_data = 'An error has occurred'
-
-
-# limiter = Limiter(
-#     app,
-#     key_func=get_remote_address,
-#     default_limits=["200 per day", "50 per hour"]
-# )
-
-# try:
-#     r = redis.from_url(os.environ.get("REDIS_URL"))
-# except KeyError:
-#     use local redis
 
 @app.after_request
 def add_header(response):
@@ -38,8 +21,8 @@ def add_header(response):
 
 
 @app.errorhandler(404)
-def page_not_found(_): return render_template(
-    '404.html'), 404  # page not found
+def page_not_found(_):
+    return render_template('404.html'), 404
 
 
 @app.route('/favicon.ico')
@@ -144,9 +127,10 @@ def rbhs():
         announcements = temp
     return render_template('rbhs.html', announcements=announcements)
 
-# @app.route('/to_ico/')
-# def to_ico():
-#     return render_template('to_ico.html')
+
+@app.route('/to_ico/')
+def to_ico():
+    return render_template('to_ico.html')
 
 # @app.route('/get_ico/', methods=['POST'])
 # def get_ico():
