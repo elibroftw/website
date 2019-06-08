@@ -10,91 +10,91 @@
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
-</head>
-<style>
-    .accordion {
-        color: #141414;
-        cursor: pointer;
-        padding: 18px;
-        width: 90%;
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 20px;
-        transition: 0.2s;
-        font-family: Verdana;
-        border-top: #ccc solid 1px
-    }
+    <style>
+        .accordion {
+            color: #141414;
+            cursor: pointer;
+            padding: 18px;
+            width: 90%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 20px;
+            transition: 0.2s;
+            font-family: Verdana;
+            border-top: #ccc solid 1px
+        }
 
-    .active,
-    .accordion:hover {
-        background-color: #ccc;
-    }
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
 
-    .accordion:after {
-        content: '\002B';
-        color: #777;
-        font-weight: bold;
-        float: right;
-        margin-left: 5px;
-    }
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
 
-    .active:after {
-        content: "\2212";
-    }
+        .active:after {
+            content: "\2212";
+        }
 
-    .panel {
-        width: 90%;
-        margin: auto;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.1s ease-out;
-        text-align: center;
-        font-family: Calibri;
-        color: black;
-    }
+        .panel {
+            width: 90%;
+            margin: auto;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.1s ease-out;
+            text-align: center;
+            font-family: Calibri;
+            color: black;
+        }
 
-    .download-btn {
-        background-color: DodgerBlue;
-        border: none;
-        color: black;
-        text-decoration: none;
-        padding: 12px 0 12px;
-        width: 50%;
-        cursor: pointer;
-        font-size: 18px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        float: left;
-        bottom: 0;
-        transition-duration: 200ms;
-    }
+        .download-btn {
+            background-color: DodgerBlue;
+            border: none;
+            color: black;
+            text-decoration: none;
+            padding: 12px 0 12px;
+            width: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            float: left;
+            bottom: 0;
+            transition-duration: 200ms;
+        }
 
-    .download-btn:hover {
-        background-color: RoyalBlue;
-        font-size: 20px;
-    }
+        .download-btn:hover {
+            background-color: RoyalBlue;
+            font-size: 20px;
+        }
 
-    /* .download-btn-left {
+        /* .download-btn-left {
 
     } */
 
-    .download-btn-right {
-        border-left: darkslategrey solid 1px;
-        margin-left: -1px;
-    }
-
-    @media screen and (max-width: 640px) {
-        h1 {
-            font-size: 27px;
+        .download-btn-right {
+            border-left: darkslategrey solid 1px;
+            margin-left: -1px;
         }
-    }
 
-    p {
-        color: black;
-        margin: 0.5em 0;
-    }
-</style>
+        @media screen and (max-width: 640px) {
+            h1 {
+                font-size: 27px;
+            }
+        }
+
+        p {
+            color: black;
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
 
 <body>
     <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
@@ -137,7 +137,7 @@
         <span class="slider round"></span>
     </label>
     <div id="social-links">
-            <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
+        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
     </div>
     <script>
         var acc = document.getElementsByClassName("accordion");

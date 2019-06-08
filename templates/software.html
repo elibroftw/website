@@ -6,89 +6,89 @@
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/template.css">
     <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
-</head>
-<style>
-    .accordion {
-        color: #141414;
-        cursor: pointer;
-        padding: 18px;
-        width: 90%;
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 20px;
-        transition: 0.2s;
-        font-family: Verdana;
-        border-top: #ccc solid 1px
-    }
+    <style>
+        .accordion {
+            color: #141414;
+            cursor: pointer;
+            padding: 18px;
+            width: 90%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 20px;
+            transition: 0.2s;
+            font-family: Verdana;
+            border-top: #ccc solid 1px
+        }
 
-    .active,
-    .accordion:hover {
-        background-color: #ccc;
-    }
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
 
-    .accordion:after {
-        content: '\002B';
-        color: #777;
-        font-weight: bold;
-        float: right;
-        margin-left: 5px;
-    }
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
 
-    .active:after {
-        content: "\2212";
-    }
+        .active:after {
+            content: "\2212";
+        }
 
-    .panel {
-        width: 90%;
-        margin: auto;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.1s ease-out;
-        text-align: center;
-        font-family: Calibri;
-        color: black;
-    }
+        .panel {
+            width: 90%;
+            margin: auto;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.1s ease-out;
+            text-align: center;
+            font-family: Calibri;
+            color: black;
+        }
 
-    .download-btn {
-        background-color: DodgerBlue;
-        border: none;
-        color: black;
-        text-decoration: none;
-        padding: 12px 0 12px;
-        width: 50%;
-        cursor: pointer;
-        font-size: 18px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        float: left;
-        bottom: 0;
-        transition-duration: 200ms;
-    }
+        .download-btn {
+            background-color: DodgerBlue;
+            border: none;
+            color: black;
+            text-decoration: none;
+            padding: 12px 0 12px;
+            width: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            float: left;
+            bottom: 0;
+            transition-duration: 200ms;
+        }
 
-    .download-btn:hover {
-        background-color: RoyalBlue;
-        font-size: 20px;
-    }
+        .download-btn:hover {
+            background-color: RoyalBlue;
+            font-size: 20px;
+        }
 
-    /* .download-btn-left {
+        /* .download-btn-left {
 
     } */
 
-    .download-btn-right {
-        border-left: darkslategrey solid 1px;
-        margin-left: -1px;
-    }
-    
-    p {
-        color: black;
-        margin: 0.5em 0;
-    }
-</style>
+        .download-btn-right {
+            border-left: darkslategrey solid 1px;
+            margin-left: -1px;
+        }
+
+        p {
+            color: black;
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
 
 <body>
     <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
@@ -127,7 +127,8 @@
         <div class="panel">
             <p>A modern dark them for browsers</p>
             <div>
-                <a class="download-btn" href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
+                <a class="download-btn"
+                    href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
                     <i class="fa fa-download"></i> Chrome</a>
                 <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/matte-black-v2/">
                     <i class="fa fa-download"></i> Firefox</a>
@@ -137,7 +138,8 @@
         <div class="panel">
             <p>A dark theme for GitHub based on Atom One Dark (I helped out)</p>
             <div>
-                <a class="download-btn" href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp">
+                <a class="download-btn"
+                    href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp">
                     <i class="fa fa-download"></i> Chrome</a>
                 <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/github-dark-theme/">
                     <i class="fa fa-download"></i> Firefox</a>
@@ -147,9 +149,11 @@
         <div class="panel">
             <p>A dark theme for Google searches</p>
             <div>
-                <a class="download-btn" href="https://chrome.google.com/webstore/detail/dark-theme-for-google-sea/ohhpliipfhicocldcakcgpbbcmkjkian">
+                <a class="download-btn"
+                    href="https://chrome.google.com/webstore/detail/dark-theme-for-google-sea/ohhpliipfhicocldcakcgpbbcmkjkian">
                     <i class="fa fa-download"></i> Chrome</a>
-                <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/dark-theme-for-google-searches/">
+                <a class="download-btn download-btn-right"
+                    href="https://addons.mozilla.org/addon/dark-theme-for-google-searches/">
                     <i class="fa fa-download"></i> Firefox</a>
             </div>
         </div>
@@ -160,7 +164,7 @@
         <span class="slider round"></span>
     </label>
     <div id="social-links">
-            <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
+        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
     </div>
     <script>
         var acc = document.getElementsByClassName("accordion");

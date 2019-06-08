@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>404 Error - Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
@@ -54,23 +53,9 @@
         <span class="slider round"></span>
     </label>
     <div id="social-links">
-            <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
+        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
     </div>
-    <script src="/static/js/dropzone.js"></script>
     <script>
-        Dropzone.options.myAwesomeDropzone = {
-            paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 1, // MB
-            acceptedFiles: []
-            accept: function (file, done) {
-                if (file.name == "justinbieber.jpg") {
-                    done("Naha, you don't.");
-                } else {
-                    done();
-                }
-            }
-        };
-
         function getCookie(name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(';');
