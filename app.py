@@ -116,14 +116,15 @@ def menus():
 def rbhs():
     global announcements
     today = date.today()
-    d1 = today.strftime('%d/%m/%Y')
     d2 = os.environ.get('RBHS')
     if d2: d2 = datetime.strptime(d2, '%d/%m/%Y')
-    if d2 is None or not announcements or d2 < d1:
+    if d2 is None or not announcements or d2 < today:
         announcements = get_announcements()
-        temp = ''
-        for title, desc in announcements:
-            temp += f'<button class="accordion">{title}</button><div class="panel"><p>{desc}</p></div>'
+        temp = "<p style='color: white;'>There are no announcements for today</p>"
+        if announcements != [['#N/A']]:
+            for title, desc in announcements:
+                temp += f'<button class="accordion">{title}</button><div class="panel"><p>{desc}</p></div>'
+            os.environ['RBHS'] = today.strftime('%d/%m/%Y')
         announcements = temp
     return render_template('rbhs.html', announcements=announcements)
 
