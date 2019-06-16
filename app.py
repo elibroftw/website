@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 from datetime import datetime, date
-
+from contextlib import suppress
 from functions import get_album_art, get_announcements
 # from ib_economics import get_template_data
 announcements = []
@@ -66,8 +66,7 @@ def search_album_art():
         image_url, alt_text = 'image not found', ''
     else:
         try:
-            image_url, alt_text = get_album_art(
-                artist, track), f'{track} Album Cover'
+            image_url, alt_text = get_album_art(artist, track), f'{track} Album Cover'
         except IndexError:
             image_url, alt_text = 'image not found', ''
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
@@ -119,9 +118,9 @@ def rbhs():
     d2 = os.environ.get('RBHS')
     if d2: d2 = datetime.strptime(d2, '%d/%m/%Y')
     if d2 is None or not announcements or d2 < today:
-        announcements = get_announcements()
         temp = "<p style='color: white;'>There are no announcements for today</p>"
-        if announcements != [['#N/A']]:
+        with suppress(Exception):
+            announcements = get_announcements()
             for title, desc in announcements:
                 temp += f'<button class="accordion">{title}</button><div class="panel"><p>{desc}</p></div>'
             os.environ['RBHS'] = today.strftime('%d/%m/%Y')
