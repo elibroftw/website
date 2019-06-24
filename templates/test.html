@@ -243,7 +243,8 @@
             }
             formData.append('file', file);
             xhr.send(formData);
-            // Remove file from files and hide submit button
+            document.getElementById('file-name').innerHTML = "The enchanced file will open in a new tab shortly.";
+            document.getElementById('upload').classList.add('hidden');
         }
         // dropArea.addEventListener('drop', unhighlight, false);
     </script>
