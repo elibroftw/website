@@ -24,6 +24,8 @@ def add_header(response):
 
 @app.errorhandler(404)
 def page_not_found(_):
+    # TODO: change cookie name
+    # theme_on = request.cookies['website-theme']
     return render_template('404.html'), 404
 
 
