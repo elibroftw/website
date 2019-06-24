@@ -1,9 +1,11 @@
 import os
-from flask import Flask, render_template, request, redirect, send_from_directory
+from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
 from flask_compress import Compress
 from datetime import datetime, date
 from contextlib import suppress
 from functions import get_album_art, get_announcements
+from werkzeug.utils import secure_filename
+import sys
 # from ib_economics import get_template_data
 announcements = []
 
@@ -86,9 +88,26 @@ def shift():
     return redirect('https://elijahlopez.itch.io/shift')
 
 
-@app.route('/test/')
-def test():
-    return render_template('test.html')
+if os.environ['DEVELOPMENT']:
+    @app.route('/test/', methods=['GET', 'POST'])
+    def test():
+        if request.method == 'POST' and 'file' in request.files:
+            file = request.files['file']
+            if file.filename != '':
+                with open('test.txt', 'w') as f:
+                    f.write('test\n')
+                filename = secure_filename(file.filename)
+                save_name = filename.replace('_', ' ')
+                save_path = os.path.join('static/MP3Editor', save_name)
+                file.save(save_path)
+                # do other stuff
+                return url_for('static', filename=f'MP3Editor/{save_name}')
+        return render_template('test.html')
+
+
+@app.route('/done/<filename>', methods=['GET', 'POST'])
+def upload():
+    return str('file' in request.files)
 
 
 @app.route('/projects/')
@@ -173,7 +192,7 @@ def to_ico():
 
 
 # @app.route('/reset-shift-high-scores/')
-# def test():
+# def reset():
 #     for x in rang(1, 11):
 #         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
 #         redis.set(f'shift_high_score_{x}_user', "default")  # default username is an easter egg
@@ -181,4 +200,5 @@ def to_ico():
 
 
 if __name__ == '__main__':
+    if not os.path.exists('static/MP3Editor'): os.mkdir('static/MP3Editor')
     app.run(debug=os.environ.get('DEVELOPMENT', False))
