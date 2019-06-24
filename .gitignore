@@ -4,3 +4,4 @@ config.txt
 .vscode/settings.json
 .env
 client_secret.json
+static/MP3Editor
