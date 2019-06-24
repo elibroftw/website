@@ -88,7 +88,7 @@ def shift():
     return redirect('https://elijahlopez.itch.io/shift')
 
 
-if os.environ['DEVELOPMENT']:
+if os.environ.get('DEVELOPMENT', False):
     @app.route('/test/', methods=['GET', 'POST'])
     def test():
         if request.method == 'POST' and 'file' in request.files:
