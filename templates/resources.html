@@ -12,14 +12,14 @@
     <meta name="theme-color" content="#111111" />
     <style>
         .link {
-            font-family: monospace;
+            font-family: Montserrat;
             font-size: 20px;
             padding-bottom: 0.5%;
             display: block;
         }
 
         .link:hover {
-            font-size: xx-large;
+            font-size: 1.5em;
         }
     </style>
 </head>
@@ -57,11 +57,31 @@
     </nav>
     <div id="inner">
         <h1>Resources</h1>
-        <p>Here are some resources that I found useful</p>
+        <p>Here are some resources for learning and customizing</p>
         <a class=link href="https://www.python.org/downloads/">Python Download</a>
         <a class=link href="https://cscircles.cemc.uwaterloo.ca/">Learn Python: CS Circles</a>
         <a class=link href="https://www.jetbrains.com/pycharm/download">Pycharm: Python IDE</a>
         <a class=link href="https://code.visualstudio.com/">VS Code: General IDE</a>
+        <a class=link href="https://github.com/master131/BlockTheSpot">Spotify Ad-Blocker</a>
+        <a class=link href="https://rocketdock.com/download">Rocketdock: Windows Macbar</a>
+        <a class=link href="https://www.deviantart.com/elibroftw/art/macOS-Sierra-Rocketdock-762694026">Windows Macbar my custom skin</a>
+        <a class=link href="https://www.microsoft.com/store/productId/9NV4BS3L1H4S">QuickLook: preview files better</a>
+        <a class=link href="https://www.pushbullet.com/apps">Pushbullet: Sync SMS and notifications</a>
+        <a class=link href="https://www.microsoft.com/store/productId/9NBLGGH3ZBJQ">Ditto Clipboard</a>
+        <a class=link href="https://www.rainmeter.net/">Rainmeter: Desktop Customization</a>
+        <a class=link href="https://www.youtube.com/watch?v=NvWj9lPmtTk">Rainmeter Customization</a>
+        <a class=link href="https://www.majorgeeks.com/files/details/keytweak.html">Keytweak: rebind keys; I rebinded Insert to Pause/Play</a>
+        <a class=link href="https://rammichael.com/7-taskbar-tweaker">7+ Taskbar Tweaker: get rid of show desktop button</a>
+        <a class=link href="https://rocketdock.com/download">Youtube Vanced: YouTube Premium on Android</a>
+        <a class=link href="https://www.microsoft.com/store/productId/9NBLGGH516XP">EarTrumpet: Get more volume control on Windows 10</a>
+        <a class=link href="https://github.com/spikespaz/search-deflector/releases">Search Deflector: Start menu search deflector</a>
+        <a class=link href="https://play.google.com/store/apps/details?id=org.mozilla.fenix">Firefox Preview</a>
+        <a class=link href="https://chrome.google.com/webstore/detail/just-read/dgmanlpmmkibanfdgjocnabmcaclkmod">Reader Mode for Chromium</a>
+        <a class=link href="https://www.stardock.com/products/fences/">Fences - Desktop Customization ($)</a>
+        <a class=link href="https://chrome.google.com/webstore/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg">Picture in Picture for Chromium</a>
+        <a class=link href="https://send.firefox.com/">Firefox Send: send files to people with ease</a>
+        <a class=link href="https://dissenter.com/download">Dissenter Extension: Comment section of the internet</a>
+
     </div>
     <span id="switch-text" class="noselect">Toggle Theme</span>
     <label class="switch">
@@ -72,6 +92,31 @@
         <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
     </div>
     <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    window.location.hash = this.id;
+                }
+            });
+        }
+        var hash = window.location.hash;
+        if (hash) {
+            try {
+                document.getElementById(hash.slice(1)).click();
+            } catch (err) {
+                console.log("invalid hash in url");
+            }
+
+        }
+
         function getCookie(name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(';');
