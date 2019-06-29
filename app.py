@@ -149,11 +149,6 @@ def rbhs():
     return render_template('rbhs.html', announcements=announcements)
 
 
-@app.route('/experience/')
-def experience():
-    return render_template('experience.html')
-
-
 @app.route('/to_ico/')
 def to_ico():
     return render_template('to_ico.html')
