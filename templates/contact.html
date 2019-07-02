@@ -20,7 +20,31 @@
     }
     p a:hover {
         color: lightslategray;
-        font-size: xx-large;
+        /* font-size: xx-large; */
+    }
+
+    #btc-address { cursor: copy; }
+    #btc-address>#qr-code { display: none; }
+    #btc-address:hover>#qr-code { display: block; }
+
+    #btc-address .tooltiptext {
+        visibility: hidden;
+        width: 140px;
+        background-color: black;
+        color: #fff;
+        margin-left: 10px;
+        text-align: center;
+        border-radius: 6px;
+        font-size: 20px;
+        padding: 2px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    #btc-address:hover .tooltiptext {
+        visibility: visible;
     }
 </style>
 
@@ -58,6 +82,7 @@
     <div id="inner">
         <h1>Contact</h1>
         <p><a href="mailto:elijahllopezz@email.com">Email</a></p>
+        <p><a>BTC: </a><a id=btc-address onclick="copy_text(this.innerHTML)">16wQyWAZZGArvVZcW6nzRGnAWHAT9rdaoU<span class="tooltiptext">Click to copy</span><span id=qr-code><img src="/static/images/btc.png"/></span></a></p>
     </div>
     <span id="switch-text" class="noselect">Toggle Theme</span>
     <label class="switch">
@@ -67,6 +92,7 @@
     <div id="social-links">
         <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
     </div>
+    <div id="snackbar">BTC address copied!</Address></div>
     <script>
         function getCookie(name) {
             var nameEQ = name + "=";
@@ -114,12 +140,32 @@
             }
         }
 
+        function copy_text(str) {
+            var el = document.createElement('textarea');
+            el.value = str;
+            el.setAttribute('readonly', '');
+            el.style = {position: 'absolute', left: '-9999px'};
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            // Show snackbar
+            var x = document.getElementById("snackbar");
+            // Add the "show" class to DIV
+            x.className = "show";
+            // After 3 seconds, remove the show class from DIV
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+
         if (getCookie("theme") == "true") {
             document.getElementById('theme-toggle').checked = true;
             changeTheme();
         } else {
             document.getElementById("theme-2").disabled = true;
         }
+
+        
     </script>
 </body>
 
