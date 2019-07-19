@@ -61,7 +61,6 @@
             color: black;
             text-decoration: none;
             padding: 12px 0 12px;
-            width: 50%;
             cursor: pointer;
             font-size: 18px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -75,9 +74,9 @@
             font-size: 20px;
         }
 
-        /* .download-btn-left {
-
-    } */
+        .download-btn-left, .download-btn-right {
+            width: 50%;
+        }
 
         .download-btn-right {
             border-left: darkslategrey solid 1px;
@@ -127,7 +126,7 @@
         <div class="panel">
             <p>A modern dark them for browsers</p>
             <div>
-                <a class="download-btn"
+                <a class="download-btn download-btn-left"
                     href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
                     <i class="fa fa-download"></i> Chrome</a>
                 <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/matte-black-v2/">
@@ -138,7 +137,7 @@
         <div class="panel">
             <p>A dark theme for GitHub based on Atom One Dark (I helped out)</p>
             <div>
-                <a class="download-btn"
+                <a class="download-btn download-btn-left"
                     href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp">
                     <i class="fa fa-download"></i> Chrome</a>
                 <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/github-dark-theme/">
@@ -149,7 +148,7 @@
         <div class="panel">
             <p>A dark theme for Google searches</p>
             <div>
-                <a class="download-btn"
+                <a class="download-btn download-btn-left"
                     href="https://chrome.google.com/webstore/detail/dark-theme-for-google-sea/ohhpliipfhicocldcakcgpbbcmkjkian">
                     <i class="fa fa-download"></i> Chrome</a>
                 <a class="download-btn download-btn-right"
@@ -163,6 +162,15 @@
             <div>
                 <a class="download-btn" style="width: 100%;"
                     href="https://github.com/elibroftw/music-caster">
+                    <i class="fa fa-download"></i> Download on GitHub</a>
+            </div>
+        </div>
+        <button class="accordion" id="music-file-editor">Music File Editor</button>
+        <div class="panel">
+            <p>A (console) application for setting metadata for (currenty only) mp3 files</p>
+            <div>
+                <a class="download-btn" style="width: 100%;"
+                    href="https://github.com/elibroftw/mp3-editor">
                     <i class="fa fa-download"></i> Download on GitHub</a>
             </div>
         </div>
