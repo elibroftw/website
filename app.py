@@ -43,7 +43,8 @@ def about(): return render_template('about.html')
 
 
 @app.route('/resume/')
-def resume(): return render_template('resume.html')
+def resume():
+    return render_template('resume.html')
 
 
 @app.route('/programs/')  # todo: turn this into a drop down menu
