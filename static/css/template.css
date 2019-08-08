@@ -219,13 +219,13 @@ p {
     display: none;
 }
 
-u1 {
+#mobile-nav-panel {
     display: none;
     margin-top: 1.5em;
     border-radius: 0;
 }
 
-u1:hover {
+#mobile-nav-panel:hover {
     color: white;
     background-color: transparent;
 }
