@@ -6,8 +6,16 @@ from contextlib import suppress
 from functions import get_album_art, get_announcements
 from werkzeug.utils import secure_filename
 import sys
+import requests
 # from ib_economics import get_template_data
 announcements = []
+
+url = 'https://cssminifier.com/raw'
+data = {'input': open('static/css/style.css', 'rb').read()}
+r = requests.post(url, data=data)
+with open('static/css/style.css', 'w') as f:
+    f.write(r.text)
+
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.environ.get('DEVELOPMENT', False) else 604800
@@ -131,15 +139,16 @@ def rbhs():
     global announcements
     today = date.today()
     d2 = os.environ.get('RBHS')
-    if d2: d2 = datetime.strptime(d2, '%d/%m/%Y')
+    if d2 is not None: d2 = datetime.strptime(d2, '%d/%m/%Y').date()
     if d2 is None or not announcements or d2 < today:
-        temp = "<p style='color: white;'>There are no announcements for today</p>"
-        with suppress(Exception):
-            announcements = get_announcements()
+        announcements = get_announcements()
+        if announcements:
+            temp = ''
             for title, desc in announcements:
                 temp += f'<button class="accordion">{title}</button><div class="panel"><p>{desc}</p></div>'
             os.environ['RBHS'] = today.strftime('%d/%m/%Y')
-        announcements = temp
+            announcements = temp
+        else: announcements = "<p style='color: white;'>There are no announcements for today</p>"
     return render_template('rbhs.html', announcements=announcements)
 
 

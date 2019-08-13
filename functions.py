@@ -46,4 +46,6 @@ def get_announcements():
     url = f'https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values/%20FilteredForm!$A$4:$YY'
     r = requests.get(url, params={'key': GOOGLE_API_KEY})
     announcements = json.loads(r.text)['values']
+    for a in announcements.copy():
+        if len(a) != 2: announcements.remove(a)
     return announcements  # [ [TITLE, DESC], [TITLE, DESC] ]
