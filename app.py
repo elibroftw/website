@@ -49,7 +49,11 @@ def resume():
 
 
 @app.route('/programs/')  # todo: turn this into a drop down menu
-def programs(): return render_template('programs.html')
+def programs(): return render_template('repls.html')
+
+
+@app.route('/repls/')
+def programs(): return render_template('repls.html')
 
 
 @app.route('/programs/exxon/')  # todo
