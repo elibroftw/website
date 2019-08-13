@@ -48,12 +48,9 @@ def resume():
     return render_template('resume.html')
 
 
-@app.route('/programs/')  # todo: turn this into a drop down menu
-def programs(): return render_template('repls.html')
-
-
 @app.route('/repls/')
-def programs(): return render_template('repls.html')
+@app.route('/programs/')  # todo: turn this into a drop down menu
+def repls(): return render_template('repls.html')
 
 
 @app.route('/programs/exxon/')  # todo
