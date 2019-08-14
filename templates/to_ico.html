@@ -3,8 +3,7 @@
 <head>
     <title>404 Error - Elijah Lopez</title>
     <link rel="icon" type="image/png" href="/static/images/favicon.png">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link id="theme-2" rel="stylesheet" href="/static/css/theme_2.css">
+    <link rel="stylesheet" id="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,7 +19,7 @@
             <a href="/resume/">resume</a>
             <a href="/software/">software</a>
             <a href="/resources/">resources</a>
-            <a href="/programs/">repls</a>
+            <a href="/repls/">repls</a>
             <a href="/search-album-art/">search album art</a>
             <a href="/contact/">contact</a>
         </ul>
@@ -30,7 +29,7 @@
         <a href="/resume/">resume</a>
         <a href="/software/">software</a>
         <a href="/resources/">resources</a>
-        <a href="/programs/">repls</a>
+        <a href="/repls/">repls</a>
         <a href="/search-album-art/">search album art</a>
         <a href="/contact/">contact</a>
         <div class="dropdown">
@@ -91,22 +90,19 @@
         }
 
         function changeTheme() {
+            stylesheet = document.getElementById("stylesheet")
             if (document.getElementById('theme-toggle').checked) {
-                document.getElementById("theme-2").disabled = false;
-                document.body.style.backgroundImage = "url('/static/images/bg 2.jpg')";
-                setCookie("elijah-lopez-website-theme", "true", 365);
+                stylesheet.setAttribute('href', '/static/css/dark.css')
+                setCookie("theme", "true", 365);
             } else {
-                document.body.style.backgroundImage = "";
-                document.getElementById("theme-2").disabled = true;
-                setCookie("elijah-lopez-website-theme", "false", 365);
+                stylesheet.setAttribute('href', '/static/css/style.css')
+                setCookie("theme", "false", 365);
             }
         }
 
-        if (getCookie("elijah-lopez-website-theme") == "true") {
+        if (getCookie("theme") == "true") {
             document.getElementById('theme-toggle').checked = true;
             changeTheme();
-        } else {
-            document.getElementById("theme-2").disabled = true;
         }
     </script>
 </body>

@@ -16,6 +16,11 @@ r = requests.post(url, data=data)
 with open('static/css/style.css', 'w') as f:
     f.write(r.text)
 
+data = {'input': open('static/css/dark.css', 'rb').read()}
+r = requests.post(url, data=data)
+with open('static/css/dark.css', 'w') as f:
+    f.write(r.text)
+
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.environ.get('DEVELOPMENT', False) else 604800
