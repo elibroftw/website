@@ -1,18 +1,21 @@
 /* Change color of dropdown links on hover */
 /* TODO: add border left for dropdown content*/
 
-#desktop-nav>a:hover, .dropdown:hover .dropbtn {
+#desktop-nav>a:hover,
+.dropdown:hover .dropbtn {
     box-shadow: none;
     color: black;
     background-color: white;
 }
 
-#desktop-nav>a, .dropdown .dropbtn {
+#desktop-nav>a,
+.dropdown .dropbtn {
     color: white;
 }
 
 .dropdown-content a {
     border-left: 1px solid lightgray;
+    color: black;
 }
 
 .dropdown-content a:hover {
@@ -24,10 +27,12 @@
     #desktop-nav {
         background-color: rgba(0, 0, 0, 0.8);
     }
+
     .dropdown-content a:hover {
         background-color: #E8E8EE;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+
     .dropdown-content a {
         border-left: none;
         border-top: 1px solid #E8E8EE;
