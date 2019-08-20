@@ -30,7 +30,6 @@ def get_album_art(artist, track, access_token=None) -> str:
     return r.json()['tracks']['items'][0]['album']['images'][0]['url']
 
 
-
 def img_to_ico(path):
     base = os.path.basename(path)
     img_name = os.path.splitext(base)[0]
