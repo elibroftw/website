@@ -42,8 +42,26 @@
         z-index: 1;
     }
 
+    #btc-address::before {
+        content: '16wQyWAZZGArvVZcW6nzRGnAWHAT9rdaoU';
+    }
+
     #btc-address:hover .tooltiptext {
         visibility: visible;
+    }
+
+    @media screen and (max-width:640px) {
+        #btc-address::before {
+            content: 'Click to copy address';
+        }
+
+        .tooltiptext {
+            display: none;
+        }
+
+        #btc-address>#qr-code {
+            display: block;
+        }
     }
 </style>
 
@@ -81,7 +99,7 @@
     <div id="inner">
         <h1>Contact</h1>
         <p><a href="mailto:elijahllopezz@email.com">Email</a></p>
-        <p><a>BTC: </a><a id=btc-address onclick="copy_text(this.innerHTML)">16wQyWAZZGArvVZcW6nzRGnAWHAT9rdaoU<span class="tooltiptext">Click to copy</span><span id=qr-code><img src="/static/images/btc.png"/></span></a></p>
+        <p><a>BTC: </a><a id=btc-address onclick="copy_text()"><span class="tooltiptext">Click to copy</span><span id=qr-code><img src="/static/images/btc.png"/></span></a></p>
     </div>
     <span id="switch-text" class="noselect">Toggle Theme</span>
     <label class="switch">
@@ -138,16 +156,15 @@
             }
         }
 
-        function copy_text(str) {
+        function copy_text() {
             var el = document.createElement('textarea');
-            el.value = str;
+            el.value = '16wQyWAZZGArvVZcW6nzRGnAWHAT9rdaoU';
             el.setAttribute('readonly', '');
             el.style = {position: 'absolute', left: '-9999px'};
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-
             // Show snackbar
             var x = document.getElementById("snackbar");
             // Add the "show" class to DIV
