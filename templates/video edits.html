@@ -1,122 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .links {
+        margin-top: 10px;
+        text-decoration: none;
+        color: #75bdec;
+    }
 
-<head>
-    <title>Video Edits - Elijah Lopez</title>
-    <link rel="icon" type="image/png" href="/static/images/favicon.png">
-    <link rel="stylesheet" id="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
-    <style>
-        .links {
-            margin-top: 10px;
-            text-decoration: none;
-            color: #75bdec;
-        }
-
-        .links:hover {
-            color: #e0e030;
-            color: #00ab44;
-        }
-    </style>
-</head>
-
-<body>
-    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-        <span id="mobile-nav-label">menu</span>
-        <ul id="mobile-nav-panel">
-            <a href="/">home</a>
-            <a href="/resume/">resume</a>
-            <a href="/software/">software</a>
-            <a href="/resources/">resources</a>
-            <a href="/repls/">repls</a>
-            <a href="/search-album-art/">search album art</a>
-            <a href="/contact/">contact</a>
-        </ul>
-    </nav>
-    <nav id="desktop-nav" class="noselect">
-        <a href="/">home</a>
-        <a href="/resume/">resume</a>
-        <a href="/software/">software</a>
-        <a href="/resources/">resources</a>
-        <a href="/repls/">repls</a>
-        <a href="/search-album-art/">search album art</a>
-        <a href="/contact/">contact</a>
-        <div class="dropdown">
-            <button class="dropbtn">games
-                <i class="fas fa-caret-right"></i>
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/shift/">shift</a>
-            </div>
-        </div>
-    </nav>
-    <div id="inner">
-        <h1>Edited Videos</h1>
-        <p>Preview images with links to mega go here</p>
-    </div>
-    <span id="switch-text" class="noselect">Toggle Theme</span>
-    <label class="switch">
-        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-        <span class="slider round"></span>
-    </label>
-    <div id="social-links">
-        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
-    </div>
-    <script>
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        var nav_panel = document.getElementById("mobile-nav-panel");
-        var menu = document.getElementById("mobile-nav-label");
-
-        function mobileNavigation() {
-            if (nav_panel.style.display == "block") {
-                nav_panel.style.display = "none";
-                menu.innerHTML = "MENU";
-            } else {
-                nav_panel.style.display = "block";
-                menu.innerHTML = "CLOSE";
-            }
-        }
-
-        function changeTheme() {
-            stylesheet = document.getElementById("stylesheet")
-            if (document.getElementById('theme-toggle').checked) {
-                stylesheet.setAttribute('href', '/static/css/dark.css')
-                setCookie("theme", "true", 365);
-            } else {
-                stylesheet.setAttribute('href', '/static/css/style.css')
-                setCookie("theme", "false", 365);
-            }
-        }
-
-        if (getCookie("theme") == "true") {
-            document.getElementById('theme-toggle').checked = true;
-            changeTheme();
-        }
-    </script>
-</body>
-
-</html>
+    .links:hover {
+        color: #e0e030;
+        color: #00ab44;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Video Edits{% endblock %}</h1>
+<form action="/get_ico" class="dropzone" id="my-awesome-dropzone"></form>
+{% endblock %}

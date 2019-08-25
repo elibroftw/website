@@ -414,6 +414,10 @@ input:checked+.slider:before {
         font-size: 40px
     }
 
+    h1 a:hover {
+        font-size: 50px
+    }
+
     #mobile-nav a {
         width: 100%;
         display: block;

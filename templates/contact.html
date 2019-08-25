@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Contact - Elijah Lopez</title>
-    <link rel="icon" type="image/png" href="/static/images/favicon.png">
-    <link rel="stylesheet" id="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
-</head>
+{% extends 'base.html' %}
+{% block style %}
 <style>
     p a {
         text-decoration: none;
@@ -17,14 +7,23 @@
         font-size: x-large;
         transition: 50ms;
     }
+
     p a:hover {
         color: lightslategray;
         /* font-size: xx-large; */
     }
 
-    #btc-address { cursor: copy; }
-    #btc-address>#qr-code { display: none; }
-    #btc-address:hover>#qr-code { display: block; }
+    #btc-address {
+        cursor: copy;
+    }
+
+    #btc-address>#qr-code {
+        display: none;
+    }
+
+    #btc-address:hover>#qr-code {
+        display: block;
+    }
 
     #btc-address .tooltiptext {
         visibility: hidden;
@@ -64,120 +63,33 @@
         }
     }
 </style>
-
-<body>
-    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-        <span id="mobile-nav-label">menu</span>
-        <ul id="mobile-nav-panel">
-            <a href="/">home</a>
-            <a href="/resume/">resume</a>
-            <a href="/software/">software</a>
-            <a href="/resources/">resources</a>
-            <a href="/repls/">repls</a>
-            <a href="/search-album-art/">search album art</a>
-            <a href="/contact/">contact</a>
-        </ul>
-    </nav>
-    <nav id="desktop-nav" class="noselect">
-        <a href="/">home</a>
-        <a href="/resume/">resume</a>
-        <a href="/software/">software</a>
-        <a href="/resources/">resources</a>
-        <a href="/repls/">repls</a>
-        <a href="/search-album-art/">search album art</a>
-        <a href="/contact/">contact</a>
-        <div class="dropdown">
-            <button class="dropbtn">games
-                <i class="fas fa-caret-right"></i>
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/shift/">shift</a>
-            </div>
-        </div>
-    </nav>
-    <div id="inner">
-        <h1>Contact</h1>
-        <p><a href="mailto:elijahllopezz@email.com">Email</a></p>
-        <p><a>BTC: </a><a id=btc-address onclick="copy_text()"><span class="tooltiptext">Click to copy</span><span id=qr-code><img src="/static/images/btc.png"/></span></a></p>
-    </div>
-    <span id="switch-text" class="noselect">Toggle Theme</span>
-    <label class="switch">
-        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-        <span class="slider round"></span>
-    </label>
-    <div id="social-links">
-        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
-    </div>
-    <div id="snackbar">BTC address copied!</Address></div>
-    <script>
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        var nav_panel = document.getElementById("mobile-nav-panel");
-        var menu = document.getElementById("mobile-nav-label");
-
-        function mobileNavigation() {
-            if (nav_panel.style.display == "block") {
-                nav_panel.style.display = "none";
-                menu.innerHTML = "MENU";
-            } else {
-                nav_panel.style.display = "block";
-                menu.innerHTML = "CLOSE";
-            }
-        }
-
-        function changeTheme() {
-            stylesheet = document.getElementById("stylesheet")
-            if (document.getElementById('theme-toggle').checked) {
-                stylesheet.setAttribute('href', '/static/css/dark.css')
-                setCookie("theme", "true", 365);
-            } else {
-                stylesheet.setAttribute('href', '/static/css/style.css')
-                setCookie("theme", "false", 365);
-            }
-        }
-
-        function copy_text() {
-            var el = document.createElement('textarea');
-            el.value = '16wQyWAZZGArvVZcW6nzRGnAWHAT9rdaoU';
-            el.setAttribute('readonly', '');
-            el.style = {position: 'absolute', left: '-9999px'};
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            // Show snackbar
-            var x = document.getElementById("snackbar");
-            // Add the "show" class to DIV
-            x.className = "show";
-            // After 3 seconds, remove the show class from DIV
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        }
-
-        if (getCookie("theme") == "true") {
-            document.getElementById('theme-toggle').checked = true;
-            changeTheme();
-        }
-    </script>
-</body>
-
-</html>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Contact{% endblock %}</h1>
+<p><a href="mailto:elijahllopezz@email.com">Email</a></p>
+<p><a>BTC: </a><a id=btc-address onclick="copy_text()"><span class="tooltiptext">Click to copy</span>
+    <span id=qr-code><img src="/static/images/btc.png" /></span></a></p>
+{% endblock %}
+{% block more_content %}
+<div id="snackbar">BTC address copied!</Address></div>
+{% endblock %}
+{% block script %}
+<script>
+    function copy_text() {
+        var el = document.createElement('textarea');
+        el.value = '16wQyWAZZGArvVZcW6nzRGnAWHAT9rdaoU';
+        el.setAttribute('readonly', '');
+        el.style = { position: 'absolute', left: '-9999px' };
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        // Show snackbar
+        var x = document.getElementById("snackbar");
+        // Add the "show" class to DIV
+        x.className = "show";
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+</script>
+{% endblock %}
