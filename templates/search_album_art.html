@@ -1,210 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    #album-cover {
+        max-width: 500px;
+    }
 
-<head>
-    <title>Search Album Art - Elijah Lopez</title>
-    <link rel="icon" type="image/png" href="/static/images/favicon.png">
-    <link rel="stylesheet" id="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
-</head>
-    <style>
+    #search::after {
+        content: "\A\A";
+    }
+
+    input {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid #FFFFFF;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        color: #FFFFFF;
+        transition: all 0.2s;
+        background-color: transparent;
+    }
+
+    #search {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid #FFFFFF;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        color: #FFFFFF;
+        text-align: center;
+        transition: all 200ms;
+        background-color: transparent;
+    }
+
+    #search:hover,
+    input:hover,
+    input:active,
+    input:focus,
+    input:focus-within {
+        color: #000000;
+        background-color: #FFFFFF;
+    }
+
+    @media screen and (max-width: 1024px) {
         #album-cover {
-            max-width: 500px;
+            max-width: 400px;
         }
+    }
 
-        #search::after {
-            content: "\A\A";
+    @media screen and (max-width: 640px) {
+        #album-cover {
+            max-width: 300px;
         }
+    }
 
-        @media screen and (max-width: 1024px) {
-            #album-cover {
-                max-width: 400px;
-            }
-        }
-
-        @media screen and (max-width: 640px) {
-            #album-cover {
-                max-width: 300px;
-            }
+    @media all and (max-width:30em) {
+        #search {
+            display: block;
+            margin: 0.4em auto;
+            width: 13.1em;
         }
 
         input {
-            display: inline-block;
-            padding: 0.35em 1.2em;
-            border: 0.1em solid #FFFFFF;
-            margin: 0 0.3em 0.3em 0;
-            border-radius: 0.12em;
-            box-sizing: border-box;
-            text-decoration: none;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 300;
-            color: #FFFFFF;
-            transition: all 0.2s;
-            background-color: transparent;
-        }
-
-        #search {
-            display: inline-block;
-            padding: 0.35em 1.2em;
-            border: 0.1em solid #FFFFFF;
-            margin: 0 0.3em 0.3em 0;
-            border-radius: 0.12em;
-            box-sizing: border-box;
-            text-decoration: none;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 300;
-            color: #FFFFFF;
+            display: block;
+            margin: 0.4em auto;
             text-align: center;
-            transition: all 200ms;
-            background-color: transparent;
         }
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Search Album Art{% endblock %}</h1>
+<form action="/search-album-art" style="margin-bottom: 1em">
+    <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
+    <input id="track-input" type=text name=track placeholder="Track name" required>
+    <button id="search">Search</button>
+</form>
+<img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" />
+{% endblock %}
+{% block script %}
+<script>
+    if ("{{image_url}}" == "image not found") {
+        document.getElementById("album-cover").style.display = "none";
+    }
 
-        #search:hover, input:hover, input:active, input:focus,  input:focus-within {
-            color: #000000;
-            background-color: #FFFFFF;
+    var input = document.getElementById("track-input");
+    input.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("search").click();
         }
+    });
 
-        @media all and (max-width:30em) {
-            #search {
-                display: block;
-                margin: 0.4em auto;
-                width: 15.5em;
-            }
-            input {
-                display: block;
-                margin: 0.4em auto;
-                text-align: center;
-            }
+    // TODO
+    var nav = document.getElementById("desktop-nav");
+    var sticky = nav.offsetTop;
+    var top = document.getElementById("top");
+    function stickyScroll() {
+        if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky");
+            top.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+            top.classList.remove("sticky");
         }
-    </style>
-
-<body>
-    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-        <span id="mobile-nav-label">menu</span>
-        <ul id="mobile-nav-panel">
-            <a href="/">home</a>
-            <a href="/resume/">resume</a>
-            <a href="/software/">software</a>
-            <a href="/resources/">resources</a>
-            <a href="/repls/">repls</a>
-            <a href="/search-album-art/">search album art</a>
-            <a href="/contact/">contact</a>
-        </ul>
-    </nav>
-    <nav id="desktop-nav" class="noselect">
-        <a href="/">home</a>
-        <a href="/resume/">resume</a>
-        <a href="/software/">software</a>
-        <a href="/resources/">resources</a>
-        <a href="/repls/">repls</a>
-        <a href="/search-album-art/">search album art</a>
-        <a href="/contact/">contact</a>
-        <div class="dropdown">
-            <button class="dropbtn">games
-                <i class="fas fa-caret-right"></i>
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/shift/">shift</a>
-            </div>
-        </div>
-    </nav>
-    <div id="inner">
-        <h1>Search for Album Art</h1>
-        <form action="/search-album-art" style="margin-bottom: 1em">
-            <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
-            <input id="track-input" type=text name=track placeholder="Track name" required>
-            <button id="search">Search</button>
-        </form>
-        <img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" />
-    </div>
-    <span id="switch-text" class="noselect">Toggle Theme</span>
-    <label class="switch">
-        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-        <span class="slider round"></span>
-    </label>
-    <div id="social-links">
-        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
-    </div>
-    <script>
-        if ("{{image_url}}" == "image not found") {
-            document.getElementById("album-cover").style.display = "none";
-        }
-
-        var input = document.getElementById("track-input");
-        input.addEventListener("keyup", function (event) {
-            event.preventDefault();
-            if (event.keyCode === 13) {
-                document.getElementById("search").click();
-            }
-        });
-
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        var nav_panel = document.getElementById("mobile-nav-panel");
-        var menu = document.getElementById("mobile-nav-label");
-
-        function mobileNavigation() {
-            if (nav_panel.style.display == "block") {
-                nav_panel.style.display = "none";
-                menu.innerHTML = "MENU";
-            } else {
-                nav_panel.style.display = "block";
-                menu.innerHTML = "CLOSE";
-            }
-        }
-
-        function changeTheme() {
-            stylesheet = document.getElementById("stylesheet")
-            if (document.getElementById('theme-toggle').checked) {
-                stylesheet.setAttribute('href', '/static/css/dark.css')
-                setCookie("theme", "true", 365);
-            } else {
-                stylesheet.setAttribute('href', '/static/css/style.css')
-                setCookie("theme", "false", 365);
-            }
-        }
-
-        if (getCookie("theme") == "true") {
-            document.getElementById('theme-toggle').checked = true;
-            changeTheme();
-        }
-
-        var nav = document.getElementById("desktop-nav");
-        var sticky = nav.offsetTop;
-        var top = document.getElementById("top");
-        function stickyScroll() {
-            if (window.pageYOffset >= sticky) {
-                header.classList.add("sticky");
-                top.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-                top.classList.remove("sticky");
-            }
-        }
-    </script>
-</body>
-
-</html>
+    }
+</script>
+{% endblock %}

@@ -113,6 +113,10 @@ if os.environ.get('DEVELOPMENT', False):
                 # do other stuff
                 return url_for('static', filename=f'MP3Editor/{save_name}')
         return render_template('test.html')
+    
+    @app.route('/test2/')
+    def test2():
+        return render_template('test2.html')
 
 
 @app.route('/done/<filename>', methods=['GET', 'POST'])
@@ -130,7 +134,6 @@ def software():
 def todo():
     # TODO: I want this to be a todo list that will automatically update the github repo so that it gets carried on
     # TODO: I would have to implement a username and password to only allow me to edit it
-    # TODO: RBHS announcements
     # TODO: Learn databases
     return render_template('404.html')
 
@@ -150,8 +153,9 @@ def rbhs():
         announcements = get_announcements()
         if announcements:
             temp = ''
+            i = 1
             for title, desc in announcements:
-                temp += f'<button class="accordion">{title}</button><div class="panel"><p>{desc}</p></div>'
+                temp += f'<button class="accordion" id="no.{i}">{title}</button><div class="panel"><p>{desc}</p></div>'
             os.environ['RBHS'] = today.strftime('%d/%m/%Y')
             announcements = temp
         else: announcements = "<p style='color: white;'>There are no announcements for today</p>"

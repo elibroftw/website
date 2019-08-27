@@ -1,264 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .accordion {
+        color: #141414;
+        cursor: pointer;
+        padding: 18px;
+        width: 90%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 20px;
+        transition: 0.2s;
+        font-family: Verdana;
+        border-top: #ccc solid 1px
+    }
 
-<head>
-    <title>Software - Elijah Lopez</title>
-    <link rel="icon" type="image/png" href="/static/images/favicon.png">
-    <link rel="stylesheet" id="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
-</head>
-    <style>
-        .accordion {
-            color: #141414;
-            cursor: pointer;
-            padding: 18px;
-            width: 90%;
-            border: none;
-            text-align: center;
-            outline: none;
-            font-size: 20px;
-            transition: 0.2s;
-            font-family: Verdana;
-            border-top: #ccc solid 1px
-        }
+    .active,
+    .accordion:hover {
+        background-color: #ccc;
+    }
 
-        .active,
-        .accordion:hover {
-            background-color: #ccc;
-        }
+    .accordion:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
 
-        .accordion:after {
-            content: '\002B';
-            color: #777;
-            font-weight: bold;
-            float: right;
-            margin-left: 5px;
-        }
+    .active:after {
+        content: "\2212";
+    }
 
-        .active:after {
-            content: "\2212";
-        }
+    .panel {
+        width: 90%;
+        margin: auto;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.1s ease-out;
+        text-align: center;
+        font-family: Calibri;
+        color: black;
+    }
 
-        .panel {
-            width: 90%;
-            margin: auto;
-            background-color: white;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.1s ease-out;
-            text-align: center;
-            font-family: Calibri;
-            color: black;
-        }
+    .download-btn {
+        background-color: DodgerBlue;
+        border: none;
+        color: black;
+        text-decoration: none;
+        padding: 12px 0 12px;
+        cursor: pointer;
+        font-size: 18px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        float: left;
+        bottom: 0;
+        transition-duration: 200ms;
+    }
 
-        .download-btn {
-            background-color: DodgerBlue;
-            border: none;
-            color: black;
-            text-decoration: none;
-            padding: 12px 0 12px;
-            cursor: pointer;
-            font-size: 18px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            float: left;
-            bottom: 0;
-            transition-duration: 200ms;
-        }
+    .download-btn:hover {
+        background-color: RoyalBlue;
+        font-size: 20px;
+    }
 
-        .download-btn:hover {
-            background-color: RoyalBlue;
-            font-size: 20px;
-        }
+    .download-btn-left,
+    .download-btn-right {
+        width: 50%;
+    }
 
-        .download-btn-left, .download-btn-right {
-            width: 50%;
-        }
+    .download-btn-right {
+        border-left: darkslategrey solid 1px;
+        margin-left: -1px;
+    }
 
-        .download-btn-right {
-            border-left: darkslategrey solid 1px;
-            margin-left: -1px;
-        }
-
-        p {
-            color: black;
-            margin: 0.5em 0;
-        }
-    </style>
-
-<body>
-    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-        <span id="mobile-nav-label">menu</span>
-        <ul id="mobile-nav-panel">
-            <a href="/">home</a>
-            <a href="/resume/">resume</a>
-            <a href="/software/">software</a>
-            <a href="/resources/">resources</a>
-            <a href="/repls/">repls</a>
-            <a href="/search-album-art/">search album art</a>
-            <a href="/contact/">contact</a>
-        </ul>
-    </nav>
-    <nav id="desktop-nav" class="noselect">
-        <a href="/">home</a>
-        <a href="/resume/">resume</a>
-        <a href="/software/">software</a>
-        <a href="/resources/">resources</a>
-        <a href="/repls/">repls</a>
-        <a href="/search-album-art/">search album art</a>
-        <a href="/contact/">contact</a>
-        <div class="dropdown">
-            <button class="dropbtn">games
-                <i class="fas fa-caret-right"></i>
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/shift/">shift</a>
-            </div>
-        </div>
-    </nav>
-    <div id="inner">
-        <h1>Software</h1>
-        <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
-        <div class="panel">
-            <p>A modern dark them for browsers</p>
-            <div>
-                <a class="download-btn download-btn-left"
-                    href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
-                    <i class="fa fa-download"></i> Chrome</a>
-                <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/matte-black-v2/">
-                    <i class="fa fa-download"></i> Firefox</a>
-            </div>
-        </div>
-        <button class="accordion" id="github-dark-theme">GitHub Dark Theme</button>
-        <div class="panel">
-            <p>A dark theme for GitHub based on Atom One Dark (I helped out)</p>
-            <div>
-                <a class="download-btn download-btn-left"
-                    href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp">
-                    <i class="fa fa-download"></i> Chrome</a>
-                <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/github-dark-theme/">
-                    <i class="fa fa-download"></i> Firefox</a>
-            </div>
-        </div>
-        <button class="accordion" id="google-dark-theme">Google Dark Theme</button>
-        <div class="panel">
-            <p>A dark theme for Google searches</p>
-            <div>
-                <a class="download-btn download-btn-left"
-                    href="https://chrome.google.com/webstore/detail/dark-theme-for-google-sea/ohhpliipfhicocldcakcgpbbcmkjkian">
-                    <i class="fa fa-download"></i> Chrome</a>
-                <a class="download-btn download-btn-right"
-                    href="https://addons.mozilla.org/addon/dark-theme-for-google-searches/">
-                    <i class="fa fa-download"></i> Firefox</a>
-            </div>
-        </div>
-        <button class="accordion" id="music-caster">Music Caster</button>
-        <div class="panel">
-            <p>A Windows app that will let you cast your local music to a Google Cast Device</p>
-            <div>
-                <a class="download-btn" style="width: 100%;"
-                    href="https://github.com/elibroftw/music-caster">
-                    <i class="fa fa-download"></i> Download on GitHub</a>
-            </div>
-        </div>
-        <button class="accordion" id="music-file-editor">Music File Editor</button>
-        <div class="panel">
-            <p>A (console) application for setting metadata for (currenty only) mp3 files</p>
-            <div>
-                <a class="download-btn" style="width: 100%;"
-                    href="https://github.com/elibroftw/mp3-editor">
-                    <i class="fa fa-download"></i> Download on GitHub</a>
-            </div>
-        </div>
+    p {
+        color: black;
+        margin: 0.5em 0;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Software{% endblock %}</h1>
+<button class="accordion" id="matte-black-theme">Matte Black Theme</button>
+<div class="panel">
+    <p>A modern dark them for browsers</p>
+    <div>
+        <a class="download-btn download-btn-left"
+            href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
+            <i class="fa fa-download"></i> Chrome</a>
+        <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/matte-black-v2/">
+            <i class="fa fa-download"></i> Firefox</a>
     </div>
-    <span id="switch-text" class="noselect">Toggle Theme</span>
-    <label class="switch">
-        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-        <span class="slider round"></span>
-    </label>
-    <div id="social-links">
-        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
+</div>
+<button class="accordion" id="github-dark-theme">GitHub Dark Theme</button>
+<div class="panel">
+    <p>A dark theme for GitHub based on Atom One Dark (I helped out)</p>
+    <div>
+        <a class="download-btn download-btn-left"
+            href="https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp">
+            <i class="fa fa-download"></i> Chrome</a>
+        <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/github-dark-theme/">
+            <i class="fa fa-download"></i> Firefox</a>
     </div>
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
+</div>
+<button class="accordion" id="google-dark-theme">Google Dark Theme</button>
+<div class="panel">
+    <p>A dark theme for Google searches</p>
+    <div>
+        <a class="download-btn download-btn-left"
+            href="https://chrome.google.com/webstore/detail/dark-theme-for-google-sea/ohhpliipfhicocldcakcgpbbcmkjkian">
+            <i class="fa fa-download"></i> Chrome</a>
+        <a class="download-btn download-btn-right"
+            href="https://addons.mozilla.org/addon/dark-theme-for-google-searches/">
+            <i class="fa fa-download"></i> Firefox</a>
+    </div>
+</div>
+<button class="accordion" id="music-caster">Music Caster</button>
+<div class="panel">
+    <p>A Windows app that will let you cast your local music to a Google Cast Device</p>
+    <div>
+        <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/music-caster">
+            <i class="fa fa-download"></i> Download on GitHub</a>
+    </div>
+</div>
+<button class="accordion" id="music-file-editor">Music File Editor</button>
+<div class="panel">
+    <p>A (console) application for setting metadata for (currenty only) mp3 files</p>
+    <div>
+        <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/mp3-editor">
+            <i class="fa fa-download"></i> Download on GitHub</a>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                    history.pushState("", document.title, window.location.pathname + window.location.search);
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                    window.location.hash = this.id;
-                }
-            });
-        }
-        var hash = window.location.hash;
-        if (hash) {
-            try {
-                document.getElementById(hash.slice(1)).click();
-            } catch (err) {
-                console.log("invalid hash in url");
-            }
-
-        }
-
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        var nav_panel = document.getElementById("mobile-nav-panel");
-        var menu = document.getElementById("mobile-nav-label");
-
-        function mobileNavigation() {
-            if (nav_panel.style.display == "block") {
-                nav_panel.style.display = "none";
-                menu.innerHTML = "MENU";
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+                // history.pushState("", document.title, window.location.pathname + window.location.search);
+                history.back();
             } else {
-                nav_panel.style.display = "block";
-                menu.innerHTML = "CLOSE";
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                window.location.hash = this.id;
             }
+        });
+    }
+    var hash = window.location.hash;
+    if (hash) {
+        try {
+            document.getElementById(hash.slice(1)).click();
+        } catch (err) {
+            console.log("invalid hash in url");
         }
 
-        function changeTheme() {
-            stylesheet = document.getElementById("stylesheet")
-            if (document.getElementById('theme-toggle').checked) {
-                stylesheet.setAttribute('href', '/static/css/dark.css')
-                setCookie("theme", "true", 365);
-            } else {
-                stylesheet.setAttribute('href', '/static/css/style.css')
-                setCookie("theme", "false", 365);
-            }
-        }
-
-        if (getCookie("theme") == "true") {
-            document.getElementById('theme-toggle').checked = true;
-            changeTheme();
-        }
-    </script>
-</body>
-
-</html>
+    }
+</script>
+{% endblock %}
