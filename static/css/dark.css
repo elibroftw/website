@@ -479,8 +479,8 @@ input:checked+.slider:before {
 
 #snackbar.show {
     visibility: visible;
-    -webkit-animation: fadein .5s, fadeout .5s 2.5s;
-    animation: fadein .5s, fadeout .5s 2.5s
+    -webkit-animation: fadein .5s, fadeout .5s 2s;
+    animation: fadein .5s, fadeout .5s 2s
 }
 
 @-webkit-keyframes fadein {
@@ -521,7 +521,7 @@ input:checked+.slider:before {
 
 @keyframes fadeout {
     from {
-        bottom: 30px;
+        bottom: 60px;
         opacity: 1
     }
 
