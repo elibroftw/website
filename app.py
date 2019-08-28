@@ -9,21 +9,23 @@ import sys
 import requests
 # from ib_economics import get_template_data
 announcements = []
+DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 
-url = 'https://cssminifier.com/raw'
-data = {'input': open('static/css/style.css', 'rb').read()}
-r = requests.post(url, data=data)
-with open('static/css/style.css', 'w') as f:
-    f.write(r.text)
+if not DEVELOPMENT_SETTING:
+    url = 'https://cssminifier.com/raw'
+    data = {'input': open('static/css/style.css', 'rb').read()}
+    r = requests.post(url, data=data)
+    with open('static/css/style.css', 'w') as f:
+        f.write(r.text)
 
-data = {'input': open('static/css/dark.css', 'rb').read()}
-r = requests.post(url, data=data)
-with open('static/css/dark.css', 'w') as f:
-    f.write(r.text)
+    data = {'input': open('static/css/dark.css', 'rb').read()}
+    r = requests.post(url, data=data)
+    with open('static/css/dark.css', 'w') as f:
+        f.write(r.text)
 
 
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if os.environ.get('DEVELOPMENT', False) else 604800
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEVELOPMENT_SETTING else 604800
 Compress(app)
 
 
@@ -98,7 +100,7 @@ def shift():
     return redirect('https://elijahlopez.itch.io/shift')
 
 
-if os.environ.get('DEVELOPMENT', False):
+if DEVELOPMENT_SETTING:
     @app.route('/test/', methods=['GET', 'POST'])
     def test():
         if request.method == 'POST' and 'file' in request.files:

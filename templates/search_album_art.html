@@ -80,7 +80,7 @@
 <h1>{% block title %}Search Album Art{% endblock %}</h1>
 <form action="/search-album-art" style="margin-bottom: 1em">
     <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
-    <input id="track-input" type=text name=track placeholder="Track name" required>
+    <input id="track-input" type=text name=track placeholder="Track title" required>
     <button id="search">Search</button>
 </form>
 <img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" />
