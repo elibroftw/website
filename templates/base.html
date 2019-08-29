@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <title>{% block title %}{% endblock %} - Elijah Lopez</title>
 <link rel="icon" type="image/png" href="/static/images/favicon.png">
-<link rel="stylesheet" id="stylesheet" href="/static/css/style.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+{% if request.cookies.get('theme', 'false') == 'true' %}<link rel="stylesheet" id="stylesheet" href="/static/css/dark.css">{% else %}<link rel="stylesheet" id="stylesheet" href="/static/css/style.css">{% endif %}
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#111111" />{% block style %}{% endblock %}
 <body>
@@ -94,8 +93,7 @@ integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbi
     }
 
     if (getCookie("theme") == "true") {
-        document.getElementById('theme-toggle').checked = true;
-        changeTheme();
+        document.getElementById('theme-toggle').checked = true;  // changeTheme();
     }
 </script>
 {% block script %}{% endblock %}
