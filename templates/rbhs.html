@@ -73,15 +73,22 @@
         margin-left: -1px;
     }
 
+    p {
+        color: black;
+        margin: 0.5em 0;
+    }
+
     @media screen and (max-width: 640px) {
         h1 {
             font-size: 27px;
         }
     }
 
-    p {
-        color: black;
-        margin: 0.5em 0;
+    @media screen and (max-width: 1460px) {
+        h1 {
+            font-size: 40px;
+        }
+        
     }
 </style>
 {% endblock %}
@@ -99,21 +106,24 @@
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
+                history.replaceState("", document.title, window.location.pathname + window.location.search);
                 panel.style.maxHeight = null;
-                history.back();
             } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
                 window.location.hash = this.id;
+                panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
     }
-    var hash = window.location.hash;
-    if (hash) {
-        try {
-            document.getElementById(hash.slice(1)).click();
-        } catch (err) {
-            console.log("invalid hash in url");
+
+    window.onload = function () {
+        var hash = window.location.hash;
+        if (hash) {
+            try {
+                var acc = document.getElementById(hash.slice(1)).click();
+            } catch (err) {
+                console.log("invalid hash in url");
+            }
         }
-    }
+    };
 </script>
 {% endblock %}

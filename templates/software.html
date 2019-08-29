@@ -149,14 +149,15 @@
             }
         });
     }
-    var hash = window.location.hash;
-    if (hash) {
-        try {
-            document.getElementById(hash.slice(1)).click();
-        } catch (err) {
-            console.log("invalid hash in url");
+    window.onload = function () {
+        var hash = window.location.hash;
+        if (hash) {
+            try {
+                var acc = document.getElementById(hash.slice(1)).click();
+            } catch (err) {
+                console.log("invalid hash in url");
+            }
         }
-
-    }
+    };
 </script>
 {% endblock %}
