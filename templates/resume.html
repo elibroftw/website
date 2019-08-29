@@ -2,32 +2,56 @@
 {% block title %}Resume{% endblock %}
 {% block style %}
 <style>
-#googleDrivePDF {
-    display: none;
-    position: relative;
-}
-
-#embededPDF {
-    z-index: 1;
-    position: relative;
-}
-
-@media screen and (max-width:640px) {
     #googleDrivePDF {
-        display: block;
+        display: none;
+        position: relative;
+        width: 97%;
+        margin: auto;
+        min-height: 61vh;
     }
 
     #embededPDF {
-        display: none;
+        z-index: 1;
+        position: relative;
     }
-}
+
+    @media screen and (max-width:1400px) {
+        #googleDrivePDF {
+            display: block;
+        }
+
+        #embededPDF {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width:500px) {
+        #googleDrivePDF {
+            min-height: 63vh;
+        }
+
+        @media screen and (min-height:800px) {
+            /* iPhone X */
+            #googleDrivePDF {
+                min-height: 52vh;
+            }
+        }
+
+        @media screen and (min-height:822px) {
+            /* Pixel 2 XL */
+            #googleDrivePDF {
+                min-height: 56vh;
+            }
+        }
+    }
 </style>
 {% endblock %}
 {% block main_content %}
-<embed name="embededPDF" id="embededPDF"
-    src="/static/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="97%" height="740">
+<embed name="embededPDF" id="embededPDF" src="/static/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="97%"
+    height="740">
 <!-- https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf -->
-<iframe width="97%" height="460px" id="googleDrivePDF" src="https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf?pid=explorer&efh=false&a=v&chrome=false&embedded=true" embedded=true></iframe>
-<br><br>
+<iframe frameborder="0" id="googleDrivePDF"
+    src="https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf?pid=explorer&efh=false&a=v&chrome=false&embedded=true"
+    embedded=true></iframe>
 <!-- <p style="margin: -10px;"><a class="link" href="/static/resume.pdf">Click for PDF file</a></p> -->
 {% endblock %}
