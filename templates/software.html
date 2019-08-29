@@ -10,13 +10,12 @@
         text-align: center;
         outline: none;
         font-size: 20px;
-        transition: 0.2s;
+        transition: 200ms;
         font-family: Verdana;
         border-top: #ccc solid 1px
     }
 
-    .active,
-    .accordion:hover {
+    .active, .accordion:hover {
         background-color: #ccc;
     }
 
@@ -38,7 +37,7 @@
         background-color: white;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.1s ease-out;
+        transition: max-height 200ms ease-out;
         text-align: center;
         font-family: Calibri;
         color: black;
@@ -63,8 +62,7 @@
         font-size: 20px;
     }
 
-    .download-btn-left,
-    .download-btn-right {
+    .download-btn-left, .download-btn-right {
         width: 50%;
     }
 
@@ -142,12 +140,12 @@
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
+                history.replaceState("", document.title, window.location.pathname + window.location.search);
                 panel.style.maxHeight = null;
                 // history.pushState("", document.title, window.location.pathname + window.location.search);
-                history.back();
             } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
                 window.location.hash = this.id;
+                panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
     }
