@@ -17,7 +17,8 @@
         border-top: #ccc solid 1px
     }
 
-    .active, .accordion:hover {
+    .active,
+    .accordion:hover {
         background-color: #ccc;
     }
 
@@ -64,7 +65,8 @@
         font-size: 20px;
     }
 
-    .download-btn-left, .download-btn-right {
+    .download-btn-left,
+    .download-btn-right {
         width: 50%;
     }
 
@@ -151,15 +153,16 @@
             }
         });
     }
-    window.onload = function () {
-        var hash = window.location.hash;
-        if (hash) {
+    
+    var hash = window.location.hash;
+    if (hash) {
+        window.onload = function () {
             try {
                 var acc = document.getElementById(hash.slice(1)).click();
             } catch (err) {
                 console.log("invalid hash in url");
             }
-        }
-    };
+        };
+    }
 </script>
 {% endblock %}

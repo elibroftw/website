@@ -84,15 +84,15 @@
         });
     }
 
-    window.onload = function () {
-        var hash = window.location.hash;
-        if (hash) {
+    var hash = window.location.hash;
+    if (hash) {
+        window.onload = function () {
             try {
                 var acc = document.getElementById(hash.slice(1)).click();
             } catch (err) {
                 console.log("invalid hash in url");
             }
-        }
-    };
+        };
+    }
 </script>
 {% endblock %}
