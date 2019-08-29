@@ -1,8 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}Resume{% endblock %}
+{% block style %}
+<style>
+#googleDrivePDF {
+    display: none;
+    position: relative;
+}
+
+#embededPDF {
+    z-index: 1;
+    position: relative;
+}
+
+@media screen and (max-width:640px) {
+    #googleDrivePDF {
+        display: block;
+    }
+
+    #embededPDF {
+        display: none;
+    }
+}
+</style>
+{% endblock %}
 {% block main_content %}
-<embed style="z-index: 1; position: relative;" name="resume" id="resume"
-    src="/static/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="97%" height="760">
+<embed name="embededPDF" id="embededPDF"
+    src="/static/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="97%" height="740">
+<!-- https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf -->
+<iframe width="97%" height="460px" id="googleDrivePDF" src="https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf?pid=explorer&efh=false&a=v&chrome=false&embedded=true" embedded=true></iframe>
 <br><br>
-<p style="margin: -10px;"><a class="link" href="/static/resume.pdf">Click for PDF file</a></p>
+<!-- <p style="margin: -10px;"><a class="link" href="/static/resume.pdf">Click for PDF file</a></p> -->
 {% endblock %}
