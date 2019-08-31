@@ -50,6 +50,7 @@ Compress(app)
 
 
 @app.before_request
+def save_ip():
     requested_url = request.url
     if 'static' not in requested_url:
         cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{requested_url}','{request.remote_addr}')")
