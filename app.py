@@ -53,7 +53,7 @@ Compress(app)
 def save_ip():
     requested_url = request.url
     if 'static' not in requested_url:
-        cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{requested_url}','{request.remote_addr}')")
+        cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{request.remote_addr}','{requested_url}')")
 
 
 @app.after_request
@@ -189,6 +189,15 @@ def rbhs():
             announcements = temp
         else: announcements = "<p style='color: white;'>There are no announcements for today</p>"
     return render_template('rbhs.html', announcements=announcements)
+
+
+@app.route('/stats/')
+def stats():
+    # all time should only be updated daily later onwards...
+    # SELECT * from table where date >= '2010-03-01' AND date < '2010-04-01'
+    cursor.execute('SELECT COUNT(DISTINCT ip_address) FROM visitors')
+    all_time = cursor.fetchone()[0]
+    return render_template('stats.html', all_time=all_time, monthly='N/A', today='N/A')
 
 
 @app.route('/to_ico/')
