@@ -5,8 +5,6 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
 <url>
   <loc>https://elijahlopez.herokuapp.com/</loc>
   <lastmod>2019-08-31T22:33:19+00:00</lastmod>
@@ -42,6 +40,4 @@
   <lastmod>2019-08-31T22:33:19+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
-
 </urlset>
