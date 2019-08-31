@@ -7,7 +7,27 @@ from functions import get_album_art, get_announcements
 from werkzeug.utils import secure_filename
 import sys
 import requests
-# from ib_economics import get_template_data
+import psycopg2
+
+DATABASE_URL = os.environ.get('DATABASE_URL', False)
+DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
+if DATABASE_URL: conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+else:
+    try:
+        conn = psycopg2.connect(database='mywebsite', user='postgres', password=DATABASE_PASSWORD)
+    except psycopg2.OperationalError:
+        conn = psycopg2.connect(database='postgres', user='postgres', password=DATABASE_PASSWORD)
+        conn.autocommit = True
+        cursor = conn.cursor()
+        cursor.execute(f'CREATE DATABASE mywebsite;')
+        cursor.close()
+        conn.close()
+        conn = psycopg2.connect(database='mywebsite', user='postgres', password=DATABASE_PASSWORD)
+
+conn.autocommit = True
+cursor = conn.cursor()
+cursor.execute("CREATE TABLE IF NOT EXISTS visitors (date DATE, ip_address TEXT, page_accessed TEXT);")
+
 announcements = []
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 
@@ -27,6 +47,12 @@ if not DEVELOPMENT_SETTING:
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEVELOPMENT_SETTING else 604800
 Compress(app)
+
+
+@app.before_request
+    requested_url = request.url
+    if 'static' not in requested_url:
+        cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{requested_url}','{request.remote_addr}')")
 
 
 @app.after_request
@@ -175,42 +201,8 @@ def to_ico():
 #         file = ''
 #     return render_template('to_ico.html')
 
-# @app.route('/shift-high-scores/new/', methods=['POST'])
-# def new_shift_high_score():
-#     high_score = request.form['highScore']
-#     name = request.form['name']
-#     high_scores = []
-#     high_scores_users = []
-#     for x in rang(1, 11):
-#         high_scores.append(redis.get(f'shift_high_score_{x}_value'))
-#         high_scores_users.append(redis.get(f'shift_high_score_{x}_user'))
-#     for x in rang(10):
-#         if high_score < high_scores[x]:
-#             high_scores.insert(x, high_score)
-#             high_scores.pop()
-#             high_scores_users.insert(x, name)
-#             for i, v in enumerate(high_scores):
-#                 redis.set(f'shift_high_score_{i+1}_value', v)
-#             for i, v in enumerate(high_scores_users):
-#                 redis.set(f'shift_high_score_{i+1}_user', v)
-#             return 'top 10 high score'
-#     return 'not a top 10 high score'
-
-
-# @app.route('/shift-high-scores/)
-# def shift-high-scores():  # returns table of high scores, might add level scores
-#     # get high scores from db
-#     return render_template('shift_high_scores.html')
-
-
-# @app.route('/reset-shift-high-scores/')
-# def reset():
-#     for x in rang(1, 11):
-#         redis.set(f'shift_high_score_{x}_value', 999999999)  # seconds
-#         redis.set(f'shift_high_score_{x}_user', "default")  # default username is an easter egg
-#     return "it's done"
-
 
 if __name__ == '__main__':
+    assert os.path.exists('.env')
     if not os.path.exists('static/MP3Editor'): os.mkdir('static/MP3Editor')
     app.run(debug=True, host='', port=5000)

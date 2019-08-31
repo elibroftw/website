@@ -12,6 +12,7 @@ Jinja2
 Markdown
 MarkupSafe
 Pillow
+psycopg2
 requests
 urllib3
 Werkzeug
