@@ -7,7 +7,7 @@ from functions import get_album_art, get_announcements
 from werkzeug.utils import secure_filename
 import sys
 import requests
-from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 import psycopg2
 
 DATABASE_URL = os.environ.get('DATABASE_URL', False)
@@ -73,7 +73,7 @@ def page_not_found(_):
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(app.static_folder, 'static/favicon.ico')
+    return send_from_directory(app.static_folder, 'images/favicon.ico')
 
 
 @app.route('/robots.txt')
