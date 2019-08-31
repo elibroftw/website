@@ -60,9 +60,7 @@ def save_ip():
 
 @app.after_request
 def add_header(response):
-    if 'Cache-Control' not in response.headers:
-        response.cache_control.max_age = 300
-        response.cache_control.public = True
+    if 'Cache-Control' not in response.headers: response.cache_control.max_age = 'no-store'
     return response
 
 
@@ -73,7 +71,9 @@ def page_not_found(_):
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(app.static_folder, 'images/favicon.ico')
+    resp = send_from_directory(app.static_folder, 'images/favicon.ico')
+    resp.cache_control.max_age = 7257600
+    return resp
 
 
 @app.route('/robots.txt')
