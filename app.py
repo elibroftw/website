@@ -54,7 +54,7 @@ Compress(app)
 @app.before_request
 def save_ip():
     requested_url = request.url
-    if 'static' not in requested_url:
+    if 'static' not in requested_url and 'visitors' not in requested_url and 'favicon' not in requested_url:
         cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{request.remote_addr}','{request.headers.get('User-Agent')}','{requested_url}')")
 
 
@@ -69,6 +69,11 @@ def add_header(response):
 @app.errorhandler(404)
 def page_not_found(_):
     return render_template('404.html'), 404
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(app.static_folder, 'static/favicon.ico')
 
 
 @app.route('/robots.txt')
