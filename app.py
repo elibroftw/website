@@ -7,6 +7,7 @@ from functions import get_album_art, get_announcements
 from werkzeug.utils import secure_filename
 import sys
 import requests
+from werkzeug.contrib.fixers import ProxyFix
 import psycopg2
 
 DATABASE_URL = os.environ.get('DATABASE_URL', False)
@@ -26,7 +27,7 @@ else:
 
 conn.autocommit = True
 cursor = conn.cursor()
-cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date DATE, ip_address TEXT, page_accessed TEXT);')
+cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date TIMESTAMPTZ, ip_address TEXT, user_agent TEXT, page_accessed TEXT);')
 
 announcements = []
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
@@ -46,6 +47,7 @@ if not DEVELOPMENT_SETTING:
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEVELOPMENT_SETTING else 604800
+app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)
 
 
@@ -53,7 +55,7 @@ Compress(app)
 def save_ip():
     requested_url = request.url
     if 'static' not in requested_url:
-        cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{request.remote_addr}','{requested_url}')")
+        cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{request.remote_addr}','{request.headers.get('User-Agent')}','{requested_url}')")
 
 
 @app.after_request
@@ -67,6 +69,12 @@ def add_header(response):
 @app.errorhandler(404)
 def page_not_found(_):
     return render_template('404.html'), 404
+
+
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 
 @app.route('/')
@@ -85,10 +93,6 @@ def resume():
 @app.route('/repls/')
 @app.route('/programs/')  # todo: turn this into a drop down menu
 def repls(): return render_template('repls.html')
-
-
-@app.route('/programs/exxon/')  # todo
-def exxon(): return render_template('404.html')
 
 
 @app.route('/contact/')
