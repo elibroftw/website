@@ -26,7 +26,7 @@ else:
 
 conn.autocommit = True
 cursor = conn.cursor()
-cursor.execute("CREATE TABLE IF NOT EXISTS visitors (date DATE, ip_address TEXT, page_accessed TEXT);")
+cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date DATE, ip_address TEXT, page_accessed TEXT);')
 
 announcements = []
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
