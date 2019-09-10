@@ -165,6 +165,17 @@ def upload():
 @app.route('/projects/')
 @app.route('/software/')
 def software():
+    # chrome: class=e-f-ih; .split(' users')[0]
+    # firefox: class=MetadataCard-content
+    # look at announcements for scraping logic
+    g_dark_theme_chrome = 'https://chrome.google.com/webstore/detail/ohhpliipfhicocldcakcgpbbcmkjkian/'
+    g_dark_theme_ffox   = 'https://addons.mozilla.org/addon/dark-theme-for-google-searches/'
+    matte_chrome        = 'https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja'
+    matte_ffox_2        = 'https://addons.mozilla.org/addon/matte-black-v2/'
+    github_theme_chrome = 'https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp'
+    github_theme_ffox   = 'https://addons.mozilla.org/addon/github-dark-theme/'
+    # music_caster        = 'https://github.com/elibroftw/music-caster'
+    # music_editor        = 'https://github.com/elibroftw/mp3-editor'
     return render_template('software.html')
 
 

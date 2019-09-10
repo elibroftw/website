@@ -1,249 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    #drop-area {
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        width: 480px;
+        font-family: sans-serif;
+        margin: auto;
+        padding: 20px;
+    }
 
-<head>
-    <title>New Features - Elijah Lopez</title>
-    <link rel="icon" type="image/png" href="/static/images/favicon.png">
-    <link rel="stylesheet" id="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
-    <style>
-        #drop-area {
-            border: 2px solid #ccc;
-            border-radius: 20px;
-            width: 480px;
-            font-family: sans-serif;
-            margin: auto;
-            padding: 20px;
+    #drop-area.highlight {
+        border-color: lightskyblue;
+    }
+
+    p {
+        margin-top: 0;
+    }
+
+    .my-form {
+        margin-bottom: 10px;
+    }
+
+    #gallery {
+        margin-top: 10px;
+    }
+
+    #gallery img {
+        width: 150px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px;
+        background: #ccc;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .button:hover {
+        background: #ddd;
+    }
+
+    #fileElem {
+        display: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    input#upload {
+        font-size: 1em;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Testing{% endblock %}</h1>
+<div id="drop-area">
+    <form class="my-form">
+        <p>Upload mp3 file by dragging and dropping or by clicking the button</p>
+        <input type="file" id="fileElem" accept=".mp3" onchange="onChange(this.files)">
+        <label class="button" for="fileElem">Select a file</label>
+        <progress class="hidden" id="progress-bar" max=100 value=0></progress>
+        <label id="upload" class="button hidden" onclick="uploadFile()">Add Metadata</label>
+        <p id="file-name" style="margin-top: 3%; margin-bottom: 0;"></p>
+    </form>
+    <!-- <div id="gallery"></div> -->
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    let dropArea = document.getElementById('drop-area');
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    })
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight(e) {
+        dropArea.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+        dropArea.classList.remove('highlight');
+    }
+
+    function ondrop(e) {
+        console.log(e);
+    }
+
+    dropArea.addEventListener('dragenter', highlight);
+    dropArea.addEventListener('dragover', highlight);
+    dropArea.addEventListener('dragleave', unhighlight);
+    dropArea.addEventListener('drop', ondrop);
+
+    function onChange(files) {
+        var fn = document.getElementById("file-name");
+        if (files.length) {
+            file = files[0];
+            console.log(file.name);
+            fn.innerHTML = file.name;
+            document.getElementById("upload").classList.remove('hidden');
+        } else if (!fn.innerHTML) {
+            document.getElementById("upload").classList.add("hidden");
         }
+    }
 
-        #drop-area.highlight {
-            border-color: lightskyblue;
-        }
+    function uploadFile() {
+        file = document.getElementById('fileElem').files[0]
+        var url = window.location.pathname;
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+        xhr.open('POST', '', true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-        p {
-            margin-top: 0;
-        }
+        // Update progress (can be used to show progress indicator)
+        // xhr.upload.addEventListener("progress", function (e) {
+        //     updateProgress(i, (e.loaded * 100.0 / e.total) || 100);
+        // })
 
-        .my-form {
-            margin-bottom: 10px;
-        }
-
-        #gallery {
-            margin-top: 10px;
-        }
-
-        #gallery img {
-            width: 150px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px;
-            background: #ccc;
-            cursor: pointer;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .button:hover {
-            background: #ddd;
-        }
-
-        #fileElem {
-            display: none;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        input#upload {
-            font-size: 1em;
-        }
-    </style>
-</head>
-
-<body>
-    <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
-        <span id="mobile-nav-label">menu</span>
-        <ul id="mobile-nav-panel">
-            <a href="/">home</a>
-            <a href="/resume/">resume</a>
-            <a href="/software/">software</a>
-            <a href="/resources/">resources</a>
-            <a href="/repls/">repls</a>
-            <a href="/search-album-art/">search album art</a>
-            <a href="/contact/">contact</a>
-        </ul>
-    </nav>
-    <nav id="desktop-nav" class="noselect">
-        <a href="/">home</a>
-        <a href="/resume/">resume</a>
-        <a href="/software/">software</a>
-        <a href="/resources/">resources</a>
-        <a href="/repls/">repls</a>
-        <a href="/search-album-art/">search album art</a>
-        <a href="/contact/">contact</a>
-        <div class="dropdown">
-            <button class="dropbtn">games
-                <i class="fas fa-caret-right"></i>
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/shift/">shift</a>
-            </div>
-        </div>
-    </nav>
-    <div id="inner">
-        <h1>Testing</h1>
-        <div id="drop-area">
-            <form class="my-form">
-                <p>Upload mp3 file by dragging and dropping or by clicking the button</p>
-                <input type="file" id="fileElem" accept=".mp3" onchange="onChange(this.files)">
-                <label class="button" for="fileElem">Select a file</label>
-                <progress class="hidden" id="progress-bar" max=100 value=0></progress>
-                <label id="upload" class="button hidden" onclick="uploadFile()">Add Metadata</label>
-                <p id="file-name" style="margin-top: 3%; margin-bottom: 0;"></p>
-            </form>
-            <!-- <div id="gallery"></div> -->
-        </div>
-    </div>
-    <span id="switch-text" class="noselect">Toggle Theme</span>
-    <label class="switch">
-        <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
-        <span class="slider round"></span>
-    </label>
-    <div id="social-links">
-        <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
-    </div>
-    <script>
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        var nav_panel = document.getElementById("mobile-nav-panel");
-        var menu = document.getElementById("mobile-nav-label");
-
-        function mobileNavigation() {
-            if (nav_panel.style.display == "block") {
-                nav_panel.style.display = "none";
-                menu.innerHTML = "MENU";
-            } else {
-                nav_panel.style.display = "block";
-                menu.innerHTML = "CLOSE";
+        // xhr.addEventListener('readystatechange', function (e) {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         updateProgress(i, 100); // <- Add this
+        //     } else if (xhr.readyState == 4 && xhr.status != 200) {
+        //         // Error. Inform the user
+        //     }
+        // })
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                window.open(xhr.response)
             }
         }
-
-        function changeTheme() {
-            stylesheet = document.getElementById("stylesheet")
-            if (document.getElementById('theme-toggle').checked) {
-                stylesheet.setAttribute('href', '/static/css/dark.css')
-                setCookie("theme", "true", 365);
-            } else {
-                stylesheet.setAttribute('href', '/static/css/style.css')
-                setCookie("theme", "false", 365);
-            }
-        }
-
-        if (getCookie("theme") == "true") {
-            document.getElementById('theme-toggle').checked = true;
-            changeTheme();
-        }
-        
-        let dropArea = document.getElementById('drop-area');
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, preventDefaults, false);
-        })
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        function highlight(e) {
-            dropArea.classList.add('highlight');
-        }
-
-        function unhighlight(e) {
-            dropArea.classList.remove('highlight');
-        }
-
-        function ondrop(e) {
-            console.log(e);
-        }
-
-        dropArea.addEventListener('dragenter', highlight);
-        dropArea.addEventListener('dragover', highlight);
-        dropArea.addEventListener('dragleave', unhighlight);
-        dropArea.addEventListener('drop', ondrop);
-
-        function onChange(files) {
-            var fn = document.getElementById("file-name");
-            if (files.length) {
-                file = files[0];
-                console.log(file.name);
-                fn.innerHTML = file.name;
-                document.getElementById("upload").classList.remove('hidden');
-            } else if (!fn.innerHTML) {
-                document.getElementById("upload").classList.add("hidden");
-            }
-        }
-
-        function uploadFile() {
-            file = document.getElementById('fileElem').files[0]
-            var url = window.location.pathname;
-            var xhr = new XMLHttpRequest();
-            var formData = new FormData();
-            xhr.open('POST', '', true);
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-            // Update progress (can be used to show progress indicator)
-            // xhr.upload.addEventListener("progress", function (e) {
-            //     updateProgress(i, (e.loaded * 100.0 / e.total) || 100);
-            // })
-
-            // xhr.addEventListener('readystatechange', function (e) {
-            //     if (xhr.readyState == 4 && xhr.status == 200) {
-            //         updateProgress(i, 100); // <- Add this
-            //     } else if (xhr.readyState == 4 && xhr.status != 200) {
-            //         // Error. Inform the user
-            //     }
-            // })
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    window.open(xhr.response)
-                }
-            }
-            formData.append('file', file);
-            xhr.send(formData);
-            document.getElementById('file-name').innerHTML = "The enchanced file will open in a new tab shortly.";
-            document.getElementById('upload').classList.add('hidden');
-        }
+        formData.append('file', file);
+        xhr.send(formData);
+        document.getElementById('file-name').innerHTML = "The enchanced file will open in a new tab shortly.";
+        document.getElementById('upload').classList.add('hidden');
+    }
         // dropArea.addEventListener('drop', unhighlight, false);
-    </script>
-</body>
-
-</html>
+</script>
+{% endblock %}
