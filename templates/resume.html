@@ -3,26 +3,10 @@
 {% block style %}
 <style>
     #googleDrivePDF {
-        display: none;
         position: relative;
         width: 97%;
         margin: auto;
         min-height: 61vh;
-    }
-
-    #embededPDF {
-        z-index: 1;
-        position: relative;
-    }
-
-    @media screen and (max-width:1400px) {
-        #googleDrivePDF {
-            display: block;
-        }
-
-        #embededPDF {
-            display: none;
-        }
     }
 
     @media screen and (max-width:500px) {
@@ -47,9 +31,7 @@
 </style>
 {% endblock %}
 {% block main_content %}
-<embed name="embededPDF" id="embededPDF" src="/static/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="97%"
-    height="740">
-<!-- https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf -->
+<!-- <embed name="embededPDF" id="embededPDF" src="/static/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="97%" height="740"> -->
 <iframe frameborder="0" id="googleDrivePDF"
     src="https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf?pid=explorer&efh=false&a=v&chrome=false&embedded=true"
     embedded=true></iframe>
