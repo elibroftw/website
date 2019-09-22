@@ -95,9 +95,10 @@ def resume():
     return render_template('resume.html')
 
 
+@app.route('/formula-calculator/')
 @app.route('/repls/')
 @app.route('/programs/')  # todo: turn this into a drop down menu
-def repls(): return render_template('repls.html')
+def formula_calculator(): return render_template('formula_calculator.html')
 
 
 @app.route('/contact/')
