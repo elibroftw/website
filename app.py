@@ -10,24 +10,24 @@ import requests
 from werkzeug.middleware.proxy_fix import ProxyFix
 import psycopg2
 
-DATABASE_URL = os.environ.get('DATABASE_URL', False)
-DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
-if DATABASE_URL: conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-else:
-    try:
-        conn = psycopg2.connect(database='mywebsite', user='postgres', password=DATABASE_PASSWORD)
-    except psycopg2.OperationalError:
-        conn = psycopg2.connect(database='postgres', user='postgres', password=DATABASE_PASSWORD)
-        conn.autocommit = True
-        cursor = conn.cursor()
-        cursor.execute(f'CREATE DATABASE mywebsite;')
-        cursor.close()
-        conn.close()
-        conn = psycopg2.connect(database='mywebsite', user='postgres', password=DATABASE_PASSWORD)
+# DATABASE_URL = os.environ.get('DATABASE_URL', False)
+# DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
+# if DATABASE_URL: conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# else:
+#     try:
+#         conn = psycopg2.connect(database='mywebsite', user='postgres', password=DATABASE_PASSWORD)
+#     except psycopg2.OperationalError:
+#         conn = psycopg2.connect(database='postgres', user='postgres', password=DATABASE_PASSWORD)
+#         conn.autocommit = True
+#         cursor = conn.cursor()
+#         cursor.execute(f'CREATE DATABASE mywebsite;')
+#         cursor.close()
+#         conn.close()
+#         conn = psycopg2.connect(database='mywebsite', user='postgres', password=DATABASE_PASSWORD)
 
-conn.autocommit = True
-cursor = conn.cursor()
-cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date TIMESTAMPTZ, ip_address TEXT, user_agent TEXT, page_accessed TEXT);')
+# conn.autocommit = True
+# cursor = conn.cursor()
+# cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date TIMESTAMPTZ, ip_address TEXT, user_agent TEXT, page_accessed TEXT);')
 
 announcements = []
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
@@ -51,11 +51,11 @@ app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)
 
 
-@app.before_request
-def save_ip():
-    requested_url = request.url
-    if 'static' not in requested_url and 'visitors' not in requested_url and 'favicon' not in requested_url:
-        cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{request.remote_addr}','{request.headers.get('User-Agent')}','{requested_url}')")
+# @app.before_request
+# def save_ip():
+#     requested_url = request.url
+#     if 'static' not in requested_url and 'visitors' not in requested_url and 'favicon' not in requested_url:
+#         cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{request.remote_addr}','{request.headers.get('User-Agent')}','{requested_url}')")
 
 
 @app.after_request
@@ -212,13 +212,13 @@ def rbhs():
     return render_template('rbhs.html', announcements=announcements)
 
 
-@app.route('/stats/')
-def stats():
-    # all time should only be updated daily later onwards...
-    # SELECT * from table where date >= '2010-03-01' AND date < '2010-04-01'
-    cursor.execute('SELECT COUNT(DISTINCT ip_address) FROM visitors')
-    all_time = cursor.fetchone()[0]
-    return render_template('stats.html', all_time=all_time, monthly='N/A', today='N/A')
+# @app.route('/stats/')
+# def stats():
+#     # all time should only be updated daily later onwards...
+#     # SELECT * from table where date >= '2010-03-01' AND date < '2010-04-01'
+#     cursor.execute('SELECT COUNT(DISTINCT ip_address) FROM visitors')
+#     all_time = cursor.fetchone()[0]
+#     return render_template('stats.html', all_time=all_time, monthly='N/A', today='N/A')
 
 
 @app.route('/visitors/')
