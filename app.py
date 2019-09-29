@@ -221,16 +221,16 @@ def rbhs():
 #     return render_template('stats.html', all_time=all_time, monthly='N/A', today='N/A')
 
 
-@app.route('/visitors/')
-def visitors():
-    cursor.execute('SELECT * FROM visitors')
-    rows = cursor.fetchall()
-    temp = ''
-    for row in rows:
-        row = [str(item) for item in row]
-        temp += ', '.join(row)
-        temp += '<br>'
-    return temp
+# @app.route('/visitors/')
+# def visitors():
+#     cursor.execute('SELECT * FROM visitors')
+#     rows = cursor.fetchall()
+#     temp = ''
+#     for row in rows:
+#         row = [str(item) for item in row]
+#         temp += ', '.join(row)
+#         temp += '<br>'
+#     return temp
 
 
 @app.route('/to_ico/')
