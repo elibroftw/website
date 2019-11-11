@@ -34,15 +34,11 @@ DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 
 if not DEVELOPMENT_SETTING:
     url = 'https://cssminifier.com/raw'
-    data = {'input': open('static/css/style.css', 'rb').read()}
-    r = requests.post(url, data=data)
-    with open('static/css/style.css', 'w') as f:
-        f.write(r.text)
-
-    data = {'input': open('static/css/dark.css', 'rb').read()}
-    r = requests.post(url, data=data)
-    with open('static/css/dark.css', 'w') as f:
-        f.write(r.text)
+    for style in ('style', 'dark'):
+        data = {'input': open(f'static/css/{style}.css', 'rb').read()}
+        r = requests.post(url, data=data)
+        with open(f'static/css/{style}.css', 'w') as f:
+            f.write(r.text)
 
 
 app = Flask(__name__)
