@@ -325,12 +325,14 @@ input:checked+.slider:before {
     }
 
     #desktop-nav {
-        padding: 1em 1em 7em
+        padding: 2em 1em 2.5em;
+        text-align: center;
     }
 
     #desktop-nav>a {
-        float: left;
-        text-align: center
+        display: inline;
+        text-align: center;
+        margin-left: 5%
     }
 
     .dropdown .dropbtn {
@@ -359,7 +361,7 @@ input:checked+.slider:before {
     }
 }
 
-@media screen and (max-width:640px) {
+@media screen and (max-width:690px) {
     body {
         background-image: url("/static/images/bg 2.jpg")
     }
