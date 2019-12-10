@@ -93,8 +93,8 @@ def resume():
 
 @app.route('/formula-calculator/')
 @app.route('/repls/')
-@app.route('/programs/')  # todo: turn this into a drop down menu
-def formula_calculator(): return render_template('formula_calculator.html')
+@app.route('/programs/')
+def formula_calculator(): return redirect('https://repl.it/@elilopez/formulas')
 
 
 @app.route('/contact/')
