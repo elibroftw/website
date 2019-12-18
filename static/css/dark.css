@@ -317,6 +317,11 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width:1024px) {
+    body {
+        background-image: url("/static/images/bg mobile.jpg");
+        background-position: top;
+    }
+    
     #inner {
         margin-top: 2%;
         width: 65%
@@ -376,11 +381,6 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width:690px) {
-    body {
-        background-image: url("/static/images/bg mobile.jpg");
-        background-position: top;
-    }
-
     #desktop-nav,
     #switch-text,
     .switch {
