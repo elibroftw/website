@@ -363,7 +363,8 @@ input:checked+.slider:before {
 
 @media screen and (max-width:690px) {
     body {
-        background-image: url("/static/images/bg 2.jpg")
+        background-image: url("/static/images/bg mobile.jpg");
+        background-position: top;
     }
 
     #desktop-nav,
