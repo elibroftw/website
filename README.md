@@ -1,9 +1,10 @@
 # Website
 My own Website built with Flask hosted on https://elijahlopez.herokuapp.com/
-This is just me experimenting with html, css, and javascript but I hope to make it very useful
 # What it contains
-* Album art fetcher
-* My game called Shift
+* Album art searcher
+* List of my prominent software projects
+* Useful software and resources
+* Overall just an experiment
 # My plans
 * Tips and tricks
 * Car Manual Website
