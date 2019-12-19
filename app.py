@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
 from flask_compress import Compress
+from flask_sslify import SSLify
 from datetime import datetime, date
 from contextlib import suppress
 from functions import get_album_art, get_announcements
@@ -45,6 +46,7 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEVELOPMENT_SETTING else 604800
 app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)
+SSLify(app)
 
 
 # @app.before_request

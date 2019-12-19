@@ -5,6 +5,7 @@ click
 environs
 flask
 flask_compress
+flask_sslify
 gunicorn
 idna
 itsdangerous
