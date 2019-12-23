@@ -111,7 +111,7 @@ def resources(): return render_template('resources.html')
 
 @app.route('/blog/')
 @app.route('/articles/')
-def resources(): return render_template('articles.html')
+def articles(): return render_template('articles.html')
 
 
 @app.route('/search-album-art/', methods=['GET'])
