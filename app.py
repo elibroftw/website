@@ -33,7 +33,7 @@ announcements = []
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 daily_quotes = ['Serendipity is sometimes the key to success', 'Expecting nothing from others allows for an open mind',
                 'Political interest = unproductive stress', 'Why ponder over items of no impact to your life?',
-                '"the path to virtue is the path to happiness"', 'The most oppressed minority is the individual',
+                '"the path to virtue is the path to happiness"', '"The most oppressed minority is the individual"',
                 'What\'s the alternative to "a Jack of all trades and a master of none"?']
 
 if not DEVELOPMENT_SETTING:
