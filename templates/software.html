@@ -82,7 +82,7 @@
 </style>
 {% endblock %}
 {% block main_content %}
-<h1>{% block title %}Software{% endblock %}</h1>
+<h1>{% block title %}Projects{% endblock %}</h1>
 <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
 <div class="panel">
     <p>A modern dark theme for browsers</p>
@@ -155,23 +155,37 @@
             <i class="fa fa-download"></i> Download on itch.io</a>
     </div>
 </div>
+<button class="accordion" id="discord-bot">Discord Bot</button>
+<div class="panel">
+    <p>A revolutionary discord music bot with autoplay features</p>
+    <div>
+        <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/discord-bot">
+            <i class="fa fa-download"></i> Get it on GitHub</a>
+    </div>
+</div>
 {% endblock %}
 {% block script %}
 <script>
     var acc = document.getElementsByClassName("accordion");
-    var i;
+    var open_panels = [];
 
-    for (i = 0; i < acc.length; i++) {
+    for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                history.replaceState("", document.title, window.location.pathname + window.location.search);
+            if (panel.style.maxHeight) {  // panel is open so close it
                 panel.style.maxHeight = null;
-                // history.pushState("", document.title, window.location.pathname + window.location.search);
-            } else {
-                window.location.hash = this.id;
+                open_panels.splice(open_panels.indexOf(this.id), 1);
+                var op_len = open_panels.length;
+                if (op_len) {
+                    history.replaceState({}, document.title, window.location.pathname + "#" + open_panels[op_len - 1]);
+                } else {
+                    history.replaceState({}, document.title, window.location.pathname);
+                }
+            } else {  // open panel
+                history.replaceState({}, document.title, window.location.pathname + "#" + this.id);
                 panel.style.maxHeight = panel.scrollHeight + "px";
+                open_panels.push(this.id);
             }
         });
     }
@@ -181,8 +195,8 @@
         window.onload = function () {
             try {
                 var acc = document.getElementById(hash.slice(1)).click();
-            } catch (err) {
-                console.log("invalid hash in url");
+            } catch (err) {  // invalid hash
+                history.replaceState({}, document.title, window.location.pathname);
             }
         };
     }
