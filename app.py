@@ -33,7 +33,7 @@ announcements = []
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 daily_quotes = ['Organization is the key to success', 'Expecting nothing from others allows for an open mind',
                 'Political interest = unproductive stress', 'Why ponder over items of no impact to your life?',
-                '"the path to virtue is the path to happiness"', '"The most oppressed minority is the individual"',
+                'The path to virtue is often the path to happiness', 'The smallest minority is the individual',
                 'What\'s the alternative to "a Jack of all trades and a master of none"?']
 
 if not DEVELOPMENT_SETTING:
@@ -163,9 +163,9 @@ if DEVELOPMENT_SETTING:
         return render_template('test2.html')
 
 
-@app.route('/done/<filename>', methods=['GET', 'POST'])
-def upload():
-    return str('file' in request.files)
+    @app.route('/done/<filename>', methods=['GET', 'POST'])
+    def upload():
+        return str('file' in request.files)
 
 
 @app.route('/projects/')
@@ -217,6 +217,11 @@ def rbhs():
     return render_template('rbhs.html', announcements=announcements)
 
 
+# @app.route('/photos/')
+# def photos():
+#     return render_template('photos.html')
+
+
 # @app.route('/stats/')
 # def stats():
 #     # all time should only be updated daily later onwards...
@@ -238,9 +243,9 @@ def rbhs():
 #     return temp
 
 
-@app.route('/to_ico/')
-def to_ico():
-    return render_template('to_ico.html')
+# @app.route('/to_ico/')
+# def to_ico():
+#     return render_template('to_ico.html')
 
 # @app.route('/get_ico/', methods=['POST'])
 # def get_ico():

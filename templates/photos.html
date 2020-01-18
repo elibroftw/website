@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .polaroid {
+        width: 250px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        background-color: white;
+    }
+
+    .polaroid.container {
+        padding: 10px;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Articles{% endblock %}</h1>
+<!-- TODO Model -->
+<div class="polaroid">
+    <img src="" alt="" style="width:100%">
+    <div class="container">
+        <p>Caption</p>
+    </div>
+</div>
+{% endblock %}
