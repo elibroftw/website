@@ -1,17 +1,16 @@
 import base64
+from environs import Env
 import json
 import os
+from PIL import Image
 import requests
 from urllib import parse
-from PIL import Image
-from environs import Env
+
 
 env = Env()
 env.read_env()
-
 GOOGLE_API_KEY = os.environ['GOOGLE_API']
-SPOTIFY_CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
-SPOTIFY_SECRET = os.environ['SPOTIFY_SECRET']
+SPOTIFY_CLIENT_ID, SPOTIFY_SECRET = os.environ['SPOTIFY_CLIENT_ID'], os.environ['SPOTIFY_SECRET']
 SPOTIFY_AUTH_STR = f'{SPOTIFY_CLIENT_ID}:{SPOTIFY_SECRET}'
 SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
 
@@ -35,8 +34,7 @@ def img_to_ico(path):
     directory = os.path.dirname(path)
     img = Image.open(path)
     img.save(f'{directory}/{img_name}.ico')
-    # TODO: upload to https://send.firefox.com/ when API comes out
-    # TODO: tell user to upload to send.firefox.com if they want to share the file
+    # TODO: upload to https://send.firefox.com/
 
 
 def get_announcements():

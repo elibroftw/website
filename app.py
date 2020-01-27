@@ -1,14 +1,14 @@
-import os
+from contextlib import suppress
+from datetime import datetime, date
 from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
 from flask_compress import Compress
-from datetime import datetime, date
-from contextlib import suppress
-from functions import get_album_art, get_announcements
-from werkzeug.utils import secure_filename
-import sys
+from helpers import get_album_art, get_announcements
+import os
 import requests
+import sys
+from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
-import psycopg2
+# import psycopg2
 
 # DATABASE_URL = os.environ.get('DATABASE_URL', False)
 # DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
@@ -152,10 +152,10 @@ if DEVELOPMENT_SETTING:
                     f.write('test\n')
                 filename = secure_filename(file.filename)
                 save_name = filename.replace('_', ' ')
-                save_path = os.path.join('static/MP3Editor', save_name)
+                save_path = os.path.join('static/Metadata_Setter', save_name)
                 file.save(save_path)
                 # do other stuff
-                return url_for('static', filename=f'MP3Editor/{save_name}')
+                return url_for('static', filename=f'Metadata_Setter/{save_name}')
         return render_template('test.html')
     
     @app.route('/test2/')
@@ -174,28 +174,18 @@ def software():
     # chrome: class=e-f-ih; .split(' users')[0]
     # firefox: class=MetadataCard-content
     # look at announcements for scraping logic
-    g_dark_theme_chrome = 'https://chrome.google.com/webstore/detail/ohhpliipfhicocldcakcgpbbcmkjkian/'
-    g_dark_theme_ffox   = 'https://addons.mozilla.org/addon/dark-theme-for-google-searches/'
-    matte_chrome        = 'https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja'
-    matte_ffox_2        = 'https://addons.mozilla.org/addon/matte-black-v2/'
-    github_theme_chrome = 'https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp'
-    github_theme_ffox   = 'https://addons.mozilla.org/addon/github-dark-theme/'
+    # g_dark_theme_chrome = 'https://chrome.google.com/webstore/detail/ohhpliipfhicocldcakcgpbbcmkjkian/'
+    # g_dark_theme_ffox   = 'https://addons.mozilla.org/addon/dark-theme-for-google-searches/'
+    # matte_chrome        = 'https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja'
+    # matte_ffox_2        = 'https://addons.mozilla.org/addon/matte-black-v2/'
+    # github_theme_chrome = 'https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp'
+    # github_theme_ffox   = 'https://addons.mozilla.org/addon/github-dark-theme/'
     # music_caster        = 'https://github.com/elibroftw/music-caster'
     # music_editor        = 'https://github.com/elibroftw/mp3-editor'
     return render_template('software.html')
 
 
-@app.route('/todo/')
-def todo():
-    # TODO: I want this to be a todo list that will automatically update the github repo so that it gets carried on
-    # TODO: I would have to implement a username and password to only allow me to edit it
-    # TODO: Learn databases
-    return render_template('404.html')
 
-
-@app.route('/menus/')
-def menus():
-    return render_template('menus.html')
 
 
 @app.route('/rbhs/')
@@ -217,9 +207,14 @@ def rbhs():
     return render_template('rbhs.html', announcements=announcements)
 
 
-# @app.route('/photos/')
+# @app.route('/photos/')  # TODO
 # def photos():
 #     return render_template('photos.html')
+
+
+# @app.route('/menus/')  # TODO
+# def menus():
+#     return render_template('menus.html')
 
 
 # @app.route('/stats/')
@@ -247,6 +242,7 @@ def rbhs():
 # def to_ico():
 #     return render_template('to_ico.html')
 
+
 # @app.route('/get_ico/', methods=['POST'])
 # def get_ico():
 #     file = request.args.get('track')
@@ -257,5 +253,5 @@ def rbhs():
 
 if __name__ == '__main__':
     assert os.path.exists('.env')
-    if not os.path.exists('static/MP3Editor'): os.mkdir('static/MP3Editor')
+    if not os.path.exists('static/Metadata_Setter'): os.mkdir('static/Metadata_Setter')
     app.run(debug=True, host='', port=5000)

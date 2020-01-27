@@ -5,3 +5,4 @@ config.txt
 .env
 client_secret.json
 static/MP3Editor
+static/Metadata_Setter
