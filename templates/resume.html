@@ -2,28 +2,28 @@
 {% block title %}Resume{% endblock %}
 {% block style %}
 <style>
-    #googleDrivePDF {
+    #resume {
         position: relative;
-        width: 97%;
+        width: 100%;
         margin: auto;
         min-height: 61vh;
     }
 
     @media screen and (max-width:500px) {
-        #googleDrivePDF {
+        #resume {
             min-height: 63vh;
         }
 
         @media screen and (min-height:800px) {
             /* iPhone X */
-            #googleDrivePDF {
+            #resume {
                 min-height: 52vh;
             }
         }
 
         @media screen and (min-height:822px) {
             /* Pixel 2 XL */
-            #googleDrivePDF {
+            #resume {
                 min-height: 56vh;
             }
         }
@@ -31,7 +31,5 @@
 </style>
 {% endblock %}
 {% block main_content %}
-<iframe frameborder="0" id="googleDrivePDF"
-    src="https://docs.google.com/viewerng/viewer?url=https://elijahlopez.herokuapp.com/static/resume.pdf?pid=explorer&efh=false&a=v&chrome=false&embedded=true"
-    embedded=true></iframe>
+<iframe frameborder="0" id="resume" src="https://drive.google.com/file/d/1eh8HEvvpXkDlV_gbm2l-0oAY7ljl7r8Y/preview"></iframe>
 {% endblock %}
