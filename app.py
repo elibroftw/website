@@ -2,7 +2,7 @@ from contextlib import suppress
 from datetime import datetime, date
 from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
 from flask_compress import Compress
-from helpers import get_album_art, get_announcements
+from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
 import os
 import requests
 import sys
@@ -30,9 +30,11 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 # cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date TIMESTAMPTZ, ip_address TEXT, user_agent TEXT, page_accessed TEXT);')
 
 announcements = []
+pool_timings = []
+pool_schedule = ''
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 daily_quotes = ['Organization is the key to success', 'Expecting nothing from others allows for an open mind',
-                'Political interest = unproductive stress', 'Why ponder over items of no impact to your life?',
+                'Political interest; Unproductive stress', 'Why ponder over items of no impact to your life?',
                 'The path to virtue is often the path to happiness', 'The smallest minority is the individual',
                 'What\'s the alternative to "a Jack of all trades and a master of none"?']
 
@@ -198,13 +200,35 @@ def rbhs():
         announcements = get_announcements()
         if announcements:
             temp = ''
-            i = 1
-            for title, desc in announcements:
-                temp += f'<button class="accordion" id="no.{i}">{title}</button><div class="panel"><p>{desc}</p></div>'
+            for i, info in enumerate(announcements):
+                title, desc = info
+                temp += f'<button class="accordion" id="no.{i + 1}">{title}</button><div class="panel"><p>{desc}</p></div>'
             os.environ['RBHS'] = today.strftime('%d/%m/%Y')
             announcements = temp
         else: announcements = "<p style='color: white;'>There are no announcements for today</p>"
     return render_template('rbhs.html', announcements=announcements)
+
+
+@app.route('/wlu-pool-schedule/')
+def wlu_pool_schedule():
+    global pool_timings
+    today = date.today()
+    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday']
+    temp = ''
+    d2 = os.environ.get('WLU_POOL_TIMINGS')
+    if d2 is not None: d2 = datetime.strptime(d2, '%d/%m/%Y').date()
+    if d2 is None or not pool_timings or d2 < today:
+        pool_timings = wlu_pool_schedule_scraper()
+        if pool_timings:
+            temp = ''
+            for day, times in zip(days, pool_timings):
+                times = '<br>'.join(times)
+                temp += f'<button class="accordion" id="{day.lower()}">{day}</button><div class="panel"><p>{times}</p></div>'
+            os.environ['WLU_POOL_TIMINGS'] = today.strftime('%d/%m/%Y')
+            pool_timings = temp
+        else: pool_timings = "<p style='color: white;'>Something went wrong send me an email.</p>"
+    return render_template('wlu_pool.html', schedule=pool_timings)
+    
 
 
 # @app.route('/photos/')  # TODO

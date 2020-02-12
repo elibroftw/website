@@ -63,8 +63,9 @@
 </style>
 {% endblock %}
 {% block main_content %}
-<h1>{% block title %}Announcements{% endblock %}</h1>
-{{announcements|safe}}
+<h1>{% block title %}WLU Pool Schedule{% endblock %}</h1>
+<p style="color: white;">Times marked with a * below have the pool in long course configuration</p>
+{{schedule|safe}}
 {% endblock %}
 {% block script %}
 <script>
@@ -92,15 +93,24 @@
         });
     }
 
+    function open_todays() {
+        var today = new Date();
+        var dayIndex = today.getDay().toString().toLowerCase();
+        var day_of_week = ["sunday", "monday","tuesday", "wednesday", "thursday", "friday", "saturday"][dayIndex];
+        document.getElementById(day_of_week).click();
+    }
+
     var hash = window.location.hash;
     if (hash) {
         window.onload = function () {
             try {
-                var acc = document.getElementById(hash.slice(1)).click();
+                document.getElementById(hash.slice(1)).click();
             } catch (err) {  // invalid hash
-                history.replaceState({}, document.title, window.location.pathname);
+                open_todays();
             }
         };
+    } else {
+        open_todays();
     }
 </script>
 {% endblock %}

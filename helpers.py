@@ -5,6 +5,8 @@ import os
 from PIL import Image
 import requests
 from urllib import parse
+from bs4 import BeautifulSoup
+from pprint import pprint  # FOR DEBUGGING: DO NOT REMOVE
 
 
 env = Env()
@@ -45,3 +47,22 @@ def get_announcements():
     for a in announcements.copy():
         if len(a) != 2: announcements.remove(a)
     return announcements  # [ [TITLE, DESC], [TITLE, DESC] ]
+
+
+def wlu_pool_schedule_scraper():
+    data = requests.get('https://www.laurierathletics.com/generatePage.php?ID=57').text
+    soup = BeautifulSoup(data, features='html.parser')
+    # soup = soup.find('table')
+    s1 = soup.findAll('tr')
+    schedule = [[] for _ in range(7)]
+    # pprint(soup)
+    for timings in s1[1:]:
+        timings = timings.findAll('td')
+        for i, timing in enumerate(timings):
+            if timing.text: schedule[i].append(timing.text)
+    # sunday - saturday
+    return schedule
+
+
+if __name__ == '__main__':  # TESTS / DEBUGGING
+    print(laurier_pool_schedule())
