@@ -209,12 +209,12 @@ def rbhs():
     return render_template('rbhs.html', announcements=announcements)
 
 
+@app.route('/wlu-pool/')
 @app.route('/wlu-pool-schedule/')
 def wlu_pool_schedule():
     global pool_timings
     today = date.today()
-    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday']
-    temp = ''
+    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     d2 = os.environ.get('WLU_POOL_TIMINGS')
     if d2 is not None: d2 = datetime.strptime(d2, '%d/%m/%Y').date()
     if d2 is None or not pool_timings or d2 < today:
