@@ -64,5 +64,21 @@ def wlu_pool_schedule_scraper():
     return schedule
 
 
+def wlu_gym_schedule_scraper():
+    data = requests.get('https://www.laurierathletics.com/generatepage.php?ID=86').text
+    soup = BeautifulSoup(data, features='html.parser')
+    # soup = soup.find('table')
+    # s1 = soup.findAll('p')
+    # schedule = [[] for _ in range(7)]
+    # # pprint(soup)
+    # for timings in s1[1:]:
+    #     timings = timings.findAll('td')
+    #     for i, timing in enumerate(timings):
+    #         if timing.text: schedule[i].append(timing.text)
+    # # sunday - saturday
+    # return schedule
+
+
 if __name__ == '__main__':  # TESTS / DEBUGGING
-    print(laurier_pool_schedule())
+    # print(wlu_pool_schedule_scraper())
+    print(wlu_gym_schedule_scraper())

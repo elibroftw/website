@@ -30,7 +30,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 # cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date TIMESTAMPTZ, ip_address TEXT, user_agent TEXT, page_accessed TEXT);')
 
 announcements = []
-pool_timings = []
+wlu_pool_timings = []
+wlu_gym_timings = []
 pool_schedule = ''
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 daily_quotes = ['Organization is the key to success', "Before asking a question, ask yourself if the answer even matters",
@@ -212,22 +213,22 @@ def rbhs():
 @app.route('/wlu-pool/')
 @app.route('/wlu-pool-schedule/')
 def wlu_pool_schedule():
-    global pool_timings
+    global wlu_pool_timings
     today = date.today()
     days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     d2 = os.environ.get('WLU_POOL_TIMINGS')
     if d2 is not None: d2 = datetime.strptime(d2, '%d/%m/%Y').date()
-    if d2 is None or not pool_timings or d2 < today:
-        pool_timings = wlu_pool_schedule_scraper()
-        if pool_timings:
+    if d2 is None or not wlu_pool_timings or d2 < today:
+        wlu_pool_timings = wlu_pool_schedule_scraper()
+        if wlu_pool_timings:
             temp = ''
-            for day, times in zip(days, pool_timings):
+            for day, times in zip(days, wlu_pool_timings):
                 times = '<br>'.join(times)
                 temp += f'<button class="accordion" id="{day.lower()}">{day}</button><div class="panel"><p>{times}</p></div>'
             os.environ['WLU_POOL_TIMINGS'] = today.strftime('%d/%m/%Y')
-            pool_timings = temp
-        else: pool_timings = "<p style='color: white;'>Something went wrong send me an email.</p>"
-    return render_template('wlu_pool.html', schedule=pool_timings)
+            wlu_pool_timings = temp
+        else: wlu_pool_timings = "<p style='color: white;'>Something went wrong send me an email.</p>"
+    return render_template('wlu_pool.html', schedule=wlu_pool_timings)
     
 
 
