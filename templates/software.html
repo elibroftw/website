@@ -1,91 +1,11 @@
 {% extends 'base.html' %}
 {% block style %}
-<style>
-    .accordion {
-        color: #141414;
-        cursor: pointer;
-        padding: 18px;
-        width: 90%;
-        border: none;
-        text-align: center;
-        outline: none;
-        font-family: Verdana;
-        font-size: 20px;
-        /* font-family: Helvetica;
-        font-size: 22px; */
-        transition: 0.2s;
-        border-top: #ccc solid 1px
-    }
-
-    .active,
-    .accordion:hover {
-        background-color: #ccc;
-    }
-
-    .accordion:after {
-        content: '\002B';
-        color: #777;
-        font-weight: bold;
-        float: right;
-        margin-left: 5px;
-    }
-
-    .active:after {
-        content: "\2212";
-    }
-
-    .panel {
-        width: 90%;
-        margin: auto;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.1s ease-out;
-        text-align: center;
-        font-family: Calibri;
-        color: black;
-    }
-
-    .download-btn {
-        background-color: DodgerBlue;
-        border: none;
-        color: black;
-        text-decoration: none;
-        padding: 12px 0 12px;
-        cursor: pointer;
-        font-size: 18px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        float: left;
-        bottom: 0;
-        transition-duration: 200ms;
-    }
-
-    .download-btn:hover {
-        background-color: RoyalBlue;
-        font-size: 20px;
-    }
-
-    .download-btn-left,
-    .download-btn-right {
-        width: 50%;
-    }
-
-    .download-btn-right {
-        border-left: darkslategrey solid 1px;
-        margin-left: -1px;
-    }
-
-    p {
-        color: black;
-        margin: 0.5em 0;
-    }
-</style>
 {% endblock %}
 {% block main_content %}
 <h1>{% block title %}Projects{% endblock %}</h1>
 <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
 <div class="panel">
-    <p>A modern dark theme for browsers</p>
+    <p id="panel-text">A modern dark theme for browsers</p>
     <div>
         <a class="download-btn download-btn-left"
             href="https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja">
@@ -96,7 +16,7 @@
 </div>
 <button class="accordion" id="google-dark-theme">Google Dark Theme</button>
 <div class="panel">
-    <p>A dark theme for Google searches</p>
+    <p id="panel-text">A dark theme for Google searches</p>
     <div>
         <a class="download-btn download-btn-left"
             href="https://chrome.google.com/webstore/detail/dark-theme-for-google-sea/ohhpliipfhicocldcakcgpbbcmkjkian">
@@ -108,7 +28,7 @@
 </div>
 <button class="accordion" id="music-caster">Music Caster</button>
 <div class="panel">
-    <p>A music player with the ability to cast your local music to a Google Cast Device</p>
+    <p id="panel-text">A music player with the ability to cast your local music to a Google Cast Device</p>
     <div>
         <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/music-caster/blob/master/README.md">
             <i class="fa fa-download"></i> Download on GitHub</a>
@@ -116,7 +36,7 @@
 </div>
 <button class="accordion" id="music-file-editor">Music File Editor</button>
 <div class="panel">
-    <p>An application for setting metadata for MP3 files</p>
+    <p id="panel-text">An application for setting metadata for MP3 files</p>
     <div>
         <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/mp3-editor">
             <i class="fa fa-download"></i> Download on GitHub</a>
@@ -124,7 +44,7 @@
 </div>
 <button class="accordion" id="formula-calculator">Formula Calculator</button>
 <div class="panel">
-    <p>A program for helpful formulas</p>
+    <p id="panel-text">A program for helpful formulas</p>
     <div>
         <a class="download-btn" style="width: 100%;" href="https://repl.it/@elilopez/formulas">
             <img src="https://repl.it/public/images/logo.svg" width="28px" style="vertical-align:middle">
@@ -133,7 +53,7 @@
 </div>
 <button class="accordion" id="search-album-art">Search Album Art</button>
 <div class="panel">
-    <p>A demo for searching album art using the Spotify API</p>
+    <p id="panel-text">A demo for searching album art using the Spotify API</p>
     <div>
         <a class="download-btn" style="width: 100%;" href="/search-album-art/">
             Click here to use</a>
@@ -141,7 +61,7 @@
 </div>
 <button class="accordion" id="jungle-climb">Jungle Climb</button>
 <div class="panel">
-    <p>A platformer game made in pygame</p>
+    <p id="panel-text">A platformer game made in pygame</p>
     <div>
         <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/jungle-climb/blob/master/README.md">
             <i class="fa fa-download"></i> Download on GitHub</a>
@@ -149,7 +69,7 @@
 </div>
 <button class="accordion" id="shift">Shift</button>
 <div class="panel">
-    <p>My 3D shooter game made with Unity</p>
+    <p id="panel-text">My 3D shooter game made with Unity</p>
     <div>
         <a class="download-btn" style="width: 100%;" href="https://elijahlopez.itch.io/shift">
             <i class="fa fa-download"></i> Download on itch.io</a>
@@ -157,7 +77,7 @@
 </div>
 <button class="accordion" id="discord-bot">Discord Bot</button>
 <div class="panel">
-    <p>A revolutionary discord music bot with autoplay features</p>
+    <p id="panel-text">A revolutionary discord music bot with autoplay features</p>
     <div>
         <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/discord-bot">
             <i class="fa fa-download"></i> Get it on GitHub</a>

@@ -109,6 +109,11 @@ p {
     font-size: 18px
 }
 
+#panel-text {
+    color: #000;
+    margin: 0.5em 0;
+}
+
 .link {
     margin-top: 10px;
     text-decoration: none;
@@ -315,6 +320,79 @@ input:checked+.slider:before {
 .fa-caret-down {
     display: none !important
 }
+
+/* Accordian */
+.accordion {
+    color: #141414;
+    cursor: pointer;
+    padding: 18px;
+    width: 90%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 20px;
+    transition: 0.2s;
+    font-family: Verdana;
+    border-top: #ccc solid 1px
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    width: 90%;
+    margin: auto;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out;
+    text-align: center;
+    font-family: Calibri;
+    color: black;
+}
+
+.download-btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: black;
+    text-decoration: none;
+    padding: 12px 0 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    float: left;
+    bottom: 0;
+    transition-duration: 200ms;
+}
+
+.download-btn:hover {
+    background-color: RoyalBlue;
+    font-size: 20px;
+}
+
+.download-btn-left,
+.download-btn-right {
+    width: 50%;
+}
+
+.download-btn-right {
+    border-left: darkslategrey solid 1px;
+    margin-left: -1px;
+}
+/* END: Accordian */
 
 @media screen and (max-width:1024px) {
     body {

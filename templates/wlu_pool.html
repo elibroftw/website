@@ -1,53 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
 <style>
-    .accordion {
-        color: #141414;
-        cursor: pointer;
-        padding: 18px;
-        width: 90%;
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 20px;
-        transition: 0.2s;
-        font-family: Verdana;
-        border-top: #ccc solid 1px
-    }
-
-    .active, .accordion:hover {
-        background-color: #ccc;
-    }
-
-    .accordion:after {
-        content: '\002B';
-        color: #777;
-        font-weight: bold;
-        float: right;
-        margin-left: 5px;
-    }
-
-    .active:after {
-        content: "\2212";
-    }
-
-    .panel {
-        width: 90%;
-        margin: auto;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.1s ease-out;
-        text-align: center;
-        font-family: Calibri;
-        color: black;
-    }
-
-    p {
-        color: black;
-        margin: 0.5em 0;
-    }
-
     @media screen and (max-width: 1460px) {
         h1 {
             font-size: 40px;
@@ -64,7 +17,7 @@
 {% endblock %}
 {% block main_content %}
 <h1>{% block title %}WLU Pool Schedule{% endblock %}</h1>
-<p style="color: white;">Times marked with a * below have the pool in long course configuration</p>
+<p>Times marked with a * below have the pool in long course configuration</p>
 {{schedule|safe}}
 {% endblock %}
 {% block script %}

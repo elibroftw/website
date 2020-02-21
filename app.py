@@ -203,7 +203,7 @@ def rbhs():
             temp = ''
             for i, info in enumerate(announcements):
                 title, desc = info
-                temp += f'<button class="accordion" id="no.{i + 1}">{title}</button><div class="panel"><p>{desc}</p></div>'
+                temp += f'<button class="accordion" id="no.{i + 1}">{title}</button><div class="panel"><p id="panel-text">{desc}</p></div>'
             os.environ['RBHS'] = today.strftime('%d/%m/%Y')
             announcements = temp
         else: announcements = "<p style='color: white;'>There are no announcements for today</p>"
@@ -224,7 +224,7 @@ def wlu_pool_schedule():
             temp = ''
             for day, times in zip(days, wlu_pool_timings):
                 times = '<br>'.join(times)
-                temp += f'<button class="accordion" id="{day.lower()}">{day}</button><div class="panel"><p>{times}</p></div>'
+                temp += f'<button class="accordion" id="{day.lower()}">{day}</button><div class="panel"><p id="panel-text">{times}</p></div>'
             os.environ['WLU_POOL_TIMINGS'] = today.strftime('%d/%m/%Y')
             wlu_pool_timings = temp
         else: wlu_pool_timings = "<p style='color: white;'>Something went wrong send me an email.</p>"
