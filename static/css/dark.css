@@ -332,7 +332,8 @@ input:checked+.slider:before {
     font-size: 20px;
     transition: 0.2s;
     font-family: Verdana;
-    border-top: #ccc solid 1px
+    border-top: #ccc solid 1px;
+    background-color: #f0f0f0;
 }
 
 .active, .accordion:hover {
