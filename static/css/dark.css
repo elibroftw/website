@@ -75,11 +75,10 @@ h1 a {
 h1 a:hover {
     color: grey;
     font-size: 70px;
-    content: 'RESUME'
 }
 
 h1 a:hover:after {
-    content: 'RESUME'
+    content: 'GO TO RESUME'
 }
 
 h1 a:hover span {
