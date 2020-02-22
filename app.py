@@ -36,8 +36,8 @@ pool_schedule = ''
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 daily_quotes = ['Organization is the key to success', "Before asking a question, ask yourself if the answer even matters",
                 'Try to improve yourself before improving others', 'Why ponder over items of no impact to your life?',
-                'The path to virtue is often the path to happiness', 'The smallest minority is the individual',
-                'What\'s the alternative to "a Jack of all trades and a master of none"?']
+                'The path to virtue is often the path to happiness', 'Work on your own flaws before commenting on someone elses',
+                'Are you not entertained?']
 
 if not DEVELOPMENT_SETTING:
     url = 'https://cssminifier.com/raw'
