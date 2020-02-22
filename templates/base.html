@@ -10,7 +10,7 @@
 <body>
 <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
     <span id="mobile-nav-label">menu</span>
-    <ul id="mobile-nav-panel">
+    <ul id="mobile-nav-panel" style="opacity: 0; margin-top: 0; width: 0; height: 0;">
         <a href="/">home</a>
         <a href="/resume/">resume</a>
         <a href="/software/">software</a>
@@ -76,11 +76,20 @@
     var menu = document.getElementById("mobile-nav-label");
 
     function mobileNavigation() {
-        if (nav_panel.style.display == "block") {
-            nav_panel.style.display = "none";
+        if (menu.innerHTML== "CLOSE") {
+            nav_panel.style.opacity = "0";
+            nav_panel.style.visibility = "hidden";
+            nav_panel.style.width = "0";
+            nav_panel.style.height = "0";
+            nav_panel.style.marginTop = "0";
             menu.innerHTML = "MENU";
+
         } else {
-            nav_panel.style.display = "block";
+            nav_panel.style.width = "100%";
+            nav_panel.style.height = "100%";
+            nav_panel.style.visibility = "visible";
+            nav_panel.style.marginTop = "1em";
+            nav_panel.style.opacity = "1";
             menu.innerHTML = "CLOSE";
         }
     }

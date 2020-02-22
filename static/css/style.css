@@ -201,9 +201,9 @@ p {
 
 #mobile-nav-panel {
     padding-inline-start: 0;
-    display: none;
     margin-bottom: 0;
-    border-radius: 0
+    border-radius: 0;
+    transition: opacity .3s linear, margin-top .2s;
 }
 
 #mobile-nav-panel:hover {
