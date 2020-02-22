@@ -34,7 +34,7 @@ wlu_pool_timings = []
 wlu_gym_timings = []
 pool_schedule = ''
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
-daily_quotes = ['Organization is the key to success', "Before asking a question, ask yourself if the answer even matters",
+daily_quotes = ['Organization is the key to success', 'Before asking a question, ask yourself if the answer even matters',
                 'Try to improve yourself before improving others', 'Why ponder over items of no impact to your life?',
                 'The path to virtue is often the path to happiness', 'Work on your own flaws before commenting on someone elses',
                 'Are you not entertained?']
