@@ -74,7 +74,7 @@ h1 a {
 
 h1 a:hover {
     color: grey;
-    font-size: 70px;
+    font-size: 65px;
 }
 
 h1 a:hover:after {
