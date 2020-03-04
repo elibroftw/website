@@ -440,10 +440,10 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width:690px) {
-    /* body {
-        background-image: url("/static/images/bg mobile.jpg");
+    body {
+        background-image: url("/static/images/bg 2.webp");
         background-position: top;
-    } */
+    }
 
     #desktop-nav,
     #switch-text,
