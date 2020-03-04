@@ -73,7 +73,7 @@ h1 a {
 }
 
 h1 a:hover {
-    color: grey;
+    color: rgb(170, 170, 170);
     font-size: 65px;
 }
 
@@ -96,8 +96,18 @@ h1 {
     transition-duration: .2s
 }
 
+h2 {
+    font-family: Helvetica;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: -10px;
+    line-height: 1em;
+    color: #fff;
+    transition-duration: .2s
+}
+
 h1:hover {
-    color: grey
+    color: rgb(170, 170, 170);
 }
 
 p {

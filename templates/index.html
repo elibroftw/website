@@ -1,1 +1,22 @@
-<!-- List all accessible pages here -->
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .link {
+        font-family: Montserrat;
+        font-size: 20px;
+        padding-bottom: 0.5%;
+        display: block;
+        transition-duration: 100ms;
+    }
+
+    .link:hover {
+        font-size: 1.5em;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Index{% endblock %}</h1>
+<p>All the pages on my website</p>
+<a class=link href="/">Home</a>
+<a class=link href="/resume/">Resume</a>
+{% endblock %}

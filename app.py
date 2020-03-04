@@ -85,6 +85,10 @@ def static_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
 
 
+@app.route('/index/')
+def index(): return render_template('index.html')
+
+
 @app.route('/')
 def home(): return render_template('home.html', quote=daily_quotes[datetime.today().weekday()])
 
@@ -188,6 +192,9 @@ def software():
     return render_template('software.html')
 
 
+@app.route('/music-caster/')
+def music_caster():
+    return render_template('music_caster.html')
 
 
 
