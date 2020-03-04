@@ -50,7 +50,7 @@ body {
     margin: 0 auto 1%;
     background-size: cover;
     background-repeat: repeat-y;
-    background-position: center;
+    background-position: top;
     background-image: url("/static/images/bg 2.webp");
     background-color: #080d10
 }
