@@ -395,10 +395,10 @@ input:checked+.slider:before {
 /* END: Accordian */
 
 @media screen and (max-width:1024px) {
-    body {
+    /* body {
         background-image: url("/static/images/bg mobile.jpg");
         background-position: top;
-    }
+    } */
     
     #inner {
         margin-top: 2%;
