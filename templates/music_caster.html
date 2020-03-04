@@ -128,26 +128,26 @@
   
     <div class="row">
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%" onclick="currentSlide(1)" alt="Settings window screenshot">
+        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%" onclick="currentSlide(0)" alt="Settings window screenshot">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%" onclick="currentSlide(2)" alt="Main GUI tab 1">
+        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Main GUI tab 1">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%" onclick="currentSlide(3)" alt="Main GUI tab 2">
+        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Main GUI tab 2">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%" onclick="currentSlide(4)" alt="Tray playing screenshot">
+        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%" onclick="currentSlide(3)" alt="Tray playing screenshot">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%" onclick="currentSlide(5)" alt="Settings window screenshot">
+        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%" onclick="currentSlide(4)" alt="Settings window screenshot">
       </div>    
     </div>
   </div>
 {% endblock %}
 {% block script %}
 <script>
-var slideIndex = 1;
+var slideIndex = 0;
 showSlides(slideIndex);
 
 function plusSlides(n) {
@@ -163,17 +163,15 @@ function showSlides(n) {
   var slides = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("demo");
   var captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
+  if (n >= slides.length) {slideIndex = 0}
+  if (n < 0) {slideIndex = slides.length - 1}
   for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  captionText.innerHTML = dots[slideIndex-1].alt;
+  slides[slideIndex].style.display = "block";
+  dots[slideIndex].className += " active";
+  captionText.innerHTML = dots[slideIndex].alt;
 }
 </script>
 {% endblock %}
