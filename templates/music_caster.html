@@ -9,16 +9,12 @@
     position: relative;
   }
   
-  .mySlides {
+  .slide {
     display: none;
   }
 
-  .mySlides img {
+  .slide img {
     border-radius: .5em;
-  }
-  
-  .cursor {
-    cursor: pointer;
   }
   
   .prev, .next {
@@ -86,6 +82,7 @@
   
   .demo {
     opacity: 0.6;
+    cursor: pointer;
   }
   
   .active, .demo:hover {
@@ -97,27 +94,27 @@
 <h1>{% block title %}Music Caster{% endblock %}</h1>
 <h2>Screenshots</h2>
 <div class="container">
-    <div class="mySlides">
+    <div class="slide">
       <div class="numbertext">1 / 5</div>
       <img src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%">
     </div>
   
-    <div class="mySlides">
+    <div class="slide">
       <div class="numbertext">2 / 5</div>
       <img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%">
     </div>
   
-    <div class="mySlides">
+    <div class="slide">
       <div class="numbertext">3 / 5</div>
       <img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%">
     </div>
       
-    <div class="mySlides">
+    <div class="slide">
       <div class="numbertext">4 / 5</div>
       <img src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%">
     </div>
   
-    <div class="mySlides">
+    <div class="slide">
       <div class="numbertext">5 / 5</div>
       <img src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%">
     </div>
@@ -131,30 +128,32 @@
   
     <div class="row">
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%" onclick="showSlide(0)" alt="Settings window screenshot">
+        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%" onclick="showSlide(0)" alt="Settings window screenshot">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%" onclick="showSlide(1)" alt="Main GUI tab 1">
+        <img class="demo" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%" onclick="showSlide(1)" alt="Main GUI tab 1">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%" onclick="showSlide(2)" alt="Main GUI tab 2">
+        <img class="demo" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%" onclick="showSlide(2)" alt="Main GUI tab 2">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%" onclick="showSlide(3)" alt="Tray playing screenshot">
+        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%" onclick="showSlide(3)" alt="Tray playing screenshot">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%" onclick="showSlide(4)" alt="Settings window screenshot">
-      </div>    
+        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%" onclick="showSlide(4)" alt="Settings window screenshot">
+      </div>
     </div>
   </div>
 {% endblock %}
 {% block script %}
 <script>
 var slideIndex = 0;
-var slides = document.getElementsByClassName("mySlides");
+var slides = document.getElementsByClassName("slide");
 var thumbs = document.getElementsByClassName("demo");
 var captionText = document.getElementById("caption");
-var num_of_images = slides.length;
+var numOfImages = slides.length;
+var modal = document.getElementById("modal");
+var modalContent = document.getElementById("modal-content");
 
 function plusSlides(n) {
   showSlide(slideIndex + n);
@@ -164,8 +163,8 @@ function plusSlides(n) {
 function showSlide(index) {
   slides[slideIndex].style.display = "none"
   thumbs[slideIndex].className = thumbs[slideIndex].className.replace(" active", "");
-  if (index >= num_of_images) {index = 0}
-  else if (index < 0) {index = num_of_images - 1}
+  if (index >= numOfImages) {index = 0}
+  else if (index < 0) {index = numOfImages - 1}
   slideIndex = index;
   slides[slideIndex].style.display = "block";
   thumbs[slideIndex].className += " active";
