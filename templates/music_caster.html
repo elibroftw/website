@@ -3,7 +3,6 @@
 <style>
   img {
     vertical-align: middle;
-    border-radius: .5em;
   }
   
   .container {
@@ -12,6 +11,10 @@
   
   .mySlides {
     display: none;
+  }
+
+  .mySlides img {
+    border-radius: .5em;
   }
   
   .cursor {
@@ -128,19 +131,19 @@
   
     <div class="row">
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%" onclick="currentSlide(0)" alt="Settings window screenshot">
+        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%" onclick="showSlide(0)" alt="Settings window screenshot">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Main GUI tab 1">
+        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%" onclick="showSlide(1)" alt="Main GUI tab 1">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Main GUI tab 2">
+        <img class="demo cursor" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%" onclick="showSlide(2)" alt="Main GUI tab 2">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%" onclick="currentSlide(3)" alt="Tray playing screenshot">
+        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%" onclick="showSlide(3)" alt="Tray playing screenshot">
       </div>
       <div class="column">
-        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%" onclick="currentSlide(4)" alt="Settings window screenshot">
+        <img class="demo cursor" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%" onclick="showSlide(4)" alt="Settings window screenshot">
       </div>    
     </div>
   </div>
@@ -148,30 +151,27 @@
 {% block script %}
 <script>
 var slideIndex = 0;
-showSlides(slideIndex);
+var slides = document.getElementsByClassName("mySlides");
+var thumbs = document.getElementsByClassName("demo");
+var captionText = document.getElementById("caption");
+var num_of_images = slides.length;
 
 function plusSlides(n) {
-  showSlides(slideIndex += n);
+  showSlide(slideIndex + n);
 }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  if (n >= slides.length) {slideIndex = 0}
-  if (n < 0) {slideIndex = slides.length - 1}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
+function showSlide(index) {
+  slides[slideIndex].style.display = "none"
+  thumbs[slideIndex].className = thumbs[slideIndex].className.replace(" active", "");
+  if (index >= num_of_images) {index = 0}
+  else if (index < 0) {index = num_of_images - 1}
+  slideIndex = index;
   slides[slideIndex].style.display = "block";
-  dots[slideIndex].className += " active";
-  captionText.innerHTML = dots[slideIndex].alt;
+  thumbs[slideIndex].className += " active";
+  captionText.innerHTML = thumbs[slideIndex].alt;
 }
+
+showSlide(0);
 </script>
 {% endblock %}
