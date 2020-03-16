@@ -90,6 +90,7 @@ h1 {
     font-size: 60px;
     letter-spacing: 10px;
     margin-top: -10px;
+    margin-bottom: 0;
     line-height: 1em;
     color: #fff;
     text-transform: uppercase;
@@ -100,7 +101,6 @@ h2 {
     font-family: Helvetica;
     font-size: 20px;
     letter-spacing: 2px;
-    margin-top: -10px;
     line-height: 1em;
     color: #fff;
     transition-duration: .2s
@@ -112,7 +112,6 @@ h1:hover {
 
 p {
     font-family: Futura;
-    margin-top: -20px;
     color: #fff;
     font-weight: 400;
     font-size: 18px
