@@ -1,18 +1,18 @@
 @font-face {
     font-family: Futura;
-    src: url('fonts/futura medium bt.ttf');
+    src: url("/static/fonts/futura medium bt.ttf");
     font-weight: 400
 }
 
 @font-face {
     font-family: Futura;
-    src: url('fonts/Futura Bold font.ttf');
+    src: url("/static/fonts/Futura Bold font.ttf");
     font-weight: 700
 }
 
 @font-face {
     font-family: Montserrat;
-    src: url(fonts/Montserrat-Regular.otf);
+    src: url("/static/fonts/Montserrat-Regular.otf");
     font-weight: lighter
 }
 
@@ -312,7 +312,7 @@ input:checked+.slider:before {
 }
 
 .noselect {
-    -khtml-user-select: none;
+    -ms-user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
