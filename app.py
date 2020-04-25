@@ -192,6 +192,11 @@ def software():
     return render_template('software.html')
 
 
+@app.route('/cloud-copy/')
+def cloud_copy():
+    return render_template('cloud_copy.html')
+
+
 @app.route('/music-caster/')
 def music_caster():
     return render_template('music_caster.html')

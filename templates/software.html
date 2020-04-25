@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
+{% block style %}
+<style>
+* {
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+</style>
+{% endblock %}
 {% block main_content %}
 <h1>{% block title %}Software{% endblock %}</h1><br>
 <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
@@ -79,6 +92,14 @@
     <div>
         <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/discord-bot">
             <i class="fa fa-download"></i> Get it on GitHub</a>
+    </div>
+</div>
+<button class="accordion" id="cloud-copy">Cloud Copy</button>
+<div class="panel">
+    <p id="panel-text">[Concept/Abandoned] A universal clipboard, OS and browser agnostic</p>
+    <div>
+        <a class="download-btn" style="width: 100%;" href="/cloud-copy/">
+            <i class="fa fa-download"></i> Watch the concept here</a>
     </div>
 </div>
 {% endblock %}
