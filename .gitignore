@@ -4,5 +4,4 @@ config.txt
 .vscode/settings.json
 .env
 client_secret.json
-static/MP3Editor
-static/Metadata_Setter
+static/metadataSetter

@@ -4,6 +4,8 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
 import os
+import time
+import threading
 import requests
 import sys
 from werkzeug.utils import secure_filename
@@ -29,10 +31,9 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 # cursor = conn.cursor()
 # cursor.execute('CREATE TABLE IF NOT EXISTS visitors (date TIMESTAMPTZ, ip_address TEXT, user_agent TEXT, page_accessed TEXT);')
 
-announcements = []
-wlu_pool_timings = []
-wlu_gym_timings = []
+announcements, wlu_pool_timings, wlu_gym_timings = [], [], []
 pool_schedule = ''
+REACT_BUILD_FOLDER = 'react_app/build'
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
 daily_quotes = ['Organization is the key to success', 'Before asking a question, ask yourself if the answer even matters',
                 'Physical health compliments intelligence', 'Why ponder over items of no impact to your life?',
@@ -150,8 +151,15 @@ def shift():
 
 
 if DEVELOPMENT_SETTING:
-    @app.route('/test/', methods=['GET', 'POST'])
-    def test():
+
+    def delete_file(filename):
+        time.sleep(600)
+        with suppress(OSError):
+            os.remove(filename)
+
+    @app.route('/test/')
+    @app.route('/metadata-setter/', methods=['GET', 'POST'])
+    def metadata_setter():
         if request.method == 'POST' and 'file' in request.files:
             file = request.files['file']
             if file.filename != '':
@@ -159,36 +167,28 @@ if DEVELOPMENT_SETTING:
                     f.write('test\n')
                 filename = secure_filename(file.filename)
                 save_name = filename.replace('_', ' ')
-                save_path = os.path.join('static/Metadata_Setter', save_name)
+                save_path = os.path.join('static/metadataSetter', save_name)
                 file.save(save_path)
-                # do other stuff
-                return url_for('static', filename=f'Metadata_Setter/{save_name}')
-        return render_template('test.html')
-    
-    @app.route('/test2/')
-    def test2():
-        return render_template('test2.html')
+                # auto-set metadata
+                threading.Thread(target=delete_file, args=(f'static/metadataSetter/{save_name}',)).start()
+                return url_for('static', filename=f'metadataSetter/{save_name}')  # TODO: redo this. Maybe use ?filename=
+        return render_template('metadata_setter.html')
 
 
-    @app.route('/done/<filename>', methods=['GET', 'POST'])
+    @app.route('/metadata-setter/<filename>', methods=['GET', 'POST'])
     def upload():
         return str('file' in request.files)
+    
+    
+    @app.route('/react/')
+    def react():
+        return send_from_directory(REACT_BUILD_FOLDER, 'react.html')
 
 
 @app.route('/projects/')
 @app.route('/software/')
 def software():
-    # chrome: class=e-f-ih; .split(' users')[0]
-    # firefox: class=MetadataCard-content
-    # look at announcements for scraping logic
-    # g_dark_theme_chrome = 'https://chrome.google.com/webstore/detail/ohhpliipfhicocldcakcgpbbcmkjkian/'
-    # g_dark_theme_ffox   = 'https://addons.mozilla.org/addon/dark-theme-for-google-searches/'
-    # matte_chrome        = 'https://chrome.google.com/webstore/detail/matte-black-theme/ioadlgcadgdbcchobmhlipionnphmfja'
-    # matte_ffox_2        = 'https://addons.mozilla.org/addon/matte-black-v2/'
-    # github_theme_chrome = 'https://chrome.google.com/webstore/detail/github-dark-theme/odkdlljoangmamjilkamahebpkgpeacp'
-    # github_theme_ffox   = 'https://addons.mozilla.org/addon/github-dark-theme/'
-    # music_caster        = 'https://github.com/elibroftw/music-caster'
-    # music_editor        = 'https://github.com/elibroftw/mp3-editor'
+    # maybe even show users?
     return render_template('software.html')
 
 
@@ -242,7 +242,6 @@ def wlu_pool_schedule():
         else: wlu_pool_timings = "<p style='color: white;'>Something went wrong send me an email.</p>"
     return render_template('wlu_pool.html', schedule=wlu_pool_timings)
     
-
 
 # @app.route('/photos/')  # TODO
 # def photos():

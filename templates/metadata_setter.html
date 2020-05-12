@@ -75,6 +75,8 @@
 {% endblock %}
 {% block script %}
 <script>
+    const uploadCompletetext = 'The enchanced file is being processed. Once complete, a new tab will open up with the file. The link will be valid for 10 minutes.'
+
     let dropArea = document.getElementById('drop-area');
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropArea.addEventListener(eventName, preventDefaults, false);
@@ -103,14 +105,14 @@
     dropArea.addEventListener('drop', ondrop);
 
     function onChange(files) {
-        var fn = document.getElementById("file-name");
+        var fn = document.getElementById('file-name');
         if (files.length) {
             file = files[0];
             console.log(file.name);
             fn.innerHTML = file.name;
-            document.getElementById("upload").classList.remove('hidden');
+            document.getElementById('upload').classList.remove('hidden');
         } else if (!fn.innerHTML) {
-            document.getElementById("upload").classList.add("hidden");
+            document.getElementById('upload').classList.add('hidden');
         }
     }
 
@@ -134,16 +136,18 @@
         //         // Error. Inform the user
         //     }
         // })
+
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 window.open(xhr.response)
             }
         }
+
         formData.append('file', file);
         xhr.send(formData);
-        document.getElementById('file-name').innerHTML = "The enchanced file will open in a new tab shortly.";
+        document.getElementById('file-name').innerHTML = uploadCompletetext;
         document.getElementById('upload').classList.add('hidden');
     }
-        // dropArea.addEventListener('drop', unhighlight, false);
+    // dropArea.addEventListener('drop', unhighlight, false);
 </script>
 {% endblock %}
