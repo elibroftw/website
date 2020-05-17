@@ -2,11 +2,13 @@ from contextlib import suppress
 from datetime import datetime, date
 from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
 from flask_compress import Compress
+from flask_socketio import SocketIO, emit, send
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
 import os
 import time
 import threading
 import requests
+import random
 import sys
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -53,6 +55,7 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEVELOPMENT_SETTING else 604800
 # app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)
+socketio = SocketIO(app)
 
 
 # @app.before_request
@@ -242,7 +245,28 @@ def wlu_pool_schedule():
             wlu_pool_timings = temp
         else: wlu_pool_timings = "<p style='color: white;'>Something went wrong send me an email.</p>"
     return render_template('wlu_pool.html', schedule=wlu_pool_timings)
-    
+
+
+@app.route('/socketio/')
+@app.route('/socket/')
+def socketio_example():
+    return render_template('socket.html')
+
+
+@socketio.on('get_quote')
+def return_random_quote():
+    emit('return_quote', random.choice(daily_quotes))
+
+
+@socketio.on('print_message')
+def return_random_quote(dictionary):
+    print(dictionary.items())
+
+
+@socketio.on('disconnect')
+def socketio_disconnect():
+    print('client disconnected')
+
 
 # @app.route('/photos/')  # TODO
 # def photos():
@@ -291,4 +315,6 @@ def wlu_pool_schedule():
 if __name__ == '__main__':
     assert os.path.exists('.env')
     if not os.path.exists('static/Metadata_Setter'): os.mkdir('static/Metadata_Setter')
-    app.run(debug=True, host='', port=5000)
+    # app.run(debug=True, host='', port=5000)
+    socketio.run(app, host='', port=5000, debug=True)
+
