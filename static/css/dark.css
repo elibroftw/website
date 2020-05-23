@@ -50,7 +50,7 @@ body {
     margin: 0 auto 1%;
     background-size: cover;
     background-repeat: repeat-y;
-    background-position: center;
+    background-position: top;
     background-image: url("/static/images/bg 2.webp");
     background-color: #080d10
 }
@@ -125,12 +125,12 @@ p {
 .link {
     margin-top: 10px;
     text-decoration: none;
-    color: #75bdec;
+    color: #00bfff;
     transition-duration: 150ms
 }
 
 .link:hover {
-    color: #00ab44
+    color: #00c44e
 }
 
 #desktop-nav {

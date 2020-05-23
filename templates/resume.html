@@ -15,6 +15,7 @@
         }
 
         @media screen and (min-height:800px) {
+
             /* iPhone X */
             #resume {
                 min-height: 52vh;
@@ -22,14 +23,115 @@
         }
 
         @media screen and (min-height:822px) {
+
             /* Pixel 2 XL */
             #resume {
                 min-height: 56vh;
             }
         }
     }
+
+    h2 {
+        color: #16b254;
+    }
+
+    li {
+        text-decoration: none;
+        font-family: Montserrat;
+        font-size: 18px;
+        color: white;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: white
+    }
+
+    #inner {
+        background-color: rgba(0, 0, 0, .9);
+    }
+    ul {
+        list-style-type: "★";
+        text-indent: .5em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .feature {
+        color: orangered;
+    }
+
+    .censored {
+        color: white;
+        background-color: white;
+    }
 </style>
 {% endblock %}
 {% block main_content %}
-<iframe frameborder="0" id="resume" src="https://drive.google.com/file/d/1eh8HEvvpXkDlV_gbm2l-0oAY7ljl7r8Y/preview"></iframe>
+<h1>Resume</h1>
+
+
+<div #id="resume-div" style="display: flex; flex-direction: column; text-align: left;">
+    <div class="row">
+        <h2>Elijah Lopez</h2>
+        <p style="text-align: right;">Updated: May 23rd 2020</p>
+    </div>
+    
+    <p>Amongst many things, I am a software developer</p>
+    <div style="display: inline-flex; justify-content: space-between">
+        <p><a>Links</a></p>
+        <p><a class="link" href="mailto:elijahllopezz@gmail.com">elijahllopezz@gmail.com</a></p>
+        
+        <p><a class="link" href="github.com/elibroftw">github.com/elibroftw</a></p>
+    </div>
+    <h2>Education</h2>
+    <div class="row">
+        <p>Studying Bachelor of Computer Science</p>
+        <p class="feature">GPA: 3.54/4.0</p>
+    </div>
+    <h2>Skills</h2>
+    <div id="skills" class="row">
+        <ul>
+            <li>Python</li>
+            <li>Java</li>
+            <li>C</li>
+        </ul>
+        <ul>
+            <li>C# Unity</li>
+            <li>SQL</li>
+            <li>noSQL</li>
+        </ul>
+        <ul>
+            <li>React</li>
+            <li>Javascript</li>
+            <li>HTML/CSS</li>
+        </ul>
+        <ul>
+            <li>Flask</li>
+            <li>Heroku</li>
+            <li>Git</li>
+        </ul>
+    </div>
+    <h2>Achievements</h2>
+    <p><a class="link" href="https://addons.mozilla.org/search/?sort=rating&type=statictheme">#1 Rated Firefox Theme</a></p>
+    <p>650K+ Browser Extension installs (February 2020)</p>
+    <p>2000+ GitHub commits in the past year</p>
+    <h2>Experience - contact for company names</h2>
+    <div class="row">
+        <p><a class="censored">XXXXX</a> - Fullstack intern working with NodeJS, react, and express</p>
+        <p class="feature">MAY 2020 - AUG 2020</p>
+    </div>
+    <div class="row">
+        <p>YMCA - Lifeguard and Swim Instructor</p>
+        <p class="feature">JUL 2018 - AUG 2019</p>
+    </div>
+    <div class="row">
+        <p>Fortinos - Cafe Barrista/Server</p>
+        <p class="feature">AUG 2016 - DEC 2016</p>
+    </div>
+    <h2><a href="/projects/" class="link">Projects</a></h2>
+    
+</div>
 {% endblock %}

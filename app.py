@@ -112,9 +112,10 @@ def resume():
 def formula_calculator(): return redirect('https://repl.it/@elilopez/formulas')
 
 
+@app.route('/social/')
 @app.route('/donate/')
 @app.route('/contact/')
-def contact(): return render_template('contact.html')
+def contact(): return render_template('social.html')
 
 
 @app.route('/resources/')
