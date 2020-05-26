@@ -34,7 +34,7 @@
     }
 
     #monero-address::before {
-        content: 'Click to copy Monero address';
+        content: 'Monero address';
     }
 
     #monero-address:hover .tooltiptext {
@@ -68,7 +68,7 @@
 <h2>Donation</h2>
 <p><a class="link" href="https://www.paypal.me/elibroftw">PayPal</a></p>
 <p><a class="link" id=monero-address onclick="copy_text()" title="42hpQgwfvFw6RXpmcXHBJ85cZs9yF97kqfV3JpycnanG7JazfdL4WHkVLuR8rcM64q6LHt547nKeeYaixBdCQYaHSuEnAuj">
-    <!-- <span class="tooltiptext">Click to copy</span> -->
+    <span class="tooltiptext">Click to copy</span>
     <span id=qr-code><img src="/static/images/monero.png" /></span></a></p>
 {% endblock %}
 {% block more_content %}
