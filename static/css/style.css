@@ -73,8 +73,7 @@ h1 a {
 }
 
 h1 a:hover {
-    color: rgb(170, 170, 170);
-    font-size: 65px;
+    font-size: 47pt
 }
 
 h1 a:hover:after {
@@ -494,7 +493,7 @@ input:checked+.slider:before {
     }
 
     h1 a:hover {
-        font-size: 46pt 
+        font-size: 47pt
     }
 
     #mobile-nav a {

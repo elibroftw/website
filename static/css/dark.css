@@ -73,8 +73,7 @@ h1 a {
 }
 
 h1 a:hover {
-    color: rgb(170, 170, 170);
-    font-size: 65px;
+    font-size: 47pt
 }
 
 h1 a:hover:after {
@@ -409,7 +408,7 @@ input:checked+.slider:before {
         background-image: url("/static/images/bg mobile.jpg");
         background-position: top;
     } */
-    
+
     #inner {
         margin-top: 2%;
         width: 65%
@@ -508,7 +507,7 @@ input:checked+.slider:before {
     }
 
     h1 a:hover {
-        font-size: 46pt
+        font-size: 47pt
     }
 
     #mobile-nav a {
