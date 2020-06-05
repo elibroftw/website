@@ -133,6 +133,10 @@ p {
     color: #00c44e
 }
 
+.link:focus {
+    outline: none;
+}
+
 #desktop-nav {
     padding: 1em 0 0 1em
 }
@@ -339,7 +343,7 @@ input:checked+.slider:before {
     text-align: center;
     outline: none;
     font-size: 20px;
-    transition: 0.2s;
+    transition: 200ms;
     font-family: Verdana;
     border-top: #ccc solid 1px;
     background-color: #f0f0f0;
