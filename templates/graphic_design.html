@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .dl-link {
+        text-decoration: none;
+    }
+
+    #graphicDesignGrid {
+        margin-top: 1em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    div.polaroid {
+        width: 250px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        transition-duration: 200ms;;
+    }
+
+    div.polaroid:hover, div.polaroid:hover  {
+        width: 275px;
+    }
+
+    div.container {
+        padding: 10px;
+        text-decoration: none;
+        background-color: whitesmoke;
+
+    }
+
+    .container > p {
+        color: black;
+    }
+
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Graphic Design{% endblock %}</h1>
+<div id="graphicDesignGrid">
+    <a href="/static/graphic_design/plexus_mobile_wallpapers/Plexus Mobile Wallpapers.zip" download="Plexus Mobile Wallpapers.zip" class="dl-link">
+        <div class="polaroid">
+            <img src="/static/graphic_design/plexus_mobile_wallpapers/preview.png"
+                alt="Plexus Mobile Wallpapers Preview" style="width:100%">
+            <div class="container">
+                <p>Plexus Mobile Wallpapers</p>
+            </div>
+        </div>
+    </a>
+    <a href="/static/graphic_design/smoke_wallpapers/Smoke V1.1.zip" download="Smoke Mobile Wallpapers.zip" class="dl-link">
+        <div class="polaroid">
+            <img src="/static/graphic_design/smoke_wallpapers/preview.png" alt="Smoke Wallpapers" style="width:100%">
+            <div class="container">
+                <p>Smoke Wallpapers</p>
+            </div>
+        </div>
+    </a>
+</div>
+{% endblock %}

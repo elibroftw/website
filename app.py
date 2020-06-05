@@ -183,8 +183,8 @@ if DEVELOPMENT_SETTING:
     @app.route('/metadata-setter/<filename>', methods=['GET', 'POST'])
     def upload():
         return str('file' in request.files)
-    
-    
+
+
     @app.route('/react/')
     def react():
         return send_from_directory(REACT_BUILD_FOLDER, 'react.html')
@@ -269,6 +269,11 @@ def socketio_disconnect():
     print('client disconnected')
 
 
+@app.route('/graphic-design/')
+def graphic_design():
+    return render_template('graphic_design.html')
+
+
 # @app.route('/photos/')  # TODO
 # def photos():
 #     return render_template('photos.html')
@@ -318,4 +323,3 @@ if __name__ == '__main__':
     if not os.path.exists('static/Metadata_Setter'): os.mkdir('static/Metadata_Setter')
     # app.run(debug=True, host='', port=5000)
     socketio.run(app, host='', port=5000, debug=True)
-
