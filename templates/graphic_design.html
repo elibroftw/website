@@ -17,6 +17,18 @@
         justify-content: space-evenly;
     }
 
+    div.container {
+        padding: 10px;
+        text-decoration: none;
+        background-color: whitesmoke;
+
+    }
+
+    .container p {
+        color: black;
+        transition-duration: 200ms;
+    }
+
     div.polaroid {
         width: 250px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -29,17 +41,9 @@
         width: 275px;
     }
 
-    div.container {
-        padding: 10px;
-        text-decoration: none;
-        background-color: whitesmoke;
-
+    div.polaroid:hover .container p {
+        font-size: 1.3em;
     }
-
-    .container > p {
-        color: black;
-    }
-
 </style>
 {% endblock %}
 {% block main_content %}
