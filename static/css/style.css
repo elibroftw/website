@@ -84,10 +84,6 @@ h1 a:hover span {
     display: none
 }
 
-h1 a:focus {
-    outline: none;
-}
-
 h1 {
     font-family: Trebuchet MS;
     font-size: 60px;
@@ -137,10 +133,6 @@ p {
     color: #00c44e
 }
 
-.link:focus {
-    outline: none;
-}
-
 #desktop-nav {
     padding: 1em 0 0 1em
 }
@@ -149,6 +141,10 @@ p {
     border-radius: 1em;
     width: 100px;
     display: block
+}
+
+#desktop-nav>a:focus, h1 a:focus, .link:focus {
+    outline: none;
 }
 
 #desktop-nav a,
