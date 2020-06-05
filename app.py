@@ -44,7 +44,7 @@ daily_quotes = ['Organization is the key to success', 'Before asking a question,
 
 if not DEVELOPMENT_SETTING:
     url = 'https://cssminifier.com/raw'
-    for style in ('style', 'dark'):
+    for style in {'style', 'dark'}:
         data = {'input': open(f'static/css/{style}.css', 'rb').read()}
         r = requests.post(url, data=data)
         with open(f'static/css/{style}.css', 'w') as f:
