@@ -51,7 +51,7 @@ body {
     background-size: cover;
     background-repeat: repeat-y;
     background-position: top;
-    background-image: url("/static/images/bg 1.webp");
+    background-image: url("/static/images/light.webp");
     background-color: #080d10
 }
 
@@ -455,7 +455,7 @@ input:checked+.slider:before {
 
 @media screen and (max-width:690px) {
     body {
-        background-image: url("/static/images/bg 2.webp");
+        background-image: url("/static/images/dark.webp");
         background-position: top;
     }
 

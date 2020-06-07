@@ -51,7 +51,7 @@ body {
     background-size: cover;
     background-repeat: repeat-y;
     background-position: center;
-    background-image: url("/static/images/bg 2.webp");
+    background-image: url("/static/images/dark.webp");
     background-color: #080d10
 }
 
@@ -408,11 +408,6 @@ input:checked+.slider:before {
 /* END: Accordian */
 
 @media screen and (max-width:1024px) {
-    /* body {
-        background-image: url("/static/images/bg mobile.jpg");
-        background-position: top;
-    } */
-
     #inner {
         margin-top: 2%;
         width: 65%
