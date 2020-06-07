@@ -459,9 +459,7 @@ input:checked+.slider:before {
         background-position: top;
     }
 
-    #desktop-nav,
-    #switch-text,
-    .switch {
+    #desktop-nav, #switch-text, .switch {
         display: none
     }
 
@@ -490,7 +488,7 @@ input:checked+.slider:before {
         padding-left: 0;
         padding-right: 0;
         letter-spacing: .05em;
-        width: 90%
+        width: 100%
     }
 
     h1 {
