@@ -386,7 +386,7 @@ input:checked+.slider:before {
 }
 
 .download-btn:hover {
-    background-color: RoyalBlue;
+    background-color: #00bfff;
     font-size: 20px;
 }
 
@@ -492,11 +492,11 @@ input:checked+.slider:before {
     }
 
     h1 {
-        font-size: 40px
+        font-size: 30pt
     }
 
     h1 a:hover {
-        font-size: 47pt
+        font-size: 32pt
     }
 
     #mobile-nav a {
