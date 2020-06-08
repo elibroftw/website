@@ -61,7 +61,7 @@ body {
     background-color: rgba(0, 0, 0, .8);
     margin: -3.5% auto;
     margin-top: -6%;
-    width: 45%;
+    width: 50%;
     max-width: 1000px;
     text-align: center
 }
@@ -401,7 +401,7 @@ input:checked+.slider:before {
 }
 /* END: Accordian */
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1280px) {
     #inner {
         margin-top: 2%;
         width: 65%
