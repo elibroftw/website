@@ -37,10 +37,9 @@ announcements, wlu_pool_timings, wlu_gym_timings = [], [], []
 pool_schedule = ''
 REACT_BUILD_FOLDER = 'react_app/build'
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
-daily_quotes = ['Organization is the key to success', 'Before asking a question, ask yourself if the answer even matters',
-                'Physical health compliments intelligence', 'Why ponder over items of no impact to your life?',
-                'The path to virtue is often the path to happiness', 'Work on your own flaws before commenting on someone elses',
-                'Are you not entertained?']
+quotes = ['First comes organization, then everything falls in place', 'Play stupid games, win stupid prizes',
+                'Expect the worst to be your best', 'To follow or to think?', 'The path to virtue is often the path to happiness',
+                 '"It\'s co—uncommon sense"', '"Are you not entertained?"']
 
 if not DEVELOPMENT_SETTING:
     url = 'https://cssminifier.com/raw'
@@ -94,7 +93,7 @@ def index(): return render_template('index.html')
 
 
 @app.route('/')
-def home(): return render_template('home.html', quote=daily_quotes[datetime.today().weekday()])
+def home(): return render_template('home.html', quote=random.choice(quotes))
 
 
 @app.route('/about/')
@@ -256,7 +255,7 @@ def socketio_example():
 
 @socketio.on('get_quote')
 def return_random_quote():
-    emit('return_quote', random.choice(daily_quotes))
+    emit('return_quote', random.choice(quotes))
 
 
 @socketio.on('print_message')
