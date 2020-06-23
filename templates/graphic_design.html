@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block style %}
 <style>
-    .dl-link {
-        text-decoration: none;
-        padding: 1em;
-    }
-
-    .dl-link:focus {
-        outline: none;
-    }
-
     #graphicDesignGrid {
         margin-top: 1em;
         display: flex;
@@ -17,29 +8,41 @@
         justify-content: space-evenly;
     }
 
-    div.container {
+    .dl-link {
+        text-decoration: none;
+        padding: 1em;
+        outline: none;
+    }
+
+    .polaroid {
+        width: 250px;
+        box-shadow: 0 0 20px #ffffff30;
+        text-align: center;
+        transition-duration: 150ms;
+        background-color: white;
+        border-radius: 1.1em;
+    }
+
+    .polaroid:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 30px #00bfffd2;
+    }
+
+    .preview {
+        border-radius: 1em 1em 0 0;
+        width:100%
+    }
+
+    .container {
         padding: 10px;
         text-decoration: none;
         background-color: whitesmoke;
-
+        border-radius: 0 0 1em 1em;
     }
 
     .container p {
         color: black;
         transition-duration: 150ms;
-    }
-
-    div.polaroid {
-        width: 250px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        text-align: center;
-        transition-duration: 150ms;
-        background-color: white;
-    }
-
-    div.polaroid:hover, div.polaroid:hover  {
-        transform: scale(1.05);
-        box-shadow: 0px 0px 30px #00bfffd2;
     }
 </style>
 {% endblock %}
@@ -48,8 +51,8 @@
 <div id="graphicDesignGrid">
     <a href="/static/graphic_design/plexus_wallpapers/Plexus Wallpapers.zip" download="Plexus Wallpapers.zip" class="dl-link">
         <div class="polaroid">
-            <img src="/static/graphic_design/plexus_wallpapers/preview.png"
-                alt="Plexus Mobile Wallpapers Preview" style="width:100%">
+            <img class="preview" src="/static/graphic_design/plexus_wallpapers/preview.png"
+                alt="Plexus Mobile Wallpapers Preview">
             <div class="container">
                 <p>Plexus Wallpapers</p>
             </div>
@@ -57,7 +60,7 @@
     </a>
     <a href="/static/graphic_design/smoke_wallpapers/Smoke V1.1.zip" download="Smoke Wallpapers.zip" class="dl-link">
         <div class="polaroid">
-            <img src="/static/graphic_design/smoke_wallpapers/preview.png" alt="Smoke Wallpapers" style="width:100%">
+            <img class="preview" src="/static/graphic_design/smoke_wallpapers/preview.png" alt="Smoke Wallpapers">
             <div class="container">
                 <p>Smoke Wallpapers</p>
             </div>
