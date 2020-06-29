@@ -1,7 +1,5 @@
-*.pyc
-config.txt
-.idea
+.idea/
+__pycache__/
+static/metadataSetter/
 .vscode/settings.json
 .env
-client_secret.json
-static/metadataSetter
