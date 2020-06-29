@@ -269,8 +269,14 @@ def socketio_disconnect():
 
 
 @app.route('/graphic-design/')
-def graphic_design():
-    return render_template('graphic_design.html')
+@app.route('/creative-works/')
+def creative_works():
+    return render_template('creative_works.html')
+
+
+@app.route('/new-tab/')
+def new_tab():
+    return render_template('new_tab.html')
 
 
 # @app.route('/photos/')  # TODO
