@@ -145,12 +145,12 @@
 {% block script %}
 <script>
 var slideIndex = 0;
-var slides = document.getElementsByClassName("slide");
-var thumbs = document.getElementsByClassName("demo");
-var captionText = document.getElementById("caption");
+var slides = document.getElementsByClassName('slide');
+var thumbs = document.getElementsByClassName('demo');
+var captionText = document.getElementById('caption');
 var numOfImages = slides.length;
-var modal = document.getElementById("modal");
-var modalContent = document.getElementById("modal-content");
+var modal = document.getElementById('modal');
+var modalContent = document.getElementById('modal-content');
 
 function plusSlides(n) {
   showSlide(slideIndex + n);
@@ -158,13 +158,13 @@ function plusSlides(n) {
 
 
 function showSlide(index) {
-  slides[slideIndex].style.display = "none"
-  thumbs[slideIndex].className = thumbs[slideIndex].className.replace(" active", "");
+  slides[slideIndex].style.display = 'none'
+  thumbs[slideIndex].className = thumbs[slideIndex].className.replace(' active', '');
   if (index >= numOfImages) {index = 0}
   else if (index < 0) {index = numOfImages - 1}
   slideIndex = index;
-  slides[slideIndex].style.display = "block";
-  thumbs[slideIndex].className += " active";
+  slides[slideIndex].style.display = 'block';
+  thumbs[slideIndex].className += ' active';
   captionText.innerHTML = thumbs[slideIndex].alt;
 }
 
