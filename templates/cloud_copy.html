@@ -60,7 +60,7 @@
             <ul>
                 <a class="dl-link" href="">64 bit</a><br>
                 <a class="dl-link" href="">32 bit</a>
-                
+
             </ul>
         </div>
         <div id="linux">
@@ -78,7 +78,7 @@
             </ul>
         </div>
     </div>
-    
+
     <button onclick="topFunction()" id="btn-top" title="Go to top">
         <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
             <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
@@ -87,25 +87,25 @@
     </button>
 
     <script>
-        var modal = document.getElementById("modal");
+        var modal = document.getElementById('modal');
         var ytVid = document.getElementsByTagName('iframe')[0];
-        var toTopBtn = document.getElementById("btn-top");
+        var toTopBtn = document.getElementById('btn-top');
 
         function closeModal() {
-            modal.style.display = "none";
+            modal.style.display = 'none';
             ytVid.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
             window.onclick = null;
             document.onkeydown = null;
         }
 
         function openModal() {
-            modal.style.display = "block";
+            modal.style.display = 'block';
             ytVid.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
             // maybe focus on iframe?
 
             // When the user clicks off the modal or presses Esc, close the modal
             document.onkeydown =  function(e) {
-                if (e.key === "Escape") {
+                if (e.key === 'Escape') {
                     closeModal();
                 }
             }
@@ -118,9 +118,9 @@
 
         function scrollFunction() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                toTopBtn.style.display = "block";
+                toTopBtn.style.display = 'block';
             } else {
-                toTopBtn.style.display = "none";
+                toTopBtn.style.display = 'none';
             }
         }
 
@@ -128,7 +128,7 @@
         function topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
-            document.getElementById("demo-btn").focus();
+            document.getElementById('demo-btn').focus();
         }
 
         // When the user scrolls down 20px from the top of the document, show the button
