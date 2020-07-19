@@ -1,10 +1,11 @@
 # Website
-My own Website built with Flask hosted on Heroku and can be found at http:www.elopez.me/
+My own Website built with Flask hosted on Heroku and can be found at http://www.elopez.me/
 # What it contains
 * List of my prominent software projects
 * Album art searcher
 * Useful software and resources
 * My articles
+# My graphic design work
 # My plans
 * Some picture I have taken
 * Links to my profiles

@@ -4,11 +4,11 @@
   img {
     vertical-align: middle;
   }
-  
+
   .container {
     position: relative;
   }
-  
+
   .slide {
     display: none;
   }
@@ -16,7 +16,7 @@
   .slide img {
     border-radius: .5em;
   }
-  
+
   .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -32,7 +32,7 @@
     user-select: none;
     -webkit-user-select: none;
   }
-  
+
   .next {
     right: 0;
     border-radius: 3px 0 0 3px;
@@ -41,11 +41,11 @@
   .prev {
     left: -5px;
   }
-  
+
   .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
-  
+
   .numbertext {
     color: #f2f2f2;
     background-color: rgba(0, 0, 0, 0.7);
@@ -57,7 +57,7 @@
     right: 0;
     font-family: Futura;
   }
-  
+
   .caption-container {
     text-align: center;
     padding: 2px 16px;
@@ -68,23 +68,23 @@
     padding: 2px 16px;
     margin-top: 10px;
   }
-  
+
   .row:after {
     content: "";
     display: table;
     clear: both;
   }
-  
+
   .column {
     float: left;
-    width: 20%;  /* 100 / num of images*/
+    width: 25%;  /* 100 / num of images*/
   }
-  
+
   .demo {
     opacity: 0.6;
     cursor: pointer;
   }
-  
+
   .active, .demo:hover {
     opacity: 1;
   }
@@ -92,70 +92,52 @@
 {% endblock %}
 {% block main_content %}
 <h1>{% block title %}Music Caster{% endblock %}</h1>
-<h2>Screenshots (v4.25.0)</h2>
-<p>Download <a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md">here</a></p>
+<h2>Screenshots (v4.54.8)</h2>
+<a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md">Download</a>
 <div class="container">
     <div class="slide">
-      <div class="numbertext">1 / 6</div>
-      <img src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%">
-    </div>
-  
-    <div class="slide">
-      <div class="numbertext">2 / 6</div>
-      <img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%">
-    </div>
-  
-    <div class="slide">
-      <div class="numbertext">3 / 6</div>
-      <img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%">
-    </div>
-      
-    <div class="slide">
-      <div class="numbertext">4 / 6</div>
-      <img src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%">
-    </div>
-  
-    <div class="slide">
-      <div class="numbertext">5 / 6</div>
-      <img src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%">
+      <div class="numbertext">1 / 4</div>
+      <img src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true" style="width:100%">
     </div>
 
     <div class="slide">
-      <div class="numbertext">6 / 6</div>
-      <img src="https://github.com/elibroftw/music-caster/blob/master/resources/WebGUI.png?raw=true" style="width:100%">
+      <div class="numbertext">2 / 4</div>
+      <img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Settings.png" style="width:100%">
     </div>
-      
+
+    <div class="slide">
+      <div class="numbertext">3 / 4</div>
+      <img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Tray.png" style="width:50%">
+    </div>
+
+    <div class="slide">
+      <div class="numbertext">4 / 4</div>
+      <img src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Web.png?raw=true" style="width:38%">
+    </div>
+
     <a class="prev" onclick="plusSlides(-1)">❮</a>
     <a class="next" onclick="plusSlides(1)">❯</a>
-  
+
     <div class="caption-container">
       <p id="caption"></p>
     </div>
-  
+
     <div class="row">
       <div class="column">
-        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/Settings%20Screenshot.jpg?raw=true" style="width:100%" onclick="showSlide(0)" 
-        alt="Settings window screenshot" title="Settings window screenshot">
+        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true" style="width:100%" onclick="showSlide(0)"
+        alt="Main" title="Main">
       </div>
       <div class="column">
-        <img class="demo" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab1.jpg" style="width:100%" onclick="showSlide(1)" 
-        alt="Main GUI tab 1" title="Main GUI tab 1">
+        <img class="demo" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Settings.png" style="width:100%" onclick="showSlide(1)"
+        alt="Settings" title="Settings">
       </div>
       <div class="column">
-        <img class="demo" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/Main%20GUI%20tab2.jpg" style="width:100%" onclick="showSlide(2)"
-        alt="Main GUI tab 2" title="Main GUI tab 2">
+        <img class="demo" src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Tray.png" style="width:60%" onclick="showSlide(2)"
+        alt="Tray Devices Menu" title="Tray Devices Menu">
       </div>
       <div class="column">
-        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Idle.png?raw=true" style="width:100%" onclick="showSlide(3)"
-        alt="Tray playing screenshot" title="Tray playing screenshot">
-      </div>
-      <div class="column">
-        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/Tray%20Paused.png?raw=true" style="width:100%" onclick="showSlide(4)"
-        alt="Settings window screenshot" title="Settings window screenshot">
-      </div>
-      <div class="column">
-        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/WebGUI.png?raw=true" style="width:100%" onclick="showSlide(5)"
-        alt="Web GUI screenshot" title="Web GUI screenshot">
+        <img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Web.png?raw=true" style="width:40%" onclick="showSlide(3)"
+        alt="Web GUI" title="Web GUI">
       </div>
     </div>
   </div>
@@ -163,12 +145,12 @@
 {% block script %}
 <script>
 var slideIndex = 0;
-var slides = document.getElementsByClassName("slide");
-var thumbs = document.getElementsByClassName("demo");
-var captionText = document.getElementById("caption");
+var slides = document.getElementsByClassName('slide');
+var thumbs = document.getElementsByClassName('demo');
+var captionText = document.getElementById('caption');
 var numOfImages = slides.length;
-var modal = document.getElementById("modal");
-var modalContent = document.getElementById("modal-content");
+var modal = document.getElementById('modal');
+var modalContent = document.getElementById('modal-content');
 
 function plusSlides(n) {
   showSlide(slideIndex + n);
@@ -176,13 +158,13 @@ function plusSlides(n) {
 
 
 function showSlide(index) {
-  slides[slideIndex].style.display = "none"
-  thumbs[slideIndex].className = thumbs[slideIndex].className.replace(" active", "");
+  slides[slideIndex].style.display = 'none'
+  thumbs[slideIndex].className = thumbs[slideIndex].className.replace(' active', '');
   if (index >= numOfImages) {index = 0}
   else if (index < 0) {index = numOfImages - 1}
   slideIndex = index;
-  slides[slideIndex].style.display = "block";
-  thumbs[slideIndex].className += " active";
+  slides[slideIndex].style.display = 'block';
+  thumbs[slideIndex].className += ' active';
   captionText.innerHTML = thumbs[slideIndex].alt;
 }
 
