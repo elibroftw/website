@@ -20,18 +20,18 @@
 {% block script %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 <script>
-    var socket = io();
-    var quotes = document.getElementById('quotes');
-    var max_quotes = 10;
+    const socket = io();
+    const quotes = document.getElementById('quotes');
+    let max_quotes = 10;
 
     socket.on('connect', () => {
         socket.emit('print_message', {data: 'This is a test'});
         socket.emit('get_quote');
     });
-    
-    socket.on('return_quote', (quote) => {
-        let node = document.createElement('li');   
-        let textnode = document.createTextNode(quote);
+
+    socket.on('return_quote', quote => {
+        const node = document.createElement('li');
+        const textnode = document.createTextNode(quote);
         node.appendChild(textnode);
         quotes.appendChild(node);
         max_quotes -= 1;

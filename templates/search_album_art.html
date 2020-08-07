@@ -5,48 +5,31 @@
         max-width: 500px;
     }
 
-    #search::after {
-        content: "\A\A";
-    }
-
-    input {
+    input, #search{
         display: inline-block;
         padding: 0.35em 1.2em;
-        border: 0.1em solid #FFFFFF;
+        border: 0.1em solid #fff;
         margin: 0 0.3em 0.3em 0;
         border-radius: 0.12em;
         box-sizing: border-box;
         text-decoration: none;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 300;
-        color: #FFFFFF;
-        transition: all 0.2s;
-        background-color: transparent;
-    }
-
-    #search {
-        display: inline-block;
-        padding: 0.35em 1.2em;
-        border: 0.1em solid #FFFFFF;
-        margin: 0 0.3em 0.3em 0;
-        border-radius: 0.12em;
-        box-sizing: border-box;
-        text-decoration: none;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 300;
-        color: #FFFFFF;
-        text-align: center;
+        font-family: Montserrat;
+        color: #fff;
         transition: all 200ms;
         background-color: transparent;
     }
 
-    #search:hover,
-    input:hover,
-    input:active,
-    input:focus,
-    input:focus-within {
-        color: #000000;
-        background-color: #FFFFFF;
+    #search:hover, #search:focus, input:hover, input:active, input:focus, input:focus-within {
+        color: #000;
+        background-color: #fff;
+    }
+
+    #search:hover {
+        cursor: pointer;
+    }
+
+    #search::after {
+        content: "\A\A";
     }
 
     @media screen and (max-width: 1024px) {
@@ -83,34 +66,16 @@
     <input id="track-input" type=text name=track placeholder="Track title" required>
     <button id="search">Search</button>
 </form>
-<img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" />
+<img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" {{'style="display: none;"'|safe if image_url == '' else ''}}/>
 {% endblock %}
 {% block script %}
 <script>
-    if ('{{image_url}}' == 'image not found') {
-        document.getElementById('album-cover').style.display = 'none';
-    }
-
-    var input = document.getElementById('track-input');
-    input.addEventListener('keyup', function (event) {
+    const input = document.getElementById('track-input');
+    input.addEventListener('keyup', event => {
         event.preventDefault();
         if (event.keyCode === 13) {
             document.getElementById('search').click();
         }
     });
-
-    // TODO
-    var nav = document.getElementById('desktop-nav');
-    var sticky = nav.offsetTop;
-    var top = document.getElementById('top');
-    function stickyScroll() {
-        if (window.pageYOffset >= sticky) {
-            header.classList.add('sticky');
-            top.classList.add('sticky');
-        } else {
-            header.classList.remove('sticky');
-            top.classList.remove('sticky');
-        }
-    }
 </script>
 {% endblock %}

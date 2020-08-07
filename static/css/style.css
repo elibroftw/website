@@ -213,6 +213,10 @@ p {
 }
 
 #mobile-nav-panel {
+    opacity: 0;
+    margin-top: 0;
+    width: 0;
+    height: 0;
     padding-inline-start: 0;
     margin-bottom: 0;
     border-radius: 0;

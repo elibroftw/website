@@ -144,13 +144,12 @@
 {% endblock %}
 {% block script %}
 <script>
-var slideIndex = 0;
-var slides = document.getElementsByClassName('slide');
-var thumbs = document.getElementsByClassName('demo');
-var captionText = document.getElementById('caption');
-var numOfImages = slides.length;
-var modal = document.getElementById('modal');
-var modalContent = document.getElementById('modal-content');
+let slideIndex = 0;
+const slides = document.getElementsByClassName('slide');
+const thumbs = document.getElementsByClassName('demo');
+const captionText = document.getElementById('caption');
+const numOfImages = slides.length;
+const modal = document.getElementById('modal');
 
 function plusSlides(n) {
   showSlide(slideIndex + n);

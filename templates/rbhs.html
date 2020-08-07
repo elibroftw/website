@@ -21,35 +21,35 @@
 {% endblock %}
 {% block script %}
 <script>
-    var acc = document.getElementsByClassName("accordion");
-    var open_panels = [];
-    
+    const acc = document.getElementsByClassName('accordion');
+    const open_panels = [];
+
     for (let i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
+        acc[i].addEventListener('click', function () {
+            this.classList.toggle('active');
+            const panel = this.nextElementSibling;
             if (panel.style.maxHeight) {  // panel is open so close it
                 panel.style.maxHeight = null;
                 open_panels.splice(open_panels.indexOf(this.id), 1);
-                var op_len = open_panels.length;
+                const op_len = open_panels.length;
                 if (op_len) {
-                    history.replaceState({}, document.title, window.location.pathname + "#" + open_panels[op_len - 1]);
+                    history.replaceState({}, document.title, window.location.pathname + '#' + open_panels[op_len - 1]);
                 } else {
                     history.replaceState({}, document.title, window.location.pathname);
                 }
             } else {  // open panel
-                history.replaceState({}, document.title, window.location.pathname + "#" + this.id);
-                panel.style.maxHeight = panel.scrollHeight + "px";
+                history.replaceState({}, document.title, window.location.pathname + '#' + this.id);
+                panel.style.maxHeight = panel.scrollHeight + 'px';
                 open_panels.push(this.id);
             }
         });
     }
 
-    var hash = window.location.hash;
+    const hash = window.location.hash;
     if (hash) {
         window.onload = function () {
             try {
-                var acc = document.getElementById(hash.slice(1)).click();
+                document.getElementById(hash.slice(1)).click();
             } catch (err) {  // invalid hash
                 history.replaceState({}, document.title, window.location.pathname);
             }

@@ -35,15 +35,15 @@
 {% block script %}
 <script>
     function squareIt() {
-        var num = document.getElementById('inputbox').value;
+        let num = document.getElementById('inputbox').value;
         if (num.length > 4) {
             num = num + "";
             num = parseInt(num.slice(0, 5));
             document.getElementById('inputbox').value = num;
         }
         a = num * num;
-        if (a == 0) {
-            document.getElementById('output').innerHTML = "";
+        if (a === 0) {
+            document.getElementById('output').innerHTML = '';
         } else {
             document.getElementById('output').innerHTML = a;
         }

@@ -130,13 +130,11 @@ def articles(): return render_template('articles.html')
 def search_album_art():
     artist = request.args.get('artist')
     track = request.args.get('track')
-    if None in (artist, track) or '' in (artist, track):
-        image_url, alt_text = 'image not found', ''
-    else:
-        try:
-            image_url, alt_text = get_album_art(artist, track), f'{track} Album Cover'
-        except IndexError:
-            image_url, alt_text = 'image not found', ''
+    try:
+        if None in (artist, track) or '' in (artist, track): raise IndexError
+        image_url, alt_text = get_album_art(artist, track), f'{track} Album Cover'
+    except IndexError:
+        image_url, alt_text = '', ''
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
 
 

@@ -1,93 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-<link rel="icon" type="image/png" href="/static/images/logo.png">
+<title>IB Economics Schedule</title>
+<link rel="icon" sizes="256x256" type="image/png" href="/static/images/favicon.png">
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+<!-- <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">  -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#111111" />{% block style %}{% endblock %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <title>IB Economics Schedule</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+    tr:nth-child(eveFn) {
+        background-color: #dddddd;
+    }
 
-        tr:nth-child(eveFn) {
-            background-color: #dddddd;
-        }
+    .header {
+        padding: 10px 16px;
+        background: #555;
+        color: #f1f1f1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 
-        .header {
-            padding: 10px 16px;
-            background: #555;
-            color: #f1f1f1;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%
+    }
 
-        .sticky {
-            position: fixed;
-            top: 0;
-            width: 100%
-        }
+    .content {
+        padding: 16px;
+    }
 
-        .content {
-            padding: 16px;
-        }
-
-        .sticky+.content {
-            padding-top: 102px;
-        }
-    </style>
-</head>
-
+    .sticky+.content {
+        padding-top: 102px;
+    }
+</style>
 <body>
     <div class="header" id="inputHeader">
         <input type="text" id="input1" autofocus="autofocus" onfocus="this.select()"><br>
     </div>
-    <script type="text/javascript">
+    <script>
+        // Created in 2018 or something.
+        // backend parses IB Economics webesite and this is the page of the output table
+        // only worked when I was in IB Econ, plus the teacher retired & school shut down
+        // Useful things include table and sticky nav/header
+
         document.getElementById('input1').onkeypress = function (e) {
             if (!e) e = window.event;
-            if (e.keyCode == '13') {
+            if (e.keyCode === '13') {
                 this.value = this.value.replace(/\s/g, "").toLowerCase();
                 this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
                 window.location.hash = this.value;
                 window.location.hash = this.value;
-                var input = document.getElementById('input1');
                 window.location.hash = 'input1';
                 return false;
             }
         }
 
-        window.onload = function () {
-            var input = document.getElementById('input1');
+        window.onload = () => {
+            const input = document.getElementById('input1');
             input.focus();
             input.select();
         }
 
-        // window.onscroll = function () {
-        //     stickyScroll()
-        // };
         window.onscroll = stickyScroll;
 
-        var header = document.getElementById("inputHeader");
-        var sticky = header.offsetTop;
-        var top = document.getElementById("top");
+        const header = document.getElementById('inputHeader');
+        const sticky = header.offsetTop;
+        const top = document.getElementById('top');
 
         function stickyScroll() {
             if (window.pageYOffset >= sticky) {
-                header.classList.add("sticky");
-                top.classList.add("sticky");
+                header.classList.add('sticky');
+                top.classList.add('sticky');
             } else {
-                header.classList.remove("sticky");
-                top.classList.remove("sticky");
+                header.classList.remove('sticky');
+                top.classList.remove('sticky');
             }
         }
     </script>
@@ -103,5 +102,4 @@
         <tr id='bottom'></tr>
     </table>
 </body>
-
 </html>

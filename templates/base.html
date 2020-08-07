@@ -10,7 +10,7 @@
 <body>
 <nav id="mobile-nav" onclick="mobileNavigation()" class="noselect">
     <span id="mobile-nav-label">menu</span>
-    <ul id="mobile-nav-panel" style="opacity: 0; margin-top: 0; width: 0; height: 0;">
+    <ul id="mobile-nav-panel">
         <a href="/">home</a>
         <a href="/resume/">resume</a>
         <a href="/software/">software</a>
@@ -52,38 +52,36 @@
 </div> -->
 <script>
     function getCookie(name) {
-        var nameEQ = name + '=';
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for (const c of ca) {
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
         }
         return null;
     }
 
     function setCookie(name, value, days) {
-        var expires = "";
+        let expires = '';
         if (days) {
-            var date = new Date();
+            const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             expires = '; expires=' + date.toUTCString();
         }
         document.cookie = name + '=' + (value || '') + expires + '; path=/';
     }
 
-    var nav_panel = document.getElementById('mobile-nav-panel');
-    var menu = document.getElementById('mobile-nav-label');
+    const nav_panel = document.getElementById('mobile-nav-panel');
+    const menu = document.getElementById('mobile-nav-label');
 
     function mobileNavigation() {
-        if (menu.innerHTML== 'CLOSE') {
+        if (menu.innerHTML === 'CLOSE') {
             nav_panel.style.opacity = '0';
             nav_panel.style.visibility = 'hidden';
             nav_panel.style.width = '0';
             nav_panel.style.height = '0';
             nav_panel.style.marginTop = '0';
             menu.innerHTML = 'MENU';
-
         } else {
             nav_panel.style.width = '100%';
             nav_panel.style.height = '100%';
@@ -105,8 +103,8 @@
         }
     }
 
-    if (getCookie('theme') == 'true') {
-        document.getElementById('theme-toggle').checked = true;
-    }
+    if (getCookie('theme') === 'true') document.getElementById('theme-toggle').checked = true;
 </script>
 {% block script %}{% endblock %}
+</body>
+</html>

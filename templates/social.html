@@ -78,15 +78,18 @@
 {% block script %}
 <script>
     function copy_text() {
-        var el = document.createElement('textarea');
-        el.value = '42hpQgwfvFw6RXpmcXHBJ85cZs9yF97kqfV3JpycnanG7JazfdL4WHkVLuR8rcM64q6LHt547nKeeYaixBdCQYaHSuEnAuj';
+        const el = document.createElement('textarea');
+        const snackbar = document.getElementById('snackbar');
+
+        // copy Monero Address
+        el.value = document.getElementById('monero-address').title;
         el.setAttribute('readonly', '');
         el.style = { position: 'absolute', left: '-9999px' };
         document.body.appendChild(el);
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
-        var snackbar = document.getElementById('snackbar');
+
         snackbar.className = 'show';
         setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 2400);
     }
