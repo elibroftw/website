@@ -57,12 +57,12 @@
 </style>
 {% endblock %}
 {% block main_content %}
-<h1>{% block title %}Krunker Stats{% endblock %}</h1><br>
-<form action="/krunker-stats" style="margin-bottom: 1em">
-    <input id="krunker-username-input" type=text name=krunker-username placeholder="Krunker username" autofocus
-        required>
-    <button id="search">Search</button>
-</form>
+    <h1>{% block title %}Krunker Stats{% endblock %}</h1><br>
+    <form action="/krunker-stats" style="margin-bottom: 1em">
+        <input id="krunker-username-input" type=text name=krunker-username placeholder="Krunker username" autofocus
+            required>
+        <button id="search">Search</button>
+    </form>
 {% endblock %}
 {% block script %}
 <script>
