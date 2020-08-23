@@ -37,9 +37,9 @@ announcements, wlu_pool_timings, wlu_gym_timings = [], [], []
 pool_schedule = ''
 REACT_BUILD_FOLDER = 'react_app/build'
 DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
-quotes = ['First comes organization, then everything falls in place', 'Play stupid games, win stupid prizes',
-                'Expect the worst to be your best', 'To follow or to think?', 'The path to virtue is often the path to happiness',
-                 '"It\'s co—uncommon sense"', '"Are you not entertained?"', '"Decent people don’t want to harm those who disagree with them"']
+quotes = ['First comes organization, then everything falls in place',
+          'Expect the worst to be your best', 'To follow or to think?', 'The path to virtue is often the path to happiness',
+          '"It\'s co—uncommon sense"', '"Are you not entertained?"', '"Decent people don’t want to harm those who disagree with them"']
 
 if not DEVELOPMENT_SETTING:
     url = 'https://cssminifier.com/raw'
