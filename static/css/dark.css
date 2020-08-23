@@ -480,7 +480,7 @@ input:checked+.slider:before {
 
 @media screen and (max-width:690px) {
     body {
-        background-position: center;
+        background-position: top;
     }
 
     #desktop-nav, #switch-text, .switch {

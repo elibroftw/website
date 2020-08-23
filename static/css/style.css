@@ -466,7 +466,7 @@ input:checked+.slider:before {
 
 @media screen and (max-width:690px) {
     body {
-        background-image: url("/static/images/dark.webp");
+        background-image: url("/static/images/dark.png");
         background-position: top;
     }
 
