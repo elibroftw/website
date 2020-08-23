@@ -479,6 +479,10 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width:690px) {
+    body {
+        background-position: center;
+    }
+
     #desktop-nav, #switch-text, .switch {
         display: none
     }
