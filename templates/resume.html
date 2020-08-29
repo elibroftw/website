@@ -2,13 +2,36 @@
 {% block title %}Resume{% endblock %}
 {% block style %}
 <style>
+    p {
+        margin-top: 0;
+    }
+
+    .major {
+        color: #cecece;
+    }
+
     h2 {
-        color: crimson;
+        background: -webkit-linear-gradient(45deg, crimson, rgb(14, 14, 14) 50%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-top: .5em;
+        margin-bottom: .25em;
+    }
+
+    .time {
+        background: -webkit-linear-gradient(-90deg, #eee, #141414 125%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    h2, .h2 {
         font-size: 22pt;
     }
 
-    p {
+    h3 {
         margin-top: 0;
+        margin-bottom: 0;
+        font-weight: bold;
     }
 
     li {
@@ -22,7 +45,39 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        flex-wrap: wrap
+        flex-wrap: wrap;
+        margin-top: 0.5em;
+    }
+
+    .row p {
+        margin-bottom: 0;
+    }
+
+    .skills {
+        list-style-type: "★";
+        text-indent: .5em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .responsibilities {
+        color: white;
+        list-style-type: "-";
+        text-indent: .5em;
+        margin-left: -2em;
+    }
+
+    .feature {
+        background: -webkit-linear-gradient(45deg, orangered,red 80%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+
+
+    .censored {
+        color: white;
+        background-color: white;
     }
 
     #inner {
@@ -36,83 +91,89 @@
             width: 100%;
         }
     }
-
-    ul {
-        list-style-type: "★";
-        text-indent: .5em;
-        padding-left: 1em;
-        padding-right: 1em;
-    }
-
-    .feature {
-        color: orangered;
-    }
-
-    .censored {
-        color: white;
-        background-color: white;
-    }
 </style>
 {% endblock %}
 {% block main_content %}
 
 <div #id="resume" style="display: flex; flex-direction: column; text-align: left;">
     <div class="row">
-        <h2 style="font-size: 3em; margin-top: -0.1em">Elijah Lopez</h2>
-        <p style="text-align: right;">Unofiicial resume as of July 30th 2020</p>
+        <h1 style="font-size: 3em; margin-top: -0.1em; margin-bottom: 0.5rem;">Elijah Lopez</h1>
+        <p style="text-align: right;">last updated August 29th 2020</p>
     </div>
-    <p>4+ years of Python experience; debugging, problem solving, automation, & UI/UX is what I have learned.</p>
-    <p>Contact me for my official resume</p>
+    <p>4+ years of developing experience facilitating debugging, problem solving, automation, UI, and UX skills.</p>
+    <p></p>
     <div class="row">
         <p><a>Links</a></p>
         <p><a class="link" href="mailto:elijahllopezz@gmail.com">elijahllopezz@gmail.com</a></p>
         <p><a class="link" href="https://github.com/elibroftw">github.com/elibroftw</a></p>
     </div>
     <h2>Skills</h2>
-    <div id="skills" class="row">
-        <ul>
+    <div class="row">
+        <ul class="skills">
             <li>Python</li>
             <li>Java</li>
-            <li>C</li>
+            <li>C & C++</li>
         </ul>
-        <ul>
+        <ul class="skills">
             <li>React</li>
             <li>HTML / CSS / JS</li>
             <li>C# Unity</li>
         </ul>
-        <ul>
-            <li>MySQl / PostgreSQL</li>
+        <ul class="skills">
+            <li>MySQl & PostgreSQL</li>
             <li>MongoDB</li>
-            <li>pandas / matplotlib</li>
+            <li>pandas & matplotlib</li>
         </ul>
-        <ul>
+        <ul class="skills">
             <li>DigitalOcean</li>
             <li>Heroku</li>
             <li>Git</li>
         </ul>
     </div>
     <h2>Achievements</h2>
-    <p><a class="link" href="https://addons.mozilla.org/search/?sort=users&type=statictheme">#2 Top Used Firefox Theme</a>
-        with 57k+ users</p>
-    <p><a class="feature">1M+</a> &nbsp; &nbsp; Total browser extension installs</p>
+    <div class="row">
+        <p><a class="link" href="https://addons.mozilla.org/search/?sort=users&type=statictheme">#1 Top Used Firefox Theme</a>
+            with 60k+ users</p>
+        <p><a class="feature">1M+</a> &nbsp; &nbsp; Total browser extension installs</p>
+    </div>
     <h2>Experience</h2>
-    <div class="row">
-        <p><a class="censored">XXXXX</a> - Fullstack intern working with NodeJS, React, express, Java, javers, and Spring Framework</p>
-        <p class="feature">MAY 2020 — AUG 2020</p>
-    </div>
-    <div class="row">
-        <p>YMCA - Lifeguard and Swim Instructor</p>
-        <p class="feature">JUL 2018 — AUG 2019</p>
-    </div>
-    <div class="row">
-        <p>Fortinos - Cafe Barrista/Server</p>
-        <p class="feature">AUG 2016 — DEC 2016</p>
+    <div>
+        <div class="row">
+            <h3>TD Securities</h3>
+            <p class="time">MAY 2020 — AUG 2020</p>
+        </div>
+        <ul class="responsibilities">
+            <li>Conscientiously delivered on assigned tasks</li>
+            <li>Created a React view to show differences between data on PAT and PROD servers.</li>
+            <li>Improved security process of node express server by validating authentication tokens</li>
+            <li>Improved indexing by changing data structure</li>
+            <li>Improved error handling and HazelCast API call restrictions</li>
+            <li>Improved Java differences SpringBoot API by ignoring metadata of objects in Javers.</li>
+            <li>Expanded API to allow comparisons of LIVE trade data</li>
+            <li>Optimized sorting using TreeMaps, eliminating front-end sorting</li>
+        </ul>
     </div>
     <h2>Education</h2>
-    <div class="row">
-        <p>Studying Computer Science</p>
-        <p class="feature">GPA — 3.54 / 4</p>
+    <div>
+        <div class="row">
+            <h3>University of Waterloo</h3>
+            <p class="time">SEP 2019 — PRESENT</p>
+        </div>
+        <div class="row">
+            <p class="major">Computer Science</p>
+            <p class="feature">GPA — 3.55 / 4</p>
+        </div>
     </div>
-    <h2><a href="/projects/" class="link">Projects</a></h2>
+    <div>
+        <div class="row">
+            <h3>Wilfrid Laurier University</h3>
+            <p class="time">SEP 2019 — PRESENT</p>
+        </div>
+        <div class="row">
+            <p class="major">Business Administration</p>
+            <p class="feature">GPA — 3.55 / 4</p>
+        </div>
+    </div>
+    <a href="/projects/" class="link h2">Projects</a>
 </div>
 {% endblock %}
