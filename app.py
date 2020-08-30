@@ -159,7 +159,6 @@ if DEVELOPMENT_SETTING:
         with suppress(OSError):
             os.remove(filename)
 
-    @app.route('/test/')
     @app.route('/metadata-setter/', methods=['GET', 'POST'])
     def metadata_setter():
         if request.method == 'POST' and 'file' in request.files:
@@ -187,11 +186,15 @@ if DEVELOPMENT_SETTING:
         return send_from_directory(REACT_BUILD_FOLDER, 'react.html')
 
 
+    @app.route('/test/')
+    def test_page():
+        return render_template('test.html')
+
+
 @app.route('/projects/')
 @app.route('/software/')
 def software():
-    # maybe even show users?
-    return render_template('software.html')
+    return render_template('software.html', title=request.path[1:-1])
 
 
 @app.route('/cloud-copy/')

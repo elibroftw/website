@@ -2,122 +2,132 @@
 {% block title %}Resume{% endblock %}
 {% block style %}
 <style>
-    p {
-        margin-top: 0;
-    }
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
 
-    .major {
-        color: #cecece;
-    }
+::-webkit-scrollbar { /* Hide Scrollbar */
+    width: 0;
+    height: 0;
+}
 
-    h1 {
-        background: -webkit-linear-gradient(45deg, crimson, #860101 90%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+p {
+    margin-top: 0;
+}
 
-    h2 {
-        background: -webkit-linear-gradient(45deg, crimson, #680000 20%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-top: .5em;
-        margin-bottom: .25em;
-    }
+.major {
+    color: #cecece;
+}
 
-    .time {
-        background: -webkit-linear-gradient(-90deg, #eee, #141414 125%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+h1 {
+    background: -webkit-linear-gradient(45deg, crimson, #860101 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    h2, .h2 {
-        font-size: 22pt;
-    }
+h2 {
+    background: -webkit-linear-gradient(45deg, crimson, #680000 20%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: .5em;
+    margin-bottom: .25em;
+}
 
-    h3 {
-        margin-top: 0;
-        margin-bottom: 0;
-        font-weight: bold;
-    }
+.time {
+    background: -webkit-linear-gradient(-90deg, #eee, #141414 125%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    .row, .links, .skills {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin-top: 0.5em;
-    }
+h2, .h2 {
+    font-size: 22pt;
+}
 
-    .row p {
-        margin-bottom: 0;
-    }
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+}
 
-    .skills ul {
-        list-style-type: "★";
-        text-indent: .5em;
-        padding-left: 1em;
-        padding-right: 1em;
-    }
+.row, .links, .skills {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0.5em;
+}
 
-    li {
-        text-decoration: none;
-        font-family: Montserrat;
-        font-size: 18px;
-        color: white;
-    }
+.row p {
+    margin-bottom: 0;
+}
 
-    .responsibilities {
-        color: white;
-        list-style-type: "-";
-        text-indent: .5em;
-        margin-left: -2em;
-    }
+.skills ul {
+    list-style-type: "★";
+    text-indent: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
 
-    .feature {
-        background: -webkit-linear-gradient(45deg, crimson, #970000 90%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+li {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: 18px;
+    color: white;
+}
 
-    .censored {
-        color: white;
-        background-color: white;
-    }
+.responsibilities {
+    color: white;
+    list-style-type: "-";
+    text-indent: .5em;
+    margin-left: -2em;
+}
 
+.feature {
+    background: -webkit-linear-gradient(45deg, crimson, #970000 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.censored {
+    color: white;
+    background-color: white;
+}
+
+#inner {
+    background-color: rgba(0, 0, 0, .9);
+    width: 70%;
+    max-width: 1000px;
+    margin-bottom: 1em;
+}
+
+#resume {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+@media screen and (max-width:1366px) {
+    .skills {
+        display: grid;
+        grid-template-columns: 200px 200px;
+    }
+}
+
+@media screen and (max-width:690px) {
     #inner {
-        background-color: rgba(0, 0, 0, .9);
-        width: 70%;
-        max-width: 1000px;
-        margin-bottom: 1em;
+        width: 90%;
+        padding: 1em;
     }
 
-    #resume {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
+    .links p:first-child {
+        display: none;
     }
 
-    @media screen and (max-width:1366px) {
-        .skills {
-            display: grid;
-            grid-template-columns: 200px 200px;
-        }
+    .links p:nth-child(2) {
+        content: "email";
     }
-
-    @media screen and (max-width:690px) {
-        #inner {
-            width: 90%;
-            padding: 1em;
-        }
-
-        .links p:first-child {
-            display: none;
-        }
-
-        .links p:nth-child(2) {
-            content: "email";
-        }
-    }
+}
 </style>
 {% endblock %}
 {% block main_content %}

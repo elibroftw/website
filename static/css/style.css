@@ -213,24 +213,8 @@ p {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19)
 }
 
-#mobile-nav {
+#mobile-nav, #mobile-nav-checkbox {
     display: none
-}
-
-#mobile-nav-panel {
-    opacity: 0;
-    margin-top: 0;
-    width: 0;
-    height: 0;
-    padding-inline-start: 0;
-    margin-bottom: 0;
-    border-radius: 0;
-    transition: opacity .3s linear, margin-top .2s;
-}
-
-#mobile-nav-panel:hover {
-    color: #fff;
-    background-color: transparent
 }
 
 #social-links {
@@ -445,38 +429,6 @@ input:checked+.slider:before {
         background-image: url("/static/images/dark.png");
     }
 
-    #desktop-nav, #switch-text, .switch {
-        display: none
-    }
-
-    #mobile-nav {
-        display: block;
-        text-align: center;
-        letter-spacing: .3em;
-        background-color: rgba(15, 15, 15, .9);
-        padding: 1em 0;
-        cursor: pointer;
-        color: #fff;
-        text-transform: uppercase
-    }
-
-    #mobile-nav-label {
-        display: block;
-        font-family: Verdana
-    }
-
-    #mobile-nav-label:hover {
-        color: #0ff
-    }
-
-    #inner {
-        margin-top: 3em;
-        padding-left: 0;
-        padding-right: 0;
-        letter-spacing: .05em;
-        width: 100%
-    }
-
     h1 {
         font-size: 30pt
     }
@@ -485,22 +437,82 @@ input:checked+.slider:before {
         font-size: 32pt
     }
 
+    #desktop-nav, #switch-text, .switch {
+        display: none
+    }
+
+    #mobile-nav {
+        display: block;
+        background-color: rgba(15, 15, 15, .9);
+        text-align: center;
+        font-family: Verdana;
+        letter-spacing: .3em;
+    }
+
+    #mobile-nav-label {
+        display: block;
+        cursor: pointer;
+        padding: 1em 0;
+        color: white;
+    }
+
+    #mobile-nav-label:hover {
+        color: #0ff
+    }
+
+    #mobile-nav-label::before {
+        content: "MENU";
+    }
+
+    #mobile-nav-checkbox:checked ~ #mobile-nav-label::before {
+        content: "CLOSE";
+    }
+
+    #mobile-nav-panel {
+        margin-top: 0;
+        padding-inline-start: 0;
+        transition: opacity .3s linear, padding-bottom .2s;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    #mobile-nav-panel:hover {
+        color: #fff;
+        background-color: transparent
+    }
+
+    #mobile-nav-checkbox:checked ~ #mobile-nav-panel {
+        visibility: visible;
+        padding-bottom: 1em;
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+    }
+
     #mobile-nav a {
         width: 100%;
         display: block;
+        text-transform: uppercase;
         border-radius: 0;
         margin: 0;
         padding: .5em 0;
-        color: #fff;
         text-decoration: none;
-        font-family: Verdana;
-        font-weight: 400
+        font-weight: 400;
+        color: transparent;
     }
 
-    #mobile-nav a:hover {
+    #mobile-nav-checkbox:checked ~ #mobile-nav-panel a {
+        color: white;
+    }
+
+    #mobile-nav-checkbox:checked ~ #mobile-nav-panel a:hover {
         background-color: transparent;
         color: #0ff;
-        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .2), 0 -8px 20px 0 rgba(0, 0, 0, .2), 0 8px 16px 0 rgba(0, 0, 0, .2), 0 -8px 16px 0 rgba(0, 0, 0, .2)
+        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .2),
+                    0 -8px 20px 0 rgba(0, 0, 0, .2),
+                    0 8px 16px 0 rgba(0, 0, 0, .2),
+                    0 -8px 16px 0 rgba(0, 0, 0, .2)
     }
 
     #social-links {
