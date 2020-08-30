@@ -6,9 +6,41 @@
     -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar { /* WebKit */
+::-webkit-scrollbar { /* Hide Scrollbar */
     width: 0;
     height: 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.downloadBtn {
+    background-color: DodgerBlue;
+    border: none;
+    color: black;
+    text-decoration: none;
+    padding: 12px 0 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    float: left;
+    bottom: 0;
+    width: 100%;
+    transition-duration: 200ms;
+}
+
+.downloadBtn:hover {
+    background-color: #00bfff;
+    font-size: 20px;
+}
+
+.divider {
+    /* vertical line */
+    border-left: 1px solid darkslategrey;
+    height: inherit;
 }
 </style>
 {% endblock %}
@@ -18,40 +50,43 @@
 <div class="panel">
     <p id="panel-text">A music player with the ability to cast your local music to a Google Cast Device</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/music-caster/blob/master/README.md">
+        <a class="downloadBtn" href="https://github.com/elibroftw/music-caster/blob/master/README.md">
             <i class="fa fa-download"></i> Download on GitHub</a>
     </div>
 </div>
 <button class="accordion" id="matte-black-theme">Matte Black Theme</button>
 <div class="panel">
     <p id="panel-text">A modern dark theme for browsers</p>
-    <div>
-        <a class="download-btn download-btn-left"
+    <div class="row">
+        <a class="downloadBtn"
             href="https://chrome.google.com/webstore/detail/ioadlgcadgdbcchobmhlipionnphmfja">
             <i class="fa fa-download"></i> Chrome</a>
-        <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/matte-black-red/">
+        <div class="divider"></div>
+        <a class="downloadBtn" href="https://addons.mozilla.org/addon/matte-black-red/">
             <i class="fa fa-download"></i> Firefox</a>
     </div>
 </div>
 <button class="accordion" id="plexus-crystals-theme">Plexus Crystals Theme</button>
 <div class="panel">
     <p id="panel-text">An abstract update to the matte black series<p>
-    <div>
-        <a class="download-btn download-btn-left"
+    <div class="row">
+        <a class="downloadBtn"
             href="https://chrome.google.com/webstore/detail/ojmfjbdihaiihhfgoepflhbkcoepdmob">
             <i class="fa fa-download"></i> Chrome</a>
-        <a class="download-btn download-btn-right" href="https://addons.mozilla.org/addon/plexus-crystals-turquoise/">
+        <div class="divider"></div>
+        <a class="downloadBtn" href="https://addons.mozilla.org/addon/plexus-crystals-turquoise/">
             <i class="fa fa-download"></i> Firefox</a>
     </div>
 </div>
 <button class="accordion" id="google-dark-theme">Google Dark Theme</button>
 <div class="panel">
     <p id="panel-text">A dark theme for Google searches</p>
-    <div>
-        <a class="download-btn download-btn-left"
+    <div class="row">
+        <a class="downloadBtn"
             href="https://chrome.google.com/webstore/detail/ohhpliipfhicocldcakcgpbbcmkjkian">
             <i class="fa fa-download"></i> Chrome</a>
-        <a class="download-btn download-btn-right"
+            <div class="divider"></div>
+        <a class="downloadBtn"
             href="https://addons.mozilla.org/addon/dark-theme-for-google-searches/">
             <i class="fa fa-download"></i> Firefox</a>
     </div>
@@ -59,11 +94,12 @@
 <button class="accordion" id="questrade-real-time-quote">Questrade Real-Time Quote</button>
 <div class="panel">
     <p id="panel-text">A browser extension that clicks the refresh quote button for you</p>
-    <div>
-        <a class="download-btn download-btn-left"
+    <div class="row">
+        <a class="downloadBtn"
             href="https://chrome.google.com/webstore/detail/kmgcheblnhkjbbkddfafjcclahlclilm">
             <i class="fa fa-download"></i> Chrome</a>
-        <a class="download-btn download-btn-right"
+        <div class="divider"></div>
+        <a class="downloadBtn"
             href="https://addons.mozilla.org/addon/questrade-real-time-quote/">
             <i class="fa fa-download"></i> Firefox</a>
     </div>
@@ -72,7 +108,7 @@
 <div class="panel">
     <p id="panel-text">An application for setting metadata for MP3 files</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/mp3-editor">
+        <a class="downloadBtn" href="https://github.com/elibroftw/mp3-editor">
             <i class="fa fa-download"></i> Download on GitHub</a>
     </div>
 </div>
@@ -80,7 +116,7 @@
 <div class="panel">
     <p id="panel-text">A program for helpful formulas</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="https://repl.it/@elilopez/formulas">
+        <a class="downloadBtn" href="https://repl.it/@elilopez/formulas">
             <img src="https://repl.it/public/images/logo.svg" width="28px" style="vertical-align:middle">
             Use on Repl.it</a>
     </div>
@@ -89,15 +125,15 @@
 <div class="panel">
     <p id="panel-text">A demo for searching album art using the Spotify API</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="/search-album-art/">
-            Click here to use</a>
+        <a class="downloadBtn" href="/search-album-art/">
+            <i class="fa fa-search"></i> Click here to use</a>
     </div>
 </div>
 <button class="accordion" id="jungle-climb">Jungle Climb</button>
 <div class="panel">
     <p id="panel-text">A platformer made using pygame</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/jungle-climb/blob/master/README.md">
+        <a class="downloadBtn" href="https://github.com/elibroftw/jungle-climb/blob/master/README.md">
             <i class="fa fa-download"></i> Download on GitHub</a>
     </div>
 </div>
@@ -105,7 +141,7 @@
 <div class="panel">
     <p id="panel-text">A 3D shooter made using Unity</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="https://elijahlopez.itch.io/shift">
+        <a class="downloadBtn" href="https://elijahlopez.itch.io/shift">
             <i class="fa fa-download"></i> Download on itch.io</a>
     </div>
 </div>
@@ -113,7 +149,7 @@
 <div class="panel">
     <p id="panel-text">A revolutionary Discord music bot with autoplay features</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="https://github.com/elibroftw/discord-bot">
+        <a class="downloadBtn" href="https://github.com/elibroftw/discord-bot">
             <i class="fa fa-download"></i> Get it on GitHub</a>
     </div>
 </div>
@@ -121,8 +157,8 @@
 <div class="panel">
     <p id="panel-text">[Concept/Abandoned] A universal clipboard, OS and browser agnostic</p>
     <div>
-        <a class="download-btn" style="width: 100%;" href="/cloud-copy/">
-            <i class="fa fa-download"></i> Watch the concept here</a>
+        <a class="downloadBtn" href="/cloud-copy/">
+            <i class="fa fa-link"></i> Watch the concept here</a>
     </div>
 </div>
 {% endblock %}

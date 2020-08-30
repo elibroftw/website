@@ -386,35 +386,6 @@ input:checked+.slider:before {
     font-family: Calibri;
     color: black;
 }
-
-.download-btn {
-    background-color: DodgerBlue;
-    border: none;
-    color: black;
-    text-decoration: none;
-    padding: 12px 0 12px;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    float: left;
-    bottom: 0;
-    transition-duration: 200ms;
-}
-
-.download-btn:hover {
-    background-color: #00bfff;
-    font-size: 20px;
-}
-
-.download-btn-left,
-.download-btn-right {
-    width: 50%;
-}
-
-.download-btn-right {
-    border-left: darkslategrey solid 1px;
-    margin-left: -1px;
-}
 /* END: Accordian */
 
 @media screen and (min-width:1281px) {
