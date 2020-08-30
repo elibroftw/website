@@ -10,8 +10,14 @@
         color: #cecece;
     }
 
+    h1 {
+        background: -webkit-linear-gradient(45deg, crimson, #860101 90%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
     h2 {
-        background: -webkit-linear-gradient(45deg, crimson, rgb(14, 14, 14) 50%);
+        background: -webkit-linear-gradient(45deg, crimson, #680000 20%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-top: .5em;
@@ -34,14 +40,7 @@
         font-weight: bold;
     }
 
-    li {
-        text-decoration: none;
-        font-family: Montserrat;
-        font-size: 18px;
-        color: white;
-    }
-
-    .row {
+    .row, .links, .skills {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -53,11 +52,18 @@
         margin-bottom: 0;
     }
 
-    .skills {
+    .skills ul {
         list-style-type: "★";
         text-indent: .5em;
         padding-left: 1em;
         padding-right: 1em;
+    }
+
+    li {
+        text-decoration: none;
+        font-family: Montserrat;
+        font-size: 18px;
+        color: white;
     }
 
     .responsibilities {
@@ -68,12 +74,10 @@
     }
 
     .feature {
-        background: -webkit-linear-gradient(45deg, orangered,red 80%);
+        background: -webkit-linear-gradient(45deg, crimson, #970000 90%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-
-
 
     .censored {
         color: white;
@@ -83,48 +87,70 @@
     #inner {
         background-color: rgba(0, 0, 0, .9);
         width: 70%;
-        max-width: 100%;
+        max-width: 1000px;
+        margin-bottom: 1em;
+    }
+
+    #resume {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    @media screen and (max-width:1366px) {
+        .skills {
+            display: grid;
+            grid-template-columns: 200px 200px;
+        }
     }
 
     @media screen and (max-width:690px) {
         #inner {
-            width: 100%;
+            width: 90%;
+            padding: 1em;
+        }
+
+        .links p:first-child {
+            display: none;
+        }
+
+        .links p:nth-child(2) {
+            content: "email";
         }
     }
 </style>
 {% endblock %}
 {% block main_content %}
-
-<div #id="resume" style="display: flex; flex-direction: column; text-align: left;">
+<div id="resume">
     <div class="row">
         <h1 style="font-size: 3em; margin-top: -0.1em; margin-bottom: 0.5rem;">Elijah Lopez</h1>
         <p style="text-align: right;">last updated August 29th 2020</p>
     </div>
     <p>4+ years of developing experience facilitating debugging, problem solving, automation, UI, and UX skills.</p>
-    <p></p>
-    <div class="row">
-        <p><a>Links</a></p>
+    <p>This is my online resume. Contact me for my official resume.</p>
+    <div class="links">
+        <p>Links</p>
         <p><a class="link" href="mailto:elijahllopezz@gmail.com">elijahllopezz@gmail.com</a></p>
         <p><a class="link" href="https://github.com/elibroftw">github.com/elibroftw</a></p>
     </div>
     <h2>Skills</h2>
-    <div class="row">
-        <ul class="skills">
+    <div class="skills">
+        <ul>
             <li>Python</li>
             <li>Java</li>
             <li>C & C++</li>
         </ul>
-        <ul class="skills">
+        <ul>
             <li>React</li>
             <li>HTML / CSS / JS</li>
             <li>C# Unity</li>
         </ul>
-        <ul class="skills">
+        <ul>
             <li>MySQl & PostgreSQL</li>
             <li>MongoDB</li>
             <li>pandas & matplotlib</li>
         </ul>
-        <ul class="skills">
+        <ul>
             <li>DigitalOcean</li>
             <li>Heroku</li>
             <li>Git</li>
@@ -134,7 +160,7 @@
     <div class="row">
         <p><a class="link" href="https://addons.mozilla.org/search/?sort=users&type=statictheme">#1 Top Used Firefox Theme</a>
             with 60k+ users</p>
-        <p><a class="feature">1M+</a> &nbsp; &nbsp; Total browser extension installs</p>
+        <p><a class="feature">1M+ </a>total browser extension installs</p>
     </div>
     <h2>Experience</h2>
     <div>
