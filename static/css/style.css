@@ -59,8 +59,7 @@ body {
     padding: 50px 40px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, .8);
-    margin: -3.5% auto;
-    margin-top: -6%;
+    margin: -6% auto auto auto;
     width: 50%;
     max-width: 1000px;
     text-align: center
@@ -513,6 +512,15 @@ input:checked+.slider:before {
                     0 -8px 20px 0 rgba(0, 0, 0, .2),
                     0 8px 16px 0 rgba(0, 0, 0, .2),
                     0 -8px 16px 0 rgba(0, 0, 0, .2)
+    }
+
+    #inner {
+        margin-top: 3em;
+        margin-bottom: 2em;
+        padding-left: 0;
+        padding-right: 0;
+        letter-spacing: .05em;
+        width: 90%
     }
 
     #social-links {
