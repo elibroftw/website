@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 from flask_socketio import SocketIO, emit, send
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
-import metadata_setter
+import metadata_setter as MetadataSetter
 import os
 import time
 import threading
@@ -64,11 +64,10 @@ socketio = SocketIO(app)
 
 @app.context_processor
 def get_style_links():
-    if DEV_ENV:
-        return {'style_default': '/static/css/style.min.css', 'style_dark': '/static/css/dark.min.css'}
-    else:
-        return {'style_default': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/style.min.css',
-                'style_dark': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/dark.min.css'}
+    # if DEV_ENV:
+    return {'style_default': '/static/css/style.min.css', 'style_dark': '/static/css/dark.min.css'}
+    # return {'style_default': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/style.min.css',
+    #         'style_dark': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/dark.min.css'}
 
 
 # @app.before_request
@@ -319,11 +318,13 @@ if __name__ == '__main__':
             if file.filename != '':
                 filename = secure_filename(file.filename)
                 save_name = filename.replace('_', ' ')
-                save_path = os.path.join(metadata_setter_dir, save_name)
+                save_path = os.path.join(metadata_setter_dir, save_name).replace('\\', '/')
                 file.save(save_path)
-                # TODO: auto-set metadata here
-                metadata_setter
                 threading.Thread(target=delete_file, args=(f'{metadata_setter_dir}/{save_name}',)).start()
+                try:
+                    MetadataSetter.set_simple_meta(save_path)
+                except Exception as e:
+                    return {'filename': save_name, 'url': url_for('static', filename=f'metadataSetter/{save_name}'), 'error': str(e)}
                 return {'filename': save_name, 'url': url_for('static', filename=f'metadataSetter/{save_name}')}
         return render_template('metadata_setter.html')
 

@@ -39,11 +39,6 @@ out, err = p.communicate()
 ar = b"'ffmpeg' is not recognized as an internal or external command,\r\noperable program or batch file.\r\n"
 if ar == err:
     print('FFMPEG NOT ON PATH')
-    input('Press enter to go to FFMPEG website and learn how to add to path...')
-    import webbrowser
-    webbrowser.open('https://ffmpeg.org/download.html')
-    webbrowser.open('http://blog.gregzaal.com/how-to-install-ffmpeg-on-windows/')
-    sys.exit()
 
 
 config = {}  # stores the API keys
@@ -99,6 +94,7 @@ try:
 except (FileNotFoundError, KeyError):
     SPOTIFY_AUTH_STR = f"{os.environ['SPOTIFY_CLIENT_ID']}:{os.environ['SPOTIFY_SECRET']}"
     SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
+    print('Spotify API keys loaded')
     LASTFM_API = os.getenv('LASTFM_API')
     LASTFM_SECRET = os.getenv('LASTFM_SECRET')
 

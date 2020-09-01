@@ -127,6 +127,8 @@
                 if (!fromInput) document.getElementById('fileElem').files = files;
                 document.getElementById('upload').classList.remove('hidden');
             } else document.getElementById('fileElem').files = [];
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (!downloadBtn.classList.contains('hidden')) downloadBtn.classList.add('hidden');
         } else if (!fn.innerHTML) {
             document.getElementById('upload').classList.add('hidden');
         }
@@ -161,8 +163,12 @@
                 const response = JSON.parse(xhr.response);
                 downloadBtn.href = response.url;
                 downloadBtn.download = response.filename;
-                document.getElementById('file-name').innerHTML = 'This link will be valid for 10 minutes';
-                downloadBtn.classList.remove('hidden');
+                if (response.error) {
+                    document.getElementById('file-name').innerHTML = 'ERROR: ' + response.error;
+                } else {
+                    document.getElementById('file-name').innerHTML = 'This link will be valid for 10 minutes';
+                    downloadBtn.classList.remove('hidden');
+                }
             }
         }
 
