@@ -78,10 +78,10 @@
     function changeTheme() {
         stylesheet = document.getElementById('stylesheet')
         if (document.getElementById('theme-toggle').checked) {
-            stylesheet.setAttribute('href', '/static/css/dark.css')
+            stylesheet.setAttribute('href', ' {{ style_dark }}')
             setCookie('theme', 'true', 365);
         } else {
-            stylesheet.setAttribute('href', '/static/css/style.css')
+            stylesheet.setAttribute('href', '{{ style_default }}')
             setCookie('theme', 'false', 365);
         }
     }

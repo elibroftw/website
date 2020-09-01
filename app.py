@@ -66,7 +66,6 @@ socketio = SocketIO(app)
 
 @app.context_processor
 def get_style_links():
-    # if DEV_ENV:
     return {'style_default': '/static/css/style.min.css', 'style_dark': '/static/css/dark.min.css'}
     # return {'style_default': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/style.min.css',
     #         'style_dark': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/dark.min.css'}
