@@ -235,7 +235,13 @@ def add_simple_metadata(file_path, artist='', title='', album='', albumartist=''
     :param override: if True, all of the metadata is overridden
     :return: True or False depending on whether audio file was changed or not
     """
-    audio = EasyID3(file_path)
+    try:
+        audio = EasyID3(file_path)
+    except mutagen.id3.ID3NoHeaderError:
+        audio = File(file_path)
+        audio.add_tags()
+        audio.save()
+        audio = EasyID3(file_path)
     filename = pathlib.Path(file_path).name
     advanced_audio = File(file_path)
     try:
