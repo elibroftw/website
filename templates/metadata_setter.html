@@ -35,15 +35,19 @@
 
     .button {
         display: inline-block;
+        font-family: Montserrat;
+        font-weight: 100;
         padding: 10px;
-        background: #ccc;
+        /* background: #ccc; */
+        background: -webkit-linear-gradient(45deg, rgba(30, 143, 255, 0.9), rgba(0, 128, 0, 0.9));
+        color: #eeeeee;
+        border: none;
         cursor: pointer;
         border-radius: 5px;
-        border: 1px solid #ccc;
     }
 
     .button:hover {
-        background: #ddd;
+        background: linear-gradient(45deg, dodgerBlue, purple);
     }
 
     #fileElem {
@@ -57,27 +61,37 @@
     input#upload {
         font-size: 1em;
     }
+
+    #downloadBtn {
+        text-decoration: none;
+        background: linear-gradient(45deg, dodgerBlue, green);
+        border: none;
+    }
+
+    #downloadBtn:hover {
+        background: linear-gradient(45deg, dodgerBlue, purple);
+    }
+
 </style>
 {% endblock %}
 {% block main_content %}
-    <h1>{% block title %}Testing{% endblock %}</h1>
+    <h1>{% block title %}Metadata Setter{% endblock %}</h1>
     <div id="drop-area">
         <form class="my-form">
-            <p>Upload mp3 file by dragging and dropping or by clicking the button</p>
+            <p>Upload MP3 file via drag and drop or button</p>
             <input type="file" id="fileElem" accept=".mp3" onchange="onChange(this.files)">
-            <label class="button" for="fileElem">Select a file</label>
+            <label class="button" for="fileElem">Select MP3</label>
             <progress class="hidden" id="progress-bar" max=100 value=0></progress>
             <label id="upload" class="button hidden" onclick="uploadFile()">Add Metadata</label>
             <p id="file-name" style="margin-top: 3%; margin-bottom: 0;"></p>
+            <br><a id="downloadBtn" class="button hidden"><i class="fa fa-download"></i> Download File</a>
         </form>
         <!-- <div id="gallery"></div> -->
     </div>
 {% endblock %}
 {% block script %}
 <script>
-    const uploadCompletetext = 'The enchanced file is being processed. Once complete, a new tab will open up with the file. The link will be valid for 10 minutes.'
-
-    let dropArea = document.getElementById('drop-area');
+    const dropArea = document.getElementById('drop-area');
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropArea.addEventListener(eventName, preventDefaults, false);
     })
@@ -95,29 +109,31 @@
         dropArea.classList.remove('highlight');
     }
 
-    function ondrop(e) {
-        console.log(e);
-    }
+    const body = document.getElementsByTagName('body')[0];
+    const inner = document.getElementById('inner');
 
-    dropArea.addEventListener('dragenter', highlight);
-    dropArea.addEventListener('dragover', highlight);
-    dropArea.addEventListener('dragleave', unhighlight);
-    dropArea.addEventListener('drop', ondrop);
+    // https://stackoverflow.com/questions/28226021/entire-page-as-a-dropzone-for-drag-and-drop
+    dropArea.addEventListener('dragenter', highlight, false);
+    dropArea.addEventListener('dragover', highlight, false);
+    dropArea.addEventListener('dragleave', unhighlight, false);
+    dropArea.addEventListener('drop', e => onChange(e.dataTransfer.files, false), false);
 
-    function onChange(files) {
+    function onChange(files, fromInput=true) {
         const fn = document.getElementById('file-name');
         if (files.length) {
-            file = files[0];
-            console.log(file.name);
-            fn.innerHTML = file.name;
-            document.getElementById('upload').classList.remove('hidden');
+            const file = files[0];
+            if (file.name.endsWith('.mp3')) {
+                fn.innerHTML = file.name;
+                if (!fromInput) document.getElementById('fileElem').files = files;
+                document.getElementById('upload').classList.remove('hidden');
+            } else document.getElementById('fileElem').files = [];
         } else if (!fn.innerHTML) {
             document.getElementById('upload').classList.add('hidden');
         }
     }
 
     function uploadFile() {
-        file = document.getElementById('fileElem').files[0]
+        const file = document.getElementById('fileElem').files[0]
         const url = window.location.pathname;
         const xhr = new XMLHttpRequest();
         const formData = new FormData();
@@ -139,13 +155,20 @@
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
-                window.open(xhr.response)
+                console.log(xhr.response);
+                const downloadBtn = document.getElementById('downloadBtn');
+                // downloadBtn.download = xhr.response;
+                const response = JSON.parse(xhr.response);
+                downloadBtn.href = response.url;
+                downloadBtn.download = response.filename;
+                document.getElementById('file-name').innerHTML = 'This link will be valid for 10 minutes';
+                downloadBtn.classList.remove('hidden');
             }
         }
 
         formData.append('file', file);
         xhr.send(formData);
-        document.getElementById('file-name').innerHTML = uploadCompletetext;
+        document.getElementById('file-name').innerHTML = 'The enchanced file is being processed';
         document.getElementById('upload').classList.add('hidden');
     }
     // dropArea.addEventListener('drop', unhighlight, false);

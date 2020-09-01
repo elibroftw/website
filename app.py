@@ -4,12 +4,14 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 from flask_compress import Compress
 from flask_socketio import SocketIO, emit, send
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
+import metadata_setter
 import os
 import time
 import threading
 import requests
 import random
 import sys
+import shutil
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
 # import psycopg2
@@ -35,6 +37,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 announcements, wlu_pool_timings, wlu_gym_timings = [], [], []
 pool_schedule = ''
+metadata_setter_dir = 'static/metadataSetter'
 REACT_BUILD_FOLDER = 'react_app/build'
 DEV_ENV = bool(os.getenv('DEV', False))
 quotes = ['First comes organization, then everything falls in place',
@@ -147,6 +150,11 @@ def search_album_art():
     except IndexError:
         image_url, alt_text = '', ''
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
+
+
+shutil.rmtree(metadata_setter_dir, ignore_errors=True)
+with suppress(FileExistsError):
+    os.mkdir(metadata_setter_dir)
 
 
 @app.route('/krunker/', methods=['GET'])
@@ -298,11 +306,9 @@ def new_tab():
 
 if __name__ == '__main__':
     assert os.path.exists('.env')
-    if not os.path.exists('static/Metadata_Setter'): os.mkdir('static/Metadata_Setter')
-
 
     def delete_file(filename):
-        time.sleep(600)
+        time.sleep(600)  # 10 minutes
         with suppress(OSError):
             os.remove(filename)
 
@@ -311,15 +317,14 @@ if __name__ == '__main__':
         if request.method == 'POST' and 'file' in request.files:
             file = request.files['file']
             if file.filename != '':
-                with open('test.txt', 'w') as f:
-                    f.write('test\n')
                 filename = secure_filename(file.filename)
                 save_name = filename.replace('_', ' ')
-                save_path = os.path.join('static/metadataSetter', save_name)
+                save_path = os.path.join(metadata_setter_dir, save_name)
                 file.save(save_path)
-                # auto-set metadata
-                threading.Thread(target=delete_file, args=(f'static/metadataSetter/{save_name}',)).start()
-                return url_for('static', filename=f'metadataSetter/{save_name}')  # TODO: redo this. Maybe use ?filename=
+                # TODO: auto-set metadata here
+                metadata_setter
+                threading.Thread(target=delete_file, args=(f'{metadata_setter_dir}/{save_name}',)).start()
+                return {'filename': save_name, 'url': url_for('static', filename=f'metadataSetter/{save_name}')}
         return render_template('metadata_setter.html')
 
 
