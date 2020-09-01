@@ -11,8 +11,9 @@ from pprint import pprint  # FOR DEBUGGING: DO NOT REMOVE
 
 env = Env()
 env.read_env()
-GOOGLE_API_KEY = os.environ['GOOGLE_API']
-SPOTIFY_CLIENT_ID, SPOTIFY_SECRET = os.environ['SPOTIFY_CLIENT_ID'], os.environ['SPOTIFY_SECRET']
+GOOGLE_API_KEY = os.getenv['GOOGLE_API']
+SPOTIFY_CLIENT_ID = os.getenv['SPOTIFY_CLIENT_ID']
+SPOTIFY_SECRET = os.getenv['SPOTIFY_SECRET']
 SPOTIFY_AUTH_STR = f'{SPOTIFY_CLIENT_ID}:{SPOTIFY_SECRET}'
 SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
 

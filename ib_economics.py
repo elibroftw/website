@@ -1,3 +1,5 @@
+# Outdated, unused, and source has expired
+
 from bs4 import BeautifulSoup
 import requests
 import re

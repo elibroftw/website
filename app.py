@@ -36,25 +36,36 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 announcements, wlu_pool_timings, wlu_gym_timings = [], [], []
 pool_schedule = ''
 REACT_BUILD_FOLDER = 'react_app/build'
-DEVELOPMENT_SETTING = bool(os.environ.get('DEVELOPMENT', False))
+DEV_ENV = bool(os.getenv('DEV', False))
 quotes = ['First comes organization, then everything falls in place',
           'Expect the worst to be your best', 'To follow or to think?', 'The path to virtue is often the path to happiness',
           '"It\'s co—uncommon sense"', '"Are you not entertained?"', '"Decent people don’t want to harm those who disagree with them"']
 
-if not DEVELOPMENT_SETTING:
+try:
     url = 'https://cssminifier.com/raw'
     for style in {'style', 'dark'}:
         data = {'input': open(f'static/css/{style}.css', 'rb').read()}
         r = requests.post(url, data=data)
-        with open(f'static/css/{style}.css', 'w') as f:
+        with open(f'static/css/{style}.min.css', 'w') as f:
             f.write(r.text)
+except requests.exceptions.ConnectionError:
+    print('Failed to minify CSS, are you connected to the internet?')
 
 
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEVELOPMENT_SETTING else 604800
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEV_ENV else 604800
 # app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)
 socketio = SocketIO(app)
+
+
+@app.context_processor
+def get_style_links():
+    if DEV_ENV:
+        return {'style_default': '/static/css/style.min.css', 'style_dark': '/static/css/dark.min.css'}
+    else:
+        return {'style_default': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/style.min.css',
+                'style_dark': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/dark.min.css'}
 
 
 # @app.before_request
@@ -150,45 +161,6 @@ def krunker_stats():
 @app.route('/shift/')
 def shift():
     return redirect('https://elijahlopez.itch.io/shift')
-
-
-if DEVELOPMENT_SETTING:
-
-    def delete_file(filename):
-        time.sleep(600)
-        with suppress(OSError):
-            os.remove(filename)
-
-    @app.route('/metadata-setter/', methods=['GET', 'POST'])
-    def metadata_setter():
-        if request.method == 'POST' and 'file' in request.files:
-            file = request.files['file']
-            if file.filename != '':
-                with open('test.txt', 'w') as f:
-                    f.write('test\n')
-                filename = secure_filename(file.filename)
-                save_name = filename.replace('_', ' ')
-                save_path = os.path.join('static/metadataSetter', save_name)
-                file.save(save_path)
-                # auto-set metadata
-                threading.Thread(target=delete_file, args=(f'static/metadataSetter/{save_name}',)).start()
-                return url_for('static', filename=f'metadataSetter/{save_name}')  # TODO: redo this. Maybe use ?filename=
-        return render_template('metadata_setter.html')
-
-
-    @app.route('/metadata-setter/<filename>', methods=['GET', 'POST'])
-    def upload():
-        return str('file' in request.files)
-
-
-    @app.route('/react/')
-    def react():
-        return send_from_directory(REACT_BUILD_FOLDER, 'react.html')
-
-
-    @app.route('/test/')
-    def test_page():
-        return render_template('test.html')
 
 
 @app.route('/projects/')
@@ -327,5 +299,44 @@ def new_tab():
 if __name__ == '__main__':
     assert os.path.exists('.env')
     if not os.path.exists('static/Metadata_Setter'): os.mkdir('static/Metadata_Setter')
+
+
+    def delete_file(filename):
+        time.sleep(600)
+        with suppress(OSError):
+            os.remove(filename)
+
+    @app.route('/metadata-setter/', methods=['GET', 'POST'])
+    def metadata_setter():
+        if request.method == 'POST' and 'file' in request.files:
+            file = request.files['file']
+            if file.filename != '':
+                with open('test.txt', 'w') as f:
+                    f.write('test\n')
+                filename = secure_filename(file.filename)
+                save_name = filename.replace('_', ' ')
+                save_path = os.path.join('static/metadataSetter', save_name)
+                file.save(save_path)
+                # auto-set metadata
+                threading.Thread(target=delete_file, args=(f'static/metadataSetter/{save_name}',)).start()
+                return url_for('static', filename=f'metadataSetter/{save_name}')  # TODO: redo this. Maybe use ?filename=
+        return render_template('metadata_setter.html')
+
+
+    @app.route('/metadata-setter/<filename>', methods=['GET', 'POST'])
+    def upload():
+        return str('file' in request.files)
+
+
+    @app.route('/react/')
+    def react():
+        return send_from_directory(REACT_BUILD_FOLDER, 'react.html')
+
+
+    @app.route('/test/')
+    def test_page():
+        return render_template('test.html')
+
+
     # app.run(debug=True, host='', port=5000)
     socketio.run(app, host='', port=5000, debug=True)
