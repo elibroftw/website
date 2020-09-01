@@ -4,9 +4,9 @@
 <link rel="shortcut icon" href="/static/images/favicon.ico?v=3.0.0">
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 {% if request.cookies.get('theme', 'false') == 'true' -%}
-<link rel="stylesheet" id="stylesheet" href="{{ style_dark }}?v=2.0.0">
+<link rel="stylesheet" id="stylesheet" href="{{ style_dark }}?v=2.0.1">
 {%- else -%}
-<link rel="stylesheet" id="stylesheet" href="{{ style_default }}?v=2.0.0">
+<link rel="stylesheet" id="stylesheet" href="{{ style_default }}?v=2.0.1">
 {%- endif %}
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#111111" />{% block style %}{% endblock -%}
