@@ -38,6 +38,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 announcements, wlu_pool_timings, wlu_gym_timings = [], [], []
 pool_schedule = ''
 metadata_setter_dir = 'static/metadataSetter'
+shutil.rmtree(metadata_setter_dir, ignore_errors=True)
+with suppress(FileExistsError): os.mkdir(metadata_setter_dir)
 REACT_BUILD_FOLDER = 'react_app/build'
 DEV_ENV = bool(os.getenv('DEV', False))
 quotes = ['First comes organization, then everything falls in place',
@@ -151,9 +153,32 @@ def search_album_art():
     return render_template('search_album_art.html', image_url=image_url, alt_text=alt_text)
 
 
-shutil.rmtree(metadata_setter_dir, ignore_errors=True)
-with suppress(FileExistsError):
-    os.mkdir(metadata_setter_dir)
+def delete_file(filename):
+    time.sleep(600)  # 10 minutes
+    with suppress(OSError):
+        os.remove(filename)
+
+@app.route('/metadata-setter/', methods=['GET', 'POST'])
+def metadata_setter():
+    if request.method == 'POST' and 'file' in request.files:
+        file = request.files['file']
+        if file.filename != '':
+            filename = secure_filename(file.filename)
+            save_name = filename.replace('_', ' ')
+            save_path = os.path.join(metadata_setter_dir, save_name).replace('\\', '/')
+            file.save(save_path)
+            threading.Thread(target=delete_file, args=(f'{metadata_setter_dir}/{save_name}',)).start()
+            try:
+                MetadataSetter.set_simple_meta(save_path)
+            except Exception as e:
+                return {'filename': save_name, 'url': url_for('static', filename=f'metadataSetter/{save_name}'), 'error': str(e)}
+            return {'filename': save_name, 'url': url_for('static', filename=f'metadataSetter/{save_name}')}
+    return render_template('metadata_setter.html')
+
+
+@app.route('/metadata-setter/<filename>', methods=['GET', 'POST'])
+def upload():
+    return str('file' in request.files)
 
 
 @app.route('/krunker/', methods=['GET'])
@@ -305,33 +330,6 @@ def new_tab():
 
 if __name__ == '__main__':
     assert os.path.exists('.env')
-
-    def delete_file(filename):
-        time.sleep(600)  # 10 minutes
-        with suppress(OSError):
-            os.remove(filename)
-
-    @app.route('/metadata-setter/', methods=['GET', 'POST'])
-    def metadata_setter():
-        if request.method == 'POST' and 'file' in request.files:
-            file = request.files['file']
-            if file.filename != '':
-                filename = secure_filename(file.filename)
-                save_name = filename.replace('_', ' ')
-                save_path = os.path.join(metadata_setter_dir, save_name).replace('\\', '/')
-                file.save(save_path)
-                threading.Thread(target=delete_file, args=(f'{metadata_setter_dir}/{save_name}',)).start()
-                try:
-                    MetadataSetter.set_simple_meta(save_path)
-                except Exception as e:
-                    return {'filename': save_name, 'url': url_for('static', filename=f'metadataSetter/{save_name}'), 'error': str(e)}
-                return {'filename': save_name, 'url': url_for('static', filename=f'metadataSetter/{save_name}')}
-        return render_template('metadata_setter.html')
-
-
-    @app.route('/metadata-setter/<filename>', methods=['GET', 'POST'])
-    def upload():
-        return str('file' in request.files)
 
 
     @app.route('/react/')
