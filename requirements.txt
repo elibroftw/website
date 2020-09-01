@@ -6,6 +6,7 @@ environs
 flask~=1.1.1
 flask_compress==1.4.0
 flask_socketio==4.2.1
+flask_minify
 gunicorn
 idna
 itsdangerous

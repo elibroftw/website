@@ -2,6 +2,7 @@ from contextlib import suppress
 from datetime import datetime, date
 from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
 from flask_compress import Compress
+from flask_minify import minify
 from flask_socketio import SocketIO, emit, send
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
 import metadata_setter as MetadataSetter
@@ -61,6 +62,7 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEV_ENV else 604800
 # app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)
+if not DEV_ENV: minify(app, caching_limit=0)
 socketio = SocketIO(app)
 
 
@@ -207,8 +209,14 @@ def cloud_copy():
 
 @app.route('/music-caster/')
 def music_caster():
-    return render_template('music_caster.html')
-
+    # second var is width
+    images = [
+        ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true', 'Main'),
+        ('https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Settings.png', 'Settings'),
+        ('https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Tray.png', 'Tray Devices Menu'),
+        ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Web.png?raw=true', 'Web GUI')
+    ]
+    return render_template('music_caster.html', images=images)
 
 
 @app.route('/rbhs/')

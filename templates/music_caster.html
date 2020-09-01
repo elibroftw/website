@@ -15,6 +15,8 @@ img {
 
 .slide img {
 	border-radius: .5em;
+	max-width: 100%;
+	max-height: 400px;
 }
 
 .prev, .next {
@@ -77,16 +79,17 @@ img {
 
 .column {
 	float: left;
-	width: 25%;
-	/* 100 / num of images*/
+	width: {{ 100 / images|length }}%;
 }
 
-.demo {
+.preview {
 	opacity: 0.6;
 	cursor: pointer;
+	max-width: 100%;
+	max-height: 10em;
 }
 
-.active, .demo:hover {
+.active, .preview:hover {
 	opacity: 1;
 }
 </style>
@@ -96,56 +99,21 @@ img {
 <h2>Screenshots (v4.54.8)</h2>
 <a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md">Download</a>
 <div class="container">
+	{% for image in images -%}
 	<div class="slide">
-		<div class="numbertext">1 / 4</div>
-		<img src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true"
-			style="width:100%">
+		<div class="numbertext">{{loop.index }} / {{images|length}}</div>
+		<img src="{{ image[0] }}">
 	</div>
-
-	<div class="slide">
-		<div class="numbertext">2 / 4</div>
-		<img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Settings.png"
-			style="width:100%">
-	</div>
-
-	<div class="slide">
-		<div class="numbertext">3 / 4</div>
-		<img src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Tray.png"
-			style="width:50%">
-	</div>
-
-	<div class="slide">
-		<div class="numbertext">4 / 4</div>
-		<img src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Web.png?raw=true"
-			style="width:38%">
-	</div>
-
+	{% endfor -%}
 	<a class="prev" onclick="plusSlides(-1)">❮</a>
 	<a class="next" onclick="plusSlides(1)">❯</a>
-
-	<div class="caption-container">
-		<p id="caption"></p>
-	</div>
-
+	<div class="caption-container"><p id="caption"></p></div>
 	<div class="row">
+		{%- for image in images %}
 		<div class="column">
-			<img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true"
-				style="width:100%" onclick="showSlide(0)" alt="Main" title="Main">
+			<img class="preview" src="{{image[0]}}" onclick="showSlide({{loop.index0}})" alt="{{image[1]}}" title="{{image[1]}}">
 		</div>
-		<div class="column">
-			<img class="demo"
-				src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Settings.png"
-				style="width:100%" onclick="showSlide(1)" alt="Settings" title="Settings">
-		</div>
-		<div class="column">
-			<img class="demo"
-				src="https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Tray.png"
-				style="width:60%" onclick="showSlide(2)" alt="Tray Devices Menu" title="Tray Devices Menu">
-		</div>
-		<div class="column">
-			<img class="demo" src="https://github.com/elibroftw/music-caster/blob/master/resources/SC-Web.png?raw=true"
-				style="width:40%" onclick="showSlide(3)" alt="Web GUI" title="Web GUI">
-		</div>
+		{%- endfor %}
 	</div>
 </div>
 {% endblock %}
@@ -153,7 +121,7 @@ img {
 <script>
 	let slideIndex = 0;
 	const slides = document.getElementsByClassName('slide');
-	const thumbs = document.getElementsByClassName('demo');
+	const thumbs = document.getElementsByClassName('preview');
 	const captionText = document.getElementById('caption');
 	const numOfImages = slides.length;
 	const modal = document.getElementById('modal');
@@ -166,8 +134,8 @@ img {
 	function showSlide(index) {
 		slides[slideIndex].style.display = 'none'
 		thumbs[slideIndex].className = thumbs[slideIndex].className.replace(' active', '');
-		if (index >= numOfImages) { index = 0 }
-		else if (index < 0) { index = numOfImages - 1 }
+		if (index >= numOfImages) index = 0;
+		else if (index < 0) index = numOfImages - 1;
 		slideIndex = index;
 		slides[slideIndex].style.display = 'block';
 		thumbs[slideIndex].className += ' active';
