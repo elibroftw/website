@@ -35,9 +35,9 @@
                 const op_len = open_panels.length;
                 history.replaceState({}, document.title, window.location.pathname + (op_len ? '#' + open_panels[op_len - 1] : ''));
             } else {  // open panel
-                history.replaceState({}, document.title, window.location.pathname + '#' + el_id);
                 panel.style.maxHeight = panel.scrollHeight + 'px';
                 open_panels.push(el_id);
+                history.replaceState({}, document.title, window.location.pathname + '#' + el_id);
             }
         });
     }
