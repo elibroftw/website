@@ -1,5 +1,5 @@
 # Website
-My own Website built with Flask hosted on Heroku and can be found at http://www.elopez.me/
+My own Website built with Flask, hosted on Heroku, and can be found at http://www.elopez.me/
 # What it contains
 * My prominent software projects
 * Aesthic version of my resume
