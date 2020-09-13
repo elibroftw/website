@@ -5,6 +5,7 @@ My own Website built with Flask, hosted on Heroku, and can be found at http://ww
 * Aesthic version of my resume
 * Album Art Searcher
 * Articles I have written
+* Prettified WLU pool schedule
 * Useful Software I use
 * Resources for learning
 * Socials
