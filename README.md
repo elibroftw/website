@@ -1,14 +1,16 @@
 # Website
 My own Website built with Flask hosted on Heroku and can be found at http://www.elopez.me/
 # What it contains
-* List of my prominent software projects
-* Album art searcher
-* Useful software and resources
-* My articles
+* My prominent software projects
+* Aesthic version of my resume
+* Album Art Searcher
+* Articles I have written
+* Useful Software I use
+* Resources for learning
+* Socials
 # My graphic design work
+* Smoke Wallpapers
+* Plexus Wallpapers
 # My plans
-* Some picture I have taken
-* Links to my profiles
-* My music tastes + any music I might create
-* Car manuals website
-* Nutritional Information and prices for fast food restaurants
+* Adding pictures I have taken
+* My music tastes and any music I might create
