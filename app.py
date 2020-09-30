@@ -43,7 +43,7 @@ shutil.rmtree(metadata_setter_dir, ignore_errors=True)
 with suppress(FileExistsError): os.mkdir(metadata_setter_dir)
 REACT_BUILD_FOLDER = 'react_app/build'
 DEV_ENV = bool(os.getenv('DEV', False))
-quotes = ['First comes organization, then everything falls in place',
+quotes = ['First comes organization, then everything falls in place', "People don't know what they want until you show it to them",
           'Expect the worst to be your best', 'To follow or to think?', 'The path to virtue is often the path to happiness',
           '"It\'s co—uncommon sense"', '"Are you not entertained?"', '"Decent people don’t want to harm those who disagree with them"']
 
