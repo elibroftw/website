@@ -53,10 +53,8 @@ def get_announcements():
 def wlu_pool_schedule_scraper():
     data = requests.get('https://www.laurierathletics.com/generatePage.php?ID=57').text
     soup = BeautifulSoup(data, features='html.parser')
-    # soup = soup.find('table')
     s1 = soup.findAll('tr')
     schedule = [[] for _ in range(7)]
-    # pprint(soup)
     for timings in s1[1:]:
         timings = timings.findAll('td')
         for i, timing in enumerate(timings):
