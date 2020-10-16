@@ -59,6 +59,8 @@ except requests.exceptions.ConnectionError:
 
 
 app = Flask(__name__)
+app.jinja_env.lstrip_blocks = True
+app.jinja_env.trim_blocks = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEV_ENV else 604800
 # app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)

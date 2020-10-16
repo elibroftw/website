@@ -99,21 +99,21 @@ img {
 <h2>Screenshots (v4.54.8)</h2>
 <a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md">Download</a>
 <div class="container">
-	{% for image in images -%}
+	{% for image in images %}
 	<div class="slide">
 		<div class="numbertext">{{loop.index }} / {{images|length}}</div>
 		<img src="{{ image[0] }}">
 	</div>
-	{% endfor -%}
+	{% endfor %}
 	<a class="prev" onclick="plusSlides(-1)">❮</a>
 	<a class="next" onclick="plusSlides(1)">❯</a>
 	<div class="caption-container"><p id="caption"></p></div>
 	<div class="row">
-		{%- for image in images %}
+		{% for image in images %}
 		<div class="column">
 			<img class="preview" src="{{image[0]}}" onclick="showSlide({{loop.index0}})" alt="{{image[1]}}" title="{{image[1]}}">
 		</div>
-		{%- endfor %}
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}
