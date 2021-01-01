@@ -1,5 +1,4 @@
 import base64
-from environs import Env
 import json
 import os
 from PIL import Image
@@ -9,8 +8,14 @@ from bs4 import BeautifulSoup
 from pprint import pprint  # FOR DEBUGGING: DO NOT REMOVE
 
 
-env = Env()
-env.read_env()
+with open('.env') as f:
+    line = f.readline()
+    while line:
+        k, v = line.split('=', 1)
+        os.environ[k] = v.strip()
+        line = f.readline()
+
+
 GOOGLE_API_KEY = os.getenv('GOOGLE_API')
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_SECRET = os.getenv('SPOTIFY_SECRET')

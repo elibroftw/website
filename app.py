@@ -11,7 +11,6 @@ import time
 import threading
 import requests
 import random
-import sys
 import shutil
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -352,5 +351,5 @@ if __name__ == '__main__':
         return render_template('test.html')
 
 
-    # app.run(debug=True, host='', port=5000)
-    socketio.run(app, host='', port=5000, debug=True)
+    app.run(debug=True, host='', port=5000)
+    # socketio.run(app, debug=True, host='', port=5000)
