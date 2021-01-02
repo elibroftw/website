@@ -6,14 +6,15 @@ import requests
 from urllib import parse
 from bs4 import BeautifulSoup
 from pprint import pprint  # FOR DEBUGGING: DO NOT REMOVE
+from contextlib import suppress
 
-
-with open('.env') as f:
-    line = f.readline()
-    while line:
-        k, v = line.split('=', 1)
-        os.environ[k] = v.strip()
+with suppress(FileNotFoundError):
+    with open('.env') as f:
         line = f.readline()
+        while line:
+            k, v = line.split('=', 1)
+            os.environ[k] = v.strip()
+            line = f.readline()
 
 
 GOOGLE_API_KEY = os.getenv('GOOGLE_API')
