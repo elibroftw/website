@@ -284,6 +284,7 @@ def socketio_disconnect():
 
 @app.route('/graphic-design/')
 @app.route('/creative-works/')
+@app.route('/wallpapers/')
 def creative_works():
     return render_template('creative_works.html')
 
