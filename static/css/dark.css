@@ -434,10 +434,6 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width:690px) {
-    body {
-        background-position: top;
-    }
-
     h1 {
         font-size: 30pt
     }

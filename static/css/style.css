@@ -424,7 +424,8 @@ input:checked+.slider:before {
 
 @media screen and (max-width:690px) {
     body {
-        background-image: url("/static/images/dark.webp");
+        background-image: url("/static/images/dark.webp"), linear-gradient(#00161f, #006c9e);
+        background-repeat: repeat-y;
     }
 
     h1 {
