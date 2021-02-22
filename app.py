@@ -49,7 +49,8 @@ quotes = ['First comes organization, then everything falls in place', "People do
 try:
     url = 'https://cssminifier.com/raw'
     for style in {'style', 'dark'}:
-        data = {'input': open(f'static/css/{style}.css', 'rb').read()}
+        with open(f'static/css/{style}.css', 'rb') as f:
+            data = {'input': f.read()}
         r = requests.post(url, data=data)
         with open(f'static/css/{style}.min.css', 'w') as f:
             f.write(r.text)
