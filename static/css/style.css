@@ -1,13 +1,18 @@
 @font-face {
-    font-family: Futura;
-    src: url("/static/fonts/futura medium bt.ttf");
-    font-weight: 400
+    font-family: Manrope;
+    src: url("/static/fonts/Manrope/Manrope-Regular.woff2");
 }
 
 @font-face {
-    font-family: Futura;
-    src: url("/static/fonts/Futura Bold font.ttf");
-    font-weight: 700
+    font-family: Manrope;
+    src: url("/static/fonts/Manrope/Manrope-SemiBold.woff2");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Manrope;
+    src: url("/static/fonts/Manrope/Manrope-Bold.woff2");
+    font-weight: bold;
 }
 
 @font-face {
@@ -15,6 +20,8 @@
     src: url("/static/fonts/Montserrat-Regular.otf");
     font-weight: lighter
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 html {
     height: 100%;
@@ -96,7 +103,8 @@ h1 {
 }
 
 h2 {
-    font-family: Helvetica;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
     font-size: 20px;
     letter-spacing: 2px;
     line-height: 1em;
@@ -151,17 +159,15 @@ p {
     outline: none;
 }
 
-#desktop-nav a,
-.dropdown .dropbtn {
+#desktop-nav a, .dropdown .dropbtn {
     padding: .5em 1em;
     letter-spacing: .23px;
     color: #000;
-    font-family: Futura;
+    font-family: Manrope;
     font-weight: 700;
     text-align: left;
     text-transform: uppercase;
     text-decoration: none;
-    font-size: 18px
 }
 
 .dropdown {
@@ -239,8 +245,8 @@ p {
     bottom: 16px;
     right: 75px;
     background: #fff;
-    font-family: Futura;
-    width: 110px;
+    font-family: Manrope;
+    width: 8em;
     font-size: 18px;
     font-weight: 700;
     line-height: 34px;
@@ -357,7 +363,7 @@ input:checked+.slider:before {
     background-color: white;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.1s ease-out;
+    transition: max-height 130ms ease-in-out;
     text-align: center;
     font-family: Calibri;
     color: black;
@@ -444,14 +450,14 @@ input:checked+.slider:before {
         display: block;
         background-color: rgba(15, 15, 15, .9);
         text-align: center;
-        font-family: Verdana;
+        font-family: Manrope;
         letter-spacing: .3em;
     }
 
     #mobile-nav-label {
         display: block;
         cursor: pointer;
-        padding: 1em 0;
+        padding: .8em 0;
         color: white;
     }
 
@@ -470,7 +476,7 @@ input:checked+.slider:before {
     #mobile-nav-panel {
         margin-top: 0;
         padding-inline-start: 0;
-        transition: opacity .3s linear, padding-bottom .2s;
+        transition: opacity .2s linear, padding-bottom .2s;
         opacity: 0;
         width: 0;
         height: 0;
@@ -495,9 +501,8 @@ input:checked+.slider:before {
         text-transform: uppercase;
         border-radius: 0;
         margin: 0;
-        padding: .5em 0;
+        padding: .4em 0;
         text-decoration: none;
-        font-weight: 400;
         color: transparent;
     }
 
@@ -544,7 +549,7 @@ input:checked+.slider:before {
     padding: 16px;
     position: fixed;
     z-index: 1;
-    font-family: Futura;
+    font-family: Manrope;
     font-size: 20px;
     left: 50%;
     bottom: 60px
