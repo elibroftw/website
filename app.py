@@ -217,8 +217,8 @@ def music_caster():
     # second var is width
     images = [
         ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true', 'Main'),
-        ('https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Settings.png', 'Settings'),
-        ('https://raw.githubusercontent.com/elibroftw/music-caster/master/resources/SC-Tray.png', 'Tray Devices Menu'),
+        ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Mini.png?raw=true', 'Mini'),
+        ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Tray.png?raw=true', 'Tray'),
         ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Web.png?raw=true', 'Web GUI')
     ]
     return render_template('music_caster.html', images=images)
