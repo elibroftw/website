@@ -99,6 +99,7 @@ img {
 <h1>{% block title %}Music Caster{% endblock %}</h1>
 <h2>Screenshots (v4.82.1)</h2>
 <a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md">Download</a>
+<button class="ui-btn" onclick="openWebGUI()">Try opening Web GUI</button>
 <div class="container">
 	{% for image in images %}
 	<div class="slide">
@@ -126,6 +127,22 @@ img {
 	const captionText = document.getElementById('caption');
 	const numOfImages = slides.length;
 	const modal = document.getElementById('modal');
+
+	function openWebGUI() {
+		let foundMC = false;
+		for (let hostId = 1; hostId < 50; hostId++) {
+			for (let port = 2001; port < 2004; port++) {
+				if (!foundMC) {
+					fetch(`http://192.168.1.${hostId}:${port}/running/`, {
+						method: 'GET'
+					}).then(response => response.json()).then(response => {
+						window.open(`http://192.168.1.${hostId}:${port}/`);
+						foundMC = true;
+					}).catch(() => {});
+				}
+			}
+		}
+	}
 
 	function plusSlides(n) {
 		showSlide(slideIndex + n);

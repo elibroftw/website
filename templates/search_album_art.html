@@ -5,11 +5,11 @@
         max-width: 500px;
     }
 
-    input, #search{
+    input {
         display: inline-block;
         padding: 0.35em 1.2em;
         border: 0.1em solid #fff;
-        margin: 0 0.3em 0.3em 0;
+        margin: 0 0.5em 0.5em 0.5em;
         border-radius: 0.12em;
         box-sizing: border-box;
         text-decoration: none;
@@ -19,17 +19,9 @@
         background-color: transparent;
     }
 
-    #search:hover, #search:focus, input:hover, input:active, input:focus, input:focus-within {
+    input:hover, input:active, input:focus, input:focus-within {
         color: #000;
         background-color: #fff;
-    }
-
-    #search:hover {
-        cursor: pointer;
-    }
-
-    #search::after {
-        content: "\A\A";
     }
 
     @media screen and (max-width: 1024px) {
@@ -64,7 +56,7 @@
 <form action="/search-album-art" style="margin-bottom: 1em">
     <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
     <input id="track-input" type=text name=track placeholder="Track title" required>
-    <button id="search">Search</button>
+    <button class="ui-btn" id="search">Search</button>
 </form>
 <img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" {{'style="display: none;"'|safe if image_url == '' else ''}}/>
 {% endblock %}
