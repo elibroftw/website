@@ -129,6 +129,10 @@ img {
 	const modal = document.getElementById('modal');
 
 	function openWebGUI(sameTab=false) {
+		if (location.protocol === 'https') {
+			// redirect to http first
+			location.replace(`http:${location.href.substring(location.protocol.length)}`);
+		}
 		let foundMC = false;
 		for (let hostId = 1; hostId < 50; hostId++) {
 			for (let port = 2001; port < 2004; port++) {
