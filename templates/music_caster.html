@@ -131,7 +131,7 @@ img {
 	function openWebGUI(sameTab=false) {
 		// redirect to http first
 		if (location.protocol === 'https:') {
-			location.replace(`http:${location.href.substring(location.protocol.length)}`);
+			location.replace(`http:${location.href.substring(location.protocol.length)}#open-web-gui`);
 		}
 
 		let foundMC = false;
