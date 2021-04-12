@@ -214,6 +214,9 @@ def cloud_copy():
 
 @app.route('/music-caster/')
 def music_caster():
+    if request.args and 'args' in request.args:
+        args = ';'.join(request.args.getlist('args'))
+        return redirect(f'music-caster:{args}')
     # second var is width
     images = [
         ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true', 'Main'),
