@@ -504,6 +504,7 @@ input:checked+.slider:before {
 
     #mobile-nav-panel {
         margin-top: 0;
+        visibility: hidden;
         padding-inline-start: 0;
         transition: opacity .2s linear, padding-bottom .2s;
         opacity: 0;
