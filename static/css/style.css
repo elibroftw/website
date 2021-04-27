@@ -191,8 +191,7 @@ p {
     outline: 0
 }
 
-#desktop-nav>a:hover,
-.dropdown:hover .dropbtn {
+#desktop-nav>a:hover, .dropdown:hover .dropbtn {
     color: #fff;
     background-color: rgba(0, 0, 0, .7);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19)
