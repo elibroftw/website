@@ -204,7 +204,7 @@ def shift():
 @app.route('/projects/')
 @app.route('/software/')
 def software():
-    return render_template('software.html', title=request.path[1:-1])
+    return render_template('software.html', title=request.path[1:-1].capitalize())
 
 
 @app.route('/cloud-copy/')
