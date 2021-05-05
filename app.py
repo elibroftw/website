@@ -44,6 +44,7 @@ REACT_BUILD_FOLDER = 'react_app/build'
 DEV_ENV = bool(os.getenv('DEV', False))
 quotes = ['First comes organization, then everything falls in place',
           'Expect the worst to be at your best',
+          'Like crabs in a bucket',
           'The path to virtue is often the path to happiness',
           "Common sense ain't so common", 'Are you not entertained?',
           "100 people surveyed. Number one answer's on the board. Who's the world's greatest spy?"]
