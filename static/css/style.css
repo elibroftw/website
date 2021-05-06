@@ -364,7 +364,7 @@ input:checked+.slider:before {
     outline: none;
     font-size: 20px;
     transition: 200ms;
-    font-family: Verdana;
+    font-family: sans-serif;
     border-top: #ccc solid 1px;
     background-color: #f0f0f0;
 }
