@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    #drop-area {
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        width: 480px;
+        font-family: sans-serif;
+        margin: auto;
+        padding: 20px;
+    }
+
+    #drop-area.highlight {
+        border-color: lightskyblue;
+    }
+
+    p {
+        margin-top: 0;
+    }
+
+    .my-form {
+        margin-bottom: 10px;
+    }
+
+    #gallery {
+        margin-top: 10px;
+    }
+
+    #gallery img {
+        width: 150px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .button {
+        display: inline-block;
+        font-family: Montserrat;
+        font-weight: 100;
+        padding: 10px;
+        /* background: #ccc; */
+        background: -webkit-linear-gradient(45deg, rgba(30, 143, 255, 0.9), rgba(0, 128, 0, 0.9));
+        color: #eeeeee;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .button:hover {
+        background: linear-gradient(45deg, dodgerBlue, purple);
+    }
+
+    #fileElem {
+        display: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    input#upload {
+        font-size: 1em;
+    }
+
+
+</style>
+{% endblock %}
+{% block main_content %}
+    <h1>{% block title %}PDF Combiner{% endblock %}</h1>
+    <br>
+    <div id="drop-area">
+        <form class="my-form" action="/split-pdf/" method="POST" enctype="multipart/form-data">
+            <p>Upload PDFs via drag and drop or button</p>
+            <input type="text" name="template" placeholder="new file name">
+            <input name="file" multiple required type="file" id="fileElem" accept=".pdf" onchange="onChange(this.files)">
+            <label class="button" for="fileElem">Select PDF</label>
+            <progress class="hidden" id="progress-bar" max=100 value=0></progress>
+            <p class="file-name" style="margin-top: 3%;"></p>
+            <button type="submit">Split PDF and Download</button>
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+    const dropArea = document.getElementById('drop-area');
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    })
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight(e) {
+        dropArea.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+        dropArea.classList.remove('highlight');
+    }
+
+    const body = document.getElementsByTagName('body')[0];
+    const inner = document.getElementById('inner');
+
+    dropArea.addEventListener('dragenter', highlight, false);
+    dropArea.addEventListener('dragover', highlight, false);
+    dropArea.addEventListener('dragleave', unhighlight, false);
+    dropArea.addEventListener('drop', e => onChange(e.dataTransfer.files, false), false);
+
+    // TODO
+
+    function onChange(files, fromInput=true) {
+        const fn = dropArea.getElementsByClassName('file-name')[0];
+        if (files.length) {
+            let file_names = '';
+            console.log(files);
+            for (const file of files) {
+                console.log(file.name);
+                if (file.name.endsWith('.pdf')) {
+                    console.log(file.name);
+                    if (file_names !== '') {
+                        file_names = file_names + ', ' + file.name
+                    } else {
+                        file_names = file.name
+                    }
+                    if (!fromInput) document.getElementById('fileElem').files.push(...files);
+                } else document.getElementById('fileElem').files = [];
+            }
+            console.log(fn);
+            fn.innerHTML = file_names;
+            console.log(fn);
+        }
+    }
+
+</script>
+{% endblock %}

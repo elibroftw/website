@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /to-ico/
+Disallow: /video-edits/
+Disallow: /done/*
+Disallow: /menus/*
+Disallow: /visitors/
+Disallow: /stats/

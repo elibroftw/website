@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% block title %}Resume{% endblock %}
+{% block style %}
+<style>
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar { /* Hide Scrollbar */
+    width: 0;
+    height: 0;
+}
+
+p {
+    margin-top: 0;
+}
+
+.major {
+    color: #cecece;
+}
+
+h1 {
+    background: -webkit-linear-gradient(45deg, crimson, #860101 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    background: -webkit-linear-gradient(45deg, crimson, #680000 40%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: .5em;
+    margin-bottom: .25em;
+}
+
+.time {
+    background-color: #2f4353;
+    background-image: linear-gradient(0deg, #2f4353 0%, #d2ccc4 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2, .h2 {
+    font-size: 22pt;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.row, .links, .skills {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0.5em;
+}
+
+.row p {
+    margin-bottom: 0;
+}
+
+.skills ul {
+    list-style-type: "★";
+    text-indent: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+li {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: 18px;
+    color: white;
+}
+
+.responsibilities {
+    color: white;
+    list-style-type: "-";
+    text-indent: .5em;
+    margin-left: -2em;
+}
+
+.feature {
+    background: -webkit-linear-gradient(45deg, crimson, #970000 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.censored {
+    color: white;
+    background-color: white;
+}
+
+#inner {
+    background-color: rgba(0, 0, 0, .9);
+    width: 70%;
+    max-width: 1000px;
+}
+
+#resume {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+@media screen and (max-width:1366px) {
+    .skills {
+        display: grid;
+        grid-template-columns: 200px 200px;
+    }
+}
+
+@media screen and (max-width:690px) {
+    #inner {
+        width: 90%;
+        padding: 1em;
+    }
+
+    .links p:first-child {
+        display: none;
+    }
+
+    .links p:nth-child(2) {
+        content: "email";
+    }
+}
+</style>
+{% endblock %}
+{% block main_content %}
+<div id="resume">
+    <div class="row">
+        <h1 style="font-size: 3em; margin-top: -0.1em; margin-bottom: 0.5rem;">Elijah Lopez</h1>
+        <p style="text-align: right;">As of 20-Mar-2021</p>
+    </div>
+    <p>4+ years of developing experience facilitating debugging, problem solving, automation, UI, and UX skills.</p>
+    <p>This is my online resume. Contact me for my official resume.</p>
+    <div class="links">
+        <p>Links</p>
+        <p><a class="link" href="mailto:elijahllopezz@gmail.com">elijahllopezz@gmail.com</a></p>
+        <p><a class="link" href="https://github.com/elibroftw">github.com/elibroftw</a></p>
+    </div>
+
+    <h2>Achievements</h2>
+    <div class="row">
+        <p><a class="link" href="https://addons.mozilla.org/search/?sort=users&type=statictheme">#1 Firefox Theme</a>
+            with 80k+ users</p>
+        <p><a class="feature">1M+ </a>total browser extension installs</p>
+    </div>
+    <h2>Experience</h2>
+    <div>
+        <div class="row">
+            <h3>TD Securities</h3>
+            <p class="time">Jan 2021 - Apr 2021, May 2020 — Aug 2020</p>
+        </div>
+        <ul class="responsibilities">
+            <li>Created a Python Jupyter Notebook comparing PAT and PROD environments of internal web app</li>
+            <li>Used Javascript, AngularJS and Molecular services to implement functional programming calculations</li>
+            <li>Used Ploty Dash to create a dashboard for the number of trades for each fixed-income Security</li>
+            <li>Created a ReactJS view to show differences between data on PAT and PROD servers.</li>
+            <li>Modified the internal Java SpringBoot API to ignore metadata of objects in Javers.</li>
+            <li>Introduced JWT token authentication into internal node express server to improve security</li>
+            <li>Removed internal HazelCast API restrictions to allow developers catch specific errors</li>
+            <li>Implemented TreeMap to sort objects returned in API responses</li>
+            <li>Conscientiously delivered on assigned tasks within the Agile Jira workflow</li>
+        </ul>
+    </div>
+    <a href="/projects/" class="link h2">Projects</a>
+    <h2>Education</h2>
+    <div>
+        <div class="row">
+            <h3>University of Waterloo</h3>
+            <p class="time">Sep 2019 — Present</p>
+        </div>
+        <div class="row">
+            <p class="major">Computer Science</p>
+            <p class="feature">GPA: 3.55 / 4</p>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <h3>Wilfrid Laurier University</h3>
+            <p class="time">Sep 2019 — Present</p>
+        </div>
+        <div class="row">
+            <p class="major">Business Administration</p>
+            <p class="feature">GPA: 3.55 / 4</p>
+        </div>
+    </div>
+    <h2>Skills</h2>
+    <div class="skills">
+        <ul>
+            <li>Python</li>
+            <li>Java</li>
+            <li>pandas & matplotlib</li>
+        </ul>
+        <ul>
+            <li>C</li>
+            <li>C++</li>
+            <li>C#</li>
+        </ul>
+        <ul>
+            <li>HTML / CSS / JS</li>
+            <li>React & AngularJS</li>
+            <li>MongoDB</li>
+        </ul>
+        <ul>
+            <li>DigitalOcean & Heroku</li>
+            <li>MySQl & PostgreSQL</li>
+            <li>Git</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

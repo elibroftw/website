@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+<title>{% block title %}{% endblock %} - Elijah Lopez</title>
+<!-- <link rel="icon" sizes="256x256" type="image/png" href="/static/images/favicon.png?v=3.0.0"> -->
+<link rel="shortcut icon" href="/static/images/favicon.ico?v=3.0.0">
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+{% if request.cookies.get('theme', 'false') == 'true' %}
+<link rel="stylesheet" id="stylesheet" href="{{ style_dark }}?v=2.3.3">
+{% else %}
+<link rel="stylesheet" id="stylesheet" href="{{ style_default }}?v=2.3.3">
+{% endif %}
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#111111" />
+<meta property='og:title' content="Elijah Lopez Website"/>
+<meta property='og:description' content="Website of Elijah Lopez"/>
+<meta property='og:image' content="{{ request.host_url }}static/images/favicon.png"/>
+<meta property='og:url' content="{{ request.base_url }}"/>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@elibroftw">
+{% block style %}
+{% endblock %}
+</head>
+<body>
+<nav id="mobile-nav">
+    <input id="mobile-nav-checkbox" type="checkbox" autocomplete="off">
+    <label for="mobile-nav-checkbox" id="mobile-nav-label"></label>
+    <ul id="mobile-nav-panel">
+        <a href="/">home</a>
+        <a href="/resume/">resume</a>
+        <a href="/software/">software</a>
+        <a href="/blog/">blog</a>
+        <a href="/wallpapers/">wallpapers</a>
+        <a href="/resources/">resources</a>
+        <a href="/social/">social</a>
+    </ul>
+</nav>
+<nav id="desktop-nav" class="noselect">
+    <a href="/">home</a>
+    <a href="/resume/">resume</a>
+    <a href="/software/">software</a>
+    <a href="/blog/">blog</a>
+    <a href="/creative-works/">creative works</a>
+    <a href="/resources/">resources</a>
+    <a href="/social/">social</a>
+   <!-- <div class="dropdown">
+       <button class="dropbtn">games
+           <i class="fas fa-caret-right"></i>
+           <i class="fa fa-caret-down"></i>
+       </button>
+       <div class="dropdown-content">
+        <a href="/resources/">resources</a>
+        <a href="/articles/">articles</a>
+        <a href="/creative/">art</a>
+       </div>
+   </div> -->
+</nav>
+<div id="inner">{% block main_content %}{% endblock %}</div>
+{% block more_content %}{% endblock %}
+<span id="switch-text" class="noselect">Toggle Theme</span>
+<label class="switch">
+    <input id="theme-toggle" type="checkbox" onclick="changeTheme()">
+    <span class="slider round"></span>
+</label>
+<!-- <div id="social-links">
+    <a href="http://github.com/elibroftw/"><i class="fab fa-github fa-2x"></i></a>
+</div> -->
+<script>
+    function getCookie(name) {
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for (const c of ca) {
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function setCookie(name, value, days) {
+        let expires = '';
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = '; expires=' + date.toUTCString();
+        }
+        document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    }
+
+    function changeTheme() {
+        stylesheet = document.getElementById('stylesheet')
+        if (document.getElementById('theme-toggle').checked) {
+            stylesheet.setAttribute('href', ' {{ style_dark }}')
+            setCookie('theme', 'true', 365);
+        } else {
+            stylesheet.setAttribute('href', '{{ style_default }}')
+            setCookie('theme', 'false', 365);
+        }
+    }
+
+    if (getCookie('theme') === 'true') document.getElementById('theme-toggle').checked = true;
+</script>
+{% block script %}{% endblock %}
+</body>
+</html>

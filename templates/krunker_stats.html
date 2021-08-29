@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    input {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid #FFFFFF;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        color: #FFFFFF;
+        transition: all 0.2s;
+        background-color: transparent;
+    }
+
+    #search {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid #FFFFFF;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        color: #FFFFFF;
+        text-align: center;
+        transition: all 200ms;
+        background-color: transparent;
+    }
+
+    #search:hover,
+    input:hover,
+    input:active,
+    input:focus,
+    input:focus-within {
+        color: #000000;
+        background-color: #FFFFFF;
+    }
+
+    @media all and (max-width:30em) {
+        #search {
+            display: block;
+            margin: 0.4em auto;
+            width: 15.5em;
+        }
+
+        input {
+            display: block;
+            margin: 0.4em auto;
+            text-align: center;
+        }
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+    <h1>{% block title %}Krunker Stats{% endblock %}</h1><br>
+    <form action="/krunker-stats" style="margin-bottom: 1em">
+        <input id="krunker-username-input" type=text name=krunker-username placeholder="Krunker username" autofocus
+            required>
+        <button id="search">Search</button>
+    </form>
+{% endblock %}
+{% block script %}
+<script>
+    const input = document.getElementById("track-input");
+    input.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("search").click();
+        }
+    });
+</script>
+{% endblock %}

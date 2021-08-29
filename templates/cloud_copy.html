@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<title>Cloud Copy</title>
+<link href="/static/images/cloud_copy_logo.png" rel="icon" type="image/png">
+<link href="/static/images/cloud_copy_favicon.ico" rel="shortcut icon">
+<link href="/static/css/cloud_copy.css" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
+<link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#008b8b" />
+<body>
+    <div class="row">
+        <ul class="main-nav">
+            <li><a id="nav-about" href="#about">About</a> </li>
+            <li><a id="nav-download" href="#download">Download</a> </li>
+        </ul>
+    </div>
+    <div class="hero">
+
+        <h1>
+            <img id="logo" src="/static/images/cloud_copy_logo.png">
+            Cloud Copy
+        </h1>
+        <button id="demo-btn" class="btn btn-one" onclick="openModal()">
+            Watch Demo
+        </button>
+        <div id="modal" class="modal">
+            <iframe allowfullscreen width=66% height=75% class="modal-content" src="//www.youtube-nocookie.com/embed/k_FxkNObDYQ?enablejsapi=1&version=3&playerapiid=ytplayer"></iframe>
+        </div>
+    </div>
+
+    <div id="about">
+        <h2>About</h2>
+        <div class="background">
+            <div class="transbox">
+                <p>
+                    Cloud Copy [Abandoned] is a novel solution to clipboard management. It allows you to send copy text/content on
+                    one device, and paste it directly into another, seamlessly.
+                    <br><br>
+                    Cloud Copy differentiates itself from other clipboard applications by not depending on
+                    Chrome, or any browser you use. Versatile accross all platforms, connect
+                    all your devices with a single account.
+                    <br><br>
+                    Made by Elijah Lopez, Abdullah Hadi, Gijsson Yeo, and Kritik Kaushal. <a href="//github.com/elibroftw/cloud-copy">Source code</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id='download'>
+        <h3>Download</h3>
+        <div id="windows">
+            <hX>Windows</hX>
+            <ul>
+                <a class="dl-link" href="//github.com/elibroftw/cloud-copy/releases/download/v0.1.2a/Cloud.Copy.exe">64 bit</a><br>
+                <a class="dl-link" href="">32 bit</a>
+            </ul>
+        </div>
+        <div id="mac">
+            <hX>Macintosh</hX>
+            <ul>
+                <a class="dl-link" href="">64 bit</a><br>
+                <a class="dl-link" href="">32 bit</a>
+
+            </ul>
+        </div>
+        <div id="linux">
+            <hX>Linux</hX>
+            <ul>
+                <a class="dl-link" href="">64 bit</a><br>
+                <a class="dl-link" href="">32 bit</a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <hX>Mobile</hX>
+            <ul>
+                <a class="dl-link" href="">Google Play</a><br>
+                <a class="dl-link" href="">App Store</a>
+            </ul>
+        </div>
+    </div>
+
+    <button onclick="topFunction()" id="btn-top" title="Go to top">
+        <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+            <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
+        0.375, 35.375 28.375, 0.375 58.67, 35.375 " />
+          </svg>
+    </button>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const ytVid = document.getElementsByTagName('iframe')[0];
+        const toTopBtn = document.getElementById('btn-top');
+
+        function closeModal() {
+            modal.style.display = 'none';
+            ytVid.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            window.onclick = null;
+            document.onkeydown = null;
+        }
+
+        function openModal() {
+            modal.style.display = 'block';
+            ytVid.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            // maybe focus on iframe?
+
+            // When the user clicks off the modal or presses Esc, close the modal
+            document.onkeydown =  function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            }
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+        }
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                toTopBtn.style.display = 'block';
+            } else {
+                toTopBtn.style.display = 'none';
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            document.getElementById('demo-btn').focus();
+        }
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = scrollFunction;
+    </script>
+</body>
+</html>
