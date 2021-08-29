@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    #album-cover {
+        max-width: 500px;
+    }
+
+    input {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid #fff;
+        margin: 0 0.5em 0.5em 0.5em;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: Montserrat;
+        color: #fff;
+        transition: all 200ms;
+        background-color: transparent;
+    }
+
+    input:hover, input:active, input:focus, input:focus-within {
+        color: #000;
+        background-color: #fff;
+    }
+
+    @media screen and (max-width: 1024px) {
+        #album-cover {
+            max-width: 400px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        #album-cover {
+            max-width: 300px;
+        }
+    }
+
+    @media all and (max-width:30em) {
+        #search {
+            display: block;
+            margin: 0.4em auto;
+            width: 13.1em;
+        }
+
+        input {
+            display: block;
+            margin: 0.4em auto;
+            text-align: center;
+        }
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Search Album Art{% endblock %}</h1><br>
+<form action="/search-album-art" style="margin-bottom: 1em">
+    <input id="artist-input" type=text name=artist placeholder="Artist name" autofocus required>
+    <input id="track-input" type=text name=track placeholder="Track title" required>
+    <button class="ui-btn" id="search">Search</button>
+</form>
+<img id="album-cover" src="{{image_url}}" alt="{{alt_text}}" {{'style="display: none;"'|safe if image_url == '' else ''}}/>
+{% endblock %}
+{% block script %}
+<script>
+    const input = document.getElementById('track-input');
+    input.addEventListener('keyup', event => {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById('search').click();
+        }
+    });
+</script>
+{% endblock %}

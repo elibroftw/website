@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    li {
+        font-family: Montserrat;
+        font-size: 18px;
+        color: white;
+        padding-bottom: .5em;
+        text-align: left;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}SocketIO Example{% endblock %}</h1>
+<p>My quotes will come up randomly every 3 seconds until for 15 quotes</p>
+<ul id="quotes">
+
+</ul>
+{% endblock %}
+{% block script %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+<script>
+    const socket = io();
+    const quotes = document.getElementById('quotes');
+    let max_quotes = 10;
+
+    socket.on('connect', () => {
+        socket.emit('print_message', {data: 'This is a test'});
+        socket.emit('get_quote');
+    });
+
+    socket.on('return_quote', quote => {
+        const node = document.createElement('li');
+        const textnode = document.createTextNode(quote);
+        node.appendChild(textnode);
+        quotes.appendChild(node);
+        max_quotes -= 1;
+        if (max_quotes > 0) {
+            setTimeout(() => {socket.emit('get_quote');}, 3000);
+        } else {
+            socket.close();
+        }
+    });
+</script>
+{% endblock %}

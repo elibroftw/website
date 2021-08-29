@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+img {
+	vertical-align: middle;
+}
+
+.container {
+	position: relative;
+	margin-top: 1em;
+}
+
+.slide {
+	display: none;
+}
+
+.slide img {
+	border-radius: .5em;
+	max-width: 100%;
+	max-height: 400px;
+}
+
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 37%;
+	background-color: rgba(0, 0, 0, 0.2);
+	width: auto;
+	padding: 16px;
+	margin-top: -50px;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev {
+	left: -5px;
+}
+
+.prev:hover, .next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.numbertext {
+	color: #f2f2f2;
+	background-color: rgba(0, 0, 0, 0.7);
+	border-radius: 0 .5em 0 .5em;
+	font-size: 12px;
+	padding: 4px 6px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-family: Manrope;
+}
+
+.caption-container {
+	text-align: center;
+	padding: 2px 16px;
+	color: white;
+}
+
+#caption {
+	padding: 2px 16px;
+	margin-top: 10px;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.column {
+	float: left;
+	width: {{ 100 / images|length }}%;
+}
+
+.preview {
+	opacity: 0.6;
+	cursor: pointer;
+	max-width: 100%;
+	max-height: 10em;
+}
+
+.active, .preview:hover {
+	opacity: 1;
+}
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Music Caster{% endblock %}</h1>
+<h2>Screenshots (v4.82.1)</h2>
+<a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md">Download</a>
+<button id="open-web-gui" class="ui-btn" onclick="openWebGUI()">Try opening Web GUI</button>
+<div class="container">
+	{% for image in images %}
+	<div class="slide">
+		<div class="numbertext">{{loop.index }} / {{images|length}}</div>
+		<img src="{{ image[0] }}">
+	</div>
+	{% endfor %}
+	<a class="prev" onclick="plusSlides(-1)">❮</a>
+	<a class="next" onclick="plusSlides(1)">❯</a>
+	<div class="caption-container"><p id="caption"></p></div>
+	<div class="row">
+		{% for image in images %}
+		<div class="column">
+			<img class="preview" src="{{image[0]}}" onclick="showSlide({{loop.index0}})" alt="{{image[1]}}" title="{{image[1]}}">
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+	let slideIndex = 0;
+	const slides = document.getElementsByClassName('slide');
+	const thumbs = document.getElementsByClassName('preview');
+	const captionText = document.getElementById('caption');
+	const numOfImages = slides.length;
+	const modal = document.getElementById('modal');
+
+	function openWebGUI(sameTab=false) {
+		// redirect to http first
+		if (location.protocol === 'https:') {
+			var url = location.href;
+			var index_of_hash = url.indexOf(location.hash) || url.length;
+			location.replace(`http:${url.substring(6, index_of_hash)}#open-web-gui`);
+		}
+
+		let foundMC = false;
+		for (let hostId = 1; hostId < 50; hostId++) {
+			for (let port = 2001; port < 2004; port++) {
+				if (!foundMC) {
+					fetch(`http://192.168.1.${hostId}:${port}/running/`, {
+						method: 'GET'
+					}).then(response => response.json()).then(response => {
+						if (sameTab) location.href = `http://192.168.1.${hostId}:${port}/`;
+						else window.open(`http://192.168.1.${hostId}:${port}/`);
+						foundMC = true;
+					}).catch(() => {});
+				}
+			}
+		}
+	}
+
+	function plusSlides(n) {
+		showSlide(slideIndex + n);
+	}
+
+
+	function showSlide(index) {
+		slides[slideIndex].style.display = 'none'
+		thumbs[slideIndex].className = thumbs[slideIndex].className.replace(' active', '');
+		if (index >= numOfImages) index = 0;
+		else if (index < 0) index = numOfImages - 1;
+		slideIndex = index;
+		slides[slideIndex].style.display = 'block';
+		thumbs[slideIndex].className += ' active';
+		captionText.innerHTML = thumbs[slideIndex].alt;
+	}
+
+	showSlide(0);
+
+	if (location.hash === '#open-web-gui') openWebGUI(true);
+</script>
+{% endblock %}

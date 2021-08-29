@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .links {
+        margin-top: 10px;
+        text-decoration: none;
+        color: #75bdec;
+    }
+
+    .links:hover {
+        color: #e0e030;
+        color: #00ab44;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Video Edits{% endblock %}</h1>
+<form action="/get_ico" class="dropzone" id="my-awesome-dropzone"></form>
+{% endblock %}

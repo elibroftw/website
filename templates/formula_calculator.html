@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    /* @font-face {
+        font-family: Montserrat;
+        src: url('/static/css/fonts/Montserrat-Thin.otf');
+        font-weight: 200;
+    } */
+
+    #js-program-title {
+        color: white;
+        font-family: Montserrat;
+        font-weight: lighter;
+        margin-top: 10px;
+    }
+
+    #js-program-title:hover {
+        color: white;
+    }
+
+    #output {
+        font-family: Arial;
+        display: inline;
+        font-size: 14px;
+    }
+</style>
+{% endblock %}
+{% block main_content %}
+    <h1>My {% block title %}Formula Calculator{% endblock %}</h1>
+    <p>Here are some useful functions for homework</p>
+    <iframe height=400px width="100%" src="https://repl.it/@elilopez/formulas?lite=true" scrolling=no frameborder=no
+        allowtransparency=true allowfullscreen=true
+        sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+{% endblock %}
+{% block script %}
+<script>
+    function squareIt() {
+        let num = document.getElementById('inputbox').value;
+        if (num.length > 4) {
+            num = num + "";
+            num = parseInt(num.slice(0, 5));
+            document.getElementById('inputbox').value = num;
+        }
+        a = num * num;
+        if (a === 0) {
+            document.getElementById('output').innerHTML = '';
+        } else {
+            document.getElementById('output').innerHTML = a;
+        }
+    }
+</script>
+{% endblock %}

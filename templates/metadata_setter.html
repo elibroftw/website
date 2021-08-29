@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    #drop-area {
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        width: 480px;
+        font-family: sans-serif;
+        margin: auto;
+        padding: 20px;
+    }
+
+    #drop-area.highlight {
+        border-color: lightskyblue;
+    }
+
+    p {
+        margin-top: 0;
+    }
+
+    .my-form {
+        margin-bottom: 10px;
+    }
+
+    #gallery {
+        margin-top: 10px;
+    }
+
+    #gallery img {
+        width: 150px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .button {
+        display: inline-block;
+        font-family: Montserrat;
+        font-weight: 100;
+        padding: 10px;
+        /* background: #ccc; */
+        background: -webkit-linear-gradient(45deg, rgba(30, 143, 255, 0.9), rgba(0, 128, 0, 0.9));
+        color: #eeeeee;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .button:hover {
+        background: linear-gradient(45deg, dodgerBlue, purple);
+    }
+
+    #fileElem {
+        display: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    input#upload {
+        font-size: 1em;
+    }
+
+    #downloadBtn {
+        text-decoration: none;
+        background: linear-gradient(45deg, dodgerBlue, green);
+        border: none;
+    }
+
+    #downloadBtn:hover {
+        background: linear-gradient(45deg, dodgerBlue, purple);
+    }
+
+</style>
+{% endblock %}
+{% block main_content %}
+    <h1>{% block title %}Metadata Setter{% endblock %}</h1>
+    <div id="drop-area">
+        <form class="my-form">
+            <p>Upload MP3 file via drag and drop or button</p>
+            <input type="file" id="fileElem" accept=".mp3" onchange="onChange(this.files)">
+            <label class="button" for="fileElem">Select MP3</label>
+            <progress class="hidden" id="progress-bar" max=100 value=0></progress>
+            <label id="upload" class="button hidden" onclick="uploadFile()">Add Metadata</label>
+            <p id="file-name" style="margin-top: 3%; margin-bottom: 0;"></p>
+            <br><a id="downloadBtn" class="button hidden"><i class="fa fa-download"></i> Download File</a>
+        </form>
+        <!-- <div id="gallery"></div> -->
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+    const dropArea = document.getElementById('drop-area');
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    })
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight(e) {
+        dropArea.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+        dropArea.classList.remove('highlight');
+    }
+
+    const body = document.getElementsByTagName('body')[0];
+    const inner = document.getElementById('inner');
+
+    // https://stackoverflow.com/questions/28226021/entire-page-as-a-dropzone-for-drag-and-drop
+    dropArea.addEventListener('dragenter', highlight, false);
+    dropArea.addEventListener('dragover', highlight, false);
+    dropArea.addEventListener('dragleave', unhighlight, false);
+    dropArea.addEventListener('drop', e => onChange(e.dataTransfer.files, false), false);
+
+    function onChange(files, fromInput=true) {
+        const fn = document.getElementById('file-name');
+        if (files.length) {
+            const file = files[0];
+            if (file.name.endsWith('.mp3')) {
+                fn.innerHTML = file.name;
+                if (!fromInput) document.getElementById('fileElem').files = files;
+                document.getElementById('upload').classList.remove('hidden');
+            } else document.getElementById('fileElem').files = [];
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (!downloadBtn.classList.contains('hidden')) downloadBtn.classList.add('hidden');
+        } else if (!fn.innerHTML) {
+            document.getElementById('upload').classList.add('hidden');
+        }
+    }
+
+    function uploadFile() {
+        const file = document.getElementById('fileElem').files[0]
+        const url = window.location.pathname;
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        xhr.open('POST', '', true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        // Update progress (can be used to show progress indicator)
+        // xhr.upload.addEventListener("progress", function (e) {
+        //     updateProgress(i, (e.loaded * 100.0 / e.total) || 100);
+        // })
+
+        // xhr.addEventListener('readystatechange', function (e) {
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         updateProgress(i, 100); // <- Add this
+        //     } else if (xhr.readyState === 4 && xhr.status !== 200) {
+        //         // Error. Inform the user
+        //     }
+        // })
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log(xhr.response);
+                const downloadBtn = document.getElementById('downloadBtn');
+                // downloadBtn.download = xhr.response;
+                const response = JSON.parse(xhr.response);
+                downloadBtn.href = response.url;
+                downloadBtn.download = response.filename;
+                if (response.error) {
+                    document.getElementById('file-name').innerHTML = 'ERROR: ' + response.error;
+                } else {
+                    document.getElementById('file-name').innerHTML = 'This link will be valid for 10 minutes';
+                    downloadBtn.classList.remove('hidden');
+                }
+            }
+        }
+
+        formData.append('file', file);
+        xhr.send(formData);
+        document.getElementById('file-name').innerHTML = 'The enchanced file is being processed';
+        document.getElementById('upload').classList.add('hidden');
+    }
+    // dropArea.addEventListener('drop', unhighlight, false);
+</script>
+{% endblock %}

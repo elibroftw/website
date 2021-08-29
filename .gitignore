@@ -1,0 +1,7 @@
+.idea/
+__pycache__/
+static/metadataSetter/
+static/css/dark.min.css
+static/css/style.min.css
+.vscode/settings.json
+.env
