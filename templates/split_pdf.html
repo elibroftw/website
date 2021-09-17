@@ -75,19 +75,17 @@
 </style>
 {% endblock %}
 {% block main_content %}
-    <h1>{% block title %}Metadata Setter{% endblock %}</h1>
+    <h1>{% block title %}PDF Splitter{% endblock %}</h1>
     <br>
     <div id="drop-area">
-        <form class="my-form">
-            <p>Upload MP3 file via drag and drop or button</p>
-            <input required type="file" id="fileElem" accept=".mp3" onchange="onChange(this.files)">
-            <label class="button" for="fileElem">Select MP3</label>
+        <form class="my-form" action="/split-pdf/" method="POST" enctype="multipart/form-data">
+            <p>Upload PDF via drag and drop or button</p>
+            <input name="file" required type="file" id="fileElem" accept=".pdf" onchange="onChange(this.files)">
+            <label class="button" for="fileElem">Select PDF</label>
             <progress class="hidden" id="progress-bar" max=100 value=0></progress>
-            <label id="upload" class="button hidden" onclick="uploadFile()">Add Metadata</label>
             <p id="file-name" style="margin-top: 3%; margin-bottom: 0;"></p>
-            <br><a id="downloadBtn" class="button hidden"><i class="fa fa-download"></i> Download File</a>
+            <button type="submit">Split PDF and Download</button>
         </form>
-        <!-- <div id="gallery"></div> -->
     </div>
 {% endblock %}
 {% block script %}
@@ -123,7 +121,7 @@
         const fn = document.getElementById('file-name');
         if (files.length) {
             const file = files[0];
-            if (file.name.endsWith('.mp3')) {
+            if (file.name.endsWith('.pdf')) {
                 fn.innerHTML = file.name;
                 if (!fromInput) document.getElementById('fileElem').files = files;
                 document.getElementById('upload').classList.remove('hidden');
@@ -142,19 +140,6 @@
         const formData = new FormData();
         xhr.open('POST', '', true);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-        // Update progress (can be used to show progress indicator)
-        // xhr.upload.addEventListener("progress", function (e) {
-        //     updateProgress(i, (e.loaded * 100.0 / e.total) || 100);
-        // })
-
-        // xhr.addEventListener('readystatechange', function (e) {
-        //     if (xhr.readyState === 4 && xhr.status === 200) {
-        //         updateProgress(i, 100); // <- Add this
-        //     } else if (xhr.readyState === 4 && xhr.status !== 200) {
-        //         // Error. Inform the user
-        //     }
-        // })
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
@@ -178,6 +163,5 @@
         document.getElementById('file-name').innerHTML = 'The enchanced file is being processed';
         document.getElementById('upload').classList.add('hidden');
     }
-    // dropArea.addEventListener('drop', unhighlight, false);
 </script>
 {% endblock %}

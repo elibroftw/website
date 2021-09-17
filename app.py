@@ -7,13 +7,18 @@ from flask_socketio import SocketIO, emit, send
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
 import metadata_setter as MetadataSetter
 import os
+import shutil
 import time
 import threading
 import requests
 import random
-import shutil
+import io
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
+from PyPDF2 import PdfFileWriter, PdfFileReader
+import zipfile
+
+
 # import psycopg2
 
 # DATABASE_URL = os.environ.get('DATABASE_URL', False)
@@ -165,6 +170,7 @@ def delete_file(filename):
     with suppress(OSError):
         os.remove(filename)
 
+
 @app.route('/metadata-setter/', methods=['GET', 'POST'])
 def metadata_setter():
     if request.method == 'POST' and 'file' in request.files:
@@ -174,7 +180,7 @@ def metadata_setter():
             save_name = filename.replace('_', ' ')
             save_path = os.path.join(metadata_setter_dir, save_name).replace('\\', '/')
             file.save(save_path)
-            threading.Thread(target=delete_file, args=(f'{metadata_setter_dir}/{save_name}',)).start()
+            threading.Thread(target=delete_file, args=(f'{metadata_setter_dir}/{save_name}',)).start()  # delete file in 10 minutes
             try:
                 MetadataSetter.set_simple_meta(save_path)
             except Exception as e:
@@ -186,6 +192,28 @@ def metadata_setter():
 @app.route('/metadata-setter/<filename>', methods=['GET', 'POST'])
 def upload():
     return str('file' in request.files)
+
+
+@app.route('/split-pdf/', methods=['GET', 'POST'])
+def split_pdf():
+    if request.method == 'POST':
+        if 'file' in request.files and request.files['file'].filename.endswith('.pdf'):
+            filename = secure_filename(request.files['file'].filename)
+            inputpdf = PdfFileReader(request.files['file'].stream)
+            zip_buffer = io.BytesIO()
+            with zipfile.ZipFile(zip_buffer, 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
+                for i in range(inputpdf.numPages):
+                    output = PdfFileWriter()
+                    output.addPage(inputpdf.getPage(i))
+                    page_name = f'{filename}_pg_{i}.pdf'
+                    data = io.BytesIO()
+                    output.write(data)
+                    zip_file.writestr(page_name, data.getvalue())
+            zip_filename = filename[:-3] + 'zip' # replace pdf with zip
+            zip_buffer.seek(0)
+            return send_file(zip_buffer, download_name=zip_filename, as_attachment=True)
+        return redirect('/split-pdf/')
+    return render_template('split_pdf.html')
 
 
 @app.route('/krunker/', methods=['GET'])
