@@ -19,3 +19,4 @@ urllib3
 werkzeug==0.16.1
 mutagen
 tqdm
+PyPDF2
