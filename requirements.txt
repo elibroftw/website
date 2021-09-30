@@ -2,7 +2,7 @@ bs4
 certifi
 chardet
 click
-flask~=1.1.1
+flask~=2.0
 flask_compress==1.4.0
 flask_socketio~=4.2.1
 flask_minify
