@@ -66,13 +66,13 @@
 </style>
 {% endblock %}
 {% block main_content %}
-    <h1>{% block title %}PDF Splitter{% endblock %}</h1>
+    <h1>{% block title %}PDF Combiner{% endblock %}</h1>
     <br>
     <div id="drop-area">
         <form class="my-form" action="/split-pdf/" method="POST" enctype="multipart/form-data">
-            <p>Upload PDF via drag and drop or button</p>
-            <input type="text" name="template" placeholder="template{i}.pdf">
-            <input name="file" required type="file" id="fileElem" accept=".pdf" onchange="onChange(this.files)">
+            <p>Upload PDFs via drag and drop or button</p>
+            <input type="text" name="template" placeholder="new file name">
+            <input name="file" multiple required type="file" id="fileElem" accept=".pdf" onchange="onChange(this.files)">
             <label class="button" for="fileElem">Select PDF</label>
             <progress class="hidden" id="progress-bar" max=100 value=0></progress>
             <p class="file-name" style="margin-top: 3%;"></p>
@@ -103,21 +103,35 @@
     const body = document.getElementsByTagName('body')[0];
     const inner = document.getElementById('inner');
 
-    // https://stackoverflow.com/questions/28226021/entire-page-as-a-dropzone-for-drag-and-drop
     dropArea.addEventListener('dragenter', highlight, false);
     dropArea.addEventListener('dragover', highlight, false);
     dropArea.addEventListener('dragleave', unhighlight, false);
     dropArea.addEventListener('drop', e => onChange(e.dataTransfer.files, false), false);
 
+    // TODO
+
     function onChange(files, fromInput=true) {
         const fn = dropArea.getElementsByClassName('file-name')[0];
         if (files.length) {
-            const file = files[0];
-            if (file.name.endsWith('.pdf')) {
-                fn.innerHTML = file.name;
-                if (!fromInput) document.getElementById('fileElem').files = files;
-            } else document.getElementById('fileElem').files = [];
+            let file_names = '';
+            console.log(files);
+            for (const file of files) {
+                console.log(file.name);
+                if (file.name.endsWith('.pdf')) {
+                    console.log(file.name);
+                    if (file_names !== '') {
+                        file_names = file_names + ', ' + file.name
+                    } else {
+                        file_names = file.name
+                    }
+                    if (!fromInput) document.getElementById('fileElem').files.push(...files);
+                } else document.getElementById('fileElem').files = [];
+            }
+            console.log(fn);
+            fn.innerHTML = file_names;
+            console.log(fn);
         }
     }
+
 </script>
 {% endblock %}

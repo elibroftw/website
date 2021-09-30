@@ -198,22 +198,47 @@ def upload():
 def split_pdf():
     if request.method == 'POST':
         if 'file' in request.files and request.files['file'].filename.endswith('.pdf'):
-            filename = secure_filename(request.files['file'].filename)
+            filename = secure_filename(request.files['file'].filename)[:-4]
+            template = request.values.get('template', '')
+            use_template = template.endswith('.pdf')
             inputpdf = PdfFileReader(request.files['file'].stream)
             zip_buffer = io.BytesIO()
             with zipfile.ZipFile(zip_buffer, 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
                 for i in range(inputpdf.numPages):
                     output = PdfFileWriter()
                     output.addPage(inputpdf.getPage(i))
-                    page_name = f'{filename}_pg_{i}.pdf'
+                    if use_template:
+                        page_name = template.replace('{i}', str(i))
+                    else:
+                        page_name = f'{filename}_pg_{i}.pdf'
                     data = io.BytesIO()
                     output.write(data)
                     zip_file.writestr(page_name, data.getvalue())
-            zip_filename = filename[:-3] + 'zip' # replace pdf with zip
+            zip_filename = filename + '.zip' # replace pdf with zip
             zip_buffer.seek(0)
             return send_file(zip_buffer, download_name=zip_filename, as_attachment=True)
         return redirect('/split-pdf/')
     return render_template('split_pdf.html')
+
+
+@app.route('/combine-pdf/', methods=['GET', 'POST'])
+def combine_pdf():
+    if request.method == 'POST':
+        if 'files' in request.files and request.files['files'].filename.endswith('.pdf'):
+            filename = secure_filename(request.files['files'].filename)[:-4]  # default
+            new_name = request.values.get('new-name', '')
+            dl_name = new_name if new_name.endswith('.pdf') else filename + '_combined.pdf'
+            data = io.BytesIO()
+            output = PdfFileWriter()
+            for file in request.files.getlist('files'):
+                inputpdf = PdfFileReader(file.stream)
+                for i in range(inputpdf.numPages):
+                    output.addPage(inputpdf.getPage(i))
+            output.write(data)
+            # data.seek(0)
+            return send_file(data, download_name=dl_name, as_attachment=True)
+        return redirect('/combine-pdf/')
+    return render_template('combine_pdf.html')
 
 
 @app.route('/krunker/', methods=['GET'])

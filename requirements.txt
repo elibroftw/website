@@ -2,9 +2,9 @@ bs4
 certifi
 chardet
 click
-flask~=2.0
-flask_compress==1.4.0
-flask_socketio~=4.2.1
+flask
+flask_compress
+flask_socketio
 flask_minify
 gunicorn
 idna
@@ -16,7 +16,7 @@ Pillow
 psycopg2
 requests
 urllib3
-werkzeug==0.16.1
+werkzeug
 mutagen
 tqdm
 PyPDF2

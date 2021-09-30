@@ -158,7 +158,6 @@
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
-                console.log(xhr.response);
                 const downloadBtn = document.getElementById('downloadBtn');
                 // downloadBtn.download = xhr.response;
                 const response = JSON.parse(xhr.response);
