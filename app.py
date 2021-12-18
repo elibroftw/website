@@ -150,7 +150,7 @@ def resources(): return render_template('resources.html')
 
 @app.route('/blog/')
 @app.route('/articles/')
-def articles(): return render_template('articles.html')
+def articles(): return render_template('blog.html')
 
 
 @app.route('/search-album-art/', methods=['GET'])
