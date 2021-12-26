@@ -47,12 +47,6 @@ shutil.rmtree(metadata_setter_dir, ignore_errors=True)
 with suppress(FileExistsError): os.mkdir(metadata_setter_dir)
 REACT_BUILD_FOLDER = 'react_app/build'
 DEV_ENV = bool(os.getenv('DEV', False))
-quotes = ['First comes organization, then everything falls in place',
-          'Expect the worst to be at your best',
-          'Like crabs in a bucket',
-          'The path to virtue is often the path to happiness',
-          "Common sense ain't so common", 'Are you not entertained?',
-          "100 people surveyed. Number one answer's on the board. Who's the world's greatest spy?"]
 
 try:
     url = 'https://cssminifier.com/raw'
@@ -120,7 +114,7 @@ def index(): return render_template('index.html')
 
 
 @app.route('/')
-def home(): return render_template('home.html', quote=random.choice(quotes))
+def home(): return render_template('home.html', welcome_msg='Welcome!')
 
 
 @app.route('/about/')
@@ -329,7 +323,7 @@ def socketio_example():
 
 @socketio.on('get_quote')
 def return_random_quote():
-    emit('return_quote', random.choice(quotes))
+    emit('return_quote', random.choice(['quote1', 'quote2', 'quote3']))
 
 
 @socketio.on('print_message')
