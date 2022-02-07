@@ -114,7 +114,11 @@ def index(): return render_template('index.html')
 
 
 @app.route('/')
-def home(): return render_template('home.html', welcome_msg='Welcome!')
+def home():
+    if not request.is_secure and 'localhost' not in request.url_root:
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
+    return render_template('home.html', welcome_msg='Welcome!')
 
 
 @app.route('/about/')
