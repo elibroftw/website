@@ -9,3 +9,4 @@ ssl/elijahlopez.ca.key
 ssl/elijahlopez_ca.ca-bundle
 ssl/elijahlopez_ca.crt
 ssl/elijahlopez.ca.csr
+ssl/elijahlopez.ca.raw.key
