@@ -76,9 +76,9 @@ def get_style_links():
         return {'style_base': '/static/css/base.css',
                 'style_light': '/static/css/light.css',
                 'style_dark': '/static/css/dark.css'}
-    return {'style_base': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/base.min.css',
-            'style_light': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/light.min.css',
-            'style_dark': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/dark.min.css'}
+    return {'style_base': '/static/css/base.min.css',
+            'style_light': '/static/css/light.min.css',
+            'style_dark': '/static/css/dark.min.css'}
 
 
 # @app.before_request
