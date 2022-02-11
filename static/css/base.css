@@ -53,14 +53,6 @@ button::-moz-focus-inner {
     border: 0
 }
 
-body {
-    margin: 0 auto 1%;
-    background-image: url("/static/images/light.webp"), linear-gradient(#00161f, #006c9e);
-    background-position: center;
-    background-repeat: no-repeat, repeat;
-    background-size: cover;
-}
-
 #inner {
     padding: 50px 40px;
     border-radius: 20px;
@@ -167,7 +159,6 @@ p {
 #desktop-nav a, .dropdown .dropbtn {
     padding: .5em 1em;
     letter-spacing: .23px;
-    color: #000;
     font-family: Manrope;
     font-weight: 700;
     text-align: left;
@@ -191,12 +182,6 @@ p {
     outline: 0
 }
 
-#desktop-nav>a:hover, .dropdown:hover .dropbtn {
-    color: #fff;
-    background-color: rgba(0, 0, 0, .7);
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19)
-}
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -214,11 +199,6 @@ p {
 
 .dropdown:hover .dropdown-content {
     display: block
-}
-
-.dropdown-content a:hover {
-    background-color: #e8e8ee;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19)
 }
 
 #mobile-nav, #mobile-nav-checkbox {
@@ -248,7 +228,7 @@ p {
     display: inline-block;
     padding: 0.35em 1.2em;
     border: 0.1em solid #fff;
-    margin: 0 0.5em 0.5em 0;
+    margin: 0 0.5em 0.5em 0.5em;
     border-radius: 0.12em;
     box-sizing: border-box;
     text-decoration: none;
@@ -391,7 +371,7 @@ input:checked+.slider:before {
     background-color: white;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 130ms ease-in-out;
+    transition: max-height 140ms ease-in-out;
     text-align: center;
     font-family: Calibri;
     color: black;
@@ -399,7 +379,7 @@ input:checked+.slider:before {
 /* END: Accordian */
 
 @media screen and (min-width:1281px) {
-    #desktop-nav {
+    #dekstop-nav {
         width: max-content;
     }
 }
@@ -457,11 +437,6 @@ input:checked+.slider:before {
 }
 
 @media screen and (max-width:690px) {
-    body {
-        background-image: url("/static/images/dark.webp"), linear-gradient(#00161f, #006c9e);
-        background-repeat: repeat-y;
-    }
-
     h1 {
         font-size: 30pt
     }

@@ -4,10 +4,11 @@
 <!-- <link rel="icon" sizes="256x256" type="image/png" href="/static/images/favicon.png?v=3.0.0"> -->
 <link rel="shortcut icon" href="/static/images/favicon.ico?v=3.0.0">
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" id="style-base" href="{{ style_base }}?v=3.0.0">
 {% if request.cookies.get('theme', 'false') == 'true' %}
-<link rel="stylesheet" id="stylesheet" href="{{ style_dark }}?v=2.3.3">
+<link rel="stylesheet" id="style-theme" href="{{ style_dark }}?v=3.0.0">
 {% else %}
-<link rel="stylesheet" id="stylesheet" href="{{ style_default }}?v=2.3.3">
+<link rel="stylesheet" id="style-theme" href="{{ style_light }}?v=3.0.0">
 {% endif %}
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#111111" />
@@ -86,12 +87,12 @@
     }
 
     function changeTheme() {
-        stylesheet = document.getElementById('stylesheet')
+        stylesheet = document.getElementById('style-theme');
         if (document.getElementById('theme-toggle').checked) {
             stylesheet.setAttribute('href', ' {{ style_dark }}')
             setCookie('theme', 'true', 365);
         } else {
-            stylesheet.setAttribute('href', '{{ style_default }}')
+            stylesheet.setAttribute('href', '{{ style_light }}')
             setCookie('theme', 'false', 365);
         }
     }

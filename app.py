@@ -46,11 +46,11 @@ metadata_setter_dir = 'static/metadataSetter'
 shutil.rmtree(metadata_setter_dir, ignore_errors=True)
 with suppress(FileExistsError): os.mkdir(metadata_setter_dir)
 REACT_BUILD_FOLDER = 'react_app/build'
-DEV_ENV = bool(os.getenv('DEV', False))
+IS_DEV = bool(os.getenv('DEV', False))
 
 try:
     url = 'https://cssminifier.com/raw'
-    for style in {'style', 'dark'}:
+    for style in {'base', 'light', 'dark'}:
         with open(f'static/css/{style}.css', 'rb') as f:
             data = {'input': f.read()}
         r = requests.post(url, data=data)
@@ -63,19 +63,22 @@ except requests.exceptions.ConnectionError:
 app = Flask(__name__)
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if DEV_ENV else 604800
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if IS_DEV else 604800
 # app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
 Compress(app)
-if not DEV_ENV: minify(app, caching_limit=0)
+if not IS_DEV: minify(app, caching_limit=0)
 socketio = SocketIO(app)
 
 
 @app.context_processor
 def get_style_links():
-    if DEV_ENV: return {'style_default': '/static/css/style.css', 'style_dark': '/static/css/dark.css'}
-    return {'style_default': '/static/css/style.min.css', 'style_dark': '/static/css/dark.min.css'}
-    # return {'style_default': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/style.min.css',
-    #         'style_dark': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/dark.min.css'}
+    if IS_DEV:
+        return {'style_base': '/static/css/base.css',
+                'style_light': '/static/css/light.css',
+                'style_dark': '/static/css/dark.css'}
+    return {'style_base': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/base.min.css',
+            'style_light': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/light.min.css',
+            'style_dark': 'https://cdn.jsdelivr.net/gh/elibroftw/website/static/css/dark.min.css'}
 
 
 # @app.before_request
@@ -115,9 +118,10 @@ def index(): return render_template('index.html')
 
 @app.route('/')
 def home():
-    if not request.is_secure and 'localhost' not in request.url_root:
-        url = request.url.replace('http://', 'https://', 1)
-        return redirect(url, code=301)
+    # if not request.is_secure and not IS_DEV:
+    #     print(IS_DEV)
+    #     url = request.url.replace('http://', 'https://', 1)
+    #     return redirect(url, code=301)
     return render_template('home.html', welcome_msg='Welcome!')
 
 
@@ -409,6 +413,5 @@ if __name__ == '__main__':
     def test_page():
         return render_template('test.html')
 
-
-    app.run(debug=True, host='', port=5000)
+    app.run(debug=True, host='', port=5001)
     # socketio.run(app, debug=True, host='', port=5000)
