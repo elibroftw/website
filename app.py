@@ -118,10 +118,9 @@ def index(): return render_template('index.html')
 
 @app.route('/')
 def home():
-    # if not request.is_secure and not IS_DEV:
-    #     print(IS_DEV)
-    #     url = request.url.replace('http://', 'https://', 1)
-    #     return redirect(url, code=301)
+    if not request.is_secure and not IS_DEV:
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
     return render_template('home.html', welcome_msg='Welcome!')
 
 
