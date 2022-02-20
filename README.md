@@ -1,5 +1,7 @@
 # Website
-My own Website built with Flask, hosted on Heroku.
+
+My own website with Flask for the backend and no framework for the frontend, hosted on Heroku.
+
 # What it contains
 * My prominent software projects
 * Aesthic version of my resume
@@ -9,7 +11,9 @@ My own Website built with Flask, hosted on Heroku.
 * Useful Software I use
 * Resources for learning
 * Socials
+ 
 # My graphic design work
+
 * Smoke Wallpapers
 * Plexus Wallpapers
 # My plans
