@@ -1,8 +1,7 @@
 .idea/
 __pycache__/
 static/metadataSetter/
-static/css/dark.min.css
-static/css/base.min.css
+static/css/*.min.css
 .vscode/settings.json
 .env
 ssl/elijahlopez.ca.key
