@@ -459,6 +459,7 @@ input:checked+.slider:before {
         text-align: center;
         font-family: Manrope;
         letter-spacing: .3em;
+        width: 100%;
     }
 
     #mobile-nav-label {
