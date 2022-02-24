@@ -2,6 +2,7 @@
 __pycache__/
 static/metadataSetter/
 static/css/dark.min.css
+static/css/base.min.css
 .vscode/settings.json
 .env
 ssl/elijahlopez.ca.key
