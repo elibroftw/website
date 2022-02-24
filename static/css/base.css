@@ -461,6 +461,7 @@ input:checked+.slider:before {
         display: block;
         cursor: pointer;
         padding: .8em 0;
+        font-size: large;
         color: white;
     }
 
@@ -508,6 +509,7 @@ input:checked+.slider:before {
         padding: .4em 0;
         text-decoration: none;
         color: transparent;
+        font-size: large;
     }
 
     #mobile-nav-checkbox:checked ~ #mobile-nav-panel a {
