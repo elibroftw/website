@@ -68,7 +68,7 @@ app = Flask(__name__)
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if IS_DEV else 604800
-app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1, x_host=1)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_host=1)
 Compress(app)
 if not IS_DEV: minify(app, caching_limit=0)
 socketio = SocketIO(app)
