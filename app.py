@@ -274,7 +274,7 @@ def music_caster():
         return redirect(f'music-caster:{args}')
     # second var is width
     images = [
-        ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.png?raw=true', 'Main'),
+        ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Main.jpg?raw=true', 'Main'),
         ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Mini.png?raw=true', 'Mini-Mode'),
         ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Tray.png?raw=true', 'Tray'),
         ('https://github.com/elibroftw/music-caster/blob/master/resources/SC-Web.png?raw=true', 'Web GUI')
