@@ -7,6 +7,8 @@ from urllib import parse
 from bs4 import BeautifulSoup
 from pprint import pprint  # FOR DEBUGGING: DO NOT REMOVE
 from contextlib import suppress
+from functools import lru_cache, wraps
+import time
 
 with suppress(FileNotFoundError):
     with open('.env') as f:
@@ -22,6 +24,28 @@ SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_SECRET = os.getenv('SPOTIFY_SECRET')
 SPOTIFY_AUTH_STR = f'{SPOTIFY_CLIENT_ID}:{SPOTIFY_SECRET}'
 SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
+
+
+def time_cache(max_age, maxsize=None, typed=False):
+    """Least-recently-used cache decorator with time-based cache invalidation.
+    Args:
+        max_age: Time to live for cached results (in seconds).
+        maxsize: Maximum cache size (see `functools.lru_cache`).
+        typed: Cache on distinct input types (see `functools.lru_cache`).
+    """
+
+    def _decorator(fn):
+        @lru_cache(maxsize=maxsize, typed=typed)
+        def _new(*args, __time_salt, **kwargs):
+            return fn(*args, **kwargs)
+
+        @wraps(fn)
+        def _wrapped(*args, **kwargs):
+            return _new(*args, **kwargs, __time_salt=int(time.time() / max_age))
+
+        return _wrapped
+
+    return _decorator
 
 
 def get_album_art(artist, title, access_token=None):

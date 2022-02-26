@@ -1,22 +1,26 @@
 from contextlib import suppress
 from datetime import datetime, date
-from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
-from flask_compress import Compress
-from flask_minify import minify
-from flask_socketio import SocketIO, emit, send
-from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper
-import metadata_setter as MetadataSetter
 import os
 import shutil
 import time
 import threading
-import requests
 import random
 import io
+import zipfile
+
+from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper, time_cache
+import metadata_setter as MetadataSetter
+
+import feedparser
+from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
+from flask_compress import Compress
+from flask_minify import minify
+from flask_socketio import SocketIO, emit
+from PyPDF2 import PdfFileWriter, PdfFileReader
+import requests
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
-from PyPDF2 import PdfFileWriter, PdfFileReader
-import zipfile
+
 
 
 # import psycopg2
@@ -64,7 +68,7 @@ app = Flask(__name__)
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if IS_DEV else 604800
-# app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1)
+app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=1, x_host=1)
 Compress(app)
 if not IS_DEV: minify(app, caching_limit=0)
 socketio = SocketIO(app)
@@ -149,9 +153,19 @@ def contact(): return render_template('social.html')
 def resources(): return render_template('resources.html')
 
 
+@time_cache(60 * 60 * 24, maxsize=1)
+def get_blog_posts():
+    try:
+        feed = feedparser.parse('https://blog.elijahlopez.ca/index.xml')
+        return feed.entries
+    except:
+        return []
+
+
 @app.route('/blog/')
 @app.route('/articles/')
-def articles(): return render_template('blog.html')
+def articles():
+    return render_template('blog.html', entries=get_blog_posts())
 
 
 @app.route('/search-album-art/', methods=['GET'])
