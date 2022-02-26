@@ -165,7 +165,7 @@ def get_blog_posts():
 @app.route('/blog/')
 @app.route('/articles/')
 def articles():
-    return render_template('blog.html', entries=get_blog_posts())
+    return render_template('blog.html', posts=get_blog_posts())
 
 
 @app.route('/search-album-art/', methods=['GET'])
