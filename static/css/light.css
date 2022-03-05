@@ -1,6 +1,6 @@
 body {
     margin: 0 auto 1%;
-    background-image: url("/static/images/light.webp"), linear-gradient(#00161f, #006c9e);
+    background-image: url("/static/images/light.webp"), linear-gradient(#2980B9, #6DD5FA);
     background-position: center;
     background-repeat: no-repeat, repeat;
     background-size: cover;
