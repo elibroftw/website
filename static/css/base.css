@@ -26,7 +26,7 @@
 html {
     height: 100%;
     margin: 0;
-    scrollbar-color: #666 #363636
+    scrollbar-color: #666 #363636;
 }
 
 ::-webkit-scrollbar {
@@ -201,7 +201,7 @@ p {
     display: block
 }
 
-#mobile-nav, #mobile-nav-checkbox {
+#mobile-nav-label, #mobile-nav-checkbox {
     display: none
 }
 
@@ -449,21 +449,21 @@ input:checked+.slider:before {
         display: none
     }
 
-    #mobile-nav {
-        display: block;
-        background-color: rgba(15, 15, 15, .9);
-        text-align: center;
+    #mobile-nav-label {
         font-family: Manrope;
+        background-color: rgba(15, 15, 15, .95);
         letter-spacing: .3em;
         width: 100%;
-    }
-
-    #mobile-nav-label {
+        text-align: center;
         display: block;
         cursor: pointer;
-        padding: .8em 0;
+        padding: 1em 0;
         font-size: large;
         color: white;
+        position: fixed;
+        bottom: 0;
+        z-index: 2;
+        height: 1.5em;
     }
 
     #mobile-nav-label:hover {
@@ -479,29 +479,25 @@ input:checked+.slider:before {
     }
 
     #mobile-nav-panel {
-        margin-top: 0;
-        visibility: hidden;
-        padding-inline-start: 0;
-        transition: opacity .2s linear, padding-bottom .2s;
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-
-    #mobile-nav-panel:hover {
-        color: #fff;
-        background-color: transparent
+        background-color: rgba(15, 15, 15, .95);
+        text-align: center;
+        font-family: Manrope;
+        letter-spacing: .3em;
+        width: 100%;
+        z-index: 1;
+        position: fixed;
+        bottom: 3.5em;
+        transition: transform .1s linear;
+        transform: translateY(120%);
+        will-change: tranform;
+        padding: 1em 0;
     }
 
     #mobile-nav-checkbox:checked ~ #mobile-nav-panel {
-        visibility: visible;
-        padding-bottom: 1em;
-        opacity: 1;
-        width: 100%;
-        height: 100%;
+        transform: translateY(0);
     }
 
-    #mobile-nav a {
+    #mobile-nav-panel a {
         width: 100%;
         display: block;
         text-transform: uppercase;
@@ -509,15 +505,11 @@ input:checked+.slider:before {
         margin: 0;
         padding: .4em 0;
         text-decoration: none;
-        color: transparent;
         font-size: large;
-    }
-
-    #mobile-nav-checkbox:checked ~ #mobile-nav-panel a {
         color: white;
     }
 
-    #mobile-nav-checkbox:checked ~ #mobile-nav-panel a:hover {
+    #mobile-nav-panel a:hover {
         background-color: transparent;
         color: #0ff;
         box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .2),
