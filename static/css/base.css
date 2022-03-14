@@ -29,6 +29,10 @@ html {
     scrollbar-color: #666 #363636;
 }
 
+body {
+    margin: 0 auto;
+}
+
 ::-webkit-scrollbar {
     width: 15px
 }
@@ -201,7 +205,7 @@ p {
     display: block
 }
 
-#mobile-nav-label, #mobile-nav-checkbox {
+#mobile-nav-label, #mobile-nav-checkbox, #mobile-nav-panel {
     display: none
 }
 
@@ -479,22 +483,25 @@ input:checked+.slider:before {
     }
 
     #mobile-nav-panel {
+        display: block;
         background-color: rgba(15, 15, 15, .95);
         text-align: center;
         font-family: Manrope;
         letter-spacing: .3em;
         width: 100%;
         z-index: 1;
+        font-size: large;
         position: fixed;
-        bottom: 3.5em;
+        bottom: 0;
         transition: transform .1s linear;
         transform: translateY(120%);
-        will-change: tranform;
-        padding: 1em 0;
+        will-change: tranform, bottom;
+        padding-top: 1em;
     }
 
     #mobile-nav-checkbox:checked ~ #mobile-nav-panel {
         transform: translateY(0);
+        bottom: 3.5em;
     }
 
     #mobile-nav-panel a {
@@ -505,7 +512,6 @@ input:checked+.slider:before {
         margin: 0;
         padding: .4em 0;
         text-decoration: none;
-        font-size: large;
         color: white;
     }
 

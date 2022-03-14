@@ -1,5 +1,4 @@
 body {
-    margin: 0 auto 1%;
     background-image: url("/static/images/dark.webp"), linear-gradient(#00161f, #006c9e);
     background-size: cover;
     background-repeat: repeat-y;
