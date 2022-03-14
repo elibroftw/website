@@ -495,13 +495,13 @@ input:checked+.slider:before {
         bottom: 0;
         transition: transform .1s linear;
         transform: translateY(120%);
-        will-change: tranform, bottom;
+        will-change: tranform;
         padding-top: 1em;
+        padding-bottom: 3.5em;
     }
 
     #mobile-nav-checkbox:checked ~ #mobile-nav-panel {
         transform: translateY(0);
-        bottom: 3.5em;
     }
 
     #mobile-nav-panel a {
