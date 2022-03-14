@@ -449,12 +449,6 @@ input:checked+.slider:before {
         font-size: 32pt
     }
 
-    #mobile-nav-wrapper {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-    }
-
     #desktop-nav, #switch-text, .switch {
         display: none
     }
@@ -470,7 +464,7 @@ input:checked+.slider:before {
         padding: 1em 0;
         font-size: large;
         color: white;
-        position: relative;
+        position: fixed;
         bottom: 0;
         z-index: 2;
         height: 1.5em;
