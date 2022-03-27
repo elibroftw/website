@@ -1,6 +1,6 @@
 # Website
 
-My own website with Flask for the backend and no framework for the frontend, hosted on Heroku.
+My own website with Flask for the backend and no framework for the frontend; Hosted on Heroku.
 
 # What it contains
 * My prominent software projects
