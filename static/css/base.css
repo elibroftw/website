@@ -493,7 +493,7 @@ input:checked+.slider:before {
         font-size: large;
         position: fixed;
         bottom: 0;
-        transition: transform .1s linear;
+        transition: transform 25ms linear;
         transform: translateY(120%);
         will-change: tranform;
         padding-top: 1em;
