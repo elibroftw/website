@@ -85,6 +85,13 @@ def get_style_links():
             'style_dark': '/static/css/dark.min.css'}
 
 
+@app.before_request
+def force_https():
+    if not request.is_secure and not IS_DEV:
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
+
+
 # @app.before_request
 # def save_ip():
 #     requested_url = request.url
@@ -122,9 +129,6 @@ def index(): return render_template('index.html')
 
 @app.route('/')
 def home():
-    if not request.is_secure and not IS_DEV:
-        url = request.url.replace('http://', 'https://', 1)
-        return redirect(url, code=301)
     return render_template('home.html', welcome_msg='Welcome!')
 
 
