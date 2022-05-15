@@ -383,8 +383,13 @@ input:checked+.slider:before {
 /* END: Accordian */
 
 @media screen and (min-width:1281px) {
-    #dekstop-nav {
+    #desktop-nav {
         width: max-content;
+        position: fixed;
+        top: 0;
+    }
+    #inner {
+        margin-top: 5%;
     }
 }
 
@@ -403,9 +408,10 @@ input:checked+.slider:before {
     }
 
     #desktop-nav {
-        padding: 2em 0 7em;
-        margin-top: -1em;
-        text-align: center;
+        margin-left: -7%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     #desktop-nav>a {
