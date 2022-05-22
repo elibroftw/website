@@ -87,7 +87,7 @@ def get_style_links():
 
 @app.before_request
 def force_https():
-    if not request.is_secure and not IS_DEV:
+    if not request.is_secure and not app.debug:
         url = request.url.replace('http://', 'https://', 1)
         return redirect(url, code=301)
 
@@ -420,6 +420,7 @@ def new_tab():
 
 if __name__ == '__main__':
     assert os.path.exists('.env')
+    # TODO: assert 'DEV' in os.environ
 
 
     @app.route('/react/')

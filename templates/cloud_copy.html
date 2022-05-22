@@ -20,9 +20,7 @@
             <img id="logo" src="/static/images/cloud_copy_logo.png">
             Cloud Copy
         </h1>
-        <button id="demo-btn" class="btn btn-one" onclick="openModal()">
-            Watch Demo
-        </button>
+        <button id="demo-btn" class="btn-one" onclick="openModal()">Watch Demo</button>
         <div id="modal" class="modal">
             <iframe allowfullscreen width=66% height=75% class="modal-content" src="//www.youtube-nocookie.com/embed/k_FxkNObDYQ?enablejsapi=1&version=3&playerapiid=ytplayer"></iframe>
         </div>
@@ -47,35 +45,36 @@
     </div>
     </div>
     <div id='download'>
-        <h3>Download</h3>
-        <div id="windows">
-            <hX>Windows</hX>
-            <ul>
-                <a class="dl-link" href="//github.com/elibroftw/cloud-copy/releases/download/v0.1.2a/Cloud.Copy.exe">64 bit</a><br>
-                <a class="dl-link" href="">32 bit</a>
-            </ul>
-        </div>
-        <div id="mac">
-            <hX>Macintosh</hX>
-            <ul>
-                <a class="dl-link" href="">64 bit</a><br>
-                <a class="dl-link" href="">32 bit</a>
-
-            </ul>
-        </div>
-        <div id="linux">
-            <hX>Linux</hX>
-            <ul>
-                <a class="dl-link" href="">64 bit</a><br>
-                <a class="dl-link" href="">32 bit</a>
-            </ul>
-        </div>
-        <div id="mobile">
-            <hX>Mobile</hX>
-            <ul>
-                <a class="dl-link" href="">Google Play</a><br>
-                <a class="dl-link" href="">App Store</a>
-            </ul>
+        <h2>Download</h2>
+        <div id="downloads">
+            <div id="windows">
+                <hX>Windows</hX>
+                <ul>
+                    <li><a class="dl-link" href="//github.com/elibroftw/cloud-copy/releases/download/v0.1.2a/Cloud.Copy.exe">64 bit</a></li>
+                    <li><a class="dl-link" href="">32 bit</a></li>
+                </ul>
+            </div>
+            <div id="mac">
+                <hX>Macintosh</hX>
+                <ul>
+                    <li><a class="dl-link" href="">64 bit</a></li>
+                    <li><a class="dl-link" href="">32 bit</a></li>
+                </ul>
+            </div>
+            <div id="linux">
+                <hX>Linux</hX>
+                <ul>
+                    <li><a class="dl-link" href="">64 bit</a></li>
+                    <li><a class="dl-link" href="">32 bit</a></li>
+                </ul>
+            </div>
+            <div id="mobile">
+                <hX>Mobile</hX>
+                <ul>
+                    <li><a class="dl-link" href="">Google Play</a></li>
+                    <li><a class="dl-link" href="">App Store</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -99,6 +98,10 @@
         }
 
         function openModal() {
+            if (document.body.clientWidth < 690) {
+                // on mobile so just open the video
+                return window.open('https://youtube.com/watch?v=k_FxkNObDYQ');
+            }
             modal.style.display = 'block';
             ytVid.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
             // maybe focus on iframe?
