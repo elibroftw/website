@@ -375,7 +375,8 @@ input:checked+.slider:before {
     background-color: white;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 140ms ease-in-out;
+    max-height: 0;
+    transition: max-height 0.1s ease-out;
     text-align: center;
     font-family: Calibri;
     color: black;
