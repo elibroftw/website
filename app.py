@@ -87,7 +87,7 @@ def get_style_links():
 
 @app.before_request
 def force_https():
-    if not request.is_secure and not app.debug:
+    if not request.is_secure and not app.debug and request.path != '/music-caster/':
         url = request.url.replace('http://', 'https://', 1)
         return redirect(url, code=301)
 
