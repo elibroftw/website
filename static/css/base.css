@@ -31,6 +31,7 @@ html {
 
 body {
     margin: 0 auto;
+    background-attachment: fixed;
 }
 
 ::-webkit-scrollbar {
@@ -61,7 +62,7 @@ button::-moz-focus-inner {
     padding: 50px 40px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, .8);
-    margin: -6% auto auto auto;
+    margin: -6% auto 100px auto;
     width: 50%;
     max-width: 1000px;
     text-align: center
