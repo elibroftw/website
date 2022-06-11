@@ -20,6 +20,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 import requests
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
+import xxhash
 
 
 
@@ -74,15 +75,24 @@ if not IS_DEV: minify(app, caching_limit=0)
 socketio = SocketIO(app)
 
 
+def xxhash64(fname):
+    h = xxhash.xxh64()
+    with open(fname, 'rb') as f:
+        for chunk in iter(lambda: f.read(4096), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+BASE_STYLE_CHECKSUM = xxhash64('static/css/base.css')
+DARK_STYLE_CHECKSUM = xxhash64('static/css/dark.css')
+LIGHT_STYLE_CHECKSUM = xxhash64('static/css/light.css')
+
+
 @app.context_processor
 def get_style_links():
-    if IS_DEV:
-        return {'style_base': '/static/css/base.css',
-                'style_light': '/static/css/light.css',
-                'style_dark': '/static/css/dark.css'}
-    return {'style_base': '/static/css/base.min.css',
-            'style_light': '/static/css/light.min.css',
-            'style_dark': '/static/css/dark.min.css'}
+    return {'style_base':  f'/static/css/base.min.css?v={BASE_STYLE_CHECKSUM}',
+            'style_light': f'/static/css/light.min.css?v={LIGHT_STYLE_CHECKSUM}',
+            'style_dark':  f'/static/css/dark.min.css?v={DARK_STYLE_CHECKSUM}'}
 
 
 @app.before_request
