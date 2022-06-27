@@ -20,8 +20,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 import requests
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
-import xxhash
-
+from git import Repo
 
 
 # import psycopg2
@@ -53,16 +52,18 @@ with suppress(FileExistsError): os.mkdir(metadata_setter_dir)
 REACT_BUILD_FOLDER = 'react_app/build'
 IS_DEV = bool(os.getenv('DEV', False))
 
-try:
-    url = 'https://cssminifier.com/raw'
+
+def minimize_styles():
     for style in {'base', 'light', 'dark'}:
-        with open(f'static/css/{style}.css', 'rb') as f:
-            data = {'input': f.read()}
-        r = requests.post(url, data=data)
-        with open(f'static/css/{style}.min.css', 'w') as f:
-            f.write(r.text)
-except requests.exceptions.ConnectionError:
-    print('Failed to minify CSS, are you connected to the internet?')
+        with open(f'static/css/{style}.css', encoding='utf-8') as f:
+            css_data = f.read()
+        data = {'input': css_data}
+        with suppress(requests.RequestException):
+            r = requests.post('https://www.toptal.com/developers/cssminifier/api/raw', data=data, timeout=5)
+            if r.ok:
+                css_data = r.text
+        with open(f'static/css/{style}.min.css', 'w', encoding='utf-8') as f:
+            f.write(css_data)
 
 
 app = Flask(__name__)
@@ -71,28 +72,22 @@ app.jinja_env.trim_blocks = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if IS_DEV else 604800
 app.wsgi_app = ProxyFix(app.wsgi_app, x_host=1)
 Compress(app)
-if not IS_DEV: minify(app, caching_limit=0)
+minimize_styles()
+minify(app, caching_limit=0, cssless=False)
 socketio = SocketIO(app)
 
 
-def xxhash64(fname):
-    h = xxhash.xxh64()
-    with open(fname, 'rb') as f:
-        for chunk in iter(lambda: f.read(4096), b''):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-BASE_STYLE_CHECKSUM = xxhash64('static/css/base.css')
-DARK_STYLE_CHECKSUM = xxhash64('static/css/dark.css')
-LIGHT_STYLE_CHECKSUM = xxhash64('static/css/light.css')
+try:
+    head_rev = os.environ['HEROKU_SLUG_COMMIT']
+except KeyError:
+    head_rev = Repo('.').rev_parse('HEAD')
 
 
 @app.context_processor
 def get_style_links():
-    return {'style_base':  f'/static/css/base.min.css?v={BASE_STYLE_CHECKSUM}',
-            'style_light': f'/static/css/light.min.css?v={LIGHT_STYLE_CHECKSUM}',
-            'style_dark':  f'/static/css/dark.min.css?v={DARK_STYLE_CHECKSUM}'}
+    return {'style_base':  f'/static/css/base.css?v={head_rev}',
+            'style_light': f'/static/css/light.css?v={head_rev}',
+            'style_dark':  f'/static/css/dark.css?v={head_rev}'}
 
 
 @app.before_request
