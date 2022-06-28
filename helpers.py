@@ -18,12 +18,9 @@ with suppress(FileNotFoundError):
             os.environ[k] = v.strip()
             line = f.readline()
 
-
-GOOGLE_API_KEY = os.getenv('GOOGLE_API')
-SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
-SPOTIFY_SECRET = os.getenv('SPOTIFY_SECRET')
-SPOTIFY_AUTH_STR = f'{SPOTIFY_CLIENT_ID}:{SPOTIFY_SECRET}'
-SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
+for key in {'SPOTIFY_CLIENT_ID', 'SPOTIFY_SECRET', 'GOOGLE_API'}:
+    if key not in os.environ:
+        print(f'Some features may be missing due to missing environment variable: {key}')
 
 
 def time_cache(max_age, maxsize=None, typed=False):
@@ -48,11 +45,20 @@ def time_cache(max_age, maxsize=None, typed=False):
     return _decorator
 
 
+@lru_cache(maxsize=1)
+def spotify_b64_auth_str():
+    SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+    SPOTIFY_SECRET = os.getenv('SPOTIFY_SECRET')
+    SPOTIFY_AUTH_STR = f'{SPOTIFY_CLIENT_ID}:{SPOTIFY_SECRET}'
+    SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
+    return SPOTIFY_B64_AUTH_STR
+
+
 def get_album_art(artist, title, access_token=None):
     """ Gets the url of album art for the track and artist """
     artist, track = parse.quote_plus(artist), parse.quote_plus(title)
     if access_token is None:
-        header = {'Authorization': 'Basic ' + SPOTIFY_B64_AUTH_STR}
+        header = {'Authorization': 'Basic ' + spotify_b64_auth_str()}
         data = {'grant_type': 'client_credentials'}
         access_token_response = requests.post('https://accounts.spotify.com/api/token', headers=header, data=data)
         access_token = access_token_response.json()['access_token']
@@ -73,7 +79,7 @@ def img_to_ico(path):
 def get_announcements():
     sheet_id = '1Re7s1xqGNJH89iUTha-nTeerJXN-61C3mvLW6dqttks'
     url = f'https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values/%20FilteredForm!$A$4:$YY'
-    r = requests.get(url, params={'key': GOOGLE_API_KEY})
+    r = requests.get(url, params={'key': os.getenv('GOOGLE_API')})
     announcements = json.loads(r.text)['values']
     for a in announcements.copy():
         if len(a) != 2: announcements.remove(a)
