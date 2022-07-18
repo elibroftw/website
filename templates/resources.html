@@ -15,32 +15,64 @@
 {% block main_content %}
 <h1>{% block title %}Resources{% endblock %}</h1>
 <div class=leftAlign>
-    <p>This page is outdated</p>
-    <h2 id="programming">Programming</h2>
-    <a class=link href="https://python.org/downloads/">Python: intuitive programming language</a>
+    <p>A developer without an understanding of their environment is a carpenter without the knowledge of his workshop.</p>
+    <p>Some things you should know before coding are:</p>
+    <p>- PATH: What is it, how is it used, and how to modify it</p>
+    <p>- Linux: how to make a file executable</p>
+    <p>- Terminal: how to launch one on your OS with only your keyboard</p>
+    <h2>Intro to Programming</h2>
+    <a class=link href="https://python.org/downloads/">Python: Intuitive Beginner-Friendly Language</a>
     <a class=link href="https://cscircles.cemc.uwaterloo.ca/">CS Circles: Learn Python</a>
-    <a class=link href="https://vlang.io/">V: A possibly better future</a>
-    <a class=link href="https://www.rust-lang.org/tools/install">Rust: The C++ Replacement</a>
-    <a class=link href="https://releases.llvm.org/download.html">Clang: C & C++ compiler</a>
-    <a class=link href="http://winlibs.com/#download-release/">GCC for Windows</a>
-    <a class=link href="https://www.jetbrains.com/idea/download/">IntelliJ: Multi-purpose IDE</a>
-    <a class=link href="https://plugins.jetbrains.com/plugin/7322-python-community-edition">IntelliJ Python Plugin</a>
-    <a class=link href="https://plugins.jetbrains.com/plugin/12178-atom-onedark-theme">IntelliJ Atom OneDark Theme</a>
-    <a class=link href="https://code.visualstudio.com/">Visual Studio Code: Multi-purpose IDE</a>
+    <a href="https://git-scm.com/downloads" class="link">Git: Versicon Control System (Code History)</a>
+    <a href="https://desktop.github.com/" class="link">GitHub Desktop: GUI for git</a>
+    <h2>Bleeding Edge Programming</h2>
+    <a class=link href="https://vlang.io/">V: A Very Promising Future</a>
+    <a class=link href="https://www.rust-lang.org/tools/install">Rust: A C++ pointer-free Alternative</a>
+    <h2>C & C++</h2>
+    <p>Although no great tutorials exist, C & C++ is essential to this day</p>
     <a class=link href="https://visualstudio.microsoft.com/">Visual Studio: Windows C++ IDE and Compiler</a>
+    <a class=link href="https://releases.llvm.org/download.html">Clang: C & C++ Compiler</a>
+    <a class=link href="http://winlibs.com/#download-release/">GCC compiler for Windows</a>
     <a class=link href="http://gnuwin32.sourceforge.net/packages/make.htm">Make for Windows</a>
     <a class=link href="http://gnuwin32.sourceforge.net/packages/coreutils.htm">GNU Core Utils for Windows</a>
-    <a class=link href="https://github.com/BtbN/FFmpeg-Builds/releases/">FFmpeg for Windows (latest commit, GPL, shared)</a>
+    <h2>Full Stack</h2>
+    <p>The best way to learn HTML & CSS is to build your own website and search on Google for help</p>
+    <a href="https://github.com/elibroftw/website" class="link">this website's source code (Flask, CSRF, HTML/CSS/JS)</a>
+    <p>With Flask, learn jinja2 templates, include, if, for, loop0.index, | functions</p>
+    <h2>Web Development</h2>
+    <p>Some things to learn after your first website</p>
+    <a href="https://flask.palletsprojects.com/en/2.1.x/" class="link">Flask</a>
+    <a href="https://flask-wtf.readthedocs.io/en/1.0.x/csrf/" class="link">Flask CSRF Protection</a>
+    <a href="https://www.w3schools.com/css/css_rwd_intro.asp" class="link">Responsive Web Design</a>
+    <a href="https://css-tricks.com/the-checkbox-hack/" class="link">The Checkbox Hack</a>
+    <a href="https://reactjs.org/" class="link">React: A JavaScript framework via HTML in js (JSX)</a>
+    <h2>Desktop Apps</h2>
+    <a href="https://github.com/elibroftw/modern-desktop-app-template" class="link">If you want perfection, Tauri & React Template</a>
+    <a href="https://www.qt.io/" class="link">If you value performance and are advanced in C++, try QT (TODO)</a>
+    <a href="https://www.pysimplegui.org/en/latest/" class="link">In a rush and know Python? Use PySimpleGUI</a>
+    <p>If you want to experiment and do something I don't know, try Vlang and React (TODO)</p>
+    <h2>Mobile Development</h2>
+    <p>React Native (TODO)</p>
+    <p>QT Quick (TODO)</p>
+    <h2>Improving your Environment</h2>
+    <p>An IDE stands for Integrated Development Environment (Code Editor), not relevent to know this though</p>
+    <a class=link href="https://code.visualstudio.com/">Visual Studio Code: Multi-Purpose IDE</a>
+    <a class=link href="https://www.jetbrains.com/idea/download/">IntelliJ: Multi-Purpose IDE</a>
+    <a class=link href="https://plugins.jetbrains.com/plugin/7322-python-community-edition">IntelliJ Python Plugin</a>
+    <a class=link href="https://plugins.jetbrains.com/plugin/12178-atom-onedark-theme">IntelliJ Atom OneDark Theme</a>
     <a class=link href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701">Windows Terminal</a>
-    <h2 id="productivity">Useful Software</h2>
-    <a class=link href="https://microsoft.com/store/productId/9NBLGGH516XP">EarTrumpet: Windows 10 Volume Controller</a>
-    <a class=link href="https://microsoft.com/store/productId/9NV4BS3L1H4S">QuickLook: preview files better</a>
+    <h2>Must Have Software / Websites</h2>
+    <a href="https://github.com/elibroftw/music-caster/blob/master/README.md" class="link">Music Caster: My modern music player for Windows & Linux</a>
+    <a href="https://www.balena.io/etcher/" class="link">Etcher: Burn ISO files to USB</a>
+    <a class=link href="https://microsoft.com/store/productId/9NBLGGH516XP">EarTrumpet: Windows Volume Controller</a>
+    <a class=link href="https://microsoft.com/store/productId/9NV4BS3L1H4S">QuickLook: Preview Files With Spacebar </a>
     <a class=link href="https://microsoft.com/store/productId/9NBLGGH3ZBJQ">Ditto: Clipboard Manager</a>
-    <a class=link href="https://chrisandriessen.nl/taskbarx">Taskbar X: Better Taskbar</a>
+    <a class=link href="https://chrisandriessen.nl/taskbarx">Taskbar X: Better Taskbar for Windows 10</a>
     <a class=link href="https://majorgeeks.com/files/details/keytweak.html">Keytweak: Rebind keys</a>
-    <a class=link href="/software/#google-dark-theme">Google Dark Theme</a>
-    <a class=link href="https://send.fdab.se/">Firefox Send (Un-Official): Send files with ease</a>
-    <h2 id="productivity">Other Software</h2>
+    <a class=link href="/software/#google-dark-theme">Google Search & Drive Dark Theme</a>
+    <a class=link href="https://github.com/BtbN/FFmpeg-Builds/releases/">FFmpeg for Windows (latest commit, GPL, shared)</a>
+    <a class=link href="https://send.fdab.se/">send.fdab: Simple file sharing</a>
+    <h2>Mediocre Software</h2>
     <a class=link href="https://github.com/Genymobile/scrcpy">Mirror Android device to PC</a>
     <a class=link href="https://github.com/debauchee/barrier/releases/">Barrier: Controll all devices with on mouse/keyboard</a>
 </div>
