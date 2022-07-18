@@ -304,6 +304,38 @@ p {
     transition: .1s
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.downloadBtn {
+    background-color: DodgerBlue;
+    border: none;
+    color: black;
+    text-decoration: none;
+    padding: 12px 0 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: sans-serif;
+    float: left;
+    bottom: 0;
+    width: 100%;
+    transition-duration: 200ms;
+}
+
+.downloadBtn:hover {
+    background-color: #00bfff;
+    font-size: 20px;
+}
+
+.divider {
+    /* vertical line */
+    border-left: 1px solid darkslategrey;
+    height: inherit;
+}
+
 input:checked+.slider {
     background-color: #2196f3
 }
