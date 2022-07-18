@@ -63,3 +63,36 @@
     </div>
 </div>
 {% endblock %}
+{% block script %}
+<script>
+    const accordians = document.getElementsByClassName('accordion');
+    const open_panels = [];
+    for (const accordian of accordians) {
+        accordian.addEventListener('click', () => {
+            accordian.classList.toggle('active');
+            const panel = accordian.nextElementSibling;
+            const el_id = accordian.id;
+            if (panel.style.maxHeight) {  // panel is open so close it
+                panel.style.maxHeight = null;
+                open_panels.splice(open_panels.indexOf(el_id), 1);
+                const op_len = open_panels.length;
+                history.replaceState({}, document.title, window.location.pathname + (op_len ? '#' + open_panels[op_len - 1] : ''));
+            } else {  // open panel
+                panel.style.maxHeight = panel.scrollHeight * 1.25 + 'px';
+                open_panels.push(el_id);
+                history.replaceState({}, document.title, window.location.pathname + '#' + el_id);
+            }
+        });
+    }
+
+    const hash = window.location.hash;
+    if (hash) {
+        window.onload = () => {
+            try {  // open up acordian if hash is valid
+                document.getElementById(hash.slice(1)).click();
+            } catch (err) { history.replaceState({}, document.title, window.location.pathname); }
+            // clear hash if it is invalid
+        };
+    }
+</script>
+{% endblock %}
