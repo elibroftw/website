@@ -14,7 +14,7 @@ import metadata_setter as MetadataSetter
 import feedparser
 from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
 from flask_compress import Compress
-from flask_minify import minify
+from flask_minify import Minify
 from flask_socketio import SocketIO, emit
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import requests
@@ -53,27 +53,14 @@ REACT_BUILD_FOLDER = 'react_app/build'
 IS_DEV = bool(os.getenv('DEV', False))
 
 
-def minimize_styles():
-    for style in {'base', 'light', 'dark'}:
-        with open(f'static/css/{style}.css', encoding='utf-8') as f:
-            css_data = f.read()
-        data = {'input': css_data}
-        with suppress(requests.RequestException):
-            r = requests.post('https://www.toptal.com/developers/cssminifier/api/raw', data=data, timeout=5)
-            if r.ok:
-                css_data = r.text
-        with open(f'static/css/{style}.min.css', 'w', encoding='utf-8') as f:
-            f.write(css_data)
-
-
 app = Flask(__name__)
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if IS_DEV else 604800
 app.wsgi_app = ProxyFix(app.wsgi_app, x_host=1)
 Compress(app)
-minimize_styles()
-minify(app, caching_limit=0, cssless=False)
+if not IS_DEV:
+    Minify(app, caching_limit=0)
 socketio = SocketIO(app)
 
 
