@@ -1,55 +1,11 @@
 {% extends 'base.html' %}
 {% block style %}
-<style>
-.dl-link {
-    text-decoration: none;
-    padding: 1em;
-    outline: none;
-}
-
-.polaroid {
-    width: 250px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.188);
-    transition-duration: 150ms;
-    background-color: whitesmoke;
-    border-radius: 1.1em;
-}
-
-.polaroid:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 30px #00bfffd2;
-}
-
-.preview {
-    border-radius: 1em 1em 0 0;
-    width:100%;
-}
-
-.container {
-    padding: 10px;
-    text-decoration: none;
-    background-color: whitesmoke;
-    border-radius: 0 0 1em 1em;
-}
-
-.container p {
-    color: black;
-    transition-duration: 150ms;
-}
-
-#graphicDesignGrid {
-    margin-top: 1em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-</style>
 {% endblock %}
 {% block main_content %}
     <h1>{% block title %}Creative Works{% endblock %}</h1>
     <p>Features my graphic design and other types of creative work in the future</p>
-    <div id="graphicDesignGrid">
-        <a href="/static/graphic_design/plexus_wallpapers/Plexus Wallpapers.zip?v=2.0.0" download="Plexus Wallpapers.zip" class="dl-link">
+    <div class="featuresGrid">
+        <a href="/static/graphic_design/plexus_wallpapers/Plexus Wallpapers.zip?v=2.0.0" download="Plexus Wallpapers.zip" class="feat-link">
             <div class="polaroid">
                 <img class="preview" src="/static/graphic_design/plexus_wallpapers/preview.png?v=2.0.0"
                     alt="Plexus Mobile Wallpapers Preview">
@@ -58,7 +14,7 @@
                 </div>
             </div>
         </a>
-        <a href="/static/graphic_design/smoke_wallpapers/Smoke V1.1.zip" download="Smoke Wallpapers.zip" class="dl-link">
+        <a href="/static/graphic_design/smoke_wallpapers/Smoke V1.1.zip" download="Smoke Wallpapers.zip" class="feat-link">
             <div class="polaroid">
                 <img class="preview" src="/static/graphic_design/smoke_wallpapers/preview.png" alt="Smoke Wallpapers">
                 <div class="container">

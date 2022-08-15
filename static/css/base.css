@@ -605,6 +605,49 @@ input:checked+.slider:before {
     animation: fadein .5s, fadeout .5s 2s
 }
 
+.featuresGrid {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.polaroid {
+    width: 250px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.188);
+    transition-duration: 150ms;
+    background-color: whitesmoke;
+    border-radius: 1.1em;
+}
+
+.polaroid:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 30px #00bfffd2;
+}
+
+.preview {
+    border-radius: 1em 1em 0 0;
+    width:100%;
+}
+
+.container {
+    padding: 10px;
+    text-decoration: none;
+    background-color: whitesmoke;
+    border-radius: 0 0 1em 1em;
+}
+
+.container p {
+    color: black;
+    transition-duration: 150ms;
+}
+
+.feat-link {
+    text-decoration: none;
+    padding: 1em;
+    outline: none;
+}
+
 @-webkit-keyframes fadein {
     from {
         bottom: 0;
