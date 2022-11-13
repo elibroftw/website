@@ -4,6 +4,7 @@
 
 from flask import Blueprint, Response, render_template
 import json
+import os
 from helpers import time_cache
 import requests
 
@@ -64,14 +65,14 @@ def get_latest_release(github_latest_release_url) -> dict:
                             sig = requests.get(asset['browser_download_url']).text
                         except requests.RequestException:
                             sig = ''
-                        release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'sig': sig}
+                        release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'signature': sig}
         return release_response
     except requests.RequestException:
         return {}
 
 
-@tauri_releases.route('/google-keep-desktop/<target>/<current_version>')
-def google_keep_desktop_api(target, current_version):
+@tauri_releases.route('/google-keep-desktop/<platform>/<current_version>')
+def google_keep_desktop_api(platform, current_version):
     latest_release = get_latest_release(GOOGLE_KEEP_DESKTOP_GITHUB)
     if not latest_release:
         # GH API request failed in get_latest_release for GKD
@@ -82,9 +83,10 @@ def google_keep_desktop_api(target, current_version):
         latest_version = latest_release['version']
         latest_maj, latest_min, latest_patch = latest_version.lstrip('v').split('.')
         cur_maj, cur_min, cur_patch = current_version.lstrip('v').split('.')
-        if not (latest_maj > cur_maj or latest_min > cur_min or latest_patch > cur_patch):
+        # if running in dev, don't need to downgrade tauri app to test auto-update
+        if not os.getenv('DEV', False) and not (latest_maj > cur_maj or latest_min > cur_min or latest_patch > cur_patch):
             raise ValueError
-        # NOTE: here you may want to check the current_version or target (see README.md)
+        # NOTE: here you may want to check the current_version or platform (see README.md)
     except ValueError:
         return '', 204
     return Response(json.dumps(latest_release), mimetype='application/json', headers={'Content-disposition': f'attachment; filename=google_keep_desktop_release_{latest_version}.json'})
