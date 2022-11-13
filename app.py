@@ -21,7 +21,7 @@ import requests
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
 from git import Repo
-from blueprints.tauri_releases.tauri_releases import tauri_releases
+from blueprints.tauri_releases import tauri_releases
 
 
 # import psycopg2

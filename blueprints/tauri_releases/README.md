@@ -3,7 +3,7 @@
 The contents of this directory is licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) meaning the code and this README
 can be freely copied/modified without attribution or license inclusion.
 
-`tauri_releases.py` provides Python code that can convert a Tauri GitHub release with assets from the artifiacts of Tauri GitHub action into
+`__init__.py` provides Python code that can convert a Tauri GitHub release with assets from the artifiacts of Tauri GitHub action into
 an updater compatible server-side response format. There is also code for checking whether or not to return this response.
 
 The get_latest_release function can be called for many different apps, and for each app the function response is cached for 5 minutes.
