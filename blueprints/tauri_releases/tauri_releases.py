@@ -1,18 +1,24 @@
+# This file can be copoied/modified without any attribution or license inclusion
+# It is licensed under CC0 1.0 https://creativecommons.org/publicdomain/zero/1.0/
+# See helpers.py for time_cache implementation which is from stackoverflow
+
 from flask import Blueprint, Response, render_template
 import json
-from jinja2 import TemplateNotFound
-from helpers import time_cache, suppress
+from helpers import time_cache
 import requests
 
-tauri_releases = Blueprint('tauri_releases', __name__, url_prefix='/tauri-releases')
+tauri_releases = Blueprint('tauri_releases', __name__, url_prefix='/tauri-releases', template_folder='blueprints/tauri_releases/templates')
+
+GOOGLE_KEEP_DESKTOP_GITHUB = 'https://api.github.com/repos/elibroftw/google-keep-desktop-app/releases/latest'
+
 
 @time_cache(60 * 5)  # every 5 minutes
-def google_keep_release() -> dict:
-    """ Return format:
-        Unsure if v is supposed to be used.
+def get_latest_release(github_latest_release_url) -> dict:
+    """
+        Return format:
         Note darwin-aarch64 is silicon macOS. Supposed to seperate file but assumed that x64 would work due to Rosetta Stone 2
         {
-          "version": "v1.0.8",
+          "version": "v1.0.8",  (can be any string)
           "notes": "- Test updater",
           "pub_date": "2022-11-13T03:20:32Z",
           "platforms": {
@@ -36,8 +42,8 @@ def google_keep_release() -> dict:
         }
     """
     try:
-        release = requests.get('https://api.github.com/repos/elibroftw/google-keep-desktop-app/releases/latest').json()
-        releases = {
+        release = requests.get(github_latest_release_url).json()
+        release_response = {
             'version': release['tag_name'],
             'notes': release['body'].removesuffix('See the assets to download this version and install.').rstrip('\r\n '),
             'pub_date': release['published_at'],
@@ -51,37 +57,40 @@ def google_keep_release() -> dict:
             for for_platforms, extension in platforms:
                 if asset['name'].endswith(extension):
                     for platform in for_platforms:
-                        releases['platforms'][platform] = {**releases['platforms'].get(platform, {}), 'url': asset['browser_download_url']}
+                        release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'url': asset['browser_download_url']}
                 elif asset['name'].endswith(f'{extension}.sig'):
                     for platform in for_platforms:
                         try:
                             sig = requests.get(asset['browser_download_url']).text
                         except requests.RequestException:
                             sig = ''
-                        releases['platforms'][platform] = {**releases['platforms'].get(platform, {}), 'sig': sig}
-        return releases
+                        release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'sig': sig}
+        return release_response
     except requests.RequestException:
         return {}
+
+
+@tauri_releases.route('/google-keep-desktop/<target>/<current_version>')
+def google_keep_desktop_api(target, current_version):
+    latest_release = get_latest_release(GOOGLE_KEEP_DESKTOP_GITHUB)
+    if not latest_release:
+        # GH API request failed in get_latest_release for GKD
+        # TODO: Push Discord or Element notification (max once) if request failed
+        return '', 204
+    try:
+        # version checks
+        latest_version = latest_release['version']
+        latest_maj, latest_min, latest_patch = latest_version.lstrip('v').split('.')
+        cur_maj, cur_min, cur_patch = current_version.lstrip('v').split('.')
+        if not (latest_maj > cur_maj or latest_min > cur_min or latest_patch > cur_patch):
+            raise ValueError
+        # NOTE: here you may want to check the current_version or target (see README.md)
+    except ValueError:
+        return '', 204
+    return Response(json.dumps(latest_release), mimetype='application/json', headers={'Content-disposition': f'attachment; filename=google_keep_desktop_release_{latest_version}.json'})
 
 
 @tauri_releases.route('/google-keep-desktop/')
 def google_keep_desktop_page():
     # TODO: Download Links Page
     return '', 404
-
-
-@tauri_releases.route('/google-keep-desktop/<target>/<current_version>')
-def google_keep_desktop_api(target, current_version):
-    latest_release = google_keep_release()
-    if not latest_release:
-        return '', 204
-    latest_version = latest_release['version']
-    try:
-        # VERSION CHECK
-        latest_maj, latest_min, latest_patch = latest_version.lstrip('v').split('.')
-        cur_maj, cur_min, cur_patch = current_version.lstrip('v').split('.')
-        if not (latest_maj > cur_maj or latest_min > cur_min or latest_patch > cur_patch):
-            raise ValueError
-    except ValueError:
-        return '', 204
-    return Response(json.dumps(latest_release), mimetype='application/json', headers={'Content-disposition': f'attachment; filename=google_keep_desktop_release_{latest_version}.json'})
