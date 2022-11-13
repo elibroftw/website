@@ -21,6 +21,7 @@ import requests
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
 from git import Repo
+from blueprints.tauri_releases import tauri_releases
 
 
 # import psycopg2
@@ -52,10 +53,11 @@ with suppress(FileExistsError): os.mkdir(metadata_setter_dir)
 REACT_BUILD_FOLDER = 'react_app/build'
 IS_DEV = bool(os.getenv('DEV', False))
 
-
 app = Flask(__name__)
+app.register_blueprint(tauri_releases)
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
+app.config['JSON_SORT_KEYS'] = False
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if IS_DEV else 604800
 app.wsgi_app = ProxyFix(app.wsgi_app, x_host=1)
 Compress(app)
