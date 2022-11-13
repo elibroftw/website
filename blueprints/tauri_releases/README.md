@@ -3,6 +3,8 @@
 The contents of this directory is licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) meaning the code and this README
 can be freely copied/modified without attribution or license inclusion.
 
+To test if auto-update works, you can add a localhost url like "http://[::1]:5001/tauri-releases/google-keep-desktop/{{target}}/{{current_version}}" to the start of the endpoints array. Your app version MUST be lower than the latest available version. The 204 return code is only a short-circuit, as there is also a version comparison done.
+
 `__init__.py` provides Python code that can convert a Tauri GitHub release with assets from the artifiacts of Tauri GitHub action into
 an updater compatible server-side response format. There is also code for checking whether or not to return this response.
 

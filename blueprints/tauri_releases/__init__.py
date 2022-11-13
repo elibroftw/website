@@ -83,13 +83,12 @@ def google_keep_desktop_api(platform, current_version):
         latest_version = latest_release['version']
         latest_maj, latest_min, latest_patch = latest_version.lstrip('v').split('.')
         cur_maj, cur_min, cur_patch = current_version.lstrip('v').split('.')
-        # if running in dev, don't need to downgrade tauri app to test auto-update
-        if not os.getenv('DEV', False) and not (latest_maj > cur_maj or latest_min > cur_min or latest_patch > cur_patch):
+        if not (latest_maj > cur_maj or latest_min > cur_min or latest_patch > cur_patch):
             raise ValueError
         # NOTE: here you may want to check the current_version or platform (see README.md)
     except ValueError:
         return '', 204
-    return Response(json.dumps(latest_release), mimetype='application/json', headers={'Content-disposition': f'attachment; filename=google_keep_desktop_release_{latest_version}.json'})
+    return latest_release
 
 
 @tauri_releases.route('/google-keep-desktop/')
