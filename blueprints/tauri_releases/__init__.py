@@ -3,8 +3,6 @@
 # See helpers.py for time_cache implementation which is from stackoverflow
 
 from flask import Blueprint, Response, render_template
-import json
-import os
 from helpers import time_cache
 import requests
 
@@ -25,19 +23,19 @@ def get_latest_release(github_latest_release_url) -> dict:
           "platforms": {
             "linux-x86_64": {
               "url": "https://github.com/elibroftw/google-keep-desktop-app/releases/download/v1.0.8/google-keep_1.0.8_amd64.AppImage.tar.gz",
-              "sig": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWHVmYzVwc2RzZXBkcTdDWmNQNmNiVjBLWUcyUkhMSnlPV3ZqVVhWN3MvaU9QQlFXSVZMQjdScDljM3FZaXhXZnhKejIrWG84bE5KbEFsSDErdjF2aGdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NTU0CWZpbGU6Z29vZ2xlLWtlZXBfMS4wLjhfYW1kNjQuQXBwSW1hZ2UudGFyLmd6CmlpVG9kSzBVNU9BMXRIL3l2MlZ6dnJDNndHeUQrK1NIaDdmbkU1MUNVZFk2eHlneEVCZ255SnI4U3FMR0lSOUFNNHFzUHdJbEZmS2JtZUlpSllWWUNBPT0K"
+              "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWHVmYzVwc2RzZXBkcTdDWmNQNmNiVjBLWUcyUkhMSnlPV3ZqVVhWN3MvaU9QQlFXSVZMQjdScDljM3FZaXhXZnhKejIrWG84bE5KbEFsSDErdjF2aGdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NTU0CWZpbGU6Z29vZ2xlLWtlZXBfMS4wLjhfYW1kNjQuQXBwSW1hZ2UudGFyLmd6CmlpVG9kSzBVNU9BMXRIL3l2MlZ6dnJDNndHeUQrK1NIaDdmbkU1MUNVZFk2eHlneEVCZ255SnI4U3FMR0lSOUFNNHFzUHdJbEZmS2JtZUlpSllWWUNBPT0K"
             },
             "darwin-x86_64": {
               "url": "https://github.com/elibroftw/google-keep-desktop-app/releases/download/v1.0.8/Google.Keep.app.tar.gz",
-              "sig": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWG1qc2paOHJDUnBCVHRuMlRZdFdZeXJURGM2Yk9meVRtSmZlWHBEa0dCcEd0eDd3YVkvZlRxakt1ZTNmbHV6anpQam1SakdSaXc2Y1NEZmFaVXoxaWdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NTE4CWZpbGU6R29vZ2xlIEtlZXAuYXBwLnRhci5negp2S1dwYmszQTRkMXFzb2lneFJPbytmenpLS0g4RXEydVY0MmtUb0VTQXg2ZWpYWXF2QndnTXdUVjZNU29uMW5zZElPMFNkeGxBU1VtUmZCSkkzUHZEZz09Cg=="
+              "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWG1qc2paOHJDUnBCVHRuMlRZdFdZeXJURGM2Yk9meVRtSmZlWHBEa0dCcEd0eDd3YVkvZlRxakt1ZTNmbHV6anpQam1SakdSaXc2Y1NEZmFaVXoxaWdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NTE4CWZpbGU6R29vZ2xlIEtlZXAuYXBwLnRhci5negp2S1dwYmszQTRkMXFzb2lneFJPbytmenpLS0g4RXEydVY0MmtUb0VTQXg2ZWpYWXF2QndnTXdUVjZNU29uMW5zZElPMFNkeGxBU1VtUmZCSkkzUHZEZz09Cg=="
             },
             "darwin-aarch64": {
               "url": "https://github.com/elibroftw/google-keep-desktop-app/releases/download/v1.0.8/Google.Keep.app.tar.gz",
-              "sig": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWG1qc2paOHJDUnBCVHRuMlRZdFdZeXJURGM2Yk9meVRtSmZlWHBEa0dCcEd0eDd3YVkvZlRxakt1ZTNmbHV6anpQam1SakdSaXc2Y1NEZmFaVXoxaWdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NTE4CWZpbGU6R29vZ2xlIEtlZXAuYXBwLnRhci5negp2S1dwYmszQTRkMXFzb2lneFJPbytmenpLS0g4RXEydVY0MmtUb0VTQXg2ZWpYWXF2QndnTXdUVjZNU29uMW5zZElPMFNkeGxBU1VtUmZCSkkzUHZEZz09Cg=="
+              "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWG1qc2paOHJDUnBCVHRuMlRZdFdZeXJURGM2Yk9meVRtSmZlWHBEa0dCcEd0eDd3YVkvZlRxakt1ZTNmbHV6anpQam1SakdSaXc2Y1NEZmFaVXoxaWdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NTE4CWZpbGU6R29vZ2xlIEtlZXAuYXBwLnRhci5negp2S1dwYmszQTRkMXFzb2lneFJPbytmenpLS0g4RXEydVY0MmtUb0VTQXg2ZWpYWXF2QndnTXdUVjZNU29uMW5zZElPMFNkeGxBU1VtUmZCSkkzUHZEZz09Cg=="
             },
             "windows-x86_64": {
               "url": "https://github.com/elibroftw/google-keep-desktop-app/releases/download/v1.0.8/Google.Keep_1.0.8_x64_en-US.msi.zip",
-              "sig": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWG8zdHhmRFBTQndFV0lvWU02YU8vMGwrdUc4NjY4Vm9IbGpyWWU1Z1ZDUVg1L3Y4SUl2YVcxUXNJbW9kUEZkU3lscUhFZXU0MnhWTGMvOXJMY3RNdUE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NDMyCWZpbGU6R29vZ2xlIEtlZXBfMS4wLjhfeDY0X2VuLVVTLm1zaS56aXAKR2NhK1dwRTJMZFhOZG12dWNTNnNXZHpFSFVoM2g1ZnNlVDJtK2lpMGk2M2pqSUlTRStSN09veVc1U0ZjNzM5blVjWU9oNTlONmFBUmFuYVpVVldBRHc9PQo="
+              "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRaDRIdWFLTHYrWG8zdHhmRFBTQndFV0lvWU02YU8vMGwrdUc4NjY4Vm9IbGpyWWU1Z1ZDUVg1L3Y4SUl2YVcxUXNJbW9kUEZkU3lscUhFZXU0MnhWTGMvOXJMY3RNdUE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjY4MzA5NDMyCWZpbGU6R29vZ2xlIEtlZXBfMS4wLjhfeDY0X2VuLVVTLm1zaS56aXAKR2NhK1dwRTJMZFhOZG12dWNTNnNXZHpFSFVoM2g1ZnNlVDJtK2lpMGk2M2pqSUlTRStSN09veVc1U0ZjNzM5blVjWU9oNTlONmFBUmFuYVpVVldBRHc9PQo="
             }
           }
         }
@@ -83,7 +81,7 @@ def google_keep_desktop_api(platform, current_version):
         latest_version = latest_release['version']
         latest_maj, latest_min, latest_patch = latest_version.lstrip('v').split('.')
         cur_maj, cur_min, cur_patch = current_version.lstrip('v').split('.')
-        if not (latest_maj > cur_maj or latest_min > cur_min or latest_patch > cur_patch):
+        if cur_maj == latest_maj and cur_min == latest_min and cur_patch == latest_patch:
             raise ValueError
         # NOTE: here you may want to check the current_version or platform (see README.md)
     except ValueError:
