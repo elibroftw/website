@@ -12,7 +12,8 @@
         width: 100%;
     }
 
-    td, th {
+    td,
+    th {
         border: 1px solid #dddddd;
         text-align: left;
         padding: 8px;
@@ -45,61 +46,59 @@
     .sticky+.content {
         padding-top: 102px;
     }
+
 </style>
-<body>
-    <div class="header" id="inputHeader">
-        <input type="text" id="input1" autofocus="autofocus" onfocus="this.select()"><br>
-    </div>
-    <script>
-        // Created in 2018 or something.
-        // backend parses IB Economics webesite and this is the page of the output table
-        // only worked when I was in IB Econ, plus the teacher retired & school shut down
-        // Useful things include table and sticky nav/header
+<div class="header" id="inputHeader">
+    <input type="text" id="input1" autofocus="autofocus" onfocus="this.select()"><br>
+</div>
+<script>
+    // Created in 2018 or something.
+    // backend parses IB Economics webesite and this is the page of the output table
+    // only worked when I was in IB Econ, plus the teacher retired & school shut down
+    // Useful things include table and sticky nav/header
 
-        document.getElementById('input1').onkeypress = function (e) {
-            if (!e) e = window.event;
-            if (e.keyCode === '13') {
-                this.value = this.value.replace(/\s/g, "").toLowerCase();
-                this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
-                window.location.hash = this.value;
-                window.location.hash = this.value;
-                window.location.hash = 'input1';
-                return false;
-            }
+    document.getElementById('input1').onkeypress = function (e) {
+        if (!e) e = window.event;
+        if (e.keyCode === '13') {
+            this.value = this.value.replace(/\s/g, "").toLowerCase();
+            this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+            window.location.hash = this.value;
+            window.location.hash = this.value;
+            window.location.hash = 'input1';
+            return false;
         }
+    }
 
-        window.onload = () => {
-            const input = document.getElementById('input1');
-            input.focus();
-            input.select();
+    window.onload = () => {
+        const input = document.getElementById('input1');
+        input.focus();
+        input.select();
+    }
+
+    window.onscroll = stickyScroll;
+
+    const header = document.getElementById('inputHeader');
+    const sticky = header.offsetTop;
+    const top = document.getElementById('top');
+
+    function stickyScroll() {
+        if (window.pageYOffset >= sticky) {
+            header.classList.add('sticky');
+            top.classList.add('sticky');
+        } else {
+            header.classList.remove('sticky');
+            top.classList.remove('sticky');
         }
-
-        window.onscroll = stickyScroll;
-
-        const header = document.getElementById('inputHeader');
-        const sticky = header.offsetTop;
-        const top = document.getElementById('top');
-
-        function stickyScroll() {
-            if (window.pageYOffset >= sticky) {
-                header.classList.add('sticky');
-                top.classList.add('sticky');
-            } else {
-                header.classList.remove('sticky');
-                top.classList.remove('sticky');
-            }
-        }
-    </script>
-    <table>
-        <tr id="top">
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-        </tr>
-        {{data|safe}}
-        <tr id='bottom'></tr>
-    </table>
-</body>
-</html>
+    }
+</script>
+<table>
+    <tr id="top">
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+    </tr>
+    {{data|safe}}
+    <tr id='bottom'></tr>
+</table>
