@@ -6,7 +6,7 @@ from flask import Blueprint, Response, render_template
 from helpers import time_cache
 import requests
 
-tauri_releases = Blueprint('tauri_releases', __name__, url_prefix='/tauri-releases', template_folder='blueprints/tauri_releases/templates')
+tauri_releases_bp = Blueprint('tauri_releases', __name__, url_prefix='/tauri-releases', template_folder='blueprints/tauri_releases/templates')
 
 GOOGLE_KEEP_DESKTOP_GITHUB = 'https://api.github.com/repos/elibroftw/google-keep-desktop-app/releases/latest'
 
@@ -69,7 +69,7 @@ def get_latest_release(github_latest_release_url) -> dict:
         return {}
 
 
-@tauri_releases.route('/google-keep-desktop/<platform>/<current_version>')
+@tauri_releases_bp.route('/google-keep-desktop/<platform>/<current_version>')
 def google_keep_desktop_api(platform, current_version):
     latest_release = get_latest_release(GOOGLE_KEEP_DESKTOP_GITHUB)
     if not latest_release:
@@ -89,7 +89,7 @@ def google_keep_desktop_api(platform, current_version):
     return latest_release
 
 
-@tauri_releases.route('/google-keep-desktop/')
+@tauri_releases_bp.route('/google-keep-desktop/')
 def google_keep_desktop_page():
     # TODO: Download Links Page
     return '', 404

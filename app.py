@@ -21,7 +21,9 @@ import requests
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
 from git import Repo
-from blueprints.tauri_releases import tauri_releases
+from blueprints.tauri_releases import tauri_releases_bp
+from blueprints.stripe import stripe_bp
+
 
 
 # import psycopg2
@@ -54,7 +56,8 @@ REACT_BUILD_FOLDER = 'react_app/build'
 IS_DEV = bool(os.getenv('DEV', False))
 
 app = Flask(__name__)
-app.register_blueprint(tauri_releases)
+app.register_blueprint(tauri_releases_bp)
+app.register_blueprint(stripe_bp)
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
 app.config['JSON_SORT_KEYS'] = False

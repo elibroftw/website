@@ -9,14 +9,9 @@ from pprint import pprint  # FOR DEBUGGING: DO NOT REMOVE
 from contextlib import suppress
 from functools import lru_cache, wraps
 import time
+from dotenv import load_dotenv
 
-with suppress(FileNotFoundError):
-    with open('.env') as f:
-        line = f.readline()
-        while line:
-            k, v = line.split('=', 1)
-            os.environ[k] = v.strip()
-            line = f.readline()
+load_dotenv()
 
 for key in {'SPOTIFY_CLIENT_ID', 'SPOTIFY_SECRET', 'GOOGLE_API'}:
     if key not in os.environ:

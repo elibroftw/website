@@ -1,0 +1,45 @@
+<!-- general outline, stripped down version of lenerva.com/store -->
+<!-- do not copy verbatim, only modify it bebcause you will forget somethings -->
+{% extends 'base.html' %}
+{% block main_content %}
+<h1>{% block title %}Stripe Store Example{% endblock %}</h1>
+<p>Use the following sample credit card to test Stripe's Checkout Session API</p>
+<p>TODO</p>
+<p>If you want to buy something with your own credit card, check out the <a href="https://lenerva.com/store">lenerva.com/store</a>, my production ecommerce site.</p>
+{% if store_items %}
+<a href="/stripe/checkout">checkout</a>
+{% else %}
+Add an item to your cart to checkout
+{% endif %}
+{% for item in store_items %}
+{% if item.visible %}
+{% set item_id = item.item_id %}
+<form title="{{ item.summary or item.description }}" class="store-item" action="/stripe/add-to-cart/{{ item_id }}/"
+    method="post" enctype="multipart/form-data">
+    <!-- CSRF Prevention -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    {% if item.images %}
+    {% set image = item.images[0] %}
+    {% set src = image if image.startswith('http') else '/static/images/store/' ~ item_id ~ '/' ~ image %}
+    <img class="item-img" src="{{ src }}" />
+    {% else %}
+    <!-- 404 -->
+    <img class="item-img" src="/static/images/no-image.png" alt="preview unavailable" />
+    {% endif %}
+    <!-- Item -->
+    <p>{{ item.name }}</p>
+    <p title="{{ price_altf(item.price) }}">{{ pricef(item.price) }}</p>
+    <div class="flex-row">
+        <!-- <a class="btn item-expand" title="item overview" href="#{{ item_id }}-overview"><img src="/static/images/expand.png" alt="overview"/></a> -->
+        {% if item.max_quantity > 1 %}
+        <!-- if software, quantity can only be 1. Otherwise input-->
+        <input min="1" max="5" class="item-quantity" type="number" value="1" placeholder="quantity" title="quantity" />
+        {% endif %}
+        <button class="add-to-cart" title="add to cart" type="submit">
+            <i class="material-icons">add_shopping_cart</i>
+        </button>
+    </div>
+</form>
+{% endif %}
+{% endfor %}
+{% endblock %}
