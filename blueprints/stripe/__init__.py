@@ -11,7 +11,7 @@ from multiprocessing import Process
 # ensure you've loaded the .env file before this code runs
 STRIPE_ORDER_EXPIRY = 60 * 20  # 20 minute checkout expiry
 # DYNO is defined in Heroku so ignore that if you are using something like DigitalOcean
-SERVER_ID = os.getenv('DYNO', os.environ['SERVER_ID'])
+SERVER_ID = os.environ['DYNO'] if 'DYNO' in os.environ else os.environ['SERVER_ID']
 stripe.api_key = os.environ['STRIPE_API_KEY']
 
 stripe_bp = Blueprint('stripe', __name__, url_prefix='/stripe', template_folder='blueprints/stripe/templates')
