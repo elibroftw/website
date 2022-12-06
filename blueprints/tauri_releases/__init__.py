@@ -42,31 +42,32 @@ def get_latest_release(github_latest_release_url) -> dict:
     """
     try:
         release = requests.get(github_latest_release_url).json()
-        release_response = {
-            'version': release['tag_name'],
-            'notes': release['body'].removesuffix('See the assets to download this version and install.').rstrip('\r\n '),
-            'pub_date': release['published_at'],
-            'platforms': {}}
-        platforms = [ # platform, extension
-            (('linux-x86_64',), 'amd64.AppImage.tar.gz'),
-            (('darwin-x86_64', 'darwin-aarch64'), 'app.tar.gz'),
-            (('windows-x86_64',), 'x64_en-US.msi.zip'),
-        ]
-        for asset in release.get('assets', []):
-            for for_platforms, extension in platforms:
-                if asset['name'].endswith(extension):
-                    for platform in for_platforms:
-                        release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'url': asset['browser_download_url']}
-                elif asset['name'].endswith(f'{extension}.sig'):
-                    for platform in for_platforms:
-                        try:
-                            sig = requests.get(asset['browser_download_url']).text
-                        except requests.RequestException:
-                            sig = ''
-                        release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'signature': sig}
-        return release_response
     except requests.RequestException:
         return {}
+    release_response = {
+        'version': release['tag_name'],
+        'notes': release['body'].removesuffix('See the assets to download this version and install.').rstrip('\r\n '),
+        'pub_date': release['published_at'],
+        'platforms': {}}
+    platforms = [ # platform, extension
+        (('linux-x86_64',), 'amd64.AppImage.tar.gz'),
+        (('darwin-x86_64', 'darwin-aarch64'), 'app.tar.gz'),
+        (('windows-x86_64',), 'x64_en-US.msi.zip'),
+    ]
+    for asset in release.get('assets', []):
+        for for_platforms, extension in platforms:
+            if asset['name'].endswith(extension):
+                for platform in for_platforms:
+                    release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'url': asset['browser_download_url']}
+            elif asset['name'].endswith(f'{extension}.sig'):
+                try:
+                    sig = requests.get(asset['browser_download_url']).text
+                except requests.RequestException:
+                    sig = ''
+                for platform in for_platforms:
+                    release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'signature': sig}
+    return release_response
+
 
 
 @tauri_releases_bp.route('/google-keep-desktop/<platform>/<current_version>')
