@@ -1,5 +1,7 @@
 # Tauri Updater REST API for GitHub Releases
 
+[Rust Rocket.rs sample code](../../rocket-rs-sample/src/)
+
 The contents of this directory is licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) meaning the code and this README
 can be freely copied/modified without attribution or license inclusion.
 
@@ -11,8 +13,7 @@ an updater compatible server-side response format. There is also code for checki
 The get_latest_release function can be called for many different apps, and for each app the function response is cached for 5 minutes.
 
 The get_latest_release function and the REST API function are simple enough to be edited for your app and even translated for
-different backend languages. I'm intersted in rocket.rs, lithium (C++), and Vlang, so when I make videos on them, I'll convert this code
-to work with rocket.rs, lithium, and Vlang.
+different backend languages. I'm intersted in rocket.rs, lithium (C++), and Vlang, so when I make videos on them, I'll convert this code to work with rocket.rs, lithium, and Vlang.
 
 ## Intermediate Versions
 

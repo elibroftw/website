@@ -8,12 +8,13 @@ import requests
 
 tauri_releases_bp = Blueprint('tauri_releases', __name__, url_prefix='/tauri-releases', template_folder='blueprints/tauri_releases/templates')
 
-GOOGLE_KEEP_DESKTOP_GITHUB = 'https://api.github.com/repos/elibroftw/google-keep-desktop-app/releases/latest'
+GOOGLE_KEEP_DESKTOP_REPO = 'elibroftw/google-keep-desktop-app'
 
 
 @time_cache(60 * 5)  # every 5 minutes
-def get_latest_release(github_latest_release_url) -> dict:
+def get_latest_gh_release(repo) -> dict:
     """
+        repo: username/project-name
         Return format:
         Note darwin-aarch64 is silicon macOS. Supposed to seperate file but assumed that x64 would work due to Rosetta Stone 2
         {
@@ -40,6 +41,7 @@ def get_latest_release(github_latest_release_url) -> dict:
           }
         }
     """
+    github_latest_release_url = f'https://api.github.com/repos/{repo}/releases/latest'
     try:
         release = requests.get(github_latest_release_url).json()
     except requests.RequestException:
@@ -72,7 +74,7 @@ def get_latest_release(github_latest_release_url) -> dict:
 
 @tauri_releases_bp.route('/google-keep-desktop/<platform>/<current_version>')
 def google_keep_desktop_api(platform, current_version):
-    latest_release = get_latest_release(GOOGLE_KEEP_DESKTOP_GITHUB)
+    latest_release = get_latest_gh_release(GOOGLE_KEEP_DESKTOP_REPO)
     if not latest_release:
         # GH API request failed in get_latest_release for GKD
         # TODO: Push Discord or Element notification (max once) if request failed
