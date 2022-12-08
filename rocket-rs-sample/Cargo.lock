@@ -1370,12 +1370,9 @@ dependencies = [
 name = "tauri-update-server"
 version = "0.1.0"
 dependencies = [
- "either",
  "lru_time_cache",
  "reqwest",
  "rocket",
- "serde",
- "serde_json",
 ]
 
 [[package]]
