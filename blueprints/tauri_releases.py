@@ -10,6 +10,11 @@ tauri_releases_bp = Blueprint('tauri_releases', __name__, url_prefix='/tauri-rel
 
 GOOGLE_KEEP_DESKTOP_REPO = 'elibroftw/google-keep-desktop-app'
 
+PLATFORMS = [ # platform, extension
+    (('linux-x86_64',), 'amd64.AppImage.tar.gz'),
+    (('darwin-x86_64', 'darwin-aarch64'), 'app.tar.gz'),
+    (('windows-x86_64',), 'x64_en-US.msi.zip'),
+]
 
 @time_cache(60 * 5)  # every 5 minutes
 def get_latest_gh_release(repo) -> dict:
@@ -51,13 +56,8 @@ def get_latest_gh_release(repo) -> dict:
         'notes': release['body'].removesuffix('See the assets to download this version and install.').rstrip('\r\n '),
         'pub_date': release['published_at'],
         'platforms': {}}
-    platforms = [ # platform, extension
-        (('linux-x86_64',), 'amd64.AppImage.tar.gz'),
-        (('darwin-x86_64', 'darwin-aarch64'), 'app.tar.gz'),
-        (('windows-x86_64',), 'x64_en-US.msi.zip'),
-    ]
     for asset in release.get('assets', []):
-        for for_platforms, extension in platforms:
+        for for_platforms, extension in PLATFORMS:
             if asset['name'].endswith(extension):
                 for platform in for_platforms:
                     release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'url': asset['browser_download_url']}
@@ -69,7 +69,6 @@ def get_latest_gh_release(repo) -> dict:
                 for platform in for_platforms:
                     release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'signature': sig}
     return release_response
-
 
 
 @tauri_releases_bp.route('/google-keep-desktop/<platform>/<current_version>')
