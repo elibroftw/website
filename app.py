@@ -147,7 +147,9 @@ def formula_calculator(): return redirect('https://repl.it/@elilopez/formulas')
 @app.route('/social/')
 @app.route('/donate/')
 @app.route('/contact/')
-def contact(): return render_template('social.html')
+def contact():
+    xmr_addr = '42hpQgwfvFw6RXpmcXHBJ85cZs9yF97kqfV3JpycnanG7JazfdL4WHkVLuR8rcM64q6LHt547nKeeYaixBdCQYaHSuEnAuj'
+    return render_template('social.html', xmr_addr=xmr_addr)
 
 
 @app.route('/resources/')
