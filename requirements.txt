@@ -5,7 +5,7 @@ click==8.0.1
 Flask~=2.0
 Flask-Compress==1.10.1
 Flask-Minify~=0.39
-Flask-SocketIO==4.2.1
+Flask-SocketIO~=5.3
 gunicorn[gthread]~=20.1.0; sys_platform != 'win32'
 idna==2.10
 itsdangerous==2.0.1

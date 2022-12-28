@@ -5,7 +5,7 @@ img {
 	vertical-align: middle;
 }
 
-.container {
+.imagesContainer {
 	position: relative;
 	margin-top: 1em;
 }
@@ -99,8 +99,8 @@ img {
 <h1>{% block title %}Music Caster{% endblock %}</h1>
 <h2>Screenshots (v4.90)</h2>
 <a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md#download-windows">Download</a>
-<button id="open-web-gui" class="ui-btn" onclick="openWebGUI()">Try opening Web GUI</button>
-<div class="container">
+<a class="ui-btn" href="music-caster://">Open Music Caster Desktop</a>
+<div class="imagesContainer">
 	{% for image in images %}
 	<div class="slide">
 		<div class="numbertext">{{loop.index }} / {{images|length}}</div>
@@ -128,30 +128,6 @@ img {
 	const numOfImages = slides.length;
 	const modal = document.getElementById('modal');
 
-	function openWebGUI(sameTab=false) {
-		// redirect to http first
-		if (location.protocol === 'https:') {
-			var url = location.href;
-			var index_of_hash = url.indexOf(location.hash) || url.length;
-			location.replace(`http:${url.substring(6, index_of_hash)}#open-web-gui`);
-		}
-
-		let foundMC = false;
-		for (let hostId = 1; hostId < 50; hostId++) {
-			for (let port = 2001; port < 2004; port++) {
-				if (!foundMC) {
-					fetch(`http://192.168.1.${hostId}:${port}/running/`, {
-						method: 'GET'
-					}).then(response => response.json()).then(response => {
-						if (sameTab) location.href = `http://192.168.1.${hostId}:${port}/`;
-						else window.open(`http://192.168.1.${hostId}:${port}/`);
-						foundMC = true;
-					}).catch(() => {});
-				}
-			}
-		}
-	}
-
 	function plusSlides(n) {
 		showSlide(slideIndex + n);
 	}
@@ -169,7 +145,5 @@ img {
 	}
 
 	showSlide(0);
-
-	if (location.hash === '#open-web-gui') openWebGUI(true);
 </script>
 {% endblock %}
