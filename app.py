@@ -13,7 +13,7 @@ from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper,
 import metadata_setter as MetadataSetter
 
 import feedparser
-from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for
+from flask import Flask, render_template, request, redirect, send_from_directory, send_file, url_for, make_response
 from flask_compress import Compress
 from flask_minify import Minify
 from flask_socketio import SocketIO, emit
@@ -164,7 +164,8 @@ def contact():
 def resources(): return render_template('resources.html')
 
 
-@time_cache(60 * 60 * 24, maxsize=1)
+# 12 hours
+@time_cache(60 * 60 * 12, maxsize=1)
 def get_blog_posts():
     try:
         feed = feedparser.parse('https://blog.elijahlopez.ca/index.xml')
@@ -176,10 +177,12 @@ def get_blog_posts():
 @app.route('/blog/')
 @app.route('/articles/')
 def articles():
-    return render_template('blog.html', posts=get_blog_posts())
+    resp = make_response(render_template('blog.html', posts=get_blog_posts()))
+    resp.cache_control.max_age = 60 * 60 * 12
+    return resp
 
 
-@app.route('/search-album-art/', methods=['GET'])
+@app.get('/search-album-art/')
 def search_album_art():
     artist = request.args.get('artist')
     track = request.args.get('track')
