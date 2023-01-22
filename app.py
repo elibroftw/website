@@ -7,6 +7,7 @@ import threading
 import random
 import io
 import zipfile
+from pathlib import Path
 
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper, time_cache
 import metadata_setter as MetadataSetter
@@ -98,7 +99,8 @@ def force_https():
 
 @app.after_request
 def add_header(response):
-    if 'Cache-Control' not in response.headers: response.cache_control.max_age = 'no-store'
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'no-store, max-age=0'
     return response
 
 
@@ -107,11 +109,17 @@ def page_not_found(_):
     return render_template('404.html'), 404
 
 
-@app.route('/favicon.ico')
-def favicon():
-    resp = send_from_directory(app.static_folder, 'images/favicon.ico')
-    resp.cache_control.max_age = 7257600
-    return resp
+@app.get('/apple-touch-icon.png')
+@app.get('/android-chrome-192x192.png')
+@app.get('/android-chrome-512x512.png')
+@app.get('/mstile-150x150.png')
+@app.get('/favicon-32x32.png')
+@app.get('/favicon-16x16.png')
+@app.get('/site.webmanifest')
+@app.get('/safari-pinned-tab.svg')
+@app.get('/favicon.ico')
+def favicons():
+    return send_from_directory(Path(app.static_folder) / 'favicons', request.path[1:])
 
 
 @app.route('/robots.txt')
