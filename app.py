@@ -8,6 +8,7 @@ import random
 import io
 import zipfile
 from pathlib import Path
+from jinja2.environment import create_cache
 
 from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper, time_cache
 import metadata_setter as MetadataSetter
@@ -21,6 +22,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 import requests
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
+from werkzeug.middleware.profiler import ProfilerMiddleware
 from git import Repo
 from blueprints.tauri_releases import tauri_releases_bp
 from blueprints.stripe import stripe_bp
@@ -65,8 +67,9 @@ app.config['JSON_SORT_KEYS'] = False
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 if IS_DEV else 604800
 app.wsgi_app = ProxyFix(app.wsgi_app, x_host=1)
 Compress(app)
-if not IS_DEV:
-    Minify(app, caching_limit=0)
+if IS_DEV:
+    app.config['PROFILE'] = True
+    app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions = [30])
 socketio = SocketIO(app)
 
 
