@@ -23,3 +23,4 @@ GitPython~=3.1.26
 python-dotenv
 stripe
 pymongo
+pyopenssl

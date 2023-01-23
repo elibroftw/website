@@ -450,6 +450,6 @@ if __name__ == '__main__':
     def test_page():
         return render_template('test.html')
 
-    app.run(debug=True, host='::1', port=5001)
+    app.run(debug=True, host='::1', port=5001, ssl_context='adhoc')
     # app.run(debug=True, host='', port=5001)
     # socketio.run(app, debug=True, host='', port=5000)
