@@ -10,7 +10,7 @@ import zipfile
 from pathlib import Path
 from jinja2.environment import create_cache
 
-from helpers import get_album_art, get_announcements, wlu_pool_schedule_scraper, time_cache
+from helpers import get_album_art, get_announcements, get_wlu_pool_schedule, time_cache
 import metadata_setter as MetadataSetter
 
 import feedparser
@@ -340,22 +340,10 @@ def rbhs():
 @app.route('/wlu-pool/')
 @app.route('/wlu-pool-schedule/')
 def wlu_pool_schedule():
-    global wlu_pool_timings
-    today = date.today()
-    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    d2 = os.environ.get('WLU_POOL_TIMINGS')
-    if d2 is not None: d2 = datetime.strptime(d2, '%d/%m/%Y').date()
-    if d2 is None or not wlu_pool_timings or d2 < today:
-        wlu_pool_timings = wlu_pool_schedule_scraper()
-        if wlu_pool_timings:
-            temp = ''
-            for day, times in zip(days, wlu_pool_timings):
-                times = '<br>'.join(times)
-                temp += f'<button class="accordion" id="{day.lower()}">{day}</button><div class="panel"><p id="panel-text">{times}</p></div>'
-            os.environ['WLU_POOL_TIMINGS'] = today.strftime('%d/%m/%Y')
-            wlu_pool_timings = temp
-        else: wlu_pool_timings = "<p style='color: white;'>Something went wrong send me an email.</p>"
-    return render_template('wlu_pool.html', schedule=wlu_pool_timings)
+    schedule = get_wlu_pool_schedule()
+    resp = make_response(render_template('wlu_pool.html', schedule=schedule.items()))
+    resp.cache_control.max_age = 60 * 60 * 12
+    return resp
 
 
 @app.route('/socketio/')

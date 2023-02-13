@@ -17,8 +17,15 @@
 {% endblock %}
 {% block main_content %}
 <h1>{% block title %}WLU Pool Schedule{% endblock %}</h1>
-<p>Times marked with a * below have the pool in long course configuration</p>
-{{schedule|safe}}
+<br>
+{% if schedule %}
+{% for day, times in schedule %}
+{# better to join since we only need <br> in between each time #}
+<button class="accordion" id="{{day.lower()}}">{{day}}</button><div class="panel"><p id="panel-text">{{ times |join('<br>') | safe }}</p></div>
+{% endfor %}
+{% else %}
+<p style='color: white;'>Something went awfully wrong. Please send me an email.</p>
+{% endif %}
 {% endblock %}
 {% block script %}
 <script>

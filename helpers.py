@@ -82,16 +82,24 @@ def get_announcements():
     return announcements  # [ [TITLE, DESC], [TITLE, DESC] ]
 
 
-def wlu_pool_schedule_scraper():
+@time_cache(60 * 60 * 12)
+def get_wlu_pool_schedule() -> dict:
+    """Scrapes a list of timings for each day (order is Sunday to Saturday)
+        from the laurier athletics website and
+
+    Returns:
+        dict: {'day': ['timings']}
+    """
+    days = ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
+    schedule = {day: [] for day in days}
     data = requests.get('https://recreation.laurierathletics.com/sports/2021/6/30/57_132695382453994610.aspx', headers=Headers(browser='firefox', os='win', headers=True).generate()).text
     soup = BeautifulSoup(data, features='html.parser')
-    s1 = soup.findAll('tr')
-    schedule = [[] for _ in range(7)]
-    for timings in s1[1:]:
-        timings = timings.findAll('td')
-        for i, timing in enumerate(timings):
-            if timing.text: schedule[i].append(timing.text.strip())
-    # sunday - saturday
+    table = soup.findAll('tr')[1:]
+    for row in table:
+        cols = row.findAll('td')
+        for (day, timing) in zip(schedule, cols):
+            if timing.text:
+                schedule[day].append(timing.text.strip())
     return schedule
 
 
@@ -112,4 +120,4 @@ def wlu_gym_schedule_scraper():
 
 if __name__ == '__main__':  # TESTS / DEBUGGING
     # print(wlu_pool_schedule_scraper())
-    print(wlu_pool_schedule_scraper())
+    print(get_wlu_pool_schedule())
