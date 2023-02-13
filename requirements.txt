@@ -24,3 +24,4 @@ python-dotenv
 stripe
 pymongo
 pyopenssl
+fake-headers

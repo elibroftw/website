@@ -10,6 +10,7 @@ from contextlib import suppress
 from functools import lru_cache, wraps
 import time
 from dotenv import load_dotenv
+from fake_headers import Headers
 
 load_dotenv()
 
@@ -82,14 +83,14 @@ def get_announcements():
 
 
 def wlu_pool_schedule_scraper():
-    data = requests.get('https://www.laurierathletics.com/generatePage.php?ID=57').text
+    data = requests.get('https://recreation.laurierathletics.com/sports/2021/6/30/57_132695382453994610.aspx', headers=Headers(browser='firefox', os='win', headers=True).generate()).text
     soup = BeautifulSoup(data, features='html.parser')
     s1 = soup.findAll('tr')
     schedule = [[] for _ in range(7)]
     for timings in s1[1:]:
         timings = timings.findAll('td')
         for i, timing in enumerate(timings):
-            if timing.text: schedule[i].append(timing.text)
+            if timing.text: schedule[i].append(timing.text.strip())
     # sunday - saturday
     return schedule
 
@@ -111,4 +112,4 @@ def wlu_gym_schedule_scraper():
 
 if __name__ == '__main__':  # TESTS / DEBUGGING
     # print(wlu_pool_schedule_scraper())
-    print(wlu_gym_schedule_scraper())
+    print(wlu_pool_schedule_scraper())
