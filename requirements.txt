@@ -9,13 +9,13 @@ Flask-SocketIO~=5.3
 gunicorn[gthread]~=20.1.0; sys_platform != 'win32'
 idna==2.10
 itsdangerous==2.0.1
-Jinja2==3.0.1
+Jinja2~=3.0
 Markdown===3.3.4
-MarkupSafe==2.0.1
+MarkupSafe~=2.0
 Pillow~=9.0
 requests==2.26.0
 urllib3==1.26.7
-Werkzeug==2.0.2
+Werkzeug~=2.2
 mutagen==1.45.1
 PyPDF2==1.27.5
 feedparser~=6.0.8
