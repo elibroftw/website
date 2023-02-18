@@ -5,8 +5,4 @@ static/css/*.min.css
 .vscode/settings.json
 .env
 ssl/elijahlopez.ca.key
-ssl/elijahlopez.ca.csr
 ssl/elijahlopez.ca.raw.key
-ssl/elijahlopez_ca.ca-bundle
-ssl/elijahlopez_ca.chain.crt
-ssl/elijahlopez_ca.crt
