@@ -137,7 +137,7 @@ def index(): return render_template('index.html')
 
 @app.route('/')
 def home():
-    return render_template('home.html', welcome_msg='Welcome, here is some featured content:')
+    return render_template('home.html', welcome_msg='Ambitious...without the time')
 
 
 @app.route('/about/')
