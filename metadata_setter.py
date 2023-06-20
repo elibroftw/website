@@ -78,25 +78,15 @@ def get_spotify_access_token():
     return spotify_access_token
 
 
-try:
-    with open('config.json') as config_file:
-        config: dict = json.load(config_file)
-    SPOTIFY_AUTH_STR = f"{config['SPOTIFY_CLIENT_ID']}:{config['SPOTIFY_SECRET']}"
-    SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
-    print('Spotify API keys loaded')
-    LASTFM_API = config['LASTFM_API']
-    LASTFM_SECRET = config['LASTFM_SECRET']
-    print('LASTFM API keys loaded')
-    # TODO: support multiple directories
-    # this is for future when I get a Soundcloud api key
-    # SOUNDCLOUD_CLIENT_ID = config['SOUNDCLOUD_CLIENT_ID']
-    # SOUNDCLOUD_CLIENT_SECRET = config['SOUNDCLOUD_CLIENT_SECRET']
-except (FileNotFoundError, KeyError):
-    SPOTIFY_AUTH_STR = f"{os.environ['SPOTIFY_CLIENT_ID']}:{os.environ['SPOTIFY_SECRET']}"
-    SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
-    print('Spotify API keys loaded')
-    LASTFM_API = os.getenv('LASTFM_API')
-    LASTFM_SECRET = os.getenv('LASTFM_SECRET')
+
+SPOTIFY_AUTH_STR = f"{os.environ['SPOTIFY_CLIENT_ID']}:{os.environ['SPOTIFY_SECRET']}"
+SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
+# not required until set_genre is used
+LASTFM_API = os.getenv('LASTFM_API')
+LASTFM_SECRET = os.getenv('LASTFM_SECRET')
+# this is for future when I get a Soundcloud api key
+# SOUNDCLOUD_CLIENT_ID = config['SOUNDCLOUD_CLIENT_ID']
+# SOUNDCLOUD_CLIENT_SECRET = config['SOUNDCLOUD_CLIENT_SECRET']
 
 
 def set_title(audio: EasyID3, title: str):
