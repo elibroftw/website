@@ -663,24 +663,31 @@ input:checked+.slider:before {
 @keyframes fadein {
     from {
         bottom: 0;
-        opacity: 0
+        opacity: 0;
+        visibility: visible;
     }
 
     to {
         bottom: 60px;
-        opacity: 1
+        opacity: 1;
     }
 }
 
 @-webkit-keyframes fadeout {
     from {
         bottom: 60px;
-        opacity: 1
+        opacity: 1;
+        visibility: visible;
+    }
+
+    99% {
+        visibility: visible;
     }
 
     to {
         bottom: 0;
-        opacity: 0
+        opacity: 0;
+        visibility: hidden;
     }
 }
 
