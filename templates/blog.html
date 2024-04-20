@@ -1,24 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}Blog{% endblock %}
 {% block style %}
 <style>
-    .link {
-        font-size: 20px;
-        padding-bottom: 1em;
-        display: block;
+    .blogIframe {
+        width: 100%;
+        height: 85vh;
+        border-radius: inherit;
+        border-width: 0;
     }
 
-    .link:hover {
-        font-size: 1.4em;
+    #inner {
+        margin-top: 5vh;
+        margin-bottom: 2em;
+        padding: 0 !important;
+        height: auto !important;
     }
 </style>
 {% endblock %}
 {% block main_content %}
-<h1>{% block title %}Blog{% endblock %}</h1>
-<br>
-<div class=leftAlign>
-    <a class=link href="https://blog.elijahlopez.ca">Blogging Home</a>
-    {% for post in posts %}
-        <a class=link href="{{ post.link }}">{{ post.title }}</a>
-    {% endfor %}
-</div>
+<iframe src="https://blog.elijahlopez.ca/posts" title="ELL Blog Posts" class="blogIframe"></iframe>
 {% endblock %}

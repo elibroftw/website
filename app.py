@@ -56,7 +56,7 @@ metadata_setter_dir = 'static/metadataSetter'
 shutil.rmtree(metadata_setter_dir, ignore_errors=True)
 with suppress(FileExistsError): os.mkdir(metadata_setter_dir)
 REACT_BUILD_FOLDER = 'react_app/build'
-IS_DEV = bool(os.getenv('DEV', False))
+IS_DEV = bool(os.getenv('DEV', False)) or os.getenv('SERVER_ID', '') == 'LOCAL'
 
 app = Flask(__name__)
 app.register_blueprint(tauri_releases_bp)
@@ -137,7 +137,7 @@ def index(): return render_template('index.html')
 
 @app.route('/')
 def home():
-    return render_template('home.html', welcome_msg='Ambitious...without the time')
+    return render_template('home.html', welcome_msg='Ambitious ... without the time')
 
 
 @app.route('/about/')
@@ -180,9 +180,7 @@ def get_blog_posts():
 @app.route('/blog/')
 @app.route('/articles/')
 def articles():
-    resp = make_response(render_template('blog.html', posts=get_blog_posts()))
-    resp.cache_control.max_age = 60 * 60 * 12
-    return resp
+    return render_template('blog.html')
 
 
 @app.get('/search-album-art/')
