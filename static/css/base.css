@@ -370,7 +370,7 @@ input:checked+.slider:before {
     display: none !important
 }
 
-/* Accordian */
+/* Accordion */
 .accordion {
     color: #141414;
     cursor: pointer;
@@ -409,12 +409,12 @@ input:checked+.slider:before {
     max-height: 0;
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.1s ease-out;
+    transition: max-height 200ms ease-out;
     text-align: center;
     font-family: Calibri;
     color: black;
 }
-/* END: Accordian */
+/* END: Accordion */
 
 @media screen and (min-width:1281px) {
     #desktop-nav {
