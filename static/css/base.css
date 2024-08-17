@@ -484,6 +484,13 @@ input:checked+.slider:before {
     }
 }
 
+
+@media screen and (min-width:691px) {
+    #desktop-nav > a {
+        min-width: 0px;
+    }
+}
+
 @media screen and (max-width:690px) {
     h1 {
         font-size: 30pt
