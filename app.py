@@ -19,11 +19,9 @@ from flask import (
     send_from_directory,
     url_for,
 )
-
-# compress is a fallback
-# best practice is to let the webserver like nginx handle the serving of static files
 from flask_compress import Compress
 from flask_socketio import SocketIO, emit
+from flask_caching import Cache
 from git import Repo
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from werkzeug.middleware.profiler import ProfilerMiddleware
@@ -36,6 +34,8 @@ from blueprints.tauri_releases import tauri_releases_bp
 from helpers import get_album_art, get_announcements, get_wlu_pool_schedule
 
 # import psycopg2
+# compress is a fallback
+# best practice is to let the webserver like nginx handle the serving of static files
 
 # DATABASE_URL = os.environ.get('DATABASE_URL', False)
 # DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
@@ -69,7 +69,8 @@ app.register_blueprint(stripe_bp)
 app.jinja_env.lstrip_blocks = True
 app.jinja_env.trim_blocks = True
 app.config["JSON_SORT_KEYS"] = False
-app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 604800
+if not app.debug:
+    app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 604800
 app.wsgi_app = ProxyFix(app.wsgi_app, x_host=1)
 Compress(app)
 socketio = SocketIO(app)
@@ -104,11 +105,11 @@ def force_https():
 #         cursor.execute(f"INSERT INTO visitors VALUES ('{datetime.now()}','{request.remote_addr}','{request.headers.get('User-Agent')}','{requested_url}')")
 
 
-@app.after_request
-def add_header(response):
-    if "Cache-Control" not in response.headers:
-        response.headers["Cache-Control"] = "no-cache"
-    return response
+# @app.after_request
+# def add_header(response):
+#     if "Cache-Control" not in response.headers:
+#         response.headers["Cache-Control"] = "no-cache"
+#     return response
 
 
 @app.errorhandler(404)
@@ -388,7 +389,7 @@ def return_random_quote():
 
 
 @socketio.on("print_message")
-def return_random_quote(dictionary):
+def return_random_quote_other(dictionary):
     print(dictionary.items())
 
 
@@ -461,7 +462,6 @@ if __name__ == "__main__" or app.debug:
     # TODO: subprocess the react app?
 
     # DEV configuration
-    app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
     app.config["PROFILE"] = True
     app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[30])
 
@@ -482,6 +482,7 @@ if __name__ == "__main__" or app.debug:
     host = "127.0.0.1"  # ''
     port = 5001
     print(f"Running on http://{host}:{port}")
+
 if __name__ == "__main__":
-    app.run(debug=True, host=host, port=port, ssl_context="adhoc")
+    app.run(debug=True, host=host, port=port)
     # socketio.run(app, debug=True, host='', port=5000)

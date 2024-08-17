@@ -11,21 +11,22 @@
             "module": "flask",
             "env": {
                 "FLASK_APP": "app.py",
-                "FLASK_DEBUG": "1"
+                "FLASK_DEBUG": "1",
             },
             "args": [
                 "run",
                 "--debug",
+                "--port",
                 "5001"
             ],
             "jinja": true,
             "justMyCode": true
         },
         {
-            "name": "Python: Current File (Integrated Terminal)",
+            "name": "Python: Flask app.py",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/app.py",
             "console": "integratedTerminal"
         }
     ]

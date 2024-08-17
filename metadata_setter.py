@@ -1,5 +1,6 @@
 import base64
 from contextlib import suppress
+from functools import lru_cache
 from glob import glob
 import io
 import json
@@ -70,17 +71,19 @@ def spotify_access_token_deco(f):
 
 @spotify_access_token_deco
 def get_spotify_access_token():
-    spotify_access_token_creation = time.time()
-    header = {'Authorization': 'Basic ' + SPOTIFY_B64_AUTH_STR}
+    header = {'Authorization': 'Basic ' + get_b64_spotify_auth_str()}
     data = {'grant_type': 'client_credentials'}
     access_token_response = requests.post('https://accounts.spotify.com/api/token', headers=header, data=data)
     spotify_access_token = access_token_response.json()['access_token']
     return spotify_access_token
 
 
+@lru_cache(maxsize=1)
+def get_b64_spotify_auth_str():
+    spotify_auth_str = f"{os.environ['SPOTIFY_CLIENT_ID']}:{os.environ['SPOTIFY_SECRET']}"
+    return base64.urlsafe_b64encode(spotify_auth_str.encode()).decode()
 
-SPOTIFY_AUTH_STR = f"{os.environ['SPOTIFY_CLIENT_ID']}:{os.environ['SPOTIFY_SECRET']}"
-SPOTIFY_B64_AUTH_STR = base64.urlsafe_b64encode(SPOTIFY_AUTH_STR.encode()).decode()
+
 # not required until set_genre is used
 LASTFM_API = os.getenv('LASTFM_API')
 LASTFM_SECRET = os.getenv('LASTFM_SECRET')

@@ -24,3 +24,12 @@ My own website with Flask for the backend and no framework for the frontend; Hos
 
 * Adding pictures I have taken
 * My music tastes and any music I might create
+
+## How to Run Locally
+
+```py
+pip install -r requirements.txt --upgrade
+# create .env file before running below
+# or hit F5 in VSCode
+flask --debug --env-file .env run
+```

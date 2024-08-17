@@ -1,17 +1,25 @@
 body {
-    background-image: url("/static/images/light.webp"), linear-gradient(#2980B9, #6DD5FA);
+    background-image: url("/static/images/banff_river.webp"), linear-gradient(#2980B9, #6DD5FA);
     background-position: center;
     background-repeat: no-repeat, repeat;
     background-size: cover;
 }
 
-#desktop-nav a, .dropdown .dropbtn {
-    color: #000;
+#desktop-nav {
+    border-radius: 1em;
+    background-color: rgba(0, 0, 0, .7);
+}
+
+#desktop-nav>a, .dropdown .dropbtn {
+    color: #fff;
 }
 
 #desktop-nav>a:hover, .dropdown:hover .dropbtn {
+    /* color: #000;
+    background-color: #fff;
+    box-shadow: none */
     color: #fff;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, .9);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19)
 }
 

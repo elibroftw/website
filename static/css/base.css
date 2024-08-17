@@ -62,7 +62,7 @@ button::-moz-focus-inner {
     padding: 50px 40px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, .8);
-    margin: -6% auto 100px auto;
+    margin: -6% auto 2vh auto;
     width: 50%;
     max-width: 1000px;
     text-align: center
@@ -148,7 +148,7 @@ p {
 }
 
 #desktop-nav {
-    padding: 1em 0 1em 1em;
+    margin: 1em 1em 1em 1em;
 }
 
 #desktop-nav>a {
@@ -429,7 +429,7 @@ input:checked+.slider:before {
 
 @media screen and (max-width:1280px) {
     #inner {
-        margin-top: 2%;
+        margin-top: 4vh;
         width: 65%
     }
 
@@ -442,16 +442,18 @@ input:checked+.slider:before {
     }
 
     #desktop-nav {
-        margin-left: -7%;
+        margin-right: 1em;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        gap: 1em;
     }
 
     #desktop-nav>a {
         float: left;
         text-align: center;
-        margin-left: 5%;
+        min-width: 95px;
+        width: auto;
     }
 
     .dropdown .dropbtn {
@@ -569,7 +571,8 @@ input:checked+.slider:before {
         padding-left: 0;
         padding-right: 0;
         letter-spacing: .05em;
-        width: 90%
+        width: 90%;
+        margin-bottom: 80px;
     }
 
     #social-links {
