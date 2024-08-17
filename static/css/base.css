@@ -61,7 +61,7 @@ button::-moz-focus-inner {
 #inner {
     padding: 50px 40px;
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(0, 0, 0, .75);
     margin: -6% auto 2vh auto;
     width: 50%;
     max-width: 1000px;
@@ -71,11 +71,12 @@ button::-moz-focus-inner {
 h1 a {
     color: #fff;
     text-decoration: none;
-    transition-duration: .2s
+    transition-duration: 200ms;
 }
 
 h1 a:hover {
-    font-size: 47pt
+    /* font-size: 47pt */
+    font-style: italic;
 }
 
 h1 a:hover:after {
@@ -153,7 +154,7 @@ p {
 
 #desktop-nav>a {
     border-radius: 1em;
-    width: 100px;
+    width: auto;
     display: block
 }
 
@@ -163,8 +164,9 @@ p {
 
 #desktop-nav a, .dropdown .dropbtn {
     padding: .5em 1em;
-    letter-spacing: .23px;
+    letter-spacing: .1em;
     font-family: Manrope;
+    font-weight: lighter;
     font-weight: 700;
     text-align: left;
     text-transform: uppercase;
@@ -497,8 +499,10 @@ input:checked+.slider:before {
 
     #mobile-nav-label {
         font-family: Manrope;
-        background-color: rgba(15, 15, 15, .95);
-        letter-spacing: .3em;
+        /* background-color: rgba(15, 15, 15, .96); */
+        background-color: rgba(15, 19, 24, 0.79);
+        backdrop-filter: blur(10px) saturate(180%);
+        letter-spacing: .4em;
         width: 100%;
         text-align: center;
         display: block;
@@ -526,7 +530,9 @@ input:checked+.slider:before {
 
     #mobile-nav-panel {
         display: block;
-        background-color: rgba(15, 15, 15, .95);
+        /* background-color: rgba(15, 15, 15, .95); */
+        background-color: rgba(15, 19, 24, 0.79);
+        backdrop-filter: blur(10px) saturate(180%);
         text-align: center;
         font-family: Manrope;
         letter-spacing: .3em;
@@ -538,8 +544,12 @@ input:checked+.slider:before {
         transition: transform 25ms linear;
         transform: translateY(120%);
         will-change: tranform;
-        padding-top: 1em;
-        padding-bottom: 3.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: .1em;
+        margin-bottom: 3.4em;
+        height: calc(370px + 1em + 3.5em);
     }
 
     #mobile-nav-checkbox:checked ~ #mobile-nav-panel {
@@ -552,7 +562,7 @@ input:checked+.slider:before {
         text-transform: uppercase;
         border-radius: 0;
         margin: 0;
-        padding: .4em 0;
+        padding: 1em 0;
         text-decoration: none;
         color: white;
     }

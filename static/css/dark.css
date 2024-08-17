@@ -11,7 +11,8 @@ body {
 #desktop-nav>a:hover, .dropdown:hover .dropbtn {
     color: #000;
     background-color: #fff;
-    box-shadow: none
+    box-shadow: none;
+    font-style: italic;
 }
 
 .dropdown-content a {

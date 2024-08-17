@@ -462,8 +462,8 @@ if __name__ == "__main__" or app.debug:
     # TODO: subprocess the react app?
 
     # DEV configuration
-    app.config["PROFILE"] = True
-    app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[30])
+    # app.config["PROFILE"] = True
+    # app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[30])
 
     REACT_DISTR_DIR = "react-app/dist"
 
