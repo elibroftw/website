@@ -405,7 +405,7 @@ input:checked+.slider:before {
 }
 
 .panel {
-    width: 90%;
+    width: 85%;
     margin: auto;
     background-color: white;
     max-height: 0;
