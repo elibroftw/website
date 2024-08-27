@@ -671,6 +671,11 @@ input:checked+.slider:before {
     transition-duration: 150ms;
 }
 
+.subtext {
+    word-wrap: break-word;
+    margin: 1em;
+}
+
 .feat-link {
     text-decoration: none;
     padding: 1em;
