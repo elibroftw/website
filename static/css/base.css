@@ -377,7 +377,7 @@ input:checked+.slider:before {
     color: #141414;
     cursor: pointer;
     padding: 18px;
-    width: 90%;
+    width: 85%;
     border: none;
     text-align: center;
     outline: none;
