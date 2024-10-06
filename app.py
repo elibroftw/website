@@ -326,19 +326,19 @@ def music_caster():
     # second var is width
     images = [
         (
-            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/main.png?raw=true",
+            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/main.webp?raw=true",
             "Main",
         ),
         (
-            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/mini.png?raw=true",
+            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/mini.webp?raw=true",
             "Mini-Mode",
         ),
         (
-            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/tray.png?raw=true",
+            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/tray.webp?raw=true",
             "Tray",
         ),
         (
-            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/web.png?raw=true",
+            "https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/web.webp?raw=true",
             "Web GUI",
         ),
     ]
