@@ -141,9 +141,13 @@ def index():
     return render_template("index.html")
 
 
+with open(Path(app.static_folder) / 'elijahllopezz@gmail.com.gpg') as f:
+    GPG_KEY = f.read()
+
+
 @app.route("/gpg")
 def gpg():
-    return send_from_directory(app.static_folder, 'elijahllopezz@gmail.com.gpg', as_attachment=False)
+    return GPG_KEY
 
 
 @app.route("/")
