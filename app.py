@@ -1,4 +1,5 @@
 import io
+import mimetypes
 import os
 import random
 import shutil
@@ -18,6 +19,7 @@ from flask import (
     send_file,
     send_from_directory,
     url_for,
+    Response
 )
 from flask_compress import Compress
 from flask_socketio import SocketIO, emit
@@ -147,7 +149,7 @@ with open(Path(app.static_folder) / 'elijahllopezz@gmail.com.gpg') as f:
 
 @app.route("/gpg")
 def gpg():
-    return GPG_KEY
+    return Response(GPG_KEY, mimetype='text/plain')
 
 
 @app.route("/")
