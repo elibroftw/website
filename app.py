@@ -141,6 +141,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/gpg")
+def gpg():
+    return send_from_directory(app.static_folder, 'elijahllopezz@gmail.com.gpg')
+
+
 @app.route("/")
 def home():
     return render_template("home.html", welcome_msg="Ambitious ... without the time")
