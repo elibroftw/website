@@ -143,7 +143,7 @@ def index():
 
 @app.route("/gpg")
 def gpg():
-    return send_from_directory(app.static_folder, 'elijahllopezz@gmail.com.gpg')
+    return send_from_directory(app.static_folder, 'elijahllopezz@gmail.com.gpg', as_attachment=False)
 
 
 @app.route("/")
