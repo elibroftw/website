@@ -8,85 +8,278 @@
     }
 
     .link:hover {
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
 </style>
 {% endblock %}
 {% block main_content %}
 <h1>{% block title %}Resources{% endblock %}</h1>
 <div class=leftAlign>
-    <p>A developer without an understanding of their environment is a carpenter without the knowledge of his workshop.</p>
+    <p>In the future, I'll make a blog post on how you can become a productive software engineer faster</p>
+    <p>A developer without an understanding of their environment is a carpenter without the knowledge of his workshop.
+    </p>
     <p>Some things you should know before coding are:</p>
     <p>- PATH: What is it, how is it used, and how to modify it</p>
     <p>- Linux: how to make a file executable</p>
     <p>- Terminal: how to launch one on your OS with only your keyboard</p>
+    <h2>Improving your Environment</h2>
+    <ul class="listUnordered">
+        <li>
+            <p>An IDE stands for Integrated Development Environment (Code Editor), not relevant to know this though</p>
+        </li>
+        <ul class="listUnordered">
+            <li>
+                <a href="https://code.visualstudio.com/" class="link">Visual Studio Code: Multi-Purpose IDE</a>
+            </li>
+            <ul class="listUnordered">
+                <li><a href="https://blog.elijahlopez.ca/posts/top-vscode-extensions/" class="link">My VsCode Setup</a></li>
+            </ul>
+            <li>
+                <a href="https://visualstudio.microsoft.com/" class="link">Visual Studio (C#, ASP.NET, WinUI, and C++)</a>
+            </li>
+        </ul>
+        <li>
+            <a href="https://syntackle.com/blog/mac-setup-for-developers/" class="link">macOS Setup</a>
+        </li>
+        <li>
+            <a href="https://www.microsoft.com/p/windows-terminal/9n0dx20hk701" class="link">Windows Terminal</a>
+        </li>
+        <li>
+            <a href="https://just.systems/man/en/" class="link">Just: project-specific command runner</a>
+        </li>
+        <ul class="listUnordered">
+            <li>Just provides a cross-platform, cross-IDE, cross-project for consistent tooling</li>
+            <li><a href="https://github.com/elibroftw/vscode-justfile" class="link">My VsCode extension for justfile task integration</a></li>
+        </ul>
+    </ul>
     <h2>Intro to Programming</h2>
-    <a href="https://python.org/downloads/" class="link">Python: Intuitive Beginner-Friendly Language</a>
-    <a href="https://cscircles.cemc.uwaterloo.ca/" class="link">CS Circles: Learn Python</a>
-    <p>After learning Python, learn the difference between <code>set, dict, list</code> and learn about <code>generators</code> in Python</p>
-    <p>Lastly in Python, learn about the <code>argparse</code> module and create a sample terminal app with support for boolean flags and <code>--flag arg</code></p>
+    <ul class="listUnordered">
+        <li><a href="https://python.org/downloads/" class="link">Python: Intuitive Beginner-Friendly Language</a></li>
+        <li><a href="https://cscircles.cemc.uwaterloo.ca/" class="link">CS Circles: Learn Python</a></li>
+        <li>After learning Python, learn the difference between <code>set, dict, list</code> and learn about <code>generators</code> in Python</li>
+        <li>learn about the <code>argparse</code> module and create a sample terminal app with support for boolean flags and <code>--flag arg</code></li>
+        <li>learn pip</li>
+    </ul>
+    <h2>Starting new projects</h2>
+    <p>Read relevant awesome lists</p>
+    <a href="https://thecopenhagenbook.com/" class="link">The Copenhagen Book</a>
     <a href="https://git-scm.com/downloads" class="link">Git: Version Control System (Code History)</a>
+    <p>Here are some git commands I need to use but are hard to remember</p>
+    <ul class="list">
+        <li>
+            <a href="https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/" class="link">diff3</a>
+        </li>
+        <li>
+            To print only the current branch name
+            <br><code>git rev-parse --abbrev-ref HEAD</code>
+        </li>
+        <li>
+            To reorder and squash commits
+            <ul style="list-style: upper-roman;">
+                <li>
+                    Ensure you do not have the default branch checked out
+                </li>
+                <li>
+                    <code>git rebase --interactive $UNTOUCHED_COMMIT</code>
+                </li>
+                <li>
+                    In the editor that opens up, use squash to merge a commit with its predecessor
+                </li>
+                <li>
+                    <code>git push --force</code>
+                </li>
+            </ul>
+        </li>
+        <li>
+            If you are on a non-collaborating branch, and want to group your changes (committed and working)
+            differently,
+            <ul>
+                <li>
+                    First pick a commit you don't want to touch
+                </li>
+                <li>
+                    <code>git reset --soft $UNTOUCHED_COMMIT</code>
+                    <br>I prefer soft over mixed because I want to pick which changes are staged
+                </li>
+                <li>
+                    Commit your changes as desired
+                </li>
+                <li>
+                    <code>git push --force</code>
+                </li>
+            </ul>
+        </li>
+        <li>
+            If you want to sync with a remote branch that had its history rewritten (e.g. coworker force pushed) and you
+            have commits on local but not on the remote (i.e. git rebase --hard will not work). --hard gets rid of your
+            local commits.
+            <br><code>git reset --hard @{u}</code>
+        </li>
+        <li>
+            Shows <i>reference logs</i> of commits that were updated to the repository
+            <br><code>git reflog --before=2024-10-23T21:41:24.107351Z</code>
+        </li>
+        <li>
+            <a class="link" href="https://alchemists.io/articles/git_trailers">Git Trailers (reading)</a>
+        </li>
+        <li>
+            Updating the date of an commit amendment (<code>commit --amend</code>).
+            <ul>
+                <li>Linux
+                    <br><code>git commit --amend --date "$(date -R)"</code>
+                </li>
+                <li>Windows & MacOS
+                    <br><code>git commit --amend --date "$(date)"</code>
+                </li>
+            </ul>
+        </li>
+        <li>
+            See remote info, including the default branch
+            <br><code>git remote show origin</code>
+        </li>
+    </ul>
     <a href="https://desktop.github.com/" class="link">GitHub Desktop: GUI for git</a>
+    <p>I recommend learning to do everything within an IDE like VSCode</p>
     <h2>Full Stack / CRUD Developer</h2>
-    <p>Database: PostgreSQL, use a managed PostgreSQL in production. Reason being no bullshit.</p>
-    <p>Backend: <a href="https://asp.net" class="link">ASP.NET Core</a>. Reason being no/less headaches</p>
-    <a href="https://visualstudio.microsoft.com/" class="link">Install Visual Studio (C#, ASP.NET, WinUI, and C++)</a>
-    <p>Frontend: either ASP.NET Core's Razor pages (HTML + C#) or whatever web framework you want such as <a href="https://react.dev/" class="link">React</a></p>
-    <p>When creating ASP.NET app, select Web App template if you want to use Razor pages or Web API for SPAs</p>
-    <p>Need to learn basic SQL while working on a project</p>
-    <p>Project idea: <a href="https://github.com/GodPotent/AspNetWebAppTemplate?tab=readme-ov-file#tasks" class="link">SSR blogging website with database schema upgrades and production deployments</a></p>
+    <p>Database: PostgreSQL, use a managed PostgreSQL in production.</p>
+    <p>Backend: <a href="https://asp.net" class="linkInline">ASP.NET Core</a>. Great performance, and comes with a lot
+        of DX out of the box</p>
+    <p>When creating an ASP.NET project, use the dotnet CLI to select the WebAPI template for SPAs or the Web App
+        template for Razor pages</p>
+    <p>If you use another backend framework, make the responses are as expected <a
+            href="https://github.com/TechEmpower/FrameworkBenchmarks/issues/8790" class="linkInline">if the database
+            restarts</a></p>
+    <p>You can install .NET either through <a
+            href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit" class="linkInline">Visual
+            Studio C# Dev Kit</a>, dotnet.microsoft.com, or <a href="https://visualstudio.microsoft.com/"
+            class="linkInline">Visual Studio</a></p>
+    <p>Frontend: use <a href="https://vite.dev/guide/#scaffolding-your-first-vite-project" class="linkInline">Vite</a> to create a <a href="https://react.dev" class="linkInline">React</a> or
+        <a href="https://www.solidjs.com/" class="linkInline">SolidJS</a> TypeScript project combined with <a href="https://inertiajs.com/" class="linkInline">Inertia</a> so that
+        you are free to use any backend and still get server-side rendering for your single-page apps. Alternatively you
+        can use Astro + API or the native SSR framework like Razor pages, Handlebars, htmx, Jinja2</p>
+    <ul class="listUnordered">
+        <li>
+            I'll create a template/instructions to demonstrate what I mean
+        </li>
+        <li>
+            <a href="https://github.com/kapi2289/InertiaCore" class="link">Inertia.js ASP.NET Adapter</a>
+        </li>
+        <li>
+            <a href="https://kaiofelps.github.io/inertia-rust/" class="link">Inertia.js Rust Adapter</a>
+            <p>The example code for inertia-rust is for Axum, and uses node-server (instead of bun), but we/you should
+                be able to be easily used in other frameworks like <a href="https://github.com/HFQR/xitca-web"
+                    class="linkInline">xitca-web</a></p>
+        </li>
+    </ul>
+    <p></p>
+    <p>You need to learn basic SQL while working on a project</p>
+    <p>Project idea: <a href="https://github.com/GodPotent/AspNetWebAppTemplate?tab=readme-ov-file#tasks"
+            class="linkInline">SSR blogging website with database schema upgrades and production deployments</a></p>
     <h2>Other Web Development (Frontend) Thoughts</h2>
-    <p>Twitter meta tags</p>
-    <a href="https://www.w3schools.com/css/css_rwd_intro.asp" class="link">Responsive Web Design</a>
-    <a href="https://css-tricks.com/the-checkbox-hack/" class="link">The Checkbox Hack</a>
-    <a href="https://react.dev/" class="link">React (JSX): A JavaScript framework for creating complex UIs</a>
+    <ul class="listUnordered">
+        <li>
+            <p>Twitter meta tags</p>
+        </li>
+        <li><a href="https://www.w3schools.com/css/css_rwd_intro.asp" class="linkInline">Responsive Web Design</a></li>
+        <li><a href="https://css-tricks.com/the-checkbox-hack/" class="linkInline">The Checkbox Hack</a>: My website's
+            mobile navbar</li>
+        <li><a href="https://react.dev/" class="linkInline">React (JSX): A JavaScript framework for creating complex
+                UIs</a></li>
+    </ul>
     <h2>Systems Programming</h2>
-    <a href="https://www.rust-lang.org/tools/install" class="link">Rust: A C++ pointer-free Alternative</a>
+    <ul class="listUnordered">
+        <li>
+            <a href="https://www.rust-lang.org/tools/install" class="link">Rust: A memory safe C++ alternative with an
+                improved cross-platform standard library and improved built-in tooling</a>
+        </li>
+        <li>
+            <a href="https://flatbuffers.dev/" class="link">FlatBuffers</a>
+        </li>
+        <li>
+            <a href="https://github.com/stepci/awesome-api-clients?tab=readme-ov-file#desktop" class="link">API Client testing</a>
+        </li>
+    </ul>
     <h2>Desktop Apps</h2>
-    <p>If the desktop app only requires simple system API calls such as storage, then use Tauri</p>
-    <a href="https://github.com/elibroftw/modern-desktop-app-template" class="link">My Tauri & React Template</a>
-    <p>When utilizing system APIs per operating system, I would suggest learning the native technology (Windows - WinUI, macOS - SwiftUI/Appkit, KDE - Qt)</p>
-    <a href="https://www.qt.io/" class="link">Qt (warning: C++)</a>
-    <a href="https://www.pysimplegui.org/en/latest/" class="link">In a rush and know Python? Use PySimpleGUI</a>
+    <p>For one codebase and cross-platform, you can go with Tauri or Avalonia</p>
+    <a href="https://github.com/elibroftw/modern-desktop-app-template" class="link">Tauri & React Template</a>
+    <a href="https://avaloniaui.net/" class="link">Avalonia: crossplatform .NET desktop programming</a>
+    <p>When you need to use some specific APIs per operating system, I would suggest using a webview that uses a bridge
+        to the native technology</p>
+    <ul class="listUnordered">
+        <li>Windows: <a href="https://learn.microsoft.com/windows/apps/winui/winui3/" class="linkInline">WinUI 3</a>
+        </li>
+        <li>macOS: <a href="https://developer.apple.com/xcode/swiftui/" class="linkInline">SwiftUI</a></li>
+        <li>QT: <a href="https://www.qt.io/" class="linkInline">QT</a></li>
+        <li>GTK: <a href="https://www.gtk.org/" class="linkInline">GTK</a></li>
+    </ul>
     <h2>Mobile Apps</h2>
-    <p>Don't use react-native, use Kotlin Jetpack Compose for Android and SwiftUI for iOS</p>
+    <p>Don't use react-native. Use <a href="https://developer.android.com/compose" class="linkInline">Kotlin Jetpack Compose</a> for Android and SwiftUI for iOS</p>
     <p>You will need Android Studio and if targeting iOS you will also need a Macbook to install XCode</p>
     <h2>C & C++</h2>
-    <p>Although no great tutorials exist that I know of, C & C++ is essential to this day</p>
-    <a href="https://visualstudio.microsoft.com/" class="link">Visual Studio: Windows C++ IDE and Compiler</a>
-    <a href="https://releases.llvm.org/download.html" class="link">Clang: C & C++ Compiler</a>
-    <a href="http://winlibs.com/#download-release/" class="link">GCC compiler for Windows</a>
-    <a href="http://gnuwin32.sourceforge.net/packages/make.htm" class="link">Make for Windows</a>
-    <a href="http://gnuwin32.sourceforge.net/packages/coreutils.htm" class="link">GNU Core Utils for Windows</a>
-    <h2>Improving your Environment</h2>
-    <p>An IDE stands for Integrated Development Environment (Code Editor), not relevant to know this though</p>
-    <a href="https://code.visualstudio.com/" class="link">Visual Studio Code: Multi-Purpose IDE</a>
-    <a href="https://visualstudio.microsoft.com/" class="link">Visual Studio (C#, ASP.NET, WinUI, and C++)</a>
-    <a href="https://www.jetbrains.com/idea/download/" class="link">IntelliJ: Multi-Purpose IDE</a>
-    <a href="https://plugins.jetbrains.com/plugin/7322-python-community-edition" class="link">IntelliJ Python Plugin</a>
-    <a href="https://plugins.jetbrains.com/plugin/12178-atom-onedark-theme" class="link">IntelliJ Atom OneDark Theme</a>
-    <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701" class="link">Windows Terminal</a>
+    <ul class="listUnordered">
+        <li>
+            <p>Although no great tutorials exist that I know of, C & C++ is essential to this day</p>
+        <li>
+            <a href="https://visualstudio.microsoft.com/" class="link">Visual Studio: Windows C++ IDE and Compiler</a>
+        </li>
+        <li>
+            <a href="https://releases.llvm.org/download.html" class="link">Clang: C & C++ Compiler</a>
+        </li>
+        <li>
+            <a href="http://winlibs.com/#download-release/" class="link">GCC compiler for Windows</a>
+        </li>
+        <li>
+            <a href="http://gnuwin32.sourceforge.net/packages/make.htm" class="link">Make for Windows</a>
+        </li>
+    </ul>
+    <h2>Video Game Development</h2>
+    <ul class="listUnordered">
+        <li><a href="https://godotengine.org/" class="link">Godot open-source game engine</a></li>
+        <li><a href="https://www.unrealengine.com/" class="link">Unreal Engine</a></li>
+        <li><a href="https://unity.com/" class="link">Unity</a></li>
+        <li><a href="https://create.roblox.com/" class="link">Roblox Creator Hub</a></li>
+        <li><a href="https://github.com/PaperMC/Paper?tab=readme-ov-file#paper-" class="link">Paper: Minecraft server</a></li>
+    </ul>
+    <h2>DevOps</h2>
+    <ul class="listUnordered">
+        <li>DigitalOcean [VPS]</li>
+        <li>Vultr [VPS]</li>
+        <li>Ubicloud: open-source AWS</li>
+    </ul>
+    <h2>Software for Software Development</h2>
+    <a href="https://docusaurus.io/" class="link">docs: docusaurus</a>
+    <a href="https://divviup.org/" class="link">Divvi Up</a>
+    <a href="https://app.arcade.software/" class="link">Arcade: interactive software demoing</a>
+    <a href="https://www.interviewcoder.co/" class="link">Interview coders: no one likes leetcode interviewing</a>
     <h2>Must Have Software</h2>
-    <a href="https://www.7-zip.org/download.html" class="link">7-Zip: File Archiver and Extractor</a>
-    <a href="https://www.qbittorrent.org/download.php" class="link">qBittorrent: BitTorrent Client</a>
-    <a href="https://draculatheme.com/qbittorrent" class="link">qBittorent Dracula Dark Theme</a>
-    <a href="https://github.com/elibroftw/music-caster/blob/master/README.md" class="link">Music Caster: A kickass music player for Windows & Linux</a>
-    <a href="https://www.balena.io/etcher/" class="link">Balena Etcher: Burn ISO files to USB</a>
-    <a href="https://microsoft.com/store/productId/9NV4BS3L1H4S" class="link">QuickLook: Preview Files With Spacebar</a>
-    <a href="/software/#google-dark-theme" class="link">Google Search & Drive Dark Theme</a>
-    <a href="https://keepassxc.org/download/" class="link">KeepassXC: offline password manager</a>
-    <a href="https://play.google.com/store/apps/details?id=keepass2android.keepass2android&hl=en_CA&gl=US" class="link">KeePass compatible Android app</a>
+    <ul class="listUnordered">
+        <li><a href="https://www.7-zip.org/download.html" class="link">7-Zip: File Archiver and Extractor</a></li>
+        <li><a href="https://localsend.org/" class="link">LocalSend</a></li>
+        <li><a href="https://www.qbittorrent.org/download.php" class="link">qBittorrent: BitTorrent Client</a></li>
+        <li><a href="https://draculatheme.com/qbittorrent" class="link">qBittorent Dracula Dark Theme</a></li>
+        <li><a href="https://github.com/proninyaroslav/libretorrent?tab=readme-ov-file#libretorrent" class="link">LibreTorrent: Torrent client for Android</a></li>
+        <li><a href="https://www.balena.io/etcher/" class="link">Balena Etcher: Burn ISO files to USB</a></li>
+        <li><a href="https://microsoft.com/store/productId/9NV4BS3L1H4S" class="link">QuickLook: Preview Files With Spacebar [Windows]</a></li>
+        <li><a href="https://keepassxc.org/download/" class="link">KeepassXC: offline password manager [Desktop]</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=keepass2android.keepass2android" class="link">Keepass2Android [Android]</a></li>
+        <li><a href="http://elijahlopez.ca/software/" class="link">My software</a></li>
+    </ul>
     <h2>Specific-Usecase Software & Websites</h2>
-    <a href="https://majorgeeks.com/files/details/keytweak.html" class="link">Keytweak: Rebind keys</a>
-    <a href="https://github.com/BtbN/FFmpeg-Builds/releases/" class="link">FFmpeg for Windows (latest commit, GPL, shared)</a>
-    <a href="https://send.fdab.se/" class="link">send.fdab: Simple file sharing</a>
-    <a href="https://gohugo.io/getting-started/installing/" class="link">Hugo: Blogging made easier</a>
-    <a href="https://www.partitionwizard.com/download.html" class="link">MiniTool Partition Wizard: Fix or Move Internal or External Partitions</a>
-    <a href="https://github.com/Genymobile/scrcpy" class="link">Mirror Android device to PC</a>
-    {# This has a memory leak: #}
-    {# <a href="https://github.com/debauchee/barrier/releases/" class="link">Barrier: Control all devices with on mouse/keyboard</a> #}
-    <s><a href="https://chrisandriessen.nl/taskbarx" class="link">Taskbar X: Better Taskbar for Windows 10</a></s>
-    <s><a href="https://microsoft.com/store/productId/9NBLGGH516XP" class="link">EarTrumpet: Windows Volume Controller</a></s>
-    <s><a href="https://microsoft.com/store/productId/9NBLGGH3ZBJQ" class="link">Ditto: Clipboard Manager</a></s>
+    <ul class="listUnordered">
+        <li><a href="https://majorgeeks.com/files/details/keytweak.html" class="link">Keytweak: Rebind keys</a></li>
+        <li><a href="https://www.ilovepdf.com/split_pdf" class="link">Split PDF</a></li>
+        <li><a href="https://github.com/BtbN/FFmpeg-Builds/releases/" class="link">FFmpeg for Windows (latest commit, GPL, shared)</a></li>
+        <li><a href="https://send.fdab.se/" class="link">send.fdab: Simple file sharing</a></li>
+        <li><a href="https://gohugo.io/getting-started/installing/" class="link">Hugo: Blogging made easier</a></li>
+        <li><a href="https://www.partitionwizard.com/download.html" class="link">MiniTool Partition Wizard: Fix or Move Internal or External Partitions</a></li>
+        <li><a href="https://github.com/Genymobile/scrcpy" class="link">scrcpy: Mirror Android device to PC</a></li>
+        <li><a href="https://penpot.app/" class="link">Penpot: Figma alternative</a></li>
+        <li><a href="https://www.photopea.com/" class="link">Online Photo Editor</a></li>
+        <li><a href="https://datproject.org/" class="link">dat and hypercore: P2P data sharing with the ability to append history</a></li>
+        <li><a href="https://standardnotes.com/help/self-hosting/getting-started/" class="link">Standard Notes: cross-platform self-hosted privacy focused encrypted note taking</a></li>
+        <li><a href="https://nextcloud.com/" class="link">Nextcloud: self hosted cloud</a></li>
+        <li><a href="https://www.boardy.ai/" class="link">Boardy: AI super connector</a></li>
+        <li><a href="https://metrodreamin.com/explore" class="link">metrodreamin: fantasy public transit</a></li>
+    </ul>
 </div>
 {% endblock %}

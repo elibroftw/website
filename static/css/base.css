@@ -123,7 +123,7 @@ p {
     font-family: Montserrat;
     color: #fff;
     font-weight: 400;
-    font-size: 18px
+    font-size: 1em;
 }
 
 #panel-text {
@@ -136,15 +136,35 @@ p {
     margin-left: 5%;
 }
 
+code {
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.listUnordered {
+    color: white;
+    list-style-type: disc;
+    font-family: Montserrat;
+}
+
+.list {
+    color: white;
+    list-style-type: decimal;
+    font-family: Montserrat;
+}
+
 .link {
     margin-top: 10px;
+}
+
+.link, .linkInline {
     text-decoration: none;
     color: #00bfff;
     transition-duration: 150ms;
     font-family: Montserrat;
 }
 
-.link:hover {
+.link:hover, .linkInline:hover {
     color: #00c44e
 }
 
@@ -262,7 +282,7 @@ p {
     background: #fff;
     font-family: Manrope;
     width: 8em;
-    font-size: 18px;
+    font-size: 1em;
     font-weight: 700;
     line-height: 34px;
     padding: 0 .5em 0 1em;
@@ -319,7 +339,7 @@ p {
     text-decoration: none;
     padding: 12px 0 12px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 1em;
     font-family: sans-serif;
     float: left;
     bottom: 0;
@@ -376,7 +396,7 @@ input:checked+.slider:before {
 .accordion {
     color: #141414;
     cursor: pointer;
-    padding: 18px;
+    padding: 1em;
     width: 85%;
     border: none;
     text-align: center;
