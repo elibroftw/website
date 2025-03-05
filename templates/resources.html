@@ -64,7 +64,7 @@
     <p>Read relevant awesome lists</p>
     <a href="https://thecopenhagenbook.com/" class="link">The Copenhagen Book</a>
     <a href="https://git-scm.com/downloads" class="link">Git: Version Control System (Code History)</a>
-    <p>Here are some git commands I need to use but are hard to remember</p>
+    <p>Git Advanced Cheat Codes</p>
     <ul class="list">
         <li>
             <a href="https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/" class="link">diff3</a>
@@ -99,6 +99,8 @@
                 </li>
                 <li>
                     <code>git reset $UNTOUCHED_COMMIT</code>
+                    <br>If you are resetting to the local HEAD of the branch you are merging from, you can use this instead
+                    <br><code>git reset $(git log main --format=%H | head -1)</code>
                 </li>
                 <li>
                     Commit your changes as desired
