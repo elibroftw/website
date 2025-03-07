@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<h1>{% block title %}QR Code Generator{% endblock %}</h1><br>
+<form action="/qr-code-generator" style="margin-bottom: 1em">
+    <input class="text-input" style="padding: 0.35em 1.2em;" id="text" type=text name=text placeholder="Text to encode" autofocus required>
+    <button class="ui-btn submit-btn" type="submit">Generate QR Code</button>
+</form>
+{% if image_data %}
+<img id="album-cover" src="data:image/png;base64,{{image_data}}" alt="your QR code"/>
+{% endif %}
+{% endblock %}

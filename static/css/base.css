@@ -756,3 +756,36 @@ input:checked+.slider:before {
         opacity: 0
     }
 }
+
+.text-input {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #fff;
+    margin: 0 0.5em 0.5em 0.5em;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Montserrat;
+    color: #fff;
+    transition: all 200ms;
+    background-color: transparent;
+}
+
+.text-input:hover, .text-input:active, .text-input:focus, .text-input:focus-within {
+    color: #000;
+    background-color: #fff;
+}
+
+@media all and (max-width:30em) {
+    .submit-btn {
+        display: block;
+        margin: 0.4em auto;
+        width: 13.1em;
+    }
+
+    .text-input {
+        display: block;
+        margin: 0.4em auto;
+        text-align: center;
+    }
+}

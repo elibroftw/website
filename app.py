@@ -3,6 +3,7 @@ import mimetypes
 import os
 import random
 import shutil
+import pyqrcode
 import threading
 import time
 import zipfile
@@ -191,6 +192,16 @@ def resources():
 @app.route("/articles/")
 def articles():
     return render_template("blog.html")
+
+
+@app.get("/qr-code-generator/")
+def qr_code():
+    text = request.args.get("text")
+    image_data = ''
+    if text is not None:
+        qr_code = pyqrcode.create(text)
+        image_data = qr_code.png_as_base64_str(scale=5, module_color=(255, 255, 255, 255), background=(18, 18, 18, 255))
+    return render_template("qr_code.html", image_data=image_data)
 
 
 @app.get("/search-album-art/")
