@@ -200,7 +200,7 @@ def qr_code():
     image_data = ''
     if text is not None:
         qr_code = pyqrcode.create(text)
-        image_data = qr_code.png_as_base64_str(scale=5, module_color=(255, 255, 255, 255), background=(18, 18, 18, 255))
+        image_data = qr_code.png_as_base64_str(scale=15, module_color=(0, 0, 0, 255), background=(255, 255, 255, 255), quiet_zone=1)
     return render_template("qr_code.html", image_data=image_data)
 
 
