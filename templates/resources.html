@@ -67,6 +67,22 @@
     <h2 id="git-advanced-tips">Git Advanced Tips</h2>
     <ul class="list">
         <li>
+            fix CRLF on Windows
+            <ul style="list-style: upper-roman;">
+                <li>
+                    Use LF line endings in your IDE (if you use Windows)
+                </li>
+                <li>
+                    Set autocrlf to input (check-out as is, check-in as is)
+                    <code>git config --global core.autocrlf input</code>
+                </li>
+                <li>
+                    If you have already checked out some repositories, ensure you have no unchanged changes and run:
+                    <code>git rm --cached -r . && git reset --hard</code>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/" class="link">diff3</a>
         </li>
         <li>
