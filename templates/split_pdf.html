@@ -71,6 +71,7 @@
     <div id="drop-area">
         <form class="my-form" action="/split-pdf/" method="POST" enctype="multipart/form-data">
             <p>Upload PDF via drag and drop or button</p>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <input type="text" name="template" placeholder="template{i}.pdf">
             <input name="file" required type="file" id="fileElem" accept=".pdf" onchange="onChange(this.files)">
             <label class="button" for="fileElem">Select PDF</label>

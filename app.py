@@ -10,7 +10,7 @@ import zipfile
 from contextlib import suppress
 from datetime import date, datetime
 from pathlib import Path
-
+from flask_wtf import CSRFProtect
 from flask import (
     Flask,
     make_response,
@@ -20,7 +20,7 @@ from flask import (
     send_file,
     send_from_directory,
     url_for,
-    Response
+    Response,
 )
 from flask_compress import Compress
 from flask_socketio import SocketIO, emit
@@ -67,6 +67,7 @@ with suppress(FileExistsError):
     os.mkdir(metadata_setter_dir)
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY'].encode()
 app.register_blueprint(tauri_releases_bp)
 app.register_blueprint(stripe_bp)
 app.jinja_env.lstrip_blocks = True
@@ -75,6 +76,7 @@ app.config["JSON_SORT_KEYS"] = False
 if not app.debug:
     app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 604800
 app.wsgi_app = ProxyFix(app.wsgi_app, x_host=1)
+csrf = CSRFProtect(app)
 Compress(app)
 socketio = SocketIO(app)
 
@@ -144,13 +146,13 @@ def index():
     return render_template("index.html")
 
 
-with open(Path(app.static_folder) / 'elijahllopezz@gmail.com.gpg') as f:
+with open(Path(app.static_folder) / "elijahllopezz@gmail.com.gpg") as f:
     GPG_KEY = f.read()
 
 
 @app.route("/gpg")
 def gpg():
-    return Response(GPG_KEY, mimetype='text/plain')
+    return Response(GPG_KEY, mimetype="text/plain")
 
 
 @app.route("/")
@@ -194,14 +196,19 @@ def articles():
     return render_template("blog.html")
 
 
-@app.get("/qr-code-generator/")
+@app.route("/qr-code-generator/", methods=["GET", "POST"])
 def qr_code():
-    text = request.args.get("text")
-    image_data = ''
+    text = request.form.get("text")
+    image_data = ""
     if text is not None:
         qr_code = pyqrcode.create(text)
-        image_data = qr_code.png_as_base64_str(scale=15, module_color=(0, 0, 0, 255), background=(255, 255, 255, 255), quiet_zone=1)
-    return render_template("qr_code.html", image_data=image_data)
+        image_data = qr_code.png_as_base64_str(
+            scale=15,
+            module_color=(0, 0, 0, 255),
+            background=(255, 255, 255, 255),
+            quiet_zone=1,
+        )
+    return render_template("qr_code.html", image_data=image_data, text=text)
 
 
 @app.get("/search-album-art/")
@@ -227,34 +234,36 @@ def delete_file(filename):
 
 @app.route("/metadata-setter/", methods=["GET", "POST"])
 def metadata_setter():
-    if request.method == "POST" and "file" in request.files:
-        file = request.files["file"]
-        if file.filename != "":
-            filename = secure_filename(file.filename)
-            save_name = filename.replace("_", " ")
-            save_path = os.path.join(metadata_setter_dir, save_name).replace("\\", "/")
-            file.save(save_path)
-            threading.Thread(
-                target=delete_file, args=(f"{metadata_setter_dir}/{save_name}",)
-            ).start()  # delete file in 10 minutes
-            try:
-                MetadataSetter.set_simple_meta(save_path)
-            except Exception as e:
-                return {
-                    "filename": save_name,
-                    "url": url_for("static", filename=f"metadataSetter/{save_name}"),
-                    "error": str(e),
-                }
-            return {
-                "filename": save_name,
-                "url": url_for("static", filename=f"metadataSetter/{save_name}"),
-            }
-    return render_template("metadata_setter.html")
+    return redirect('https://github.com/elibroftw/music-caster/')
+    # if request.method == "POST" and "file" in request.files:
+    #     file = request.files["file"]
+    #     if file.filename != "":
+    #         filename = secure_filename(file.filename)
+    #         save_name = filename.replace("_", " ")
+    #         save_path = os.path.join(metadata_setter_dir, save_name).replace("\\", "/")
+    #         file.save(save_path)
+    #         threading.Thread(
+    #             target=delete_file, args=(f"{metadata_setter_dir}/{save_name}",)
+    #         ).start()  # delete file in 10 minutes
+    #         try:
+    #             MetadataSetter.set_simple_meta(save_path)
+    #         except Exception as e:
+    #             return {
+    #                 "filename": save_name,
+    #                 "url": url_for("static", filename=f"metadataSetter/{save_name}"),
+    #                 "error": str(e),
+    #             }
+    #         return {
+    #             "filename": save_name,
+    #             "url": url_for("static", filename=f"metadataSetter/{save_name}"),
+    #         }
+    # return render_template("metadata_setter.html")
 
 
 @app.route("/metadata-setter/<filename>", methods=["GET", "POST"])
 def upload():
-    return str("file" in request.files)
+    return redirect('https://github.com/elibroftw/music-caster/')
+    # return str("file" in request.files)
 
 
 @app.route("/split-pdf/", methods=["GET", "POST"])
@@ -310,8 +319,8 @@ def combine_pdf():
     return render_template("combine_pdf.html")
 
 
-@app.route("/krunker/", methods=["GET"])
-@app.route("/krunker-stats/", methods=["GET"])
+@app.get("/krunker/")
+@app.get("/krunker-stats/")
 def krunker_stats():
     krunker_username = request.args.get("krunker-username")
     if krunker_username in (None, ""):
@@ -319,28 +328,28 @@ def krunker_stats():
     return redirect(f"https://krunker.io/social.html?p=profile&q={krunker_username}")
 
 
-@app.route("/shift/")
+@app.get("/shift/")
 def shift():
     return redirect("https://elijahlopez.itch.io/shift")
 
 
-@app.route("/projects/")
-@app.route("/software/")
+@app.get("/projects/")
+@app.get("/software/")
 def software():
     return render_template("software.html", title=request.path[1:-1].capitalize())
 
 
-@app.route("/consulting/")
+@app.get("/consulting/")
 def consulting():
     return render_template("consulting.html")
 
 
-@app.route("/cloud-copy/")
+@app.get("/cloud-copy/")
 def cloud_copy():
     return render_template("cloud_copy.html")
 
 
-@app.route("/music-caster/")
+@app.get("/music-caster/")
 def music_caster():
     if request.args and "args" in request.args:
         args = ";".join(request.args.getlist("args"))
@@ -367,7 +376,7 @@ def music_caster():
     return render_template("music_caster.html", images=images)
 
 
-@app.route("/rbhs/")
+@app.get("/rbhs/")
 def rbhs():
     global announcements
     today = date.today()
@@ -390,8 +399,8 @@ def rbhs():
     return render_template("rbhs.html", announcements=announcements)
 
 
-@app.route("/wlu-pool/")
-@app.route("/wlu-pool-schedule/")
+@app.get("/wlu-pool/")
+@app.get("/wlu-pool-schedule/")
 def wlu_pool_schedule():
     schedule = get_wlu_pool_schedule()
     resp = make_response(render_template("wlu_pool.html", schedule=schedule.items()))
@@ -399,8 +408,8 @@ def wlu_pool_schedule():
     return resp
 
 
-@app.route("/socketio/")
-@app.route("/socket/")
+@app.get("/socketio/")
+@app.get("/socket/")
 def socketio_example():
     return render_template("socket.html")
 
@@ -420,15 +429,15 @@ def socketio_disconnect():
     print("client disconnected")
 
 
-@app.route("/graphic-design/")
-@app.route("/creative-works/")
-@app.route("/creations/")
-@app.route("/wallpapers/")
+@app.get("/graphic-design/")
+@app.get("/creative-works/")
+@app.get("/creations/")
+@app.get("/wallpapers/")
 def creative_works():
     return render_template("creations.html")
 
 
-@app.route("/new-tab/")
+@app.get("/new-tab/")
 def new_tab():
     return render_template("new_tab.html")
 
