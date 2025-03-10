@@ -1,12 +1,14 @@
+import base64
 import io
 import mimetypes
 import os
 import random
 import shutil
-import pyqrcode
 import threading
 import time
+import segno
 import zipfile
+from PIL import Image
 from contextlib import suppress
 from datetime import date, datetime
 from pathlib import Path
@@ -132,13 +134,19 @@ def page_not_found(_):
 @app.get("/safari-pinned-tab.svg")
 @app.get("/favicon.ico")
 def favicons():
-    return send_from_directory(Path(app.static_folder) / "favicons", request.path[1:])
+    path = request.path[1:]
+    if not path:
+        return "", 404
+    return send_from_directory(str(Path(app.static_folder) / "favicons"), path)
 
 
 @app.route("/robots.txt")
 @app.route("/sitemap.xml")
 def static_from_root():
-    return send_from_directory(app.static_folder, request.path[1:])
+    path = request.path[1:]
+    if not path:
+        return "", 404
+    return send_from_directory(app.static_folder, path)
 
 
 @app.route("/index/")
@@ -146,19 +154,13 @@ def index():
     return render_template("index.html")
 
 
-with open(Path(app.static_folder) / "elijahllopezz@gmail.com.gpg") as f:
+with open(str(Path(app.static_folder) / "elijahllopezz@gmail.com.gpg")) as f:
     GPG_KEY = f.read()
 
 
 @app.route("/gpg")
 def gpg():
     return Response(GPG_KEY, mimetype="text/plain")
-
-
-@app.route("/")
-def home():
-    return render_template("home.html", welcome_msg="Ambitious ... without the time")
-
 
 @app.route("/about/")
 def about():
@@ -198,16 +200,42 @@ def articles():
 
 @app.route("/qr-code-generator/", methods=["GET", "POST"])
 def qr_code():
-    text = request.form.get("text")
+    text = request.form.get("text", "")
     image_data = ""
-    if text is not None:
-        qr_code = pyqrcode.create(text)
-        image_data = qr_code.png_as_base64_str(
-            scale=15,
-            module_color=(0, 0, 0, 255),
-            background=(255, 255, 255, 255),
-            quiet_zone=1,
-        )
+    if text:
+        out = io.BytesIO()
+        qr_code = segno.make(text)
+        qr_code.save(out, scale=20, border=1, kind='png')
+        out.seek(0)
+
+        # Handle logo if uploaded
+        if 'logo' in request.files:
+            logo_file = request.files['logo']
+            if logo_file.filename:
+                try:
+                    img = Image.open(out).convert('RGB')
+                    img_width, img_height = img.size
+                    logo_max_size = img_height // 3.5
+                    logo_img = Image.open(logo_file.stream)
+                    logo_img.thumbnail((logo_max_size, logo_max_size), Image.Resampling.LANCZOS)
+
+                    # Calculate position to center the logo
+                    box = ((img_width - logo_img.size[0]) // 2, (img_height - logo_img.size[1]) // 2)
+
+                    # Create a white background for the logo
+                    bg = Image.new('RGBA', logo_img.size, 'white')
+                    bg.paste(logo_img, (0, 0), logo_img)
+                    img.paste(bg, box)
+
+                    # Save the combined image
+                    out = io.BytesIO()
+                    img.save(out, format='PNG')
+                    out.seek(0)
+                except Exception as e:
+                    print(f"Error processing logo: {e}")
+
+        image_data = base64.b64encode(out.getvalue()).decode()
+
     return render_template("qr_code.html", image_data=image_data, text=text)
 
 
@@ -269,7 +297,8 @@ def upload():
 @app.route("/split-pdf/", methods=["GET", "POST"])
 def split_pdf():
     if request.method == "POST":
-        if "file" in request.files and request.files["file"].filename.endswith(".pdf"):
+        file = request.files.get("file")
+        if file and file.filename and file.filename.endswith(".pdf"):
             filename = secure_filename(request.files["file"].filename)[:-4]
             template = request.values.get("template", "")
             use_template = template.endswith(".pdf")
@@ -298,9 +327,8 @@ def split_pdf():
 @app.route("/combine-pdf/", methods=["GET", "POST"])
 def combine_pdf():
     if request.method == "POST":
-        if "files" in request.files and request.files["files"].filename.endswith(
-            ".pdf"
-        ):
+        files = request.files.get("files")
+        if files and files.filename and files.filename.endswith(".pdf"):
             filename = secure_filename(request.files["files"].filename)[:-4]  # default
             new_name = request.values.get("new-name", "")
             dl_name = (

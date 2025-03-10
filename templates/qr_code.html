@@ -1,12 +1,43 @@
 {% extends 'base.html' %}
+{% block style %}
+<style>
+    .button {
+        display: inline-block;
+        font-family: Montserrat;
+        font-weight: 100;
+        padding: 10px;
+        /* background: #ccc; */
+        background: -webkit-linear-gradient(45deg, rgba(30, 143, 255, 0.9), rgba(0, 128, 0, 0.9));
+        color: #eeeeee;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .button:hover {
+        background: linear-gradient(45deg, dodgerBlue, purple);
+    }
+
+    #fileElem {
+        display: none;
+    }
+</style>
+{% endblock %}
 {% block main_content %}
 <h1>{% block title %}QR Code Generator{% endblock %}</h1><br>
 <form action="/qr-code-generator" method="post" style="margin-bottom: 1em" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-    <input value="{{ text or '' }}" class="text-input" style="padding: 0.35em 1.2em;" id="text" type=text name=text placeholder="Text to encode" autofocus required>
+    <input value="{{ text or '' }}" class="text-input" style="padding: 0.35em 1.2em;" id="text" type=text name=text
+        placeholder="Text to encode" autofocus required>
+    <input id="fileElem" type="file" name="logo" accept="image/*">
+    <label class="button" for="fileElem">Upload Logo (optional)</label>
     <button class="ui-btn submit-btn" type="submit">Generate QR Code</button>
 </form>
 {% if image_data %}
-<img id="album-cover" download="qr-code.png" src="data:image/png;base64,{{image_data}}" alt="your QR code"/>
+<div>
+    <a class="button" style="text-decoration: none;" download="qr-code.png" href="data:image/png;base64,{{image_data}}"><i class="fa fa-download"></i> Download</a>
+    <br><br>
+    <img id="album-cover" download="qr-code.png" src="data:image/png;base64,{{image_data}}" alt="your QR code" />
+</div>
 {% endif %}
 {% endblock %}
