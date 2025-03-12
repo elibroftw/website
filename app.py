@@ -84,7 +84,9 @@ socketio = SocketIO(app)
 
 
 try:
-    head_rev = os.environ["HEROKU_SLUG_COMMIT"]
+    head_rev = os.getenv('COMMIT_SHA')
+    if head_rev is None:
+        head_rev = os.environ["HEROKU_SLUG_COMMIT"]
 except KeyError:
     head_rev = Repo(".").rev_parse("HEAD")
 

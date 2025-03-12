@@ -12,11 +12,11 @@ FROM almalinux:9-minimal
 # Define build arguments for secrets
 ARG SPOTIFY_CLIENT_ID
 ARG SPOTIFY_SECRET
-
+ARG COMMIT_SHA
 # Set environment variables
 ENV SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
 ENV SPOTIFY_SECRET=${SPOTIFY_SECRET}
-
+ENV COMMIT_SHA=${COMMIT_SHA}
 # Install Python and required system dependencies
 RUN microdnf install -y python3.9 python3.9-pip
 
