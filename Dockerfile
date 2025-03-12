@@ -45,5 +45,8 @@ COPY . .
 # Expose port 8000 (default for gunicorn)
 EXPOSE 8000
 
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -f http://localhost:8000/ || exit 1
+
 # Run gunicorn
 CMD ["gunicorn", "--config", "gunicorn.conf.py", "app:app"]
