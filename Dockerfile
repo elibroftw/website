@@ -18,7 +18,7 @@ ENV SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
 ENV SPOTIFY_SECRET=${SPOTIFY_SECRET}
 ENV COMMIT_SHA=${COMMIT_SHA}
 # Install Python and required system dependencies
-RUN microdnf install -y python3.9 python3.9-pip
+RUN microdnf install -y python3 python3-pip
 
 # Create symlinks for python and pip
 RUN ln -sf /usr/bin/python3.9 /usr/bin/python && \
@@ -48,5 +48,4 @@ EXPOSE 8000
 HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost:8000/ || exit 1
 
-# Run gunicorn
-CMD ["gunicorn", "--config", "gunicorn.conf.py", "app:app"]
+CMD ["gunicorn", "app:app"]

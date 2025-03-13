@@ -27,7 +27,6 @@ from flask import (
 from flask_compress import Compress
 from flask_socketio import SocketIO, emit
 from flask_caching import Cache
-from git import Repo
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from werkzeug.middleware.profiler import ProfilerMiddleware
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -88,7 +87,7 @@ try:
     if head_rev is None:
         head_rev = os.environ["HEROKU_SLUG_COMMIT"]
 except KeyError:
-    head_rev = Repo(".").rev_parse("HEAD")
+    head_rev = "dev"
 
 
 @app.context_processor
