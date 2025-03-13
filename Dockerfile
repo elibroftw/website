@@ -49,6 +49,9 @@ COPY . .
 # Expose port 8000 (default for gunicorn)
 EXPOSE 8000
 
+# test if configured properly
+RUN SERVER_ID=1 python -c "import app"
+
 HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost:8000/ || exit 1
 
