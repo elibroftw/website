@@ -100,13 +100,6 @@ def get_style_links():
 
 
 # @app.before_request
-# def force_https():
-#     if not request.is_secure and not app.debug and request.path != "/music-caster/":
-#         url = request.url.replace("http://", "https://", 1)
-#         return redirect(url, code=301)
-
-
-# @app.before_request
 # def save_ip():
 #     requested_url = request.url
 #     if 'static' not in requested_url and 'visitors' not in requested_url and 'favicon' not in requested_url:
