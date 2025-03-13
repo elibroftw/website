@@ -13,10 +13,12 @@ FROM almalinux:9-minimal
 ARG SPOTIFY_CLIENT_ID
 ARG SPOTIFY_SECRET
 ARG COMMIT_SHA
+ARG STRIPE_API_KEY
 # Set environment variables
 ENV SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
 ENV SPOTIFY_SECRET=${SPOTIFY_SECRET}
 ENV COMMIT_SHA=${COMMIT_SHA}
+ENV STRIPE_API_KEY=${STRIPE_API_KEY}
 # Install Python and required system dependencies
 RUN microdnf install -y python3 python3-pip
 

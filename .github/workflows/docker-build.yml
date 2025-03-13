@@ -48,3 +48,4 @@ jobs:
             SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}
             SPOTIFY_SECRET=${{ secrets.SPOTIFY_SECRET }}
             COMMIT_SHA=${{ github.sha }}
+            STRIPE_API_KEY=${{ secrets.STRIPE_API_KEY }}
