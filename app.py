@@ -159,6 +159,11 @@ with open(str(Path(app.static_folder) / "elijahllopezz@gmail.com.gpg")) as f:
     GPG_KEY = f.read()
 
 
+@app.route("/")
+def home():
+    return render_template("home.html", welcome_msg="Ambitious ... without the time")
+
+
 @app.route("/gpg")
 def gpg():
     return Response(GPG_KEY, mimetype="text/plain")
