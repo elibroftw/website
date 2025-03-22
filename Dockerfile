@@ -24,10 +24,6 @@ ENV SECRET_KEY=${SECRET_KEY}
 # Install Python and required system dependencies
 RUN microdnf install -y python3 python3-pip
 
-# Create symlinks for python and pip
-RUN ln -sf /usr/bin/python3.9 /usr/bin/python && \
-    ln -sf /usr/bin/pip3.9 /usr/bin/pip
-
 # Add Python and pip binary locations to PATH
 ENV PATH="/usr/local/bin:${PATH}"
 
@@ -46,7 +42,6 @@ COPY --from=react-builder /react-app/dist ./react-app/dist
 # Copy application code (node_modules excluded via .dockerignore)
 COPY . .
 
-# Expose port 8000 (default for gunicorn)
 EXPOSE 8000
 
 # test if configured properly
