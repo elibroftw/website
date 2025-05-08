@@ -167,6 +167,10 @@
             Reset a file to a commit SHA
             <br><code>git checkout $COMMIT_SHA -- path/to/file</code>
         </li>
+        <li>
+            Revert the last 3 commits in a single commit (avoids reverting manually in reverse)
+            <br><code>git revert --no-commit HEAD~3..</code>
+        </li>
     </ul>
     <a href="https://desktop.github.com/" class="link">GitHub Desktop: GUI for git</a>
     <p>I recommend learning to do everything within an IDE like VSCode</p>
