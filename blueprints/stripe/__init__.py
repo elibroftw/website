@@ -3,7 +3,6 @@ from flask import Blueprint, Response, render_template, redirect, url_for, reque
 import time
 from pymongo.collection import ObjectId, ReturnDocument
 import stripe
-import stripe.error
 import os
 from fx import price_as
 from multiprocessing import Process
