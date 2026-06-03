@@ -371,6 +371,46 @@ def consulting():
     return render_template("consulting.html")
 
 
+# name, address, category (Outdoor | Indoor | Trails)
+# Source: https://www.toronto.ca/explore-enjoy/parks-recreation/program-activities/sports/skateboarding-bmx-mountain-biking/
+SKATE_LOCATIONS = [
+    {"name": "Beach Skatepark", "address": "1420 Lake Shore Blvd. E.", "category": "Outdoor"},
+    {"name": "Ellesmere Skatepark", "address": "20 Canadian Rd.", "category": "Outdoor"},
+    {"name": "Neilson Skatepark", "address": "1555 Neilson Rd.", "category": "Outdoor"},
+    {"name": "Vanderhoof Skatepark", "address": "135 Vanderhoof Ave.", "category": "Outdoor"},
+    {"name": "Cummer Skatepark", "address": "6000 Leslie St.", "category": "Outdoor"},
+    {"name": "Dufferin Grove Skatepark", "address": "875 Dufferin Park Ave.", "category": "Outdoor"},
+    {"name": "Dunbat Skatepark", "address": "275 Bathurst St.", "category": "Outdoor"},
+    {"name": "East York Skatepark", "address": "373 Cedarvale Ave.", "category": "Outdoor"},
+    {"name": "Fundy Bay Skatepark", "address": "190 Fundy Bay Blvd.", "category": "Outdoor"},
+    {"name": "Jordon Carter Memorial Park", "address": "160 Eighth St.", "category": "Outdoor"},
+    {"name": "Joyce Trimmer Park Skatepark", "address": "8450 Sheppard Ave. E.", "category": "Outdoor"},
+    {"name": "Lawrence Heights Skatepark", "address": "640 Lawrence Ave. W.", "category": "Outdoor"},
+    {"name": "Port Union Skatepark", "address": "5450 Lawrence Ave. E.", "category": "Outdoor"},
+    {"name": "Smithfield Skatepark", "address": "175 Mount Olive Dr.", "category": "Outdoor"},
+    {"name": "Underpass Skatepark", "address": "33 St. Lawrence St.", "category": "Outdoor"},
+    {"name": "Weston Lions Skatepark", "address": "2125 Lawrence Ave. W.", "category": "Outdoor"},
+    {"name": "West Lodge Skatepark", "address": "165 Lansdowne Ave.", "category": "Outdoor"},
+    {"name": "Jimmie Simpson Recreation Centre", "address": "870 Queen St. E.", "category": "Indoor"},
+    {"name": "Phil White Arena", "address": "443 Arlington Ave.", "category": "Indoor"},
+    {"name": "Bayview Arena Bike Park", "address": "3230 Bayview Ave.", "category": "Trails"},
+    {"name": "Centennial Park Pan Am BMX Centre", "address": "165 Centennial Park Blvd.", "category": "Trails"},
+    {"name": "Crothers Woods", "address": "27 Redway Rd.", "category": "Trails"},
+    {"name": "Sunnyside Bike Park", "address": "3 Ellis Ave.", "category": "Trails"},
+    {"name": "Wallace Emerson BMX Park", "address": "1260 Dufferin St.", "category": "Trails"},
+]
+
+
+@app.get("/skateboarding/")
+@app.get("/skateboarding-toronto/")
+def skateboarding_toronto():
+    return render_template(
+        "skateboarding_toronto.html",
+        locations=SKATE_LOCATIONS,
+        maps_api_key=os.environ.get("GOOGLE_MAPS_API_KEY", ""),
+    )
+
+
 @app.get("/cloud-copy/")
 def cloud_copy():
     return render_template("cloud_copy.html")

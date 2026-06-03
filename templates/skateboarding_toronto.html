@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% block metaDescription %}
+<meta name="description" content="An interactive map of every skateboarding, BMX and mountain biking spot in Toronto — outdoor skateparks, indoor parks and trails, colour-coded with optional 'find me' location.">
+{% endblock %}
+{% block style %}
+<style>
+    #map {
+        width: 100%;
+        height: 70vh;
+        min-height: 420px;
+        border-radius: 8px;
+        margin-top: 1em;
+    }
+
+    #map-status {
+        margin-top: 0.5em;
+        opacity: 0.8;
+        font-size: 0.9em;
+    }
+
+    .map-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5em;
+        align-items: center;
+        margin-top: 1em;
+    }
+
+    .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        align-items: center;
+    }
+
+    .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+        white-space: nowrap;
+    }
+
+    .legend-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    .legend-dot.outdoor { background: #2ecc40; }
+    .legend-dot.indoor  { background: #0074d9; }
+    .legend-dot.trails  { background: #ff851b; }
+
+    .locate-btn {
+        font-family: Montserrat;
+        font-weight: 100;
+        padding: 8px 16px;
+        background: -webkit-linear-gradient(45deg, rgba(30, 143, 255, 0.9), rgba(0, 128, 0, 0.9));
+        color: #eeeeee;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .locate-btn:hover {
+        background: linear-gradient(45deg, dodgerBlue, purple);
+    }
+
+    .gm-info-title { font-weight: bold; margin-bottom: 2px; }
+    .gm-info-body { color: #333; }
+    .gm-info-body a { color: #0074d9; }
+</style>
+{% endblock %}
+{% block main_content %}
+<h1>{% block title %}Skateboarding Toronto{% endblock %}</h1>
+<p>Every City of Toronto skateboarding, BMX and mountain-biking spot on one map. Click a marker for the
+    address and directions. Use <strong>Find me</strong> to drop your location and see what's closest.</p>
+
+<div class="map-controls">
+    <button id="locate-btn" class="locate-btn" type="button">📍 Find me</button>
+    <div class="legend">
+        <span class="legend-item"><span class="legend-dot outdoor"></span> Outdoor ({{ locations | selectattr('category', 'equalto', 'Outdoor') | list | length }})</span>
+        <span class="legend-item"><span class="legend-dot indoor"></span> Indoor ({{ locations | selectattr('category', 'equalto', 'Indoor') | list | length }})</span>
+        <span class="legend-item"><span class="legend-dot trails"></span> Trails / BMX ({{ locations | selectattr('category', 'equalto', 'Trails') | list | length }})</span>
+    </div>
+</div>
+
+<div id="map"></div>
+<div id="map-status"></div>
+{% endblock %}
+{% block script %}
+{% if not maps_api_key %}
+<script>
+    document.getElementById('map').innerHTML =
+        '<p style="padding:1em">⚠️ The map needs a Google Maps API key. Set the ' +
+        '<code>GOOGLE_MAPS_API_KEY</code> environment variable to enable it.</p>';
+    document.getElementById('locate-btn').style.display = 'none';
+</script>
+{% else %}
+<script>
+    const LOCATIONS = {{ locations | tojson }};
+    const TORONTO = { lat: 43.7001, lng: -79.4163 };
+
+    const PIN_COLORS = {
+        Outdoor: 'green',
+        Indoor: 'blue',
+        Trails: 'orange',
+    };
+    const pinIcon = (color) =>
+        `https://maps.google.com/mapfiles/ms/icons/${color}-dot.png`;
+
+    let map, geocoder, infoWindow, userMarker;
+
+    const statusEl = document.getElementById('map-status');
+    const setStatus = (msg) => { statusEl.textContent = msg; };
+
+    // Geocode an address once, then cache the result in localStorage so we
+    // don't re-hit the Geocoding API on every page load.
+    function geocodeCached(address) {
+        const key = 'skate-geo:' + address;
+        const cached = localStorage.getItem(key);
+        if (cached) return Promise.resolve(JSON.parse(cached));
+        return new Promise((resolve) => {
+            geocoder.geocode(
+                { address: address + ', Toronto, ON, Canada' },
+                (results, status) => {
+                    if (status === 'OK' && results[0]) {
+                        const loc = results[0].geometry.location;
+                        const coords = { lat: loc.lat(), lng: loc.lng() };
+                        localStorage.setItem(key, JSON.stringify(coords));
+                        resolve(coords);
+                    } else if (status === 'OVER_QUERY_LIMIT') {
+                        // back off and retry once
+                        setTimeout(() => geocodeCached(address).then(resolve), 1500);
+                    } else {
+                        console.warn('Geocode failed for', address, status);
+                        resolve(null);
+                    }
+                }
+            );
+        });
+    }
+
+    function addMarker(loc, coords) {
+        const marker = new google.maps.Marker({
+            position: coords,
+            map,
+            title: loc.name,
+            icon: pinIcon(PIN_COLORS[loc.category] || 'red'),
+        });
+        const directions =
+            'https://www.google.com/maps/dir/?api=1&destination=' +
+            encodeURIComponent(loc.address + ', Toronto, ON');
+        const html =
+            `<div class="gm-info-title">${loc.name}</div>` +
+            `<div class="gm-info-body">${loc.category}<br>${loc.address}<br>` +
+            `<a href="${directions}" target="_blank" rel="noopener">Directions →</a></div>`;
+        marker.addListener('click', () => {
+            infoWindow.setContent(html);
+            infoWindow.open(map, marker);
+        });
+        return marker;
+    }
+
+    async function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: TORONTO,
+            zoom: 11,
+        });
+        geocoder = new google.maps.Geocoder();
+        infoWindow = new google.maps.InfoWindow();
+
+        const bounds = new google.maps.LatLngBounds();
+        let placed = 0;
+        setStatus('Loading spots…');
+
+        // Sequential so we stay well under the geocoding rate limit on first load.
+        for (const loc of LOCATIONS) {
+            const coords = await geocodeCached(loc.address);
+            if (coords) {
+                addMarker(loc, coords);
+                bounds.extend(coords);
+                placed += 1;
+            }
+        }
+
+        if (placed > 0) map.fitBounds(bounds);
+        setStatus(`Showing ${placed} of ${LOCATIONS.length} spots.`);
+
+        document.getElementById('locate-btn').addEventListener('click', locateUser);
+    }
+
+    function locateUser() {
+        if (!navigator.geolocation) {
+            setStatus('Geolocation is not supported by your browser.');
+            return;
+        }
+        setStatus('Locating you…');
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const here = {
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude,
+                };
+                if (userMarker) userMarker.setMap(null);
+                userMarker = new google.maps.Marker({
+                    position: here,
+                    map,
+                    title: 'You are here',
+                    icon: pinIcon('red'),
+                    zIndex: 9999,
+                    animation: google.maps.Animation.DROP,
+                });
+                map.setCenter(here);
+                map.setZoom(13);
+                setStatus('Centred on your location.');
+            },
+            (err) => {
+                setStatus('Could not get your location: ' + err.message);
+            }
+        );
+    }
+</script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key={{ maps_api_key }}&callback=initMap&loading=async">
+</script>
+{% endif %}
+{% endblock %}
