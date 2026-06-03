@@ -1,6 +1,6 @@
 # This file is licensed under CC0 Universal 1.0
 import requests
-from helpers import time_cache
+from modules.helpers import time_cache
 
 
 # use at most 15 minute old exchange rate

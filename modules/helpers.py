@@ -8,11 +8,14 @@ from bs4 import BeautifulSoup
 from pprint import pprint  # FOR DEBUGGING: DO NOT REMOVE
 from contextlib import suppress
 from functools import lru_cache, wraps
+import threading
 import time
 from dotenv import load_dotenv
 from fake_headers import Headers
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 for key in {'SPOTIFY_CLIENT_ID', 'SPOTIFY_SECRET', 'GOOGLE_API'}:
     if key not in os.environ:
@@ -35,6 +38,62 @@ def time_cache(max_age, maxsize=None, typed=False):
         @wraps(fn)
         def _wrapped(*args, **kwargs):
             return _new(*args, **kwargs, __time_salt=int(time.time() / max_age))
+
+        return _wrapped
+
+    return _decorator
+
+
+def background_refresh(interval, default=None):
+    """Decorator that refreshes a fetcher's result in a background thread.
+
+    A daemon thread calls the wrapped function every `interval` seconds and stores the
+    result. The wrapped function itself just returns the last cached value, so callers
+    (e.g. request handlers) never block on the fetch.
+
+    Works for both zero-arg fetchers and ones taking (hashable) arguments: each distinct
+    set of arguments gets its own cached value and its own refresh thread, started lazily
+    on the first call with those arguments.
+
+    Args:
+        interval: Seconds between background refreshes.
+        default: Value returned before the first successful fetch completes. If callable,
+            it is called to produce the initial value (e.g. `dict` for an empty mapping).
+    """
+
+    def _decorator(fn):
+        cache = {}  # args-key -> last good value (presence also marks "thread spawned")
+        lock = threading.Lock()
+
+        def _spawn(key, args, kwargs):
+            thread_name = f'{fn.__name__}-refresh'
+            def _loop():
+                logger.info('started thread %s: args = (%s) kwargs = %s) {args}', thread_name, *args, **kwargs)
+                while True:
+                    try:
+                        value = fn(*args, **kwargs)
+                    except Exception:
+                        logger.exception('background_refresh(%s, %s, %s) failed', fn.__name__, *args, **kwargs)
+                        value = None
+                    if value:  # keep the last good value instead of clobbering on a failed fetch
+                        with lock:
+                            logger.info('%s: args = %s cache updated key = %s', thread_name, args, key)
+                            cache[key] = value
+                    time.sleep(interval)
+
+            threading.Thread(target=_loop, name=thread_name, daemon=True).start()
+
+        @wraps(fn)
+        def _wrapped(*args, **kwargs):
+            key = (args, tuple(sorted(kwargs.items())))
+            with lock:
+                is_new = key not in cache
+                if is_new:
+                    cache[key] = default() if callable(default) else default
+            if is_new:  # first call for these args: kick off its refresh thread
+                _spawn(key, args, kwargs)
+            with lock:
+                return cache[key]
 
         return _wrapped
 
@@ -82,7 +141,7 @@ def get_announcements():
     return announcements  # [ [TITLE, DESC], [TITLE, DESC] ]
 
 
-@time_cache(60 * 60 * 12)
+@background_refresh(60 * 60 * 12, default=dict)
 def get_wlu_pool_schedule() -> dict:
     """Scrapes a list of timings for each day (order is Sunday to Saturday)
         from the laurier athletics website and
@@ -101,6 +160,9 @@ def get_wlu_pool_schedule() -> dict:
             if timing.text:
                 schedule[day].append(timing.text.strip())
     return schedule
+
+
+get_wlu_pool_schedule()  # prime the cache / start its refresh thread at import (non-blocking)
 
 
 def wlu_gym_schedule_scraper():

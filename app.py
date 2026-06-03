@@ -6,36 +6,38 @@ import random
 import shutil
 import threading
 import time
-import segno
 import zipfile
-from PIL import Image
 from contextlib import suppress
 from datetime import date, datetime
 from pathlib import Path
-from flask_wtf import CSRFProtect
+
+import segno
 from flask import (
     Flask,
+    Response,
     make_response,
     redirect,
     render_template,
     request,
     send_file,
     send_from_directory,
-    url_for,
-    Response,
 )
+from flask_caching import Cache
 from flask_compress import Compress
 from flask_socketio import SocketIO, emit
-from flask_caching import Cache
+from flask_wtf import CSRFProtect
+from PIL import Image
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from werkzeug.middleware.profiler import ProfilerMiddleware
 from werkzeug.middleware.proxy_fix import ProxyFix
+from werkzeug.serving import is_running_from_reloader
 from werkzeug.utils import secure_filename
 
 import metadata_setter as MetadataSetter
 from blueprints.stripe import stripe_bp
-from blueprints.tauri_releases import tauri_releases_bp
-from helpers import get_album_art, get_announcements, get_wlu_pool_schedule
+from blueprints.tauri_releases import bp as tauri_releases_bp
+from blueprints.tauri_releases import start_gh_release_checkers
+from modules.helpers import get_album_art, get_announcements, get_wlu_pool_schedule
 
 # import psycopg2
 # compress is a fallback
@@ -581,6 +583,11 @@ if __name__ == "__main__" or app.debug:
     port = 5001
     print(f"Running on http://{host}:{port}")
 
+def on_starting(_):
+    start_gh_release_checkers()
+
 if __name__ == "__main__":
     app.run(debug=True, host=host, port=port)
+    if is_running_from_reloader():
+        on_starting(app)
     # socketio.run(app, debug=True, host='', port=5000)

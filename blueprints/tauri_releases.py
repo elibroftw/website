@@ -1,27 +1,37 @@
-# This file can be copoied/modified without any attribution or license inclusion
+# This file can be copied/modified without any attribution or license inclusion
 # It is licensed under CC0 1.0 https://creativecommons.org/publicdomain/zero/1.0/
-# See helpers.py for time_cache implementation which is from stackoverflow
 
-from flask import Blueprint, Response, render_template
-from helpers import time_cache
+import logging
+
 import requests
+from flask import Blueprint
 
-tauri_releases_bp = Blueprint('tauri_releases', __name__, url_prefix='/tauri-releases', template_folder='blueprints/tauri_releases/templates')
+from modules.helpers import background_refresh
+
+logger = logging.getLogger(__name__)
+
+bp = Blueprint('tauri_releases', __name__, url_prefix='/tauri-releases', template_folder='blueprints/tauri_releases/templates')
 
 GOOGLE_KEEP_DESKTOP_REPO = 'elibroftw/google-keep-desktop-app'
+MUSIC_CASTER_REPO = 'elibroftw/music-caster'
+REPOS = (GOOGLE_KEEP_DESKTOP_REPO, MUSIC_CASTER_REPO)
 
 PLATFORMS = [ # platform, extension
-    (('linux-x86_64',), 'amd64.AppImage.tar.gz'),
+    (('linux-x86_64', 'linux-aarch64'), 'amd64.AppImage.tar.gz'),
     (('darwin-x86_64', 'darwin-aarch64'), 'app.tar.gz'),
-    (('windows-x86_64',), 'x64_en-US.msi.zip'),
+    (('windows-x86_64', 'windows-aarch64'), 'x64_en-US.msi.zip'),
+    (('windows-aarch64'), 'arm64_en-US.msi.zip'),
 ]
 
-@time_cache(60 * 5)  # every 5 minutes
-def get_latest_gh_release(repo) -> dict:
+REFRESH_INTERVAL = 60 * 5  # 5 minutes
+
+
+def _fetch_latest_gh_release(repo) -> dict:
+    logger.info('running _fetch_latest_gh_release')
     """
         repo: username/project-name
         Return format:
-        Note darwin-aarch64 is silicon macOS. Supposed to seperate file but assumed that x64 would work due to Rosetta Stone 2
+        Note darwin-aarch64 is silicon macOS. Supposed to separate file but assumed that x64 would work due to Rosetta Stone 2
         {
           "version": "v1.0.8",  (can be any string)
           "notes": "- Test updater",
@@ -50,12 +60,18 @@ def get_latest_gh_release(repo) -> dict:
     try:
         release = requests.get(github_latest_release_url).json()
     except requests.RequestException:
+        logger.exception('Failed to fetch latest GitHub release for %s', repo)
         return {}
-    release_response = {
-        'version': release['tag_name'],
-        'notes': release['body'].removesuffix('See the assets to download this version and install.').rstrip('\r\n '),
-        'pub_date': release['published_at'],
-        'platforms': {}}
+    try:
+        release_response = {
+            'version': release['tag_name'],
+            'notes': release['body'].removesuffix('See the assets to download this version and install.').rstrip('\r\n '),
+            'pub_date': release['published_at'],
+            'platforms': {}}
+    except (KeyError, TypeError):
+        # Malformed payload (e.g. GitHub rate limit / error returns a {"message": ...} dict).
+        logger.warning('Unexpected GitHub release payload for %s: %r', repo, release)
+        return {}
     for asset in release.get('assets', []):
         for for_platforms, extension in PLATFORMS:
             if asset['name'].endswith(extension):
@@ -65,18 +81,41 @@ def get_latest_gh_release(repo) -> dict:
                 try:
                     sig = requests.get(asset['browser_download_url']).text
                 except requests.RequestException:
+                    logger.exception('Failed to fetch signature for %s asset %s', repo, asset['name'])
                     sig = ''
                 for platform in for_platforms:
                     release_response['platforms'][platform] = {**release_response['platforms'].get(platform, {}), 'signature': sig}
     return release_response
 
 
-@tauri_releases_bp.route('/google-keep-desktop/<platform>/<current_version>')
-def google_keep_desktop_api(platform, current_version):
-    latest_release = get_latest_gh_release(GOOGLE_KEEP_DESKTOP_REPO)
+# TODO: REDIS CACHE to persist between app runs
+@background_refresh(REFRESH_INTERVAL, default=dict)
+def get_latest_gh_release(repo) -> dict:
+    """Latest GitHub release for `repo`, refreshed in a background thread per repo.
+
+    Non-blocking: returns the last good fetch, or an empty dict until the first
+    fetch for `repo` succeeds (e.g. on a cold start). See `_fetch_latest_gh_release`
+    for the payload shape.
+    """
+    return _fetch_latest_gh_release(repo)
+
+
+def start_gh_release_checkers():
+    for repo in REPOS:
+        get_latest_gh_release(repo)
+
+
+def latest_release_for_updater(repo, platform, current_version):
+    """Shared Tauri updater response: return the latest release for `repo`, or 204 if up-to-date/unavailable.
+
+    A 204 tells the Tauri updater there is nothing to install.
+    """
+    latest_release = get_latest_gh_release(repo)
     if not latest_release:
-        # GH API request failed in get_latest_release for GKD
+        # Cache is empty: the background fetch for `repo` has not yet succeeded (cold start or
+        # repeated GitHub failures, which _fetch_latest_gh_release logs).
         # TODO: Push Discord or Element notification (max once) if request failed
+        logger.warning('No cached release for %s; serving 204 to updater', repo)
         return '', 204
     try:
         # version checks
@@ -91,7 +130,22 @@ def google_keep_desktop_api(platform, current_version):
     return latest_release
 
 
-@tauri_releases_bp.route('/google-keep-desktop/')
+@bp.route('/google-keep-desktop/<platform>/<current_version>')
+def google_keep_desktop_api(platform, current_version):
+    return latest_release_for_updater(GOOGLE_KEEP_DESKTOP_REPO, platform, current_version)
+
+
+@bp.route('/music-caster/<platform>/<current_version>')
+def music_caster_api(platform, current_version):
+    return latest_release_for_updater(MUSIC_CASTER_REPO, platform, current_version)
+
+
+@bp.route('/google-keep-desktop/')
 def google_keep_desktop_page():
     # TODO: Download Links Page
     return '', 404
+
+
+@bp.route('/healthz/')
+def healthz():
+    return { repo: get_latest_gh_release(repo) for repo in REPOS }
