@@ -7,7 +7,7 @@ Flask-SocketIO~=5.3
 Flask-Caching
 gunicorn[gthread]>=22.0.0; sys_platform != 'win32'
 idna
-Markdown===3.3.4
+Markdown===3.10.2
 MarkupSafe~=2.0
 Pillow>=10.0
 requests>=2.26.0
