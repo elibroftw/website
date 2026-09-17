@@ -1,13 +1,13 @@
-# Build stage for React app
-FROM node:20-slim AS react-builder
+# react build stage
+FROM node:24-slim AS react-builder
 WORKDIR /react-app
-COPY react-app/package*.json ./
-RUN npm install
+COPY react-app/package.json react-app/pnpm-lock.yaml ./
+RUN corepack enable && pnpm install --frozen-lockfile
 COPY react-app/ .
-RUN npm run build
+RUN pnpm run build
 
-# Final stage with AlmaLinux minimal
-FROM almalinux:9-minimal
+# final stage
+FROM almalinux:10-minimal
 
 # Define build arguments for secrets
 ARG SPOTIFY_CLIENT_ID
