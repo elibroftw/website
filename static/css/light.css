@@ -1,5 +1,5 @@
 body {
-    background-image: url("/static/images/banff_river.webp"), linear-gradient(#2980B9, #6DD5FA);
+    background-image: url("../images/banff_river.webp"), linear-gradient(#2980B9, #6DD5FA);
     background-position: center;
     background-repeat: no-repeat, repeat;
     background-size: cover;
@@ -28,7 +28,7 @@ body {
 
 /* @media screen and (max-width:690px) {
     body {
-        background-image: url("/static/images/dark.webp"), linear-gradient(#00161f, #006c9e);
+        background-image: url("../images/dark.webp"), linear-gradient(#00161f, #006c9e);
         background-repeat: repeat-y;
     }
 } */

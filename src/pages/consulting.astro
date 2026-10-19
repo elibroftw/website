@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const cases = [
+  {
+    id: 'rwi',
+    title: 'RUNWITHIT Synthetics',
+    body: 'RWI needed help to grow, our recommendation: target the pre-clinical trials industry',
+    links: [
+      { href: 'https://mega.nz/file/QFJDCSwK#xuJ8XXbK2JFgPJMtXGMz3Ui8FNAodDopz8BASr4TtlY', label: 'View Report' },
+      { href: 'https://mega.nz/file/JFAGlYwR#3JdonvRVWI_SfJRqKHz09BUZUxBBwQh2idWvu1Sf8CM', label: 'View Slide Deck' },
+    ],
+  },
+  {
+    id: 'canopy-growth',
+    title: 'Canopy Growth X Martha Stewart',
+    body: "How can Canopy Growth and Martha Stewart effectively partner up? Our recommendation: target Martha Stewart's audience with magazine vouchers to reduce the stigma of edibles",
+    links: [
+      { href: 'https://mega.nz/file/4Fpg3bpb#65KNNEwlyu2PD-JgQiMVRieXDkwuYJgxghhITzTgqvE', label: 'View Report' },
+      { href: 'https://mega.nz/file/xFAVmSaR#OJEdFDJxYleldEa-1H8rLYCkOwyrMVhzs50y3f3lxxY', label: 'View Slide Deck' },
+    ],
+  },
+  {
+    id: 'canadian-shield',
+    title: 'InkSmith: The Canadian Shield',
+    body: 'What changes can The Canadian Shield make as the pandemic comes to an end? We recommend to focus on innovation and branch the core-tech into other fields',
+    links: [
+      { href: 'https://mega.nz/file/wQYxCajD#k_nENQTyFXFaVgDoLdmEUvSAnuBJF54UA0Nmavshq0M', label: 'View Report' },
+      { href: 'https://mega.nz/file/UJpzWKKB#MH1lIkUCA9VOmRwqTNwZHEIqCe8VEgltDrj5edITdRg', label: 'View Slide Deck' },
+    ],
+  },
+  {
+    id: 'hp',
+    title: 'HP',
+    body: "How should HP's paper & photo printing division respond to consumer trends? Our recommendation: Starbucks partnership",
+    links: [
+      { href: 'https://1drv.ms/w/s!AnQNFW1ohAx2iPU8S4kjIsWP7a0sRw?e=p11Pme', label: 'View Executive Summary' },
+      { href: 'https://1drv.ms/p/s!AnQNFW1ohAx2iPVCerNhuz5AADbsKw?e=jBafHf', label: 'View Slide Deck' },
+    ],
+  },
+  {
+    id: 'new-venture-ecoceipt',
+    title: 'New Venture: Eco-Ceipt',
+    body: 'A new venture to digitize receipts in businesses and reduce pollution and receipt paper toxins',
+    links: [
+      { href: 'https://mega.nz/file/4FZBzZKY#liAHn5l3jIEjPVI8dvFmKd4ii53zmh3W7Dzdn35uE5M', label: 'View Report' },
+      { href: 'https://mega.nz/file/4dIWVbDS#652w6gDc0FCjInMBqFnFdcC1UPggRzJWpMttANHmRKk', label: 'View Slide Deck' },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Consulting">
+  <h1>Consulting</h1>
+  <p>A collection of my consulting or business related cases</p>
+  {cases.map((item) => (
+    <>
+      <button class="accordion" id={item.id}>{item.title}</button>
+      <div class="panel">
+        <p id="panel-text">{item.body}</p>
+        <div class="row">
+          {item.links.map((link, index) => (
+            <>
+              {index > 0 ? <div class="divider"></div> : null}
+              <a class="downloadBtn" href={link.href}>
+                <i class="fa fa-download"></i> {link.label}
+              </a>
+            </>
+          ))}
+        </div>
+      </div>
+    </>
+  ))}
+</BaseLayout>
+
+<script>
+  import { initAccordions } from '$lib/accordion';
+  initAccordions();
+</script>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MusicCasterSlideshow from '$lib/components/MusicCasterSlideshow.svelte';
+import { withBase } from '$lib/paths';
+
+const images: Array<[string, string]> = [
+  ['https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/main.webp?raw=true', 'Main'],
+  ['https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/mini.webp?raw=true', 'Mini-Mode'],
+  ['https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/tray.webp?raw=true', 'Tray'],
+  ['https://github.com/elibroftw/music-caster/blob/master/resources/screenshots/web.webp?raw=true', 'Web GUI'],
+];
+---
+
+<BaseLayout title="Music Caster" description="Music Caster is a desktop music player with Google Cast support.">
+  <script is:inline>
+    const args = new URLSearchParams(window.location.search).getAll('args');
+    if (args.length) {
+      window.location.href = `music-caster:${args.join(';')}`;
+    }
+  </script>
+  <h1>Music Caster</h1>
+  <h2>Screenshots (v4.90)</h2>
+  <a class="link" href="https://github.com/elibroftw/music-caster/blob/master/README.md#download-windows">Download</a>
+  <a class="ui-btn" href="music-caster:">Open Music Caster Desktop</a>
+  <MusicCasterSlideshow images={images} client:load />
+  <p><a class="link" href={withBase('/software/#music-caster')}>More software</a></p>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '$lib/paths';
+
+const works = [
+  {
+    href: 'https://www.deviantart.com/elibroftw/art/Plexus-Wallpapers-844305973',
+    image: withBase('/static/graphic_design/plexus_wallpapers_preview.webp'),
+    alt: 'Plexus Mobile Wallpapers Preview',
+    title: 'Plexus Wallpapers',
+  },
+  {
+    href: 'https://www.deviantart.com/elibroftw/art/Smoke-Wallpapers-V1-823887520',
+    image: withBase('/static/graphic_design/smoke_wallpapers_preview.webp'),
+    alt: 'Smoke Wallpapers',
+    title: 'Smoke Wallpapers',
+  },
+];
+---
+
+<BaseLayout title="Creative Works">
+  <h1>Creative Works</h1>
+  <p class="subtext">Features my graphic design and other types of creative work in the future</p>
+  <div class="featuresGrid">
+    {works.map((work) => (
+      <a href={work.href} class="feat-link">
+        <div class="polaroid">
+          <img class="preview" src={work.image} alt={work.alt} />
+          <div class="container">
+            <p>{work.title}</p>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

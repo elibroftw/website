@@ -6,3 +6,10 @@ static/css/*.min.css
 .env
 ssl/elijahlopez.ca.key
 ssl/elijahlopez.ca.raw.key
+
+# Astro / frontend
+node_modules/
+dist/
+.astro/
+public/static/
+.env.production

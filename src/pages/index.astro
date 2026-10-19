@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '$lib/paths';
+
+const cards = [
+  {
+    href: 'https://www.youtube.com/playlist?list=PLmWYh0f8jKSjt9VC5sq2T3mFETasG2p2L',
+    image: withBase('/static/images/tauri_react_playlist_thumbnail.webp'),
+    alt: 'Tauri and React desktop app youtube playlist thumbnail',
+    text: 'Tauri & ReactJS - Modern Desktop App Tutorial',
+  },
+  {
+    href: 'https://github.com/elibroftw/music-caster',
+    image: withBase('/static/images/music_caster_preview.webp'),
+    alt: 'Music Caster app screenshot',
+    text: 'Music Caster: Desktop Music Player',
+  },
+  {
+    href: 'https://github.com/elibroftw/matte-black-theme#matte-black-type-themes-for-chromium-and-firefox',
+    image: withBase('/static/images/matte-black-theme-preview.webp'),
+    alt: 'matte black browser theme preview',
+    text: 'Matte Black Browser Themes',
+  },
+  {
+    href: 'https://blog.elijahlopez.ca/posts/fixed-seats-proportional-representation/',
+    image: 'https://cdn.britannica.com/68/7068-050-54679E29/Flag-Canada.jpg',
+    alt: 'flag of Canada',
+    text: 'Fixed Seat Proportional Representation: Electoral reform without the pitfalls of MMPR and STV',
+  },
+];
+---
+
+<BaseLayout title="Home">
+  <h1 id="box-title"><a href={withBase('/software/')}><span>E L L</span></a></h1>
+  <p>Ambitious ... without the time</p>
+  <div class="featuresGrid">
+    {cards.map((card) => (
+      <a href={card.href} class="feat-link">
+        <div class="polaroid">
+          <img class="preview" src={card.image} alt={card.alt} />
+          <div class="container">
+            <p>{card.text}</p>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

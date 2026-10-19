@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '$lib/paths';
+
+const pages = [
+  ['Home', '/'],
+  ['Resume', '/resume/'],
+  ['Software', '/software/'],
+  ['Resources', '/resources/'],
+  ['Blog', '/blog/'],
+  ['Social', '/social/'],
+  ['About', '/about/'],
+  ['Search Album Art', '/search-album-art/'],
+  ['Music Caster', '/music-caster/'],
+  ['Cloud Copy', '/cloud-copy/'],
+  ['Krunker Stats', '/krunker-stats/'],
+  ['QR Code Generator', '/qr-code-generator/'],
+  ['PDF Splitter', '/split-pdf/'],
+  ['PDF Combiner', '/combine-pdf/'],
+  ['Skateboarding Toronto', '/skateboarding-toronto/'],
+];
+---
+
+<BaseLayout title="Index">
+  <style is:global>
+    .link {
+      font-family: Montserrat;
+      font-size: 20px;
+      padding-bottom: 0.5%;
+      display: block;
+      transition-duration: 100ms;
+    }
+
+    .link:hover {
+      font-size: 1.5em;
+    }
+  </style>
+  <h1>Index</h1>
+  <p>All the pages on my website</p>
+  {pages.map(([label, href]) => <a class="link" href={withBase(href)}>{label}</a>)}
+</BaseLayout>

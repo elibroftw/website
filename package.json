@@ -1,0 +1,31 @@
+{
+  "name": "elijahlopez-website",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm sync:static && astro dev",
+    "start": "astro dev",
+    "build": "pnpm sync:static && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "sync:static": "node scripts/sync-static.mjs"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^9.1.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "svelte": "^5.57.2",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.11",
+    "@types/node": "^24.10.1",
+    "svelte-check": "^4.3.4",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@11.24.0"
+}

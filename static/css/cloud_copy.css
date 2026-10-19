@@ -13,7 +13,7 @@ html {
 
 body {
     font-family: monospace;
-    background-image: url("/static/images/cloud_copy_background.jpg");
+    background-image: url("../images/cloud_copy_background.jpg");
     background-position: center;
     background-repeat: repeat;
     background-size: cover;

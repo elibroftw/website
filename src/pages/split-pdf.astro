@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PdfSplitter from '$lib/components/PdfSplitter.svelte';
+---
+
+<BaseLayout title="PDF Splitter" description="Split a PDF into one file per page and download the result as a zip archive.">
+  <PdfSplitter client:load />
+</BaseLayout>

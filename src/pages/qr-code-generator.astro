@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QrCodeGenerator from '$lib/components/QrCodeGenerator.svelte';
+---
+
+<BaseLayout title="QR Code Generator" description="A free QR code generator with optional logo support. No installation, redirects, or accounts.">
+  <QrCodeGenerator client:load />
+</BaseLayout>
+
+<style is:global>
+  .button {
+    display: inline-block;
+    font-family: Montserrat;
+    font-weight: 100;
+    padding: 10px;
+    background: -webkit-linear-gradient(45deg, rgba(30, 143, 255, 0.9), rgba(0, 128, 0, 0.9));
+    color: #eeeeee;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .button:hover {
+    background: linear-gradient(45deg, dodgerBlue, purple);
+  }
+</style>

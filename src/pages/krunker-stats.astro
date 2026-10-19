@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Krunker Stats">
+  <style is:global>
+    #krunker-form input {
+      display: inline-block;
+      padding: 0.35em 1.2em;
+      border: 0.1em solid #ffffff;
+      margin: 0 0.3em 0.3em 0;
+      border-radius: 0.12em;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      color: #ffffff;
+      transition: all 0.2s;
+      background-color: transparent;
+    }
+
+    #search {
+      display: inline-block;
+      padding: 0.35em 1.2em;
+      border: 0.1em solid #ffffff;
+      margin: 0 0.3em 0.3em 0;
+      border-radius: 0.12em;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      color: #ffffff;
+      text-align: center;
+      transition: all 200ms;
+      background-color: transparent;
+    }
+
+    #search:hover,
+    #krunker-form input:hover,
+    #krunker-form input:active,
+    #krunker-form input:focus {
+      color: #000000;
+      background-color: #ffffff;
+    }
+
+    @media all and (max-width: 30em) {
+      #search {
+        display: block;
+        margin: 0.4em auto;
+        width: 15.5em;
+      }
+
+      #krunker-form input {
+        display: block;
+        margin: 0.4em auto;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <h1>Krunker Stats</h1><br />
+  <form id="krunker-form" style="margin-bottom: 1em">
+    <input id="krunker-username-input" type="text" name="krunker-username" placeholder="Krunker username" autofocus required />
+    <button id="search">Search</button>
+  </form>
+</BaseLayout>
+
+<script>
+  const initialUsername = new URLSearchParams(window.location.search).get('krunker-username');
+  if (initialUsername) {
+    window.location.href = `https://krunker.io/social.html?p=profile&q=${encodeURIComponent(initialUsername)}`;
+  }
+
+  const form = document.getElementById('krunker-form') as HTMLFormElement;
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const username = (document.getElementById('krunker-username-input') as HTMLInputElement).value.trim();
+    if (username) {
+      window.location.href = `https://krunker.io/social.html?p=profile&q=${encodeURIComponent(username)}`;
+    }
+  });
+</script>

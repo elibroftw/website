@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '$lib/paths';
+
+interface SoftwareItem {
+  id: string;
+  title: string;
+  body: string;
+  links: Array<{ href: string; icon: string; label: string; divider?: boolean }>;
+}
+
+const software: SoftwareItem[] = [
+  {
+    id: 'music-caster',
+    title: 'Music Caster',
+    body: 'A music player with the ability to cast your local music to a Google Cast Device',
+    links: [
+      { href: 'https://github.com/elibroftw/music-caster/blob/master/README.md', icon: 'fa-download', label: 'Download on GitHub' },
+    ],
+  },
+  {
+    id: 'qr-code-generator',
+    title: 'Free QR Code Generator',
+    body: 'No installation, no redirect, no credit-card',
+    links: [{ href: withBase('/qr-code-generator/'), icon: 'fa-globe', label: 'Click here to use' }],
+  },
+  {
+    id: 'split-the-tank',
+    title: 'Split the Tank',
+    body: "A mobile app that tracks a car driver's cost of gas being used, while calculating the cost for each vehicle occupant.",
+    links: [{ href: 'https://www.splitthetank.com/', icon: 'fa-globe', label: 'Homepage' }],
+  },
+  {
+    id: 'matte-black-theme',
+    title: 'Matte Black Theme',
+    body: 'A modern dark theme for browsers',
+    links: [
+      { href: 'https://chrome.google.com/webstore/detail/ioadlgcadgdbcchobmhlipionnphmfja', icon: 'fa-download', label: 'Chrome' },
+      { href: 'https://addons.mozilla.org/addon/matte-black-red/', icon: 'fa-download', label: 'Firefox', divider: true },
+    ],
+  },
+  {
+    id: 'plexus-crystals-theme',
+    title: 'Plexus Crystals Theme',
+    body: 'An abstract update to the matte black series',
+    links: [
+      { href: 'https://chrome.google.com/webstore/detail/ojmfjbdihaiihhfgoepflhbkcoepdmob', icon: 'fa-download', label: 'Chrome' },
+      { href: 'https://addons.mozilla.org/addon/plexus-crystals-sky-blue/', icon: 'fa-download', label: 'Firefox', divider: true },
+    ],
+  },
+  {
+    id: 'google-dark-theme',
+    title: 'Google Dark Theme',
+    body: 'A darker theme for the Google search engine and Google Drive',
+    links: [
+      { href: 'https://chrome.google.com/webstore/detail/ohhpliipfhicocldcakcgpbbcmkjkian', icon: 'fa-download', label: 'Chrome' },
+      { href: 'https://addons.mozilla.org/addon/dark-theme-for-google-searches/', icon: 'fa-download', label: 'Firefox', divider: true },
+    ],
+  },
+  {
+    id: 'split-pdf',
+    title: 'PDF Splitter / Extractor',
+    body: 'Converts a PDF into a zip file consisting of a file for each page',
+    links: [{ href: withBase('/split-pdf/'), icon: 'fa-globe', label: 'Click here to use' }],
+  },
+  {
+    id: 'jungle-climb',
+    title: 'Jungle Climb',
+    body: 'A platformer made using pygame',
+    links: [{ href: 'https://github.com/elibroftw/jungle-climb/blob/master/README.md', icon: 'fa-download', label: 'Download on GitHub' }],
+  },
+  {
+    id: 'questrade-real-time-quote',
+    title: 'Questrade Real-Time Quote',
+    body: 'A browser extension that clicks the Questrade refresh quote button for you',
+    links: [
+      { href: 'https://chrome.google.com/webstore/detail/kmgcheblnhkjbbkddfafjcclahlclilm', icon: 'fa-download', label: 'Chrome' },
+      { href: 'https://addons.mozilla.org/addon/questrade-real-time-quote/', icon: 'fa-download', label: 'Firefox', divider: true },
+    ],
+  },
+  {
+    id: 'shift',
+    title: 'Shift',
+    body: 'A 3D shooter made using Unity',
+    links: [{ href: 'https://elijahlopez.itch.io/shift', icon: 'fa-download', label: 'Download on itch.io' }],
+  },
+  {
+    id: 'search-album-art',
+    title: 'Search Album Art',
+    body: 'A Spotify API demo to search for album art',
+    links: [{ href: withBase('/search-album-art/'), icon: 'fa-search', label: 'Click here to use' }],
+  },
+  {
+    id: 'formula-calculator',
+    title: 'Formula Calculator',
+    body: 'A program for helpful formulas. No longer maintained',
+    links: [{ href: 'https://repl.it/@elilopez/formulas', icon: 'fa-code', label: 'Use on Repl.it' }],
+  },
+  {
+    id: 'discord-bot',
+    title: 'Discord Bot',
+    body: 'A Discord bot with music (+ autoplay), finance, and other features',
+    links: [{ href: 'https://github.com/elibroftw/discord-bot', icon: 'fa-download', label: 'Get it on GitHub' }],
+  },
+  {
+    id: 'cloud-copy',
+    title: 'Cloud Copy',
+    body: '[Concept] A universal clipboard, OS and browser agnostic. I recommend using <a href="https://localsend.org/">Local Send</a> which came out in December 2022',
+    links: [{ href: withBase('/cloud-copy/'), icon: 'fa-link', label: 'Watch the concept here' }],
+  },
+  {
+    id: 'audio-metadata-editor',
+    title: 'MP3 Metadata Editor',
+    body: 'A precursor to Music Caster; A CLI for setting metadata of MP3 files',
+    links: [
+      { href: 'https://github.com/elibroftw/mp3-editor', icon: 'fa-download', label: 'Download on GitHub' },
+      { href: 'https://github.com/elibroftw/music-caster/', icon: 'fa-globe', label: 'Use Music Caster', divider: true },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Software">
+  <style is:global>
+    * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  </style>
+
+  <h1>Software</h1><br />
+  {software.map((item) => (
+    <>
+      <button class="accordion" id={item.id}>{item.title}</button>
+      <div class="panel">
+        <p id="panel-text" set:html={item.body}></p>
+        <div class={item.links.length > 1 ? 'row' : ''}>
+          {item.links.map((link, index) => (
+            <>
+              {link.divider && index > 0 ? <div class="divider"></div> : null}
+              <a class="downloadBtn" href={link.href}>
+                <i class={`fa ${link.icon}`}></i> {link.label}
+              </a>
+            </>
+          ))}
+        </div>
+      </div>
+    </>
+  ))}
+</BaseLayout>
+
+<script>
+  import { initAccordions } from '$lib/accordion';
+  initAccordions();
+</script>

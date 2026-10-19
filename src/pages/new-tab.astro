@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewTabClock from '$lib/components/NewTabClock.svelte';
+---
+
+<BaseLayout title="New Tab">
+  <style is:global>
+    .link {
+      font-size: 20px;
+      padding-bottom: 1em;
+      display: block;
+    }
+
+    .link:hover {
+      font-size: 1.4em;
+    }
+  </style>
+  <NewTabClock client:load />
+  <a href="https://youtube.com" class="link">Youtube</a>
+  <a href="https://requestbin.com" class="link">Request Bin</a>
+  <a href="https://github.com/elibroftw?tab=repositories" class="link">GitHub</a>
+  <a href="https://keep.google.com/" class="link">Google Keep</a>
+</BaseLayout>

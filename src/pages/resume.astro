@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '$lib/paths';
+
+const experience = [
+  {
+    role: 'Software Engineer',
+    time: 'Oct 2023 - PRESENT',
+    bullets: ['I work full time'],
+  },
+  {
+    role: 'Intern @ Fiera Private Debt',
+    time: 'Sep 2023 - Dec 2023',
+    bullets: [
+      'I am considered the GOAT intern',
+      'Why? I used openpyxl and Excel macros to automate the aggregation of multiple Excel files with a generalized template',
+    ],
+  },
+  {
+    role: 'DevOps Engineer @ Fortanix',
+    time: 'Jan 2022 - Apr 2022',
+    bullets: [
+      'Work environment was Linux',
+      'Fixed organizational wide Jenkins bug when killing old builds with Groovy',
+      'Removed all security sensitive Jenkins API usages',
+      'Abstracted code that killed old Jenkins builds to the internal Jenkins pipeline library',
+      'Implemented Rust asynchronous Mutexes (tokio) in order to prevent backend processing collisions',
+      'Used IPMI and Chef to upgrade Ubuntu 16.04 servers to Ubuntu 20.04 and set them up as Jenkins nodes',
+      'Many devops-related tasks like fixing legacy Ruby scripts in order to add monitoring (sensu) to servers',
+    ],
+  },
+  {
+    role: 'Full Stack Developer @ TD Securities',
+    time: 'Jan 2021 - Apr 2021, May 2020 — Aug 2020',
+    bullets: [
+      'Created a Python Jupyter Notebook comparing PAT and PROD environments of internal web app',
+      'Used Javascript, AngularJS and Molecular services to implement functional programming calculations',
+      'Used Ploty Dash to create a dashboard for the number of trades for each fixed-income Security',
+      'Created a ReactJS view to show differences between data on PAT and PROD servers.',
+      'Modified the internal Java SpringBoot API to ignore metadata of objects in Javers.',
+      'Introduced JWT token authentication into internal node express server to improve security',
+      'Removed internal HazelCast API restrictions to allow developers catch specific errors',
+      'Implemented TreeMap to sort objects returned in API responses',
+      'Conscientiously delivered on assigned tasks within the Agile Jira workflow',
+    ],
+  },
+];
+---
+
+<BaseLayout title="Resume">
+  <style is:global>
+    * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    #inner p {
+      margin-top: 0;
+    }
+
+    .major {
+      color: #cecece;
+    }
+
+    #inner h1 {
+      background: -webkit-linear-gradient(45deg, crimson, #860101 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #inner h2 {
+      background: -webkit-linear-gradient(45deg, crimson, #680000 40%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 0.5em;
+      margin-bottom: 0.25em;
+    }
+
+    .time {
+      background-color: #2f4353;
+      background-image: linear-gradient(0deg, #2f4353 0%, #d2ccc4 74%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #inner h2,
+    .h2 {
+      font-size: 22pt;
+    }
+
+    #inner h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-weight: bold;
+    }
+
+    .row,
+    .links,
+    .skills {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 0.5em;
+    }
+
+    .row p {
+      margin-bottom: 0;
+    }
+
+    .skills ul {
+      list-style-type: '★';
+      text-indent: 0.5em;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+
+    .responsibilities {
+      color: white;
+      list-style-type: '-';
+      text-indent: 0.5em;
+      margin-left: -2em;
+    }
+
+    .feature {
+      background: -webkit-linear-gradient(45deg, crimson, #970000 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #inner {
+      background-color: rgba(0, 0, 0, 0.9);
+      width: 70%;
+      max-width: 1000px;
+    }
+
+    #resume {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    @media screen and (max-width: 1366px) {
+      .skills {
+        display: grid;
+        grid-template-columns: 200px 200px;
+      }
+    }
+
+    @media screen and (max-width: 690px) {
+      #inner {
+        width: 90%;
+        padding: 1em;
+      }
+
+      .links p:first-child {
+        display: none;
+      }
+    }
+  </style>
+
+  <div id="resume">
+    <div class="row">
+      <h1 style="font-size: 3em; margin-top: -0.1em; margin-bottom: 0.5rem;">Elijah Lopez</h1>
+      <p style="text-align: right;">2025 MAR 04</p>
+    </div>
+    <p>S-tier debugger. Highly ambitious.</p>
+    <div class="links">
+      <p><a class="link" href="mailto:elijahllopezz@gmail.com">elijahllopezz@gmail.com</a></p>
+      <p><a class="link" href="https://github.com/elibroftw">github.com/elibroftw</a></p>
+      <p><a class="link" href={withBase('/consulting/')}>Business cases</a></p>
+    </div>
+
+    <h2>Experience</h2>
+    {experience.map((job) => (
+      <div>
+        <div class="row">
+          <h3>{job.role}</h3>
+          <p class="time">{job.time}</p>
+        </div>
+        <ul class="responsibilities">
+          {job.bullets.map((bullet) => <li>{bullet}</li>)}
+        </ul>
+      </div>
+    ))}
+
+    <a href={withBase('/software/')} class="link h2">Projects</a>
+    <h2>Education</h2>
+    <div>
+      <div class="row">
+        <h3>University of Waterloo</h3>
+        <p class="time">Sep 2019 — Aug 2024</p>
+      </div>
+      <div class="row">
+        <p class="major">Computer Science</p>
+        <p class="feature">GPA: 3.55 / 4</p>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <h3>Wilfrid Laurier University</h3>
+        <p class="time">Sep 2019 — Aug 2024</p>
+      </div>
+      <div class="row">
+        <p class="major">Business Administration</p>
+        <p class="feature">GPA: 3.55 / 4</p>
+      </div>
+    </div>
+    <h2>Skills</h2>
+    <div class="skills">
+      <p>Look at my github</p>
+    </div>
+  </div>
+</BaseLayout>

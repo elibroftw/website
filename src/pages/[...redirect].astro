@@ -1,0 +1,41 @@
+---
+import { withBase } from '$lib/paths';
+
+export function getStaticPaths() {
+  const redirects: Record<string, string> = {
+    articles: '/blog/',
+    projects: '/software/',
+    contact: '/social/',
+    donate: '/social/',
+    'graphic-design': '/creations/',
+    'creative-works': '/creations/',
+    wallpapers: '/creations/',
+    krunker: '/krunker-stats/',
+    skateboarding: '/skateboarding-toronto/',
+    'wlu-pool-schedule': '/wlu-pool/',
+    socketio: '/socket/',
+  };
+  return Object.entries(redirects).map(([redirect, destination]) => ({
+    params: { redirect },
+    props: { destination },
+  }));
+}
+
+const { destination } = Astro.props;
+const target = withBase(destination);
+const canonical = Astro.site ? new URL(target, Astro.site).toString() : target;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting to: {target}</title>
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={canonical} />
+  </head>
+  <body>
+    <a href={target}>Redirecting from <code>{Astro.url.pathname}</code> to <code>{target}</code></a>
+  </body>
+</html>

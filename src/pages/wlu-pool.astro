@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WluPoolSchedule from '$lib/components/WluPoolSchedule.svelte';
+---
+
+<BaseLayout title="WLU Pool Schedule" description="A prettified Laurier pool schedule.">
+  <style is:global>
+    @media screen and (max-width: 1460px) {
+      #inner h1 {
+        font-size: 40px;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      #inner h1 {
+        font-size: 25px;
+        letter-spacing: 5px;
+      }
+    }
+  </style>
+  <WluPoolSchedule client:load />
+</BaseLayout>

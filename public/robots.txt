@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /index/
+Disallow: /new-tab/
+Disallow: /socket/
+
+Sitemap: https://elijahlopez.ca/sitemap.xml

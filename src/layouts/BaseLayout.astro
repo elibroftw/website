@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+import { withBase } from '$lib/paths';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = '',
+  description = "^ Click this ^. As a software developer, I've created the matte black browser themes, Music Caster, video tutorials on Tauri, and many more practical projects. Check me out!",
+} = Astro.props;
+
+const baseCss = withBase('/static/css/base.css');
+const lightCss = withBase('/static/css/light.css');
+const darkCss = withBase('/static/css/dark.css');
+const favicon = withBase('/static/images/favicon.png');
+const pageTitle = title ? `${title} - Elijah Lopez` : 'Elijah Lopez';
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
+const ogImage = Astro.site ? new URL(withBase('/static/images/favicon.png'), Astro.site).toString() : favicon;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <link rel="apple-touch-icon" href={favicon} />
+    <link rel="icon" type="image/x-icon" href={withBase('/static/images/favicon.ico')} />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" id="style-base" href={baseCss} />
+    <link rel="stylesheet" id="style-theme" href={lightCss} />
+    <meta name="viewport" content="width=device-width, initial-scale=0.86, minimum-scale=0.86" />
+    <meta name="theme-color" content="#111111" />
+    <meta property="og:title" content="Elijah Lopez Website" />
+    <meta property="og:description" content="A website of my creations and projects" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@elibroftw" />
+    <meta name="twitter:title" content="Elijah Lopez Website" />
+    <meta name="twitter:description" content="A website of my creations and projects" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="description" content={description} />
+    <script is:inline define:vars={{ lightCss, darkCss }}>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          let cookie = null;
+          for (const part of document.cookie.split(';')) {
+            const [key, ...rest] = part.trim().split('=');
+            if (key === 'theme') cookie = decodeURIComponent(rest.join('='));
+          }
+          const dark = stored !== null ? stored === 'true' : cookie === 'true';
+          document.getElementById('style-theme')?.setAttribute('href', dark ? darkCss : lightCss);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch {
+          /* localStorage may be unavailable in private mode */
+        }
+      })();
+    </script>
+    <script src="https://ryb.elijahlopez.ca/api/script.js" data-site-id="2" defer></script>
+  </head>
+  <body>
+    <input id="mobile-nav-checkbox" type="checkbox" autocomplete="off" />
+    <label for="mobile-nav-checkbox" id="mobile-nav-label"></label>
+    <nav id="mobile-nav-panel">
+      <a href={withBase('/')}>home</a>
+      <a href={withBase('/blog/')}>blog</a>
+      <a href={withBase('/software/')}>software</a>
+      <a href={withBase('/consulting/')}>consulting</a>
+      <a href={withBase('/creations/')}>creations</a>
+      <a href={withBase('/resources/')}>resources</a>
+      <a href={withBase('/social/')}>social</a>
+    </nav>
+    <nav id="desktop-nav" class="noselect">
+      <a href={withBase('/')}>home</a>
+      <a href={withBase('/blog/')}>blog</a>
+      <a href={withBase('/software/')}>software</a>
+      <a href={withBase('/consulting/')}>consulting</a>
+      <a href={withBase('/creations/')}>creations</a>
+      <a href={withBase('/resources/')}>resources</a>
+      <a href={withBase('/social/')}>social</a>
+    </nav>
+    <div id="inner"><slot /></div>
+    <slot name="more" />
+    <div style="height: 0.02px;"></div>
+    <ThemeToggle lightCss={lightCss} darkCss={darkCss} client:load />
+  </body>
+</html>

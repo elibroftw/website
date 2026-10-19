@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Blog">
+  <style is:global>
+    .blogIframe {
+      width: 100%;
+      height: 85vh;
+      border-radius: inherit;
+      border-width: 0;
+    }
+
+    body:has(.blogIframe) #inner {
+      margin-top: 5vh;
+      margin-bottom: 2em;
+      padding: 0 !important;
+      height: auto !important;
+    }
+  </style>
+  <iframe src="https://blog.elijahlopez.ca/posts" title="ELL Blog Posts" class="blogIframe"></iframe>
+</BaseLayout>

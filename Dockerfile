@@ -1,12 +1,3 @@
-# react build stage
-FROM node:24-slim AS react-builder
-WORKDIR /react-app
-COPY react-app/package.json react-app/pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile
-COPY react-app/ .
-RUN pnpm run build
-
-# final stage
 FROM almalinux:10-minimal
 
 # Define build arguments for secrets
@@ -36,10 +27,7 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN python -m pip install --no-cache-dir -r requirements.txt
 
-# Copy built React files from builder stage
-COPY --from=react-builder /react-app/dist ./react-app/dist
-
-# Copy application code (node_modules excluded via .dockerignore)
+# Copy application code
 COPY . .
 
 EXPOSE 8000

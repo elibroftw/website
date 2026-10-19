@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RbhsAnnouncements from '$lib/components/RbhsAnnouncements.svelte';
+---
+
+<BaseLayout title="Announcements" description="RBHS school announcements.">
+  <RbhsAnnouncements client:load />
+</BaseLayout>
