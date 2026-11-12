@@ -12,7 +12,7 @@
     "sync:static": "node scripts/sync-static.mjs"
   },
   "dependencies": {
-    "@astrojs/svelte": "^9.1.0",
+    "@astrojs/svelte": "^9.1.2",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.1",
     "class-variance-authority": "^0.7.1",
